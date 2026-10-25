@@ -31,6 +31,7 @@ npm --prefix <repo> run typecheck
 | 2026-10-25 20:36 | f4e65ff | 검수 수정 재배포(키 있음, `-e` 4개, GitHub 연동 끊은 뒤 CLI 배포) — 20:06 GitHub 자동배포(4d317c8, 키 없음)가 키 배포를 덮었던 것을 20:22 `vercel promote`로 되돌리고 다시 배포. 짧은 URL 쿠키 없이 200, `/api/health` `hasKey:true`·`mode:live`·`commit:f4e65ff`, 운영 `/api/decompose` live claude-haiku-5-5, `capture.py --check` 운영 37/37 PASS |
 | 2026-10-25 20:56 | 155403b | 마무리 재배포(키 있음, `-e` 4개, CLI) dpl_4j3Lnsfxy9LzuZNUWYJ96VWyZpNM — 근거 대조 l4-v2(면사무소 별칭·약속 표현 차단)·사전계산 문서 재생성·E4 재측정. 짧은 URL 쿠키 없이 200, `/api/health` `hasKey:true`·`mode:live`·`commit:155403b`, 운영 `/api/decompose` live claude-haiku-5-5, `capture.py --check` 운영 37/37 PASS. 20:43 공개 저장소 이력 재작성(옛 커밋의 실명·다른 작품명 줄 교체, 위 표의 해시는 새 해시) |
 | 2026-10-25 22:06 | 4ac93bf | 화면 디자인 「마을 인수인계 장부」 2차(키 있음, `-e` 4개, CLI) dpl_3JymNyz3LEujBra3ikDzii6JNEUU — 640 px 미만 S3 장부를 2열 줄 목록으로 접음, 주민 안내문 20 px, 비평 수정. 짧은 URL 쿠키 없이 200, `/api/health` `hasKey:true`·`mode:live`·`commit:4ac93bf`, 운영 `/api/decompose` live claude-haiku-5-5, `capture.py --check` 운영 37/37 PASS, `docs/capture` 10장 운영에서 다시 찍음 |
+| 2026-10-25 22:20 | 4c5d58b | S0 마무리(키 있음, `-e` 4개, CLI) dpl_FhJkStxsHs76Rba9FAM6jao3G3dJ — 합계 줄은 크기 변화 없이 투명도로만 나타남(「확인 후」 합계가 장부 끝에서 잘리지 않음), 640 px 미만 「체험 시작」을 한 줄 소개 바로 아래로. 짧은 URL 쿠키 없이 200, `/api/health` `hasKey:true`·`mode:live`·`commit:4c5d58b`, `capture.py --check` 운영 37/37 PASS, `docs/capture` 10장 운영에서 다시 찍음 |
 
 ## 배포 메모
 - 운영 환경변수(`ANTHROPIC_API_KEY` 등)는 `vercel --prod -e ...` 방식으로 배포마다 넣는다. **`-e`는 그 배포에만 붙으므로 재배포할 때마다 다시 넣어야 한다.** 키 값은 저장소·로그·`.env.local`에 남기지 않는다.
