@@ -1,0 +1,35 @@
+{
+  "meta": {
+    "mock": true,
+    "note": "A1 목업 픽스처 — 화면·엔진 개발용. 마을 2·수요점 4·자원 8. 거점 좌표는 근사값(목업), 「A슈퍼(가상)」은 가상 업소. 실데이터는 data/region_hwasan.json(A2).",
+    "generatedAt": "2026-10-25T18:50:00+09:00",
+    "osmBaseTime": "2026-10-25T09:08:36Z",
+    "odbl": "© OpenStreetMap contributors. OpenStreetMap 파생 데이터(ODbL 1.0).",
+    "assumptions": [
+      "리 인구 = 면 인구 2,479명 균등 배분(가정)",
+      "수요점 무게 = 리 인구 ÷ 그 리 수요점 수(가정)",
+      "거점 소속 리는 거리로 추정(가정)"
+    ],
+    "busStops": []
+  },
+  "villages": [
+    { "id": "hwapyeong", "name": "화평리", "lat": 36.03674, "lon": 127.20691, "pop": 225.36, "popAssumed": true, "isSeat": true, "foodStores": 1, "codeVerified": false },
+    { "id": "seungchi", "name": "승치리", "lat": 36.07537, "lon": 127.21567, "pop": 225.36, "popAssumed": true, "isSeat": false, "foodStores": 0, "codeVerified": false }
+  ],
+  "points": [
+    { "id": "p_hwapyeong_node", "villageId": "hwapyeong", "name": "화평리", "lat": 36.03674, "lon": 127.20691, "kind": "village_node", "weight": 112.68 },
+    { "id": "p_hwapyeong_hub_mock_hwapyeong", "villageId": "hwapyeong", "name": "화평경로당", "lat": 36.0372, "lon": 127.204, "kind": "hub", "hubResId": "hub_mock_hwapyeong", "weight": 112.68 },
+    { "id": "p_seungchi_node", "villageId": "seungchi", "name": "승치리", "lat": 36.07537, "lon": 127.21567, "kind": "village_node", "weight": 112.68 },
+    { "id": "p_seungchi_hub_mock_minam", "villageId": "seungchi", "name": "미남경로회관", "lat": 36.079, "lon": 127.219, "kind": "hub", "hubResId": "hub_mock_minam", "weight": 112.68 }
+  ],
+  "resources": [
+    { "id": "hanaro_hwasan", "name": "하나로마트(화산)", "cls": "hanaro", "src": ["osm"], "lat": 36.03412, "lon": 127.20267, "myeon": "화산면", "villageId": "hwapyeong", "note": "OSM 등록 지역농협 점포" },
+    { "id": "post_hwasan", "name": "완주화산우체국", "cls": "post", "src": ["osm"], "lat": 36.03546, "lon": 127.20291, "myeon": "화산면", "villageId": "hwapyeong", "note": "OSM 등록" },
+    { "id": "sbiz_MOCK0001", "name": "A슈퍼(가상)", "cls": "store_daily", "src": ["sbiz"], "lat": 36.036, "lon": 127.2055, "myeon": "화산면", "villageId": "hwapyeong", "sbizNo": "MOCK0001", "sbizSub": "슈퍼마켓", "supplierClass": "생필품 공급처", "note": "목업 — 가상 업소(실존 업소 아님)" },
+    { "id": "tour_A", "name": "이동장터 A", "cls": "tour", "src": ["derived"], "anonymized": true, "note": "근거: 완주군 농촌 이동장터(고산농협 38개 마을 대상, MTN 2026-08-06 https://news.mtn.co.kr/news-detail/2026080616283813301). 화산면 정차 마을·요일·운영 주체 미확인 → 운영 주체를 특정하지 않고 「이동장터 A」로 표기" },
+    { "id": "care_link", "name": "생활지원 연계(노인맞춤돌봄서비스 등 — 식료품 배달)", "cls": "care_link", "src": ["derived"], "note": "근거: 복지로 노인맞춤돌봄서비스 안내(2021-04-22) — 연계 서비스 「식료품 및 식사배달 서비스」, 대상 「만 65세 이상 국민기초생활수급자·차상위계층·기초연금수급자 중 돌봄이 필요한 노인」. 화산면 수행기관·제공 여부 미확인", "evidenceUrl": "https://www.bokjiro.go.kr/ssis-tbu/cms/pc/news/promotion/1210334_1118.html" },
+    { "id": "hub_mock_hwapyeong", "name": "화평경로당", "cls": "hub", "src": ["osm"], "lat": 36.0372, "lon": 127.204, "myeon": "화산면", "villageId": "hwapyeong", "note": "목업 — 좌표 근사" },
+    { "id": "hub_mock_minam", "name": "미남경로회관", "cls": "hub", "src": ["osm"], "lat": 36.079, "lon": 127.219, "myeon": "화산면", "villageId": "seungchi", "note": "목업 — 좌표 근사" },
+    { "id": "hubdrop_hanaro_hwasan_mock_minam", "name": "하나로마트(화산) → 미남경로회관 모아 보내기", "cls": "hubdrop", "src": ["derived"], "lat": 36.079, "lon": 127.219, "villageId": "seungchi", "deliverer": "hanaro_hwasan", "hubId": "hub_mock_minam", "note": "결합 자원: 하나로마트(화산)가 거점으로 일괄배송, 주민은 거점에서 수령" }
+  ]
+}

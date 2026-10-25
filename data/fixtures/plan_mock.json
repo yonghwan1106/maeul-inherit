@@ -1,0 +1,106 @@
+{
+  "_mock": true,
+  "_note": "A1 목업 — region_mock.json 기준 손으로 만든 값. 엔진(A3) 완성 전 화면 개발용이며 화면·보고서 수치의 출처가 아님.",
+  "store": { "name": "승치 마을상회(가상)", "villageId": "seungchi", "lat": 36.06006, "lon": 127.22416, "sbizSub": "슈퍼마켓",
+             "items": ["라면", "쌀", "두부", "계란", "막걸리", "파스", "세제"], "hours": "06:30-20:00",
+             "memo": "어르신들 택배를 다 여기 맡겼고, 전화하면 사장님이 오토바이로 갖다 줬음. 오후엔 가게 앞 평상에 모여 앉으심. 혼자 사는 어르신들 안부도 사장님이 챙겼음." },
+  "fns": [
+    { "code": "F01", "importance": 3, "evidence": "라면", "needsCheck": false, "source": "rules", "enabled": true },
+    { "code": "F02", "importance": 2, "evidence": "계란", "needsCheck": false, "source": "rules", "enabled": true },
+    { "code": "F04", "importance": 1, "evidence": "06:30-20:00", "needsCheck": false, "source": "rules", "enabled": true },
+    { "code": "F05", "importance": 2, "evidence": "파스", "needsCheck": false, "source": "rules", "enabled": true },
+    { "code": "F06", "importance": 2, "evidence": "택배를 다 여기 맡겼고", "needsCheck": false, "source": "rules", "enabled": true },
+    { "code": "F07", "importance": 2, "evidence": "전화하면 사장님이 오토바이로 갖다 줬음", "needsCheck": false, "source": "rules", "enabled": true },
+    { "code": "F09", "importance": 1, "evidence": "가게 앞 평상에 모여 앉으심", "needsCheck": false, "source": "rules", "enabled": true },
+    { "code": "F10", "importance": 1, "evidence": "안부도 사장님이 챙겼음", "needsCheck": false, "source": "rules", "enabled": true }
+  ],
+  "plan": {
+    "scope": ["seungchi"],
+    "points": ["p_seungchi_hub_mock_minam", "p_seungchi_node"],
+    "byVM": [
+      { "villageId": "seungchi", "mode": "car", "set": ["hanaro_hwasan", "post_hwasan"], "L": 0.75, "U": 0.9167,
+        "countY": 4, "countU": 1, "countN": 1,
+        "byFn": {
+          "F01": [{ "resId": "hanaro_hwasan", "tri": "Y", "channel": "visit" }],
+          "F02": [{ "resId": "hanaro_hwasan", "tri": "Y", "channel": "visit" }],
+          "F05": [{ "resId": "hanaro_hwasan", "tri": "Y", "channel": "visit" }],
+          "F06": [{ "resId": "post_hwasan", "tri": "Y", "channel": "visit" }],
+          "F07": [{ "resId": "hanaro_hwasan", "tri": "U", "channel": "deliver" }]
+        },
+        "gaps": ["F04"], "truncated": false, "nCandidates": 8 },
+      { "villageId": "seungchi", "mode": "walk", "set": ["care_link", "hub_mock_minam", "hubdrop_hanaro_hwasan_mock_minam"], "L": 0, "U": 0.9167,
+        "countY": 0, "countU": 5, "countN": 1,
+        "byFn": {
+          "F01": [{ "resId": "hubdrop_hanaro_hwasan_mock_minam", "tri": "U", "channel": "hubdrop" }, { "resId": "care_link", "tri": "U", "channel": "deliver" }],
+          "F02": [{ "resId": "hubdrop_hanaro_hwasan_mock_minam", "tri": "U", "channel": "hubdrop" }, { "resId": "care_link", "tri": "U", "channel": "deliver" }],
+          "F05": [{ "resId": "hubdrop_hanaro_hwasan_mock_minam", "tri": "U", "channel": "hubdrop" }],
+          "F06": [{ "resId": "hub_mock_minam", "tri": "U", "channel": "visit" }],
+          "F07": [{ "resId": "care_link", "tri": "U", "channel": "deliver" }]
+        },
+        "gaps": ["F04"], "truncated": false, "nCandidates": 5 },
+      { "villageId": "seungchi", "mode": "homebound", "set": ["care_link", "tour_A"], "L": 0, "U": 0.75,
+        "countY": 0, "countU": 4, "countN": 2,
+        "byFn": {
+          "F01": [{ "resId": "care_link", "tri": "U", "channel": "deliver" }, { "resId": "tour_A", "tri": "U", "channel": "tour" }],
+          "F02": [{ "resId": "care_link", "tri": "U", "channel": "deliver" }, { "resId": "tour_A", "tri": "U", "channel": "tour" }],
+          "F05": [{ "resId": "tour_A", "tri": "U", "channel": "tour" }],
+          "F07": [{ "resId": "care_link", "tri": "U", "channel": "deliver" }]
+        },
+        "gaps": ["F04", "F06"], "truncated": false, "nCandidates": 3 }
+    ],
+    "summary": {
+      "car": { "L": 0.75, "U": 0.9167, "countY": 4, "countU": 1, "countN": 1, "nCore": 6 },
+      "walk": { "L": 0, "U": 0.9167, "countY": 0, "countU": 5, "countN": 1, "nCore": 6 },
+      "homebound": { "L": 0, "U": 0.75, "countY": 0, "countU": 4, "countN": 2, "nCore": 6 }
+    },
+    "common": {
+      "F01": ["hanaro_hwasan", "care_link"],
+      "F02": ["hanaro_hwasan", "care_link"],
+      "F05": ["hanaro_hwasan", "hubdrop_hanaro_hwasan_mock_minam"],
+      "F06": ["post_hwasan", "hub_mock_minam"],
+      "F07": ["care_link", "hanaro_hwasan"]
+    },
+    "socialHubs": ["hub_mock_minam"],
+    "voi": [
+      { "cellKey": "area:care_link:seungchi", "label": "승치리 어르신이 생활지원 연계(식료품 배달)를 받을 수 있는지", "realNamed": true, "key": 1.3333,
+        "dL": { "car": 0.1667, "walk": 0.5833, "homebound": 0.5833 }, "dCount": { "car": 1, "walk": 3, "homebound": 3 },
+        "uDropIfNo": { "car": 0, "walk": 0.1667, "homebound": 0.1667 } },
+      { "cellKey": "hubdrop:hanaro_hwasan:hub_mock_minam", "label": "하나로마트(화산)가 미남경로회관으로 모아 보내고 주민이 거기서 받을 수 있는지", "realNamed": true, "key": 0.5833,
+        "dL": { "car": 0, "walk": 0.5833, "homebound": 0 }, "dCount": { "car": 0, "walk": 3, "homebound": 0 },
+        "uDropIfNo": { "car": 0, "walk": 0, "homebound": 0 } },
+      { "cellKey": "stop:tour_A:p_seungchi_node", "label": "이동장터 A가 승치리 마을 안에 서는지(요일)", "realNamed": false, "key": 0.4167,
+        "dL": { "car": 0, "walk": 0.4167, "homebound": 0 }, "dCount": { "car": 0, "walk": 2, "homebound": 0 },
+        "uDropIfNo": { "car": 0, "walk": 0, "homebound": 0.0833 } }
+    ],
+    "ms": 0
+  },
+  "personal": [
+    { "pointId": "p_seungchi_hub_mock_minam", "mode": "walk",
+      "ordered": [
+        { "resId": "hubdrop_hanaro_hwasan_mock_minam", "fns": ["F01", "F02", "F05"], "tri": "U" },
+        { "resId": "hub_mock_minam", "fns": ["F06"], "tri": "U" },
+        { "resId": "care_link", "fns": ["F07"], "tri": "U" }
+      ],
+      "perFn": {
+        "F01": { "tri": "U", "resId": "hubdrop_hanaro_hwasan_mock_minam" },
+        "F02": { "tri": "U", "resId": "hubdrop_hanaro_hwasan_mock_minam" },
+        "F04": { "tri": "N" },
+        "F05": { "tri": "U", "resId": "hubdrop_hanaro_hwasan_mock_minam" },
+        "F06": { "tri": "U", "resId": "hub_mock_minam" },
+        "F07": { "tri": "U", "resId": "care_link" }
+      },
+      "countY": 0, "countU": 5, "countN": 1,
+      "b1": { "resId": "sbiz_MOCK0001", "distKm": 4.9, "countY": 0, "walkable": false } }
+  ],
+  "baseline": {
+    "villageId": "seungchi", "mode": "walk", "set": ["sbiz_MOCK0001"], "L": 0, "U": 0, "countY": 0, "countU": 0, "countN": 6,
+    "byFn": {}, "gaps": ["F01", "F02", "F04", "F05", "F06", "F07"], "truncated": false, "nCandidates": 1 },
+  "digest": {
+    "scenarioId": "sc1_seungchi", "villageName": "승치리", "mode": "walk",
+    "items": [
+      { "resId": "hubdrop_hanaro_hwasan_mock_minam", "name": "하나로마트(화산) → 미남경로회관 모아 보내기", "fns": ["장보기", "신선식품", "생활용품"], "status": "확인 중" },
+      { "resId": "hub_mock_minam", "name": "미남경로회관", "fns": ["택배"], "status": "확인 중" },
+      { "resId": "care_link", "name": "생활지원 연계(노인맞춤돌봄서비스 등 — 식료품 배달)", "fns": ["배달"], "status": "확인 중" }
+    ],
+    "gaps": ["급할 때"], "counts": { "Y": 0, "U": 5, "N": 1 }, "numbersAllowed": [0, 1, 3, 5, 6] }
+}

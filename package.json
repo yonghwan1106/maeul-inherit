@@ -1,0 +1,45 @@
+{
+  "name": "maeul-inherit",
+  "version": "0.1.0",
+  "private": true,
+  "engines": {
+    "node": "22.x"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "typecheck": "tsc --noEmit",
+    "test": "tsx --test \"tests/**/*.test.ts\"",
+    "bench": "tsx scripts/bench.ts",
+    "pipeline": "python -I pipeline/01_points.py pipeline/raw pipeline/out && python -I pipeline/02_resources.py pipeline/raw pipeline/out && python -I pipeline/03_build_region.py pipeline/out data/region_hwasan.json && python -I pipeline/check_region.py data/region_hwasan.json",
+    "check:scenarios": "tsx scripts/check-scenarios.ts",
+    "precompute": "tsx scripts/precompute.ts",
+    "eval:e1": "tsx scripts/eval/e1_decompose.ts",
+    "eval:e2cases": "tsx scripts/eval/e2_cases.ts",
+    "eval:e2llm": "tsx scripts/eval/e2_llm.ts",
+    "eval:e2": "tsx scripts/eval/e2_plan.ts",
+    "eval:e3": "tsx scripts/eval/e3_voi.ts",
+    "eval:e4": "tsx scripts/eval/e4_grounding.ts",
+    "eval:results": "tsx scripts/eval/build_results.ts",
+    "scan:secrets": "node scripts/scan-secrets.mjs"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "0.124.0",
+    "next": "16.3.4",
+    "react": "19.2.8",
+    "react-dom": "19.2.8"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "4.3.3",
+    "@types/node": "20.19.43",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "eslint": "9.39.5",
+    "eslint-config-next": "16.3.4",
+    "tailwindcss": "4.3.3",
+    "tsx": "4.23.15",
+    "typescript": "5.9.3"
+  }
+}
