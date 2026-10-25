@@ -1,0 +1,646 @@
+{
+ "model": "claude-haiku-5-5",
+ "prompt": "l1-v1",
+ "runAt": "2026-10-25T10:11:12.382Z",
+ "raws": [
+  {
+   "id": "dev-01",
+   "fail": null,
+   "texts": [
+    "{\"functions\":[{\"code\":\"F03\",\"importance\":2,\"evidence\":\"소고기\",\"needsCheck\":false},{\"code\":\"F01\",\"importance\":2,\"evidence\":\"간장\",\"needsCheck\":false},{\"code\":\"F05\",\"importance\":2,\"evidence\":\"휴지\",\"needsCheck\":false},{\"code\":\"F04\",\"importance\":2,\"evidence\":\"06:00-22:00\",\"needsCheck\":true}],\"unknowns\":[\"메모가 비어 있어 주민이 실제로 자주 찾던 물건과 이용 빈도를 확인할 수 없음\"]}"
+   ],
+   "functions": [
+    {
+     "code": "F01",
+     "importance": 2,
+     "evidence": "간장",
+     "needsCheck": false,
+     "source": "llm",
+     "enabled": true
+    },
+    {
+     "code": "F03",
+     "importance": 2,
+     "evidence": "소고기",
+     "needsCheck": false,
+     "source": "llm",
+     "enabled": true
+    },
+    {
+     "code": "F04",
+     "importance": 2,
+     "evidence": "06:00-22:00",
+     "needsCheck": true,
+     "source": "llm",
+     "enabled": true
+    },
+    {
+     "code": "F05",
+     "importance": 2,
+     "evidence": "휴지",
+     "needsCheck": false,
+     "source": "llm",
+     "enabled": true
+    }
+   ]
+  },
+  {
+   "id": "dev-02",
+   "fail": null,
+   "texts": [
+    "{\"functions\":[{\"code\":\"F02\",\"importance\":2,\"evidence\":\"사과\",\"needsCheck\":false},{\"code\":\"F03\",\"importance\":2,\"evidence\":\"소고기\",\"needsCheck\":false},{\"code\":\"F03\",\"importance\":2,\"evidence\":\"고등어\",\"needsCheck\":false}],\"unknowns\":[\"장보기(생필품·가공식품) 판매 여부\",\"배달·택배·현금 취급 여부\"]}"
+   ],
+   "functions": [
+    {
+     "code": "F02",
+     "importance": 2,
+     "evidence": "사과",
+     "needsCheck": false,
+     "source": "llm",
+     "enabled": true
+    },
+    {
+     "code": "F03",
+     "importance": 2,
+     "evidence": "소고기",
+     "needsCheck": false,
+     "source": "llm",
+     "enabled": true
+    }
+   ]
+  },
+  {
+   "id": "dev-03",
+   "fail": null,
+   "texts": [
+    "{\"functions\":[{\"code\":\"F02\",\"importance\":2,\"evidence\":\"양파\",\"needsCheck\":false},{\"code\":\"F02\",\"importance\":2,\"evidence\":\"사과\",\"needsCheck\":false},{\"code\":\"F03\",\"importance\":2,\"evidence\":\"소고기\",\"needsCheck\":false},{\"code\":\"F05\",\"importance\":2,\"evidence\":\"휴지\",\"needsCheck\":false},{\"code\":\"F05\",\"importance\":2,\"evidence\":\"세제\",\"needsCheck\":false}],\"unknowns\":[\"메모가 비어 있어 주민이 실제로 자주 이용했는지 확인이 필요함\",\"팔던 물건이 주로 어떤 용도로 이용되었는지 확인이 필요함\"]}"
+   ],
+   "functions": [
+    {
+     "code": "F02",
+     "importance": 2,
+     "evidence": "양파",
+     "needsCheck": false,
+     "source": "llm",
+     "enabled": true
+    },
+    {
+     "code": "F03",
+     "importance": 2,
+     "evidence": "소고기",
+     "needsCheck": false,
+     "source": "llm",
+     "enabled": true
+    },
+    {
+     "code": "F05",
+     "importance": 2,
+     "evidence": "휴지",
+     "needsCheck": false,
+     "source": "llm",
+     "enabled": true
+    }
+   ]
+  },
+  {
+   "id": "dev-04",
+   "fail": null,
+   "texts": [
+    "{\"functions\":[{\"code\":\"F01\",\"importance\":3,\"evidence\":\"라면\",\"needsCheck\":false},{\"code\":\"F02\",\"importance\":2,\"evidence\":\"계란\",\"needsCheck\":false},{\"code\":\"F03\",\"importance\":2,\"evidence\":\"소고기\",\"needsCheck\":false}],\"unknowns\":[\"배달·택배·현금 기능 여부 확인 필요\",\"운영 시간 외 급할 때 이용 가능 여부 확인 필요\"]}"
+   ],
+   "functions": [
+    {
+     "code": "F01",
+     "importance": 3,
+     "evidence": "라면",
+     "needsCheck": false,
+     "source": "llm",
+     "enabled": true
+    },
+    {
+     "code": "F02",
+     "importance": 2,
+     "evidence": "계란",
+     "needsCheck": false,
+     "source": "llm",
+     "enabled": true
+    },
+    {
+     "code": "F03",
+     "importance": 2,
+     "evidence": "소고기",
+     "needsCheck": false,
+     "source": "llm",
+     "enabled": true
+    }
+   ]
+  },
+  {
+   "id": "dev-05",
+   "fail": null,
+   "texts": [
+    "{\"functions\":[{\"code\":\"F01\",\"importance\":3,\"evidence\":\"국수\",\"needsCheck\":false},{\"code\":\"F02\",\"importance\":2,\"evidence\":\"양파\",\"needsCheck\":false},{\"code\":\"F03\",\"importance\":2,\"evidence\":\"고등어\",\"needsCheck\":false},{\"code\":\"F04\",\"importance\":2,\"evidence\":\"06:30-20:00\",\"needsCheck\":true},{\"code\":\"F05\",\"importance\":1,\"evidence\":\"건전지\",\"needsCheck\":false}],\"unknowns\":[\"돼지고기는 F03에 해당하는지 여부 확인 필요\",\"메모가 비어 있어 실제 장보기 빈도 확인 필요\"]}"
+   ],
+   "functions": [
+    {
+     "code": "F01",
+     "importance": 3,
+     "evidence": "국수",
+     "needsCheck": false,
+     "source": "llm",
+     "enabled": true
+    },
+    {
+     "code": "F02",
+     "importance": 2,
+     "evidence": "양파",
+     "needsCheck": false,
+     "source": "llm",
+     "enabled": true
+    },
+    {
+     "code": "F03",
+     "importance": 2,
+     "evidence": "고등어",
+     "needsCheck": false,
+     "source": "llm",
+     "enabled": true
+    },
+    {
+     "code": "F04",
+     "importance": 2,
+     "evidence": "06:30-20:00",
+     "needsCheck": true,
+     "source": "llm",
+     "enabled": true
+    },
+    {
+     "code": "F05",
+     "importance": 1,
+     "evidence": "건전지",
+     "needsCheck": false,
+     "source": "llm",
+     "enabled": true
+    }
+   ]
+  },
+  {
+   "id": "dev-06",
+   "fail": null,
+   "texts": [
+    "{\"functions\":[{\"code\":\"F05\",\"importance\":2,\"evidence\":\"세제랑 휴지는 여기서 샀음\",\"needsCheck\":false},{\"code\":\"F02\",\"importance\":2,\"evidence\":\"아침에 들어온 계란이 금방 다 나갔음\",\"needsCheck\":false},{\"code\":\"F03\",\"importance\":2,\"evidence\":\"소고기\",\"needsCheck\":false},{\"code\":\"F04\",\"importance\":2,\"evidence\":\"07:00-21:00\",\"needsCheck\":true},{\"code\":\"F10\",\"importance\":2,\"evidence\":\"누가 아프다는 소식은 가게에서 제일 먼저 돌았음\",\"needsCheck\":false}],\"unknowns\":[\"계란 외 채소·과일 등 신선식품 판매 여부\",\"소고기 외 고기·생선 판매 범위\",\"운영 시간이 급할 때 이용에 해당하는지\"]}"
+   ],
+   "functions": [
+    {
+     "code": "F02",
+     "importance": 2,
+     "evidence": "아침에 들어온 계란이 금방 다 나갔음",
+     "needsCheck": false,
+     "source": "llm",
+     "enabled": true
+    },
+    {
+     "code": "F03",
+     "importance": 2,
+     "evidence": "소고기",
+     "needsCheck": false,
+     "source": "llm",
+     "enabled": true
+    },
+    {
+     "code": "F04",
+     "importance": 2,
+     "evidence": "07:00-21:00",
+     "needsCheck": true,
+     "source": "llm",
+     "enabled": true
+    },
+    {
+     "code": "F05",
+     "importance": 2,
+     "evidence": "세제랑 휴지는 여기서 샀음",
+     "needsCheck": false,
+     "source": "llm",
+     "enabled": true
+    },
+    {
+     "code": "F10",
+     "importance": 2,
+     "evidence": "누가 아프다는 소식은 가게에서 제일 먼저 돌았음",
+     "needsCheck": false,
+     "source": "llm",
+     "enabled": true
+    }
+   ]
+  },
+  {
+   "id": "dev-07",
+   "fail": null,
+   "texts": [
+    "{\"functions\":[{\"code\":\"F09\",\"importance\":3,\"evidence\":\"가게 앞 평상이 마을 사랑방\",\"needsCheck\":false},{\"code\":\"F08\",\"importance\":2,\"evidence\":\"카드로 계산하고 현금으로 받아 갔음\",\"needsCheck\":false},{\"code\":\"F10\",\"importance\":3,\"evidence\":\"사장님이 혼자 사는 어르신 댁을 들여다봤음\",\"needsCheck\":false},{\"code\":\"F01\",\"importance\":2,\"evidence\":\"양파\",\"needsCheck\":true},{\"code\":\"F02\",\"importance\":2,\"evidence\":\"양파\",\"needsCheck\":true}],\"unknowns\":[\"양파·두부를 얼마나 자주 팔았는지\",\"카드 계산 시 현금 지급이 정기적으로 있었는지\"]}"
+   ],
+   "functions": [
+    {
+     "code": "F01",
+     "importance": 2,
+     "evidence": "양파",
+     "needsCheck": true,
+     "source": "llm",
+     "enabled": true
+    },
+    {
+     "code": "F02",
+     "importance": 2,
+     "evidence": "양파",
+     "needsCheck": true,
+     "source": "llm",
+     "enabled": true
+    },
+    {
+     "code": "F08",
+     "importance": 2,
+     "evidence": "카드로 계산하고 현금으로 받아 갔음",
+     "needsCheck": false,
+     "source": "llm",
+     "enabled": true
+    },
+    {
+     "code": "F09",
+     "importance": 3,
+     "evidence": "가게 앞 평상이 마을 사랑방",
+     "needsCheck": false,
+     "source": "llm",
+     "enabled": true
+    },
+    {
+     "code": "F10",
+     "importance": 3,
+     "evidence": "사장님이 혼자 사는 어르신 댁을 들여다봤음",
+     "needsCheck": false,
+     "source": "llm",
+     "enabled": true
+    }
+   ]
+  },
+  {
+   "id": "dev-08",
+   "fail": null,
+   "texts": [
+    "{\"functions\":[{\"code\":\"F01\",\"importance\":3,\"evidence\":\"쌀\",\"needsCheck\":false},{\"code\":\"F02\",\"importance\":3,\"evidence\":\"계란\",\"needsCheck\":false},{\"code\":\"F03\",\"importance\":2,\"evidence\":\"돼지고기\",\"needsCheck\":false},{\"code\":\"F04\",\"importance\":2,\"evidence\":\"밤늦게까지 문을 열어서 급한 물건은 여기서 샀음\",\"needsCheck\":false},{\"code\":\"F06\",\"importance\":2,\"evidence\":\"자식들이 보낸 택배를 사장님이 대신 받아 뒀음\",\"needsCheck\":false},{\"code\":\"F07\",\"importance\":2,\"evidence\":\"무거운 물건은 사장님이 차로 실어다 줬음\",\"needsCheck\":false},{\"code\":\"F08\",\"importance\":2,\"evidence\":\"카드로 계산하고 현금으로 받아 갔음\",\"needsCheck\":false},{\"code\":\"F10\",\"importance\":3,\"evidence\":\"며칠 안 보이면 사장님이 전화로 안부를 물었음\",\"needsCheck\":false}],\"unknowns\":[\"운영 시간 09:30-19:30은 F04 기준에 미달하나 메모에 '밤늦게까지'로 되어 있어 실제 운영 시간 확인 필요\",\"배달 가능 범위 확인 필요\"]}"
+   ],
+   "functions": [
+    {
+     "code": "F01",
+     "importance": 3,
+     "evidence": "쌀",
+     "needsCheck": false,
+     "source": "llm",
+     "enabled": true
+    },
+    {
+     "code": "F02",
+     "importance": 3,
+     "evidence": "계란",
+     "needsCheck": false,
+     "source": "llm",
+     "enabled": true
+    },
+    {
+     "code": "F03",
+     "importance": 2,
+     "evidence": "돼지고기",
+     "needsCheck": false,
+     "source": "llm",
+     "enabled": true
+    },
+    {
+     "code": "F04",
+     "importance": 2,
+     "evidence": "밤늦게까지 문을 열어서 급한 물건은 여기서 샀음",
+     "needsCheck": false,
+     "source": "llm",
+     "enabled": true
+    },
+    {
+     "code": "F06",
+     "importance": 2,
+     "evidence": "자식들이 보낸 택배를 사장님이 대신 받아 뒀음",
+     "needsCheck": false,
+     "source": "llm",
+     "enabled": true
+    },
+    {
+     "code": "F07",
+     "importance": 2,
+     "evidence": "무거운 물건은 사장님이 차로 실어다 줬음",
+     "needsCheck": false,
+     "source": "llm",
+     "enabled": true
+    },
+    {
+     "code": "F08",
+     "importance": 2,
+     "evidence": "카드로 계산하고 현금으로 받아 갔음",
+     "needsCheck": false,
+     "source": "llm",
+     "enabled": true
+    },
+    {
+     "code": "F10",
+     "importance": 3,
+     "evidence": "며칠 안 보이면 사장님이 전화로 안부를 물었음",
+     "needsCheck": false,
+     "source": "llm",
+     "enabled": true
+    }
+   ]
+  },
+  {
+   "id": "dev-09",
+   "fail": null,
+   "texts": [
+    "{\"functions\":[{\"code\":\"F04\",\"importance\":2,\"evidence\":\"밤늦게까지 문을 열어서 급한 물건은 여기서 샀음\",\"needsCheck\":true},{\"code\":\"F05\",\"importance\":2,\"evidence\":\"파스\",\"needsCheck\":false},{\"code\":\"F06\",\"importance\":2,\"evidence\":\"택배 기사가 물건을 가게에 맡겨 두고 갔음\",\"needsCheck\":false},{\"code\":\"F07\",\"importance\":2,\"evidence\":\"몸 불편한 어르신 댁엔 물건을 가져다 드렸음\",\"needsCheck\":false},{\"code\":\"F08\",\"importance\":2,\"evidence\":\"가게에서 현금을 찾아 쓸 수 있었음\",\"needsCheck\":false},{\"code\":\"F09\",\"importance\":3,\"evidence\":\"가게 앞 평상이 마을 사랑방이었음\",\"needsCheck\":false}],\"unknowns\":[\"운영 시간(09:00-19:00)과 '밤늦게까지'라는 메모가 서로 맞지 않음\",\"국수 등 식품 판매가 장보기 기능으로 이어졌는지 확인 필요\"]}"
+   ],
+   "functions": [
+    {
+     "code": "F04",
+     "importance": 2,
+     "evidence": "밤늦게까지 문을 열어서 급한 물건은 여기서 샀음",
+     "needsCheck": true,
+     "source": "llm",
+     "enabled": true
+    },
+    {
+     "code": "F05",
+     "importance": 2,
+     "evidence": "파스",
+     "needsCheck": false,
+     "source": "llm",
+     "enabled": true
+    },
+    {
+     "code": "F06",
+     "importance": 2,
+     "evidence": "택배 기사가 물건을 가게에 맡겨 두고 갔음",
+     "needsCheck": false,
+     "source": "llm",
+     "enabled": true
+    },
+    {
+     "code": "F07",
+     "importance": 2,
+     "evidence": "몸 불편한 어르신 댁엔 물건을 가져다 드렸음",
+     "needsCheck": false,
+     "source": "llm",
+     "enabled": true
+    },
+    {
+     "code": "F08",
+     "importance": 2,
+     "evidence": "가게에서 현금을 찾아 쓸 수 있었음",
+     "needsCheck": false,
+     "source": "llm",
+     "enabled": true
+    },
+    {
+     "code": "F09",
+     "importance": 3,
+     "evidence": "가게 앞 평상이 마을 사랑방이었음",
+     "needsCheck": false,
+     "source": "llm",
+     "enabled": true
+    }
+   ]
+  },
+  {
+   "id": "dev-10",
+   "fail": null,
+   "texts": [
+    "{\"functions\":[{\"code\":\"F02\",\"importance\":3,\"evidence\":\"우유\",\"needsCheck\":false},{\"code\":\"F09\",\"importance\":3,\"evidence\":\"가게 앞 평상이 마을 사랑방이었음\",\"needsCheck\":false},{\"code\":\"F10\",\"importance\":3,\"evidence\":\"며칠 안 보이면 사장님이 전화로 안부를 물었음\",\"needsCheck\":false}],\"unknowns\":[\"계란·고등어를 판 빈도와 주민 이용 비중\",\"장보기(F01) 기능을 했는지 여부\"]}"
+   ],
+   "functions": [
+    {
+     "code": "F02",
+     "importance": 3,
+     "evidence": "우유",
+     "needsCheck": false,
+     "source": "llm",
+     "enabled": true
+    },
+    {
+     "code": "F09",
+     "importance": 3,
+     "evidence": "가게 앞 평상이 마을 사랑방이었음",
+     "needsCheck": false,
+     "source": "llm",
+     "enabled": true
+    },
+    {
+     "code": "F10",
+     "importance": 3,
+     "evidence": "며칠 안 보이면 사장님이 전화로 안부를 물었음",
+     "needsCheck": false,
+     "source": "llm",
+     "enabled": true
+    }
+   ]
+  },
+  {
+   "id": "dev-11",
+   "fail": null,
+   "texts": [
+    "{\"functions\":[{\"code\":\"F01\",\"importance\":3,\"evidence\":\"장은 거의 이 가게에서 봤음\",\"needsCheck\":false},{\"code\":\"F05\",\"importance\":2,\"evidence\":\"세제랑 휴지는 여기서 샀음\",\"needsCheck\":false},{\"code\":\"F07\",\"importance\":1,\"evidence\":\"무거운 물건은 사장님이 차로 실어다 줬음\",\"needsCheck\":false},{\"code\":\"F08\",\"importance\":2,\"evidence\":\"카드로 계산하고 현금으로 받아 갔음\",\"needsCheck\":false},{\"code\":\"F03\",\"importance\":1,\"evidence\":\"제사 때 쓸 고기를 여기서 샀음\",\"needsCheck\":false},{\"code\":\"F02\",\"importance\":1,\"evidence\":\"팔던 물건: 계란\",\"needsCheck\":true}],\"unknowns\":[\"계란 외 채소·과일·우유를 팔았는지\",\"고기를 평소에도 팔았는지 아니면 제사 때만 주문받았는지\"]}"
+   ],
+   "functions": [
+    {
+     "code": "F01",
+     "importance": 3,
+     "evidence": "장은 거의 이 가게에서 봤음",
+     "needsCheck": false,
+     "source": "llm",
+     "enabled": true
+    },
+    {
+     "code": "F02",
+     "importance": 1,
+     "evidence": "팔던 물건: 계란",
+     "needsCheck": true,
+     "source": "llm",
+     "enabled": true
+    },
+    {
+     "code": "F03",
+     "importance": 1,
+     "evidence": "제사 때 쓸 고기를 여기서 샀음",
+     "needsCheck": false,
+     "source": "llm",
+     "enabled": true
+    },
+    {
+     "code": "F05",
+     "importance": 2,
+     "evidence": "세제랑 휴지는 여기서 샀음",
+     "needsCheck": false,
+     "source": "llm",
+     "enabled": true
+    },
+    {
+     "code": "F07",
+     "importance": 1,
+     "evidence": "무거운 물건은 사장님이 차로 실어다 줬음",
+     "needsCheck": false,
+     "source": "llm",
+     "enabled": true
+    },
+    {
+     "code": "F08",
+     "importance": 2,
+     "evidence": "카드로 계산하고 현금으로 받아 갔음",
+     "needsCheck": false,
+     "source": "llm",
+     "enabled": true
+    }
+   ]
+  },
+  {
+   "id": "dev-12",
+   "fail": null,
+   "texts": [
+    "{\"functions\":[{\"code\":\"F06\",\"importance\":2,\"evidence\":\"택배 보낼 것도 여기 맡기면 부쳐 줬음\",\"needsCheck\":false},{\"code\":\"F08\",\"importance\":2,\"evidence\":\"카드로 계산하고 현금으로 받아 갔음\",\"needsCheck\":false}],\"unknowns\":[\"팔던 물건 목록이 비어 있어 장보기 기능의 근거가 불분명함\",\"운영 시간이 09:00-18:00로 급할 때 이용 여부는 확인되지 않음\"]}"
+   ],
+   "functions": [
+    {
+     "code": "F06",
+     "importance": 2,
+     "evidence": "택배 보낼 것도 여기 맡기면 부쳐 줬음",
+     "needsCheck": false,
+     "source": "llm",
+     "enabled": true
+    },
+    {
+     "code": "F08",
+     "importance": 2,
+     "evidence": "카드로 계산하고 현금으로 받아 갔음",
+     "needsCheck": false,
+     "source": "llm",
+     "enabled": true
+    }
+   ]
+  },
+  {
+   "id": "dev-13",
+   "fail": null,
+   "texts": [
+    "{\"functions\":[{\"code\":\"F03\",\"importance\":2,\"evidence\":\"돼지고기\",\"needsCheck\":false},{\"code\":\"F03\",\"importance\":2,\"evidence\":\"고등어\",\"needsCheck\":false},{\"code\":\"F10\",\"importance\":3,\"evidence\":\"누가 아프다는 소식은 가게에서 제일 먼저 돌았음\",\"needsCheck\":false}],\"unknowns\":[\"고등어와 돼지고기 외 판매 품목 확인 필요\",\"마을 소식이 가게에서 주로 어떤 경로로 전해졌는지 확인 필요\"]}"
+   ],
+   "functions": [
+    {
+     "code": "F03",
+     "importance": 2,
+     "evidence": "돼지고기",
+     "needsCheck": false,
+     "source": "llm",
+     "enabled": true
+    },
+    {
+     "code": "F10",
+     "importance": 3,
+     "evidence": "누가 아프다는 소식은 가게에서 제일 먼저 돌았음",
+     "needsCheck": false,
+     "source": "llm",
+     "enabled": true
+    }
+   ]
+  },
+  {
+   "id": "dev-14",
+   "fail": null,
+   "texts": [
+    "{\"functions\":[{\"code\":\"F02\",\"importance\":2,\"evidence\":\"우유\",\"needsCheck\":false},{\"code\":\"F03\",\"importance\":1,\"evidence\":\"명절 전엔 생선을 들여왔음\",\"needsCheck\":false},{\"code\":\"F09\",\"importance\":2,\"evidence\":\"여름 저녁엔 다들 가게 앞에 나와 앉아 있었음\",\"needsCheck\":false}],\"unknowns\":[\"양파 등 채소 판매의 주기\",\"명절 생선 판매 시기와 양\"]}"
+   ],
+   "functions": [
+    {
+     "code": "F02",
+     "importance": 2,
+     "evidence": "우유",
+     "needsCheck": false,
+     "source": "llm",
+     "enabled": true
+    },
+    {
+     "code": "F03",
+     "importance": 1,
+     "evidence": "명절 전엔 생선을 들여왔음",
+     "needsCheck": false,
+     "source": "llm",
+     "enabled": true
+    },
+    {
+     "code": "F09",
+     "importance": 2,
+     "evidence": "여름 저녁엔 다들 가게 앞에 나와 앉아 있었음",
+     "needsCheck": false,
+     "source": "llm",
+     "enabled": true
+    }
+   ]
+  },
+  {
+   "id": "dev-15",
+   "fail": null,
+   "texts": [
+    "{\"functions\":[{\"code\":\"F01\",\"importance\":3,\"evidence\":\"쌀\",\"needsCheck\":false},{\"code\":\"F05\",\"importance\":3,\"evidence\":\"세제\",\"needsCheck\":false},{\"code\":\"F03\",\"importance\":2,\"evidence\":\"명절 전엔 생선을 들여왔음\",\"needsCheck\":false},{\"code\":\"F08\",\"importance\":2,\"evidence\":\"가게에서 현금을 찾아 쓸 수 있었음\",\"needsCheck\":false},{\"code\":\"F06\",\"importance\":2,\"evidence\":\"택배 보낼 것도 여기 맡기면 부쳐 줬음\",\"needsCheck\":false},{\"code\":\"F09\",\"importance\":2,\"evidence\":\"가게 앞 평상이 마을 사랑방이었음\",\"needsCheck\":false}],\"unknowns\":[\"생선을 들여온 시기와 양은 명절 전에만 해당하는지 확인 필요\",\"택배 접수만 했는지 받아 두는 일도 했는지 확인 필요\"]}"
+   ],
+   "functions": [
+    {
+     "code": "F01",
+     "importance": 3,
+     "evidence": "쌀",
+     "needsCheck": false,
+     "source": "llm",
+     "enabled": true
+    },
+    {
+     "code": "F03",
+     "importance": 2,
+     "evidence": "명절 전엔 생선을 들여왔음",
+     "needsCheck": false,
+     "source": "llm",
+     "enabled": true
+    },
+    {
+     "code": "F05",
+     "importance": 3,
+     "evidence": "세제",
+     "needsCheck": false,
+     "source": "llm",
+     "enabled": true
+    },
+    {
+     "code": "F06",
+     "importance": 2,
+     "evidence": "택배 보낼 것도 여기 맡기면 부쳐 줬음",
+     "needsCheck": false,
+     "source": "llm",
+     "enabled": true
+    },
+    {
+     "code": "F08",
+     "importance": 2,
+     "evidence": "가게에서 현금을 찾아 쓸 수 있었음",
+     "needsCheck": false,
+     "source": "llm",
+     "enabled": true
+    },
+    {
+     "code": "F09",
+     "importance": 2,
+     "evidence": "가게 앞 평상이 마을 사랑방이었음",
+     "needsCheck": false,
+     "source": "llm",
+     "enabled": true
+    }
+   ]
+  }
+ ]
+}

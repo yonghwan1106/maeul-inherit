@@ -1,11 +1,9 @@
 // Static data used by API routes and scripts (bundle B). Imported statically so Vercel bundles the JSON.
-// TEMP (B1): region = data/fixtures/region_mock.json until A2 lands data/region_hwasan.json;
-//            SCENARIOS = [] until B4 writes data/scenarios/*.json.
-import regionJson from "../data/fixtures/region_mock.json";
+// SCENARIOS = [] until B4 writes data/scenarios/*.json (then imported here).
+import regionJson from "../data/region_hwasan.json";
 import type { Region, Scenario } from "./types";
 
 export const REGION: Region = regionJson as unknown as Region;
-export const REGION_IS_MOCK = true;
 
 export const SCENARIOS: Scenario[] = [];
 
