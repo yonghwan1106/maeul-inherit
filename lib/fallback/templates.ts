@@ -13,13 +13,17 @@ export const MODE_RESIDENT_KO: Record<Mode, string> = {
 
 const joinKo = (xs: string[]) => xs.filter(Boolean).join("·");
 
-function withTopic(name: string): string {
-  // 받침 유무로 은/는 고르기 (한글 음절이 아니면 "는")
-  const last = name.trim().slice(-1);
-  const code = last.charCodeAt(0) - 0xac00;
-  if (code < 0 || code > 11171) return `${name}는`;
-  return code % 28 === 0 ? `${name}는` : `${name}은`;
+/** Drop a long explanatory parenthesis (e.g. 「생활지원 연계(노인맞춤돌봄서비스 등 — 식료품 배달)」 -> 「생활지원 연계」). */
+export const shortName = (name: string) => name.replace(/\([^)]*(?:—|등)[^)]*\)/, "").trim();
+
+/** 받침 있음? (한글 음절이 아니면 false) */
+function hasBatchim(word: string): boolean {
+  const code = word.trim().slice(-1).charCodeAt(0) - 0xac00;
+  return code >= 0 && code <= 11171 && code % 28 !== 0;
 }
+const topic = (w: string) => `${w}${hasBatchim(w) ? "은" : "는"}`;
+const obj = (w: string) => `${w}${hasBatchim(w) ? "을" : "를"}`;
+
 
 export function residentTemplate(d: PlanDigest): string {
   const lines: string[] = [];
@@ -28,25 +32,25 @@ export function residentTemplate(d: PlanDigest): string {
   const checking = d.items.filter((i) => i.status === "확인 중").slice(0, 1);
   for (const it of sure) {
     const days = it.days && it.days.length ? ` ${joinKo(it.days)}에` : "";
-    lines.push(`${withTopic(it.name)}${days} ${joinKo(it.fns)}에 이용할 수 있어요.`);
+    lines.push(`${shortName(it.name)}에서${days} ${obj(joinKo(it.fns))} 이용할 수 있어요.`);
   }
-  for (const it of checking) lines.push(`${it.name}의 ${joinKo(it.fns)}는 확인하고 있어요.`);
-  if (d.gaps.length && lines.length < 4) lines.push(`${joinKo(d.gaps.slice(0, 3))}는 아직 맡을 곳을 찾고 있어요.`);
+  for (const it of checking) lines.push(it.fns.length ? `${shortName(it.name)}의 ${topic(joinKo(it.fns))} 확인하고 있어요.` : `${topic(shortName(it.name))} 확인하고 있어요.`);
+  if (d.gaps.length && lines.length < 4) lines.push(`${topic(joinKo(d.gaps.slice(0, 3)))} 아직 맡을 곳을 찾고 있어요.`);
   lines.push("궁금한 점은 이장님께 물어봐 주세요.");
   return lines.slice(0, 5).join("\n");
 }
 
 export function agencyTemplate(d: PlanDigest, agencyResId: string | null): string {
   const mine = d.items.filter((i) => i.resId === agencyResId);
-  const agency = mine[0]?.name ?? "관계 기관";
+  const agency = mine[0] ? shortName(mine[0].name) : "관계 기관";
   const fns = joinKo([...new Set(mine.flatMap((i) => i.fns))]) || "생활 일";
   const checking = mine.filter((i) => i.status === "확인 중");
   const ask = checking.length
-    ? checking.map((i) => `${i.name}에서 ${joinKo(i.fns)}를 맡아 줄 수 있는지`).join(", ")
+    ? checking.map((i) => (i.fns.length ? `${shortName(i.name)}에서 ${obj(joinKo(i.fns))} 맡아 줄 수 있는지` : `${shortName(i.name)}의 운영 방법과 이용 가능 여부`)).join(", ")
     : `${fns} 이용 방법과 연락 창구`;
   return [
     `[연계 요청 초안] ${agency} 담당자께`,
-    `무엇을: ${d.villageName} 주민의 ${fns}를 이어받는 일을 함께 검토해 주시기를 요청합니다.`,
+    `무엇을: ${d.villageName} 주민의 ${obj(fns)} 이어받는 일을 함께 검토해 주시기를 요청합니다.`,
     `어느 리: ${d.villageName}`,
     `어떤 이동 조건 주민: ${MODE_RESIDENT_KO[d.mode]} 주민(${MODE_KO[d.mode]})`,
     `확인해 주실 사항: ${ask}`,
