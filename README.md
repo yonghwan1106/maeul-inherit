@@ -29,6 +29,7 @@ npm --prefix <repo> run typecheck
 | 2026-10-25 18:56 | 51dbb1c | 첫 배포(A1 골격, 키 없음) — 짧은 URL 200 확인 |
 | 2026-10-25 20:04 | 851dc10 | 최종 배포(키 있음, `-e` 4개) — https://maeul-inherit.vercel.app 쿠키 없이 200, `/api/health` `hasKey:true`·`mode:live`·`model:claude-haiku-5-5`·`commit:851dc10`, `capture.py --check` 37/37 PASS(운영), 키 없는 로컬 `next start`에서도 37/37 PASS·`/api/decompose` `mode:rules` |
 | 2026-10-25 20:36 | f4e65ff | 검수 수정 재배포(키 있음, `-e` 4개, GitHub 연동 끊은 뒤 CLI 배포) — 20:06 GitHub 자동배포(4d317c8, 키 없음)가 키 배포를 덮었던 것을 20:22 `vercel promote`로 되돌리고 다시 배포. 짧은 URL 쿠키 없이 200, `/api/health` `hasKey:true`·`mode:live`·`commit:f4e65ff`, 운영 `/api/decompose` live claude-haiku-5-5, `capture.py --check` 운영 37/37 PASS |
+| 2026-10-25 20:56 | 155403b | 마무리 재배포(키 있음, `-e` 4개, CLI) dpl_4j3Lnsfxy9LzuZNUWYJ96VWyZpNM — 근거 대조 l4-v2(면사무소 별칭·약속 표현 차단)·사전계산 문서 재생성·E4 재측정. 짧은 URL 쿠키 없이 200, `/api/health` `hasKey:true`·`mode:live`·`commit:155403b`, 운영 `/api/decompose` live claude-haiku-5-5, `capture.py --check` 운영 37/37 PASS. 20:43 공개 저장소 이력 재작성(옛 커밋의 실명·다른 작품명 줄 교체, 위 표의 해시는 새 해시) |
 
 ## 배포 메모
 - 운영 환경변수(`ANTHROPIC_API_KEY` 등)는 `vercel --prod -e ...` 방식으로 배포마다 넣는다. **`-e`는 그 배포에만 붙으므로 재배포할 때마다 다시 넣어야 한다.** 키 값은 저장소·로그·`.env.local`에 남기지 않는다.
