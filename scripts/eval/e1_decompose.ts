@@ -100,6 +100,21 @@ export function score(cases: Case[], preds: FnCode[][]): SetScore {
 
 const round = (x: number) => Math.round(x * 1000) / 1000;
 
+function rawReplies(setName: string, cases: Case[], model: string) {
+  const file = path.join(RAW, `e1_${model}_${setName}.json`);
+  const raw = JSON.parse(readFileSync(file, "utf8")) as { prompt?: string; raws: { id: string; fail: string | null; functions?: { code: FnCode }[] }[] };
+  if (raw.prompt && raw.prompt !== L1_VERSION) throw new Error(`${file}: prompt ${raw.prompt} != ${L1_VERSION}`);
+  const byId = new Map(raw.raws.map((r) => [r.id, r]));
+  const preds = cases.map((c) => {
+    const r = byId.get(c.id);
+    if (!r) throw new Error(`${file}: no reply for ${c.id}`);
+    return r.fail ? [] : (r.functions ?? []).map((f) => f.code);
+  });
+  const prev = existsSync(path.join(EVAL, "e1.json")) ? (JSON.parse(readFileSync(path.join(EVAL, "e1.json"), "utf8")) as { systems?: { haiku55?: Record<string, { evidenceRate?: number; schemaViolation?: number }> } }) : {};
+  const p = prev.systems?.haiku55?.[setName] ?? {};
+  return { preds, evidenceRate: p.evidenceRate ?? 0, schemaViolation: p.schemaViolation ?? 0, failures: raw.raws.filter((r) => r.fail).length };
+}
+
 async function runLlm(setName: string, cases: Case[], model: string) {
   const preds: FnCode[][] = [];
   const raws: unknown[] = [];
@@ -142,7 +157,11 @@ async function runLlm(setName: string, cases: Case[], model: string) {
 async function main() {
   const setNames = arg("sets", "synth,real").split(",").filter(Boolean);
   const model = arg("model", "claude-haiku-5-5");
-  const noLlm = process.argv.includes("--no-llm") || !hasKey();
+  // --from-raw: re-score the kept haiku replies (data/eval/raw/) against the current labels — no LLM calls.
+  // Used after the human label review (scripts/eval/e1_review.ts apply). Rates measured on the first run
+  // (evidence, schema violation before the validator) are carried over from the previous e1.json.
+  const fromRaw = process.argv.includes("--from-raw");
+  const noLlm = !fromRaw && (process.argv.includes("--no-llm") || !hasKey());
   const RULES: RuleSystem[] = ["b0_type", "b0", "b0plus"];
   const sets: Record<string, unknown> = {};
   const systems: Record<string, Record<string, unknown>> = { b0_type: {}, b0: {}, b0plus: {}, haiku55: {} };
@@ -169,7 +188,7 @@ async function main() {
       preds.forEach((p, i) => (caseRows[i][sys] = p));
     }
     if (!noLlm) {
-      const r = await runLlm(name, cases, model);
+      const r = fromRaw ? rawReplies(name, cases, model) : await runLlm(name, cases, model);
       const s = score(cases, r.preds);
       systems.haiku55[name] = { microF1: s.microF1, recall: s.recall, trapFP: s.trapFP, precision: s.precision, exact: s.exact, trapCases: s.trapCases, recallAll: s.recallAll, llmFailures: r.failures, evidenceRate: r.evidenceRate, schemaViolation: r.schemaViolation };
       r.preds.forEach((p, i) => (caseRows[i].haiku55 = p));
@@ -202,7 +221,8 @@ async function main() {
     systems: { ...systems, sonnet5: null },
     sc1Pieces: devOnly ? undefined : sc1Pieces(),
     perCase,
-    note: "합성 시험 세트는 생성기가 먼저 고른 기능 집합이 정답. 실문장 라벨은 개발팀(프롬프트 작성자가 아닌 워커) 작성.",
+    ...(fromRaw ? { rescoredFromRaw: true } : {}),
+    note: "합성 시험 세트는 생성기가 먼저 고른 기능 집합이 정답. 실문장 라벨은 AI 보조 초벌(프롬프트 작성자가 아닌 워커), 사람 검수 건수는 sets.real.humanChecked.",
   };
   writeFileSync(outFile, JSON.stringify(result, null, 1) + "\n", "utf8");
   console.log(`e1 -> ${path.relative(ROOT, outFile)}`);

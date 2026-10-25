@@ -33,8 +33,10 @@ const get = (o: unknown, ...path: (string | number)[]): unknown => {
   return x;
 };
 const num = (v: unknown): number | null => (typeof v === "number" && Number.isFinite(v) ? v : null);
-const fx = (v: unknown, d = 2) => { const n = num(v); return n === null ? "—" : n.toFixed(d); };
-const pc = (v: unknown, d = 1) => { const n = num(v); return n === null ? "—" : `${(n * 100).toFixed(d)}%`; };
+// round half up with a small epsilon (0.595 is stored as 0.59499… and toFixed alone shows 0.59); + 0 drops -0
+const rnd = (n: number, d: number) => (Math.round(n * 10 ** d + 1e-9) / 10 ** d + 0).toFixed(d);
+const fx = (v: unknown, d = 2) => { const n = num(v); return n === null ? "—" : rnd(n, d); };
+const pc = (v: unknown, d = 1) => { const n = num(v); return n === null ? "—" : `${rnd(n * 100, d)}%`; };
 const kst = (iso: unknown) => {
   if (typeof iso !== "string") return "—";
   const t = Date.parse(iso);
@@ -45,19 +47,22 @@ const kst = (iso: unknown) => {
 
 function Table({ head, rows, testId }: { head: React.ReactNode[]; rows: React.ReactNode[][]; testId: string }) {
   return (
+    <div className="min-w-0">
+    {/^s5-t[12]/.test(testId) ? <p className="m-0 mb-1 text-[13px] font-semibold text-muted sm:hidden" data-scroll-hint={testId}>{COPY.s5.t1.scrollHint}</p> : null}
     <div className="-mx-1 max-w-full overflow-x-auto px-1">
-      <table data-testid={testId} className="w-full min-w-[560px] border-collapse text-[15px]">
+      <table data-testid={testId} className="w-full min-w-[520px] border-collapse text-[14px] sm:min-w-[560px] sm:text-[15px]">
         <thead>
           <tr>{head.map((h, i) => <th key={i} className={`border-b-2 border-line px-2 py-2 text-left align-bottom font-semibold ${i ? "text-right" : ""}`}>{h}</th>)}</tr>
         </thead>
         <tbody>
           {rows.map((r, i) => (
             <tr key={i} className="border-b border-line/70">
-              {r.map((c, j) => <td key={j} className={`px-2 py-1.5 align-top ${j ? "text-right tabular-nums" : "text-ink"}`}>{c}</td>)}
+              {r.map((c, j) => <td key={j} className={`px-2 py-1.5 align-top ${j ? "text-right tabular-nums" : "sticky left-0 z-10 bg-card text-ink"}`}>{c}</td>)}
             </tr>
           ))}
         </tbody>
       </table>
+    </div>
     </div>
   );
 }

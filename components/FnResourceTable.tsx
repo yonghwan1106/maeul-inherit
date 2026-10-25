@@ -26,6 +26,7 @@ export function FnResourceTable({ region, vm, fns, flash }: { region: Region; vm
         <h2 className="m-0 text-[20px] font-bold">{COPY.s3.table.title}</h2>
         <span className="text-[14px] text-muted">{COPY.s3.table.legend}</span>
       </div>
+      {cols.length > 2 ? <p className="m-0 mt-1 text-[13px] font-semibold text-muted sm:hidden">{COPY.s3.table.scrollHint}</p> : null}
       <div className="mt-2 max-w-full overflow-x-auto rounded-xl border border-line bg-card">
         <table className="w-full border-collapse text-[15px]" data-table="fn-res">
           <thead>

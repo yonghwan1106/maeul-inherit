@@ -110,6 +110,20 @@ export function ResidentsScreen({
     if (fy.length && fu.length) return COPY.s4.rank(rank, name, j(fy), COPY.tri.Y) + COPY.s4.rankMore(j(fu), COPY.tri.U);
     return COPY.s4.rank(rank, name, j(fns), fy.length ? COPY.tri.Y : COPY.tri.U);
   };
+  // step 5 (objection E3-②): how to use each place + contact line. No phone numbers are invented —
+  // until an officer checks, the contact line says 「확인 중」 and names the channel to check through.
+  const howTo = (resId: string, fnsOf: FnCode[]) => {
+    const r = region.resources.find((x) => x.id === resId);
+    if (!r) return null;
+    const how = (r.cls === "hub" && fnsOf.includes("F06") ? COPY.s4.howTo.hubParcel : COPY.s4.howTo[r.cls]) ?? null;
+    const via =
+      r.cls === "tour" ? "완주군 이동장터 담당 부서"
+      : r.cls === "care_link" ? "화산면 행정복지센터"
+      : r.cls === "hubdrop" ? COPY.s4.agency.hanaro
+      : r.cls === "hub" ? "이장·노인회"
+      : null;
+    return { how, contact: via ? COPY.s4.contactVia(via) : COPY.s4.contactUnknown };
+  };
   const rankLines = (v: ResidentView, who: { id: string; name: string; pointId: string; mode: Mode }, ordered = v.ordered) => (
     <ol className="m-0 mt-3 flex list-none flex-col gap-2 p-0">
       {ordered.map((o, i) => {
@@ -122,6 +136,21 @@ export function ResidentsScreen({
               {rankText(v, i + 1, name, o.fns)}
             </span>
             {tourBlocked(o.resId) && who.id === "me" ? <span className="ml-1 text-[14px] text-muted">({COPY.s4.badDays})</span> : null}
+            {(() => {
+              const h = howTo(o.resId, o.fns);
+              return h ? (
+                <dl className="m-0 mt-1.5 grid grid-cols-[auto_1fr] gap-x-2 gap-y-0.5 text-[14px] leading-snug" data-howto={o.resId}>
+                  {h.how ? (
+                    <>
+                      <dt className="font-semibold text-muted">{COPY.s4.howToLabel}</dt>
+                      <dd className="m-0">{h.how}</dd>
+                    </>
+                  ) : null}
+                  <dt className="font-semibold text-muted">{COPY.s4.contactLabel}</dt>
+                  <dd className="m-0 text-unsure" data-contact="unconfirmed">{h.contact}</dd>
+                </dl>
+              ) : null;
+            })()}
             <FeedbackButtons sent={lastFb(who.id, o.resId)} onSend={(kind, reason) => sendFb(who, o.resId, o.fns, kind, reason)} />
           </li>
         );

@@ -29,6 +29,7 @@ export function ResidentCard({
   testId,
   virtual = true,
   narrow = false,
+  countsLine,
 }: {
   title: string;
   rows: FnRow[];
@@ -42,6 +43,8 @@ export function ResidentCard({
   testId?: string;
   virtual?: boolean;
   narrow?: boolean;
+  /** replaces the default 「확실 N · 확인 중 M · 끊김 K」 line (S0 uses 「마을 가게가 닫힌 뒤: …」) */
+  countsLine?: string;
 }) {
   return (
     <section className={`rounded-2xl border border-line bg-card p-4 shadow-sm ${className}`} data-card={testId}>
@@ -56,7 +59,7 @@ export function ResidentCard({
         ))}
       </div>
       <p className="num mt-3 mb-0 text-[17px] font-bold" data-counts="1">
-        {countsText(countY, countU, countN)}
+        {countsLine ?? countsText(countY, countU, countN)}
       </p>
       {children}
     </section>

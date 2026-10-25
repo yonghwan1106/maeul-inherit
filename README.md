@@ -31,6 +31,7 @@ npm --prefix <repo> run typecheck
 
 ## 배포 메모
 - 운영 환경변수(`ANTHROPIC_API_KEY` 등)는 `vercel --prod -e ...` 방식으로 배포마다 넣는다. **`-e`는 그 배포에만 붙으므로 재배포할 때마다 다시 넣어야 한다.** 키 값은 저장소·로그·`.env.local`에 남기지 않는다.
+- Vercel 프로젝트의 GitHub 연동은 끊었다(2026-10-25 20:22, `vercel git disconnect`). 연동이 있으면 `git push`마다 키 없는 운영 배포가 생겨 `-e`로 넣은 키 배포를 덮는다(20:06 실제 발생). 배포는 CLI `vercel --prod -e ...`로만 한다.
 - 키가 없으면 모든 화면이 사전계산·규칙·템플릿으로 동작한다(「데모 모드(규칙)」).
 
 ## 데이터·원칙

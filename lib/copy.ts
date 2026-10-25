@@ -64,6 +64,7 @@ export const COPY = {
   s0: {
     heroCard: (name: string, age: number, modeR: string, place: string) => `${name} 어르신 · ${age}세 · ${modeR} · ${place}`,
     afterClose: (n: string, m: string, k: string) => `마을 가게가 닫힌 뒤: 확실 ${n} · 확인 중 ${m} · 끊김 ${k}`,
+    demoNote: "「확인 후」는 시연 입력값(이동장터 A 정차 1칸) 기준 — 실제 운행 정보 아님",
     start: "체험 시작",
     title: "이어받는 마을 — 가게가 닫혀도",
     stats: {
@@ -134,12 +135,12 @@ export const COPY = {
     },
     mapLegend: "실선 = 확실 · 점선 = 확인 중",
     noLocation: "위치 없이 찾아오는 곳",
-    table: { title: "누가 어떤 일을 이어받나", legend: "● 확실 ◐ 확인 중 — 없음" },
+    table: { title: "누가 어떤 일을 이어받나", legend: "● 확실 ◐ 확인 중 — 없음", scrollHint: "표를 옆으로 밀어 보세요 →" },
     voi: {
       title: "먼저 전화할 곳",
       note: "(확인 가치 순 · 세 이동 유형의 상승을 같은 무게로 더함 — 가정)",
       ifYes: (walk: string, home: string, car: string) => `확인되면: 도보 +${walk}가지 · 거동 곤란 +${home}가지 · 차량 +${car}가지`,
-      ifNo: (w: string) => `아니면: 확인되면 가능한 몫 −${w}%p`,
+      ifNo: (w: string) => (Number(w) === 0 ? "아니면: 확인되면 가능한 몫 변화 없음" : `아니면: 확인되면 가능한 몫 −${w}%p`),
       yes: "확실",
       no: "아님",
       unknown: "아직 모름",
@@ -194,6 +195,22 @@ export const COPY = {
     rank: (i: number, res: string, fns: string, tri: string) => `${i}순위 ${res} — ${fns} (${tri})`,
     rankMore: (fns: string, tri: string) => ` · ${fns} (${tri})`,
     socialLine: "마을회관으로 연결 제안: 사랑방·안부",
+    howTo: {
+      hanaro: "매장에 가서 장보기 · 전화 주문·배달 권역은 확인 중",
+      store_daily: "가게에 가서 이용 · 공공데이터 등록 정보라 영업 여부부터 확인",
+      store_fresh: "가게에 가서 이용 · 공공데이터 등록 정보라 영업 여부부터 확인",
+      bank: "창구에서 이용 · 운영 시간 확인 중",
+      post: "창구에서 택배 접수·찾기 · 방문 접수 여부 확인 중",
+      tour: "정차하는 날 정차 장소에서 장보기 · 정차 요일·장소는 담당자가 확인",
+      hubdrop: "하나로마트(화산)에 주문하면 이 거점으로 모아 보내고 거점에서 받기 · 운영 여부 확인 중",
+      care_link: "화산면 행정복지센터를 통해 신청 · 대상: 만 65세 이상 수급자 등 돌봄이 필요한 어르신(복지로 안내) · 수행기관 확인 중",
+      hub: "마을회관·경로당에 모이기 · 이장·노인회와 함께",
+      hubParcel: "마을회관·경로당에서 택배 맡기·찾기 · 보관해 줄 수 있는지는 이장·노인회 확인 중",
+    } as Record<string, string>,
+    howToLabel: "이용방법",
+    contactLabel: "연락처",
+    contactUnknown: "확인 중 — 담당자가 기관에 확인한 뒤 적습니다",
+    contactVia: (via: string) => `확인 중 — ${via}를 통해 확인`,
     fb: { used: "이용해 봤어요", failed: "안 됐어요", reasons: ["안 왔어요", "물건이 없어요", "너무 멀어요", "기타"], toast: "주민 제보로 담당자에게 올렸어요(이 브라우저에만 저장)" },
     bigText: { title: "큰 글씨 안내문", note: "시골 부모님께 그대로 보여 드릴 수 있는 안내문" },
     agency: {
@@ -221,7 +238,8 @@ export const COPY = {
       title: "생활기능 분해(E1) — 합성 60건 · 실제 기사 문장 20건(따로)",
       cols: ["업종 표만", "규칙(키워드)", "규칙+부정어", "AI(claude-haiku-5-5)"],
       rows: ["F1(합성)", "F1(실문장)", "택배 재현율", "배달 재현율", "사랑방 재현율", "안부 재현율", "함정 오탐"],
-      realNote: (n: number) => `실문장 라벨: 개발팀 작성, 사람 검수 ${n}건`,
+      realNote: (n: number) => `실문장 라벨: AI 보조 초벌(개발팀) · 사람 검수 ${n}건`,
+      scrollHint: "표를 옆으로 밀어 보세요 — 오른쪽에 열이 더 있어요(AI·엔진 열은 오른쪽 끝) →",
     },
     t2: {
       title: "이어받기 계획(E2) — 화산면 11개 리 × 3유형 = 33건",
@@ -245,7 +263,7 @@ export const COPY = {
     engine: (n: number, x: string, planMs: string, voiMs: string) =>
       `브루트포스 대조 ${n}건 일치율 ${x} · 계획 계산 ${planMs} ms · 먼저 전화할 곳 계산 ${voiMs} ms`,
     limits:
-      "폐업은 실제 지역 위의 가상 시나리오입니다. 기능 분해 시험 세트 60건과 확인 결과 확률은 합성·가정이며, 실제 기사 문장 20건은 개발팀이 라벨을 붙였습니다. 리 인구는 리 단위 자료 반영 전까지 면 인구 균등 배분 가정이고, 거점의 소속 리는 거리로 추정했습니다. 이동장터 정차·배송·생활지원 제공 여부는 공개 자료가 없어 「확인 중」으로 계산했으며, 시연의 이동장터 정차 값은 실제 운행 정보가 아닙니다. 상가정보는 등록 자료(2026-06)로 실제 영업 여부를 보장하지 않습니다. 평가의 엔진 우위는 같은 기준 위의 최적화라 정의상 생기는 몫이 있습니다.",
+      "폐업은 실제 지역 위의 가상 시나리오입니다. 기능 분해 시험 세트 60건과 확인 결과 확률은 합성·가정이며, 실제 기사 문장 20건의 라벨은 AI 보조 초벌이며 사람 검수 건수는 표1 아래에 적었습니다. 리 인구는 리 단위 자료 반영 전까지 면 인구 균등 배분 가정이고, 거점의 소속 리는 거리로 추정했습니다. 이동장터 정차·배송·생활지원 제공 여부는 공개 자료가 없어 「확인 중」으로 계산했으며, 시연의 이동장터 정차 값은 실제 운행 정보가 아닙니다. 상가정보는 등록 자료(2026-06)로 실제 영업 여부를 보장하지 않습니다. 평가의 엔진 우위는 같은 기준 위의 최적화라 정의상 생기는 몫이 있습니다.",
   },
 
   // 8.8 S6 (B) ---------------------------------------------------------------
@@ -263,7 +281,8 @@ export const COPY = {
     proposer: "제안자: 2026 AI 라이프 아이디어 챌린지 4번 「기능상속」 구현작",
   },
 
-  /** §13 「쓰지 말 것」 5 lines — README 「쓰지 않은 것」 and S6, verbatim. */
+  /** §13 「쓰지 말 것」 5 lines — README 「쓰지 않은 것」 and S6. Reworded without the applicant's name or internal
+   *  project names (memory rule: applicant name only on forms/file names; 추가지시 §6). */
   notUsed: [
     "전력·AMI 신호로 폐업을 감지하지 않습니다 — 전력·AMI 데이터를 쓰지 않는다.",
     "다른 작품(음식점 생존분석 등)의 코드·데이터를 다시 쓰지 않는다 — 이 저장소의 코드는 새로 작성했다.",
@@ -303,7 +322,7 @@ export const PARAM_LABELS: Record<string, string> = {
 export const DAYS = ["월요일", "화요일", "수요일", "목요일", "금요일", "토요일", "일요일"] as const;
 
 /** 1-decimal number for averages (spec: 소수 1자리). */
-export const f1 = (x: number) => (Math.round(x * 10) / 10).toFixed(1);
+export const f1 = (x: number) => (Math.round(x * 10 + 1e-9) / 10 + 0).toFixed(1); // + 0 turns -0 into 0
 /** percent with no decimals from a 0..1 share. */
 export const pct = (x: number) => String(Math.round(x * 100));
 export const hhmm = (iso: string) => {

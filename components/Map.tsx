@@ -62,7 +62,7 @@ export function VillageMap({ region, store, lines = [], focusVillageId, pointId,
     const kx = Math.cos(((bb.minLat + bb.maxLat) / 2) * (Math.PI / 180));
     const ratio = (bb.maxLat - bb.minLat) / Math.max((bb.maxLon - bb.minLon) * kx, 1e-9);
     const h = Math.round(Math.min(Math.max(W * ratio, W * 0.6), W * 1.25));
-    return { proj: makeProjector(bb, W, h, 22), H: h };
+    return { proj: makeProjector(bb, W, h, 34), H: h };
   }, [region, lines, store, resById]);
 
   const located = region.resources.filter((r) => typeof r.lat === "number" && typeof r.lon === "number");
@@ -71,6 +71,13 @@ export function VillageMap({ region, store, lines = [], focusVillageId, pointId,
     const r = resById.get(l.resId);
     return !r || !locOf(region, r);
   });
+  // located line ends get a numbered badge on the map; their names and functions are listed below the map
+  // as HTML text (on-map text overlapped other labels and shrank to ~8 px at 390 px width)
+  const locatedLines = lines.filter((l) => {
+    const r = resById.get(l.resId);
+    return !!r && !!locOf(region, r);
+  });
+  const clampX = (x: number) => Math.min(Math.max(x, 30), W - 30);
 
   return (
     <figure className="m-0 min-w-0">
@@ -85,7 +92,7 @@ export function VillageMap({ region, store, lines = [], focusVillageId, pointId,
         {located.map((r) => {
           if (r.cls === "hubdrop" || r.cls === "hub") return null;
           const { x, y } = proj(r.lat as number, r.lon as number);
-          if (x < -10 || y < -10 || x > W + 10 || y > H + 10) return null;
+          if (x < 8 || y < 8 || x > W - 8 || y > H - 8) return null; // only markers drawn whole (no cut-off at the edges)
           if (SQUARE_CLS.has(r.cls)) {
             return (
               <g key={r.id}>
@@ -137,9 +144,7 @@ export function VillageMap({ region, store, lines = [], focusVillageId, pointId,
                     strokeDasharray={l.tri === "Y" ? undefined : "7 6"}
                     strokeLinecap="round"
                   />
-                  <text x={e.x + 9} y={e.y + 16} fontSize={13} fill={l.tri === "Y" ? "var(--sure)" : "var(--unsure)"} fontWeight={700}>
-                    {l.fns.map((f) => COPY.fnName[f]).join("·")}
-                  </text>
+
                 </g>
               );
             })
@@ -167,7 +172,7 @@ export function VillageMap({ region, store, lines = [], focusVillageId, pointId,
                 stroke={focus || sel ? "var(--warn)" : "#fff"}
                 strokeWidth={focus || sel ? 3 : 1.5}
               />
-              <text x={x} y={y - 12} textAnchor="middle" fontSize={focus ? 16 : 14} fontWeight={focus ? 800 : 600} fill={grey ? "#6d726e" : "var(--ink)"}>
+              <text x={clampX(x)} y={Math.max(y - 12, 14)} textAnchor="middle" fontSize={focus ? 17 : 15} fontWeight={focus ? 800 : 600} fill={grey ? "#6d726e" : "var(--ink)"}>
                 {v.name}
               </text>
             </g>
@@ -179,12 +184,47 @@ export function VillageMap({ region, store, lines = [], focusVillageId, pointId,
           <g data-store="closed">
             <rect x={storeXY.x - 9} y={storeXY.y - 9} width={18} height={18} rx={3} fill="var(--warn)" stroke="#fff" strokeWidth={2} />
             <path d={`M${storeXY.x - 5} ${storeXY.y - 5}L${storeXY.x + 5} ${storeXY.y + 5}M${storeXY.x + 5} ${storeXY.y - 5}L${storeXY.x - 5} ${storeXY.y + 5}`} stroke="#fff" strokeWidth={2.2} />
-            <text x={storeXY.x} y={storeXY.y + 26} textAnchor="middle" fontSize={13} fontWeight={700} fill="var(--warn)">
+            <text x={Math.min(Math.max(storeXY.x, 64), W - 64)} y={storeXY.y + 27} textAnchor="middle" fontSize={15} fontWeight={800} fill="var(--warn)" stroke="#fbfaf5" strokeWidth={4} paintOrder="stroke">
               {store.name}
             </text>
           </g>
         ) : null}
+        {/* numbered badges at located line ends (drawn above village labels) */}
+        {storeXY
+          ? locatedLines.map((l, i) => {
+              const r = resById.get(l.resId);
+              const loc = r ? locOf(region, r) : null;
+              if (!loc) return null;
+              const e = proj(loc.lat, loc.lon);
+              // badge goes down-right of the end, or to the first corner that keeps clear of the closed-store marker/label
+              const offs: [number, number][] = [[11, 11], [-14, -14], [11, -14], [-14, 11]];
+              const far = (d: [number, number]) =>
+                storeXY ? Math.min(Math.hypot(e.x + d[0] - storeXY.x, e.y + d[1] - storeXY.y), Math.hypot(e.x + d[0] - storeXY.x, e.y + d[1] - storeXY.y - 22)) : 99;
+              const [ox, oy] = offs.find((d) => far(d) >= 30) ?? offs.reduce((m, d) => (far(d) > far(m) ? d : m));
+              return (
+                <g key={`n-${l.resId}-${l.tri}`} className="fx-line" style={{ opacity: shown ? 1 : 0 }}>
+                  <circle cx={e.x + ox} cy={e.y + oy} r={10} fill={l.tri === "Y" ? "var(--sure)" : "var(--unsure)"} stroke="#fff" strokeWidth={1.5} />
+                  <text x={e.x + ox} y={e.y + oy + 4.5} textAnchor="middle" fontSize={13} fontWeight={800} fill="#fff">
+                    {i + 1}
+                  </text>
+                </g>
+              );
+            })
+          : null}
+
       </svg>
+      {storeXY && locatedLines.length > 0 ? (
+        <ol className="m-0 mt-2 flex list-none flex-col gap-1 p-0 text-[15px]" data-map-legend="1">
+          {locatedLines.map((l, i) => (
+            <li key={`lg-${l.resId}-${l.tri}`} className="flex items-start gap-2" data-line-label={l.resId}>
+              <span className={`inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-[13px] font-extrabold text-white ${l.tri === "Y" ? "bg-sure" : "bg-unsure"}`}>{i + 1}</span>
+              <span className="min-w-0">
+                <b>{resById.get(l.resId)?.name ?? l.resId}</b> · {l.fns.map((f) => COPY.fnName[f]).join("·")} ({l.tri === "Y" ? COPY.tri.Y : COPY.tri.U})
+              </span>
+            </li>
+          ))}
+        </ol>
+      ) : null}
       {unlocatedLines.length > 0 ? (
         <figcaption className="mt-2 flex flex-wrap items-center gap-2 text-[14px]">
           <span className="text-muted">{COPY.s3.noLocation}:</span>

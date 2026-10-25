@@ -3,6 +3,7 @@ import Link from "next/link";
 import { COPY } from "@/lib/copy";
 import { loadAllScenarios, loadRegion } from "@/lib/data";
 import { baseCells, residentView } from "@/lib/compute";
+import { makeCells } from "@/lib/engine";
 import { applyFnEdits, parseDecompose, pointName } from "@/lib/view";
 import { SiteHeader } from "@/components/Logo";
 import { Footer } from "@/components/Footer";
@@ -16,6 +17,8 @@ export default function Home() {
   const kim = sc1?.scenario.residents.find((r) => r.name === "김순자") ?? sc1?.scenario.residents[0];
   const fns = sc1 ? applyFnEdits(parseDecompose(sc1.scenario.precomputed.decompose.response).functions, []) : [];
   const view = sc1 && kim ? residentView(region, baseCells(region, fns), kim, fns) : null;
+  // after the demo value (이동장터 A 정차 1칸, 시연 입력값) — same engine call as the S3 mini card 4-step line
+  const viewDemo = sc1 && kim && sc1.scenario.demoConfirmations.length ? residentView(region, makeCells(region, fns, sc1.scenario.demoConfirmations), kim, fns) : null;
 
   const total = region.villages.length;
   const zero = region.villages.filter((v) => v.foodStores === 0).length;
@@ -43,11 +46,13 @@ export default function Home() {
               countY={view.countY}
               countU={view.countU}
               countN={view.countN}
-              className="order-1"
+              className="order-2 lg:order-1"
+              countsLine={COPY.s0.afterClose(String(view.countY), String(view.countU), String(view.countN))}
             >
-              <p className="mt-1 mb-0 text-[15px] text-muted">
-                {COPY.s0.afterClose(String(view.countY), String(view.countU), String(view.countN))}
+              <p className="num mt-2 mb-0 rounded-xl bg-paper px-3 py-2 text-[16px] font-semibold" data-steps="s0">
+                {COPY.s3.mini.steps(view.rows.length, view.b1.countY, view.countY, viewDemo ? viewDemo.countY : null)}
               </p>
+              {viewDemo ? <p className="mt-1 mb-0 text-[13px] text-muted">{COPY.s0.demoNote}</p> : null}
               <Link
                 href="/s/sc1_seungchi/functions"
                 className="mt-4 inline-flex min-h-12 items-center rounded-xl bg-brand px-5 text-[18px] font-bold text-white no-underline hover:opacity-90"
@@ -59,9 +64,10 @@ export default function Home() {
           ) : null}
 
           {/* 2~3. 제목·한 줄 소개 */}
-          <div className="order-2">
-            <h1 className="m-0 text-[30px] font-extrabold leading-tight sm:text-[42px]">{COPY.s0.title}</h1>
-            <p className="mt-4 mb-0 text-[18px] leading-relaxed sm:text-[20px]">{COPY.oneLiner}</p>
+          {/* mobile: title + one-liner above the card so the first screen says what this is (검수 10초 인상) */}
+          <div className="order-1 lg:order-2">
+            <h1 className="m-0 text-[28px] font-extrabold leading-tight sm:text-[42px]">{COPY.s0.title}</h1>
+            <p className="mt-3 mb-0 text-[17px] leading-relaxed sm:mt-4 sm:text-[20px]">{COPY.oneLiner}</p>
           </div>
         </section>
 

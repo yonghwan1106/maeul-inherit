@@ -23,6 +23,7 @@
     "eval:e3": "tsx scripts/eval/e3_voi.ts",
     "eval:e4": "tsx scripts/eval/e4_grounding.ts",
     "eval:results": "tsx scripts/eval/build_results.ts",
+    "eval:e1review": "tsx scripts/eval/e1_review.ts",
     "scan:secrets": "node scripts/scan-secrets.mjs"
   },
   "dependencies": {
