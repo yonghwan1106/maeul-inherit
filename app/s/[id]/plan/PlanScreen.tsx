@@ -1,5 +1,7 @@
 "use client";
-import Link from "next/link";
+// S3 이어받기 계획 — the core screen as a 인수인계 장부: the 「누가 어떤 일을 이어받나」 ledger on top, 합계 lines,
+// numbered phone memos (먼저 전화할 곳), the selected resident's ledger, the 결재란, and the map as a side board.
+// Logic (engine calls, confirmations, flash maps, timing attributes) is unchanged from bundle C.
 import { useEffect, useMemo, useRef, useState } from "react";
 import type { Confirmation, FnCode, Mode, Region, Scenario, Tri } from "@/lib/types";
 import { COPY } from "@/lib/copy";
@@ -9,7 +11,7 @@ import { useScenarioState } from "@/lib/store/scenario";
 import { EMPTY_UI, keys, useLocal, type UiState } from "@/lib/store/local";
 import { useFlashSet } from "@/lib/useFlash";
 import { MODE_ORDER, pointName, resName, villageName } from "@/lib/view";
-import { Badge, ModeBadge } from "@/components/Badge";
+import { Badge, GoneWord, ModeBadge, Stamp } from "@/components/Badge";
 import { Bars } from "@/components/Bars";
 import { VillageMap, type MapLine } from "@/components/Map";
 import { FnResourceTable, cellTri, tableColumns } from "@/components/FnResourceTable";
@@ -19,6 +21,7 @@ import { LostRecord } from "@/components/LostRecord";
 import { ParamsPanel } from "@/components/ParamsPanel";
 import { ResidentCard } from "@/components/ResidentCard";
 import { GateButton, GatedLink } from "@/components/GateButton";
+import { NoStore } from "@/components/NoStore";
 
 const nowMs = () => performance.now();
 
@@ -70,14 +73,7 @@ export function PlanScreen({ sid, region, loaded, temp, mock }: { sid: string; r
   );
   const flashMini = useFlashSet(view ? Object.fromEntries(view.rows.map((r) => [r.code, `${r.tri}|${r.resId ?? ""}|${r.note ?? ""}`])) : {});
 
-  if (!s || !bundle) {
-    return (
-      <div className="rounded-2xl border border-line bg-card p-5">
-        <p className="m-0 text-[17px]">등록된 가게가 없어요.</p>
-        <Link href="/register" className="mt-3 inline-block font-semibold text-brand underline">{COPY.s0.register} →</Link>
-      </div>
-    );
-  }
+  if (!s || !bundle) return <NoStore />;
 
   const { plan, voi, cells } = bundle;
   const setCell = (cellKey: string, value: Tri | null, note: string, by: Confirmation["by"]) => {
@@ -120,201 +116,229 @@ export function PlanScreen({ sid, region, loaded, temp, mock }: { sid: string; r
   const truncated = plan.byVM.some((v) => v.truncated);
   const socialOn = fns.some((f) => f.enabled && SOCIAL_FNS.includes(f.code));
   const commonRows = (Object.entries(plan.common) as [FnCode, string[]][]).filter(([f, ids]) => CORE_FNS.includes(f) && core.includes(f) && ids.length);
+  const h2 = "m-0 text-[22px] font-semibold leading-snug";
 
   return (
-    <div className="flex flex-col gap-6" data-plan-ms={planMs ?? ""} data-recalc-ms={recalcMs ?? ""} data-conf-n={conf.length}>
-      <div className="flex flex-wrap items-center gap-2">
-        {st.decompose ? <ModeBadge mode={st.decompose.mode} model={st.decompose.model} at={st.decompose.generatedAt} /> : null}
-        {temp ? <Badge tone="warn">{COPY.badge.tempScenario}</Badge> : null}
-        {mock ? <Badge tone="warn">{COPY.badge.mock}</Badge> : null}
-        <Badge tone="assumed">{COPY.badge.popAssumed}</Badge>
-        <Badge tone="assumed">{COPY.badge.hubAssumed}</Badge>
+    <div className="flex flex-col gap-10" data-plan-ms={planMs ?? ""} data-recalc-ms={recalcMs ?? ""} data-conf-n={conf.length}>
+      <div className="flex flex-col gap-3">
+        <div className="flex flex-wrap items-center gap-2">
+          {st.decompose ? <ModeBadge mode={st.decompose.mode} model={st.decompose.model} at={st.decompose.generatedAt} /> : null}
+          {temp ? <Badge tone="warn">{COPY.badge.tempScenario}</Badge> : null}
+          {mock ? <Badge tone="warn">{COPY.badge.mock}</Badge> : null}
+          <Badge tone="assumed">{COPY.badge.popAssumed}</Badge>
+          <Badge tone="assumed">{COPY.badge.hubAssumed}</Badge>
+        </div>
+        {/* title + 장부 색인 탭 */}
+        <div className="flex flex-wrap items-end justify-between gap-x-6 gap-y-3 border-b-2 border-ink">
+          <h1 className="m-0 pb-2 font-normal">
+            <span className="sign block text-[32px] leading-[1.1] sm:text-[38px]">{s.store.name}</span>
+            <span className="sign mt-1 block text-[22px] leading-tight text-pencil-ink sm:text-[24px]">{COPY.nav.s3}</span>
+          </h1>
+          <div className="flex flex-wrap items-end gap-1" role="tablist" aria-label="이동 유형">
+            <span className="mr-2 self-center pb-1 text-[14px] text-pencil-ink">{villageName(region, storeVillage)}</span>
+            {MODE_ORDER.map((m) => (
+              <button
+                key={m}
+                type="button"
+                role="tab"
+                aria-selected={m === mapMode}
+                onClick={() => setUi((u) => ({ ...u, s3Mode: m }))}
+                className={`-mb-[2px] min-h-11 rounded-t-[3px] border-2 px-4 text-[17px] font-semibold ${
+                  m === mapMode ? "border-ink border-b-slate bg-slate text-paper" : "border-rule border-b-ink bg-paper text-slate hover:bg-cell"
+                }`}
+              >
+                {COPY.modeOfficer[m]}
+              </button>
+            ))}
+          </div>
+        </div>
       </div>
-      <h1 className="m-0 text-[26px] font-extrabold leading-tight sm:text-[30px]">
-        {s.store.name} — {COPY.nav.s3}
-      </h1>
 
-      {/* bars + mini card */}
-      <div className="grid grid-cols-1 items-start gap-5 lg:grid-cols-[minmax(0,1.25fr)_minmax(0,1fr)]">
-        <section className="rounded-2xl border border-line bg-card p-4">
-          <Bars summary={plan.summary} order={MODE_ORDER} flash={flashBars} />
-          <p className="mt-4 mb-0 text-[15px] font-semibold text-brand" data-optimal={truncated ? "truncated" : "ok"}>
+      {/* the ledger */}
+      <FnResourceTable region={region} vm={vm} fns={core} flash={flashTable} />
+
+      {/* 합계 + 끊긴 일 + 마을 공통 대안 */}
+      <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-[minmax(0,1.25fr)_minmax(0,1fr)]">
+        <div className="min-w-0">
+          <Bars summary={plan.summary} order={MODE_ORDER} flash={flashBars} active={mapMode} />
+          <p className="mt-3 mb-0 text-[16px] font-medium text-ink" data-optimal={truncated ? "truncated" : "ok"}>
             {truncated ? COPY.s3.optimal.truncated : COPY.s3.optimal.ok}
           </p>
-        </section>
-
-        <section className="rounded-2xl border-2 border-ink/80 bg-card p-4" data-mini="1">
-          <div className="flex flex-wrap items-center justify-between gap-2">
-            <h2 className="m-0 text-[18px] font-bold">{COPY.s3.mini.title}</h2>
-            {residents.length ? (
-              <select
-                value={sel?.id}
-                onChange={(e) => setUi((u) => ({ ...u, resident: { ...(u.resident ?? {}), [sid]: e.target.value } }))}
-                className="min-h-11 rounded-xl border-2 border-line bg-white px-2 text-[16px]"
-                aria-label={COPY.s3.mini.title}
-              >
-                {residents.map((r) => (
-                  <option key={r.id} value={r.id}>
-                    {r.name} · {COPY.modeOfficer[r.mode]}
-                  </option>
-                ))}
-              </select>
-            ) : null}
-          </div>
-          {sel && view && view0 ? (
-            <ResidentCard
-              className="mt-3 border-0 p-0 shadow-none"
-              testId="mini"
-              title={COPY.s3.mini.line(sel.name, sel.age, COPY.modeOfficer[sel.mode], pointName(region, sel.pointId))}
-              rows={view.rows}
-              countY={view.countY}
-              countU={view.countU}
-              countN={view.countN}
-              flashCodes={flashMini as Set<FnCode>}
-            >
-              <p className="num mt-2 mb-0 text-[16px]" data-b1="1">
-                {COPY.s3.mini.b1(view.b1.distKm.toFixed(1), view.b1.countY)}
-                {!view.b1.walkable && sel.mode !== "car" ? <strong className="text-warn"> {COPY.s3.mini.notWalkable}</strong> : null}
-              </p>
-              <p className="num mt-2 mb-0 rounded-xl bg-paper px-3 py-2 text-[15px] font-semibold" data-steps="1">
-                {COPY.s3.mini.steps(core.length, view.b1.countY, view0.countY, conf.length ? view.countY : null)}
-              </p>
-            </ResidentCard>
-          ) : (
-            <p className="mt-2 mb-0 text-[16px] text-muted">{COPY.s3.mini.noResidents}</p>
-          )}
-        </section>
+        </div>
+        <div className="flex min-w-0 flex-col gap-6">
+          <section className="border-t-2 border-ink pt-3" data-gaps={gaps.length}>
+            <h2 className={h2}>{COPY.s3.gaps.title}</h2>
+            <ul className="mt-2 mb-0 flex list-none flex-wrap gap-2 p-0 text-[16px]">
+              {gaps.length ? (
+                gaps.map((g) => (
+                  <li key={`${g.fn}-${g.mode}`} className="slash flex items-center gap-2 border border-ink px-2 py-1">
+                    <GoneWord>{g.fn}</GoneWord>
+                    <span className="bg-paper px-1 text-[14px] text-pencil-ink">{g.mode}</span>
+                  </li>
+                ))
+              ) : (
+                <li className="text-pencil-ink">{COPY.s3.gaps.none}</li>
+              )}
+            </ul>
+          </section>
+          <section className="border-t-2 border-ink pt-3" data-common="1">
+            <h2 className={h2}>{COPY.s3.common.title}</h2>
+            <ul className="mt-1 mb-0 flex list-none flex-col p-0 text-[16px]">
+              {commonRows.map(([f, ids]) => (
+                <li key={f} className="border-b border-rule py-1.5">
+                  {COPY.s3.common.line(COPY.fnName[f], resName(region, ids[0]), ids[1] ? resName(region, ids[1]) : undefined)}
+                </li>
+              ))}
+            </ul>
+          </section>
+        </div>
       </div>
 
-      {/* map + table for one mode */}
-      <section className="flex flex-col gap-3">
-        <div className="flex flex-wrap gap-2" role="tablist" aria-label="이동 유형">
-          {MODE_ORDER.map((m) => (
-            <button
-              key={m}
-              type="button"
-              role="tab"
-              aria-selected={m === mapMode}
-              onClick={() => setUi((u) => ({ ...u, s3Mode: m }))}
-              className={`min-h-11 rounded-xl border-2 px-4 text-[16px] font-bold ${m === mapMode ? "border-ink bg-ink text-white" : "border-line bg-card"}`}
-            >
-              {COPY.modeOfficer[m]}
-            </button>
-          ))}
-          <span className="self-center text-[14px] text-muted">{villageName(region, storeVillage)}</span>
-        </div>
-        <div className="grid grid-cols-1 items-start gap-5 lg:grid-cols-2">
-          <div className="min-w-0">
-            <VillageMap region={region} store={s.store} lines={lines} focusVillageId={storeVillage} pointId={sel?.pointId} ariaLabel="이어받는 곳 지도" />
-            <p className="mt-1 mb-0 text-[14px] text-muted">{COPY.s3.mapLegend}</p>
+      {/* 먼저 전화할 곳 | 선택한 주민 + 결재란 */}
+      <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)]">
+        <section className="flex min-w-0 flex-col gap-3" data-voi-list={voi.length}>
+          <div className="border-t-2 border-ink pt-3">
+            <h2 className={h2}>{COPY.s3.voi.title}</h2>
+            <p className="m-0 mt-1 text-[15px] text-pencil-ink">{COPY.s3.voi.note}</p>
           </div>
-          <FnResourceTable region={region} vm={vm} fns={core} flash={flashTable} />
-        </div>
-      </section>
-
-      {/* 먼저 전화할 곳 */}
-      <section className="flex flex-col gap-3" data-voi-list={voi.length}>
-        <div>
-          <h2 className="m-0 text-[22px] font-extrabold">{COPY.s3.voi.title}</h2>
-          <p className="m-0 text-[14px] text-muted">{COPY.s3.voi.note}</p>
-        </div>
-        <div className="grid gap-3 lg:grid-cols-3">
-          {top.map((v, i) => (
-            <VoiCard key={v.cellKey} item={v} rank={i + 1} current={confOf(v.cellKey)} demo={demoOf(v.cellKey)} onSet={(val, note, by) => setCell(v.cellKey, val, note, by)} />
-          ))}
-        </div>
-        {demoCells.length ? (
-          <div className="grid gap-3 lg:grid-cols-3">
-            {demoCells.map((v) => (
-              <div key={v.cellKey}>
-                <p className="m-0 mb-1 text-[14px] font-semibold text-warn">{COPY.s3.voi.demoCell}</p>
-                <VoiCard item={v} current={confOf(v.cellKey)} demo={demoOf(v.cellKey)} onSet={(val, note, by) => setCell(v.cellKey, val, note, by)} />
-              </div>
+          <ol className="m-0 flex list-none flex-col gap-3 p-0">
+            {top.map((v, i) => (
+              <li key={v.cellKey}>
+                <VoiCard item={v} rank={i + 1} current={confOf(v.cellKey)} demo={demoOf(v.cellKey)} onSet={(val, note, by) => setCell(v.cellKey, val, note, by)} />
+              </li>
             ))}
-          </div>
-        ) : null}
-        {conf.length ? (
-          <ConfirmedList region={region} conf={conf} registry={cells.registry} onUndo={(k) => setCell(k, null, "", "이 브라우저")} />
-        ) : null}
-        {rest.length ? (
-          <details className="rounded-2xl border border-line bg-card p-4">
-            <summary className="cursor-pointer text-[16px] font-semibold">{COPY.s3.voi.more(rest.length)}</summary>
-            <div className="mt-3 grid gap-3 lg:grid-cols-3">
-              {rest.map((v) => (
-                <VoiCard key={v.cellKey} compact item={v} current={confOf(v.cellKey)} demo={demoOf(v.cellKey)} onSet={(val, note, by) => setCell(v.cellKey, val, note, by)} />
+          </ol>
+          {demoCells.length ? (
+            <div className="flex flex-col gap-3">
+              {demoCells.map((v) => (
+                <div key={v.cellKey}>
+                  <p className="m-0 mb-1 text-[15px] font-semibold text-ink">{COPY.s3.voi.demoCell}</p>
+                  <VoiCard item={v} current={confOf(v.cellKey)} demo={demoOf(v.cellKey)} onSet={(val, note, by) => setCell(v.cellKey, val, note, by)} />
+                </div>
               ))}
             </div>
-          </details>
-        ) : null}
-      </section>
+          ) : null}
+          {conf.length ? (
+            <ConfirmedList conf={conf} registry={cells.registry} onUndo={(k) => setCell(k, null, "", "이 브라우저")} />
+          ) : null}
+          {rest.length ? (
+            <details className="border-t border-rule pt-2">
+              <summary className="flex min-h-11 cursor-pointer items-center text-[16px] font-semibold text-slate">{COPY.s3.voi.more(rest.length)}</summary>
+              <div className="mt-3 grid gap-3 md:grid-cols-2">
+                {rest.map((v) => (
+                  <VoiCard key={v.cellKey} compact item={v} current={confOf(v.cellKey)} demo={demoOf(v.cellKey)} onSet={(val, note, by) => setCell(v.cellKey, val, note, by)} />
+                ))}
+              </div>
+            </details>
+          ) : null}
+        </section>
 
-      {/* common / gaps / social / reports / lost record */}
-      <div className="grid grid-cols-1 items-start gap-4 lg:grid-cols-2">
-        <section className="rounded-2xl border border-line bg-card p-4" data-common="1">
-          <h2 className="m-0 text-[18px] font-bold">{COPY.s3.common.title}</h2>
-          <ul className="mt-2 mb-0 flex list-none flex-col gap-1 p-0 text-[16px]">
-            {commonRows.map(([f, ids]) => (
-              <li key={f}>{COPY.s3.common.line(COPY.fnName[f], resName(region, ids[0]), ids[1] ? resName(region, ids[1]) : undefined)}</li>
-            ))}
-          </ul>
-        </section>
-        <section className="rounded-2xl border border-line bg-card p-4" data-gaps={gaps.length}>
-          <h2 className="m-0 text-[18px] font-bold">{COPY.s3.gaps.title}</h2>
-          <ul className="mt-2 mb-0 flex list-none flex-wrap gap-2 p-0 text-[16px]">
-            {gaps.length ? (
-              gaps.map((g) => (
-                <li key={`${g.fn}-${g.mode}`} className="tri-n rounded-lg px-2 py-0.5 text-ink">
-                  {COPY.s3.gaps.line(g.fn, g.mode)}
-                </li>
-              ))
+        <div className="flex min-w-0 flex-col gap-8">
+          <section className="min-w-0" data-mini="1">
+            <div className="flex flex-wrap items-center justify-between gap-2 border-t-2 border-ink pt-3 pb-2">
+              <h2 className={h2}>{COPY.s3.mini.title}</h2>
+              {residents.length ? (
+                <select
+                  value={sel?.id}
+                  onChange={(e) => setUi((u) => ({ ...u, resident: { ...(u.resident ?? {}), [sid]: e.target.value } }))}
+                  className="min-h-11 max-w-full rounded-[3px] border-2 border-slate bg-paper px-2 text-[16px] text-ink"
+                  aria-label={COPY.s3.mini.title}
+                >
+                  {residents.map((r) => (
+                    <option key={r.id} value={r.id}>
+                      {r.name} ({COPY.modeOfficer[r.mode]})
+                    </option>
+                  ))}
+                </select>
+              ) : null}
+            </div>
+            {sel && view && view0 ? (
+              <ResidentCard
+                testId="mini"
+                title={COPY.s3.mini.line(sel.name, sel.age, COPY.modeOfficer[sel.mode], pointName(region, sel.pointId))}
+                rows={view.rows}
+                countY={view.countY}
+                countU={view.countU}
+                countN={view.countN}
+                flashCodes={flashMini as Set<FnCode>}
+              >
+                <p className="num mt-3 mb-0 text-[16px]" data-b1="1">
+                  {COPY.s3.mini.b1(view.b1.distKm.toFixed(1), view.b1.countY)}
+                  {!view.b1.walkable && sel.mode !== "car" ? <strong className="font-semibold text-ink"> {COPY.s3.mini.notWalkable}</strong> : null}
+                </p>
+                <p className="num mt-2 mb-0 border border-dashed border-pencil px-3 py-2 text-[15px] font-medium" data-steps="1">
+                  {COPY.s3.mini.steps(core.length, view.b1.countY, view0.countY, conf.length ? view.countY : null)}
+                </p>
+              </ResidentCard>
             ) : (
-              <li className="text-muted">{COPY.s3.gaps.none}</li>
+              <p className="mt-2 mb-0 text-[16px] text-pencil-ink">{COPY.s3.mini.noResidents}</p>
             )}
-          </ul>
-        </section>
-        {socialOn && plan.socialHubs.length ? (
-          <section className="rounded-2xl border border-line bg-card p-4" data-social="1">
-            <h2 className="m-0 text-[18px] font-bold">{COPY.s3.social.title}</h2>
-            <p className="mt-2 mb-0 text-[16px]">{COPY.s3.social.line(plan.socialHubs.map((h) => resName(region, h)).join("·"))}</p>
           </section>
-        ) : null}
-        <FeedbackQueue
-          region={region}
-          registry={cells.registry}
-          fb={st.fb}
-          conf={conf}
-          onSet={setCell}
-          onHandled={(id) => st.setFb((p) => p.map((f) => (f.id === id ? { ...f, handledAt: new Date().toISOString() } : f)))}
-        />
-        <LostRecord sid={sid} store={s.store} fns={fns} gaps={gaps} />
-        <ParamsPanel />
+
+          <section className="flex flex-col gap-3 border-t-2 border-ink pt-3">
+            <GateButton sid={sid} step="g2" />
+            <GatedLink sid={sid} step="g2" href={`/s/${sid}/residents`} label={COPY.next.s4} />
+          </section>
+        </div>
       </div>
 
-      <div className="flex flex-col gap-3 rounded-2xl border border-line bg-card p-4">
-        <GateButton sid={sid} step="g2" />
-        <GatedLink sid={sid} step="g2" href={`/s/${sid}/residents`} label={COPY.next.s4} />
+      {/* 지도(보조) | 마을회관 · 주민 제보 · 사라진 기능 기록 · 기준값 */}
+      <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-2">
+        <section className="min-w-0 border-t-2 border-ink pt-3" aria-label="이어받는 곳 지도">
+          <div className="mb-2 flex flex-wrap items-baseline justify-between gap-2">
+            <h2 className={h2}>
+              {COPY.s3.mapTitle} <span className="text-[15px] font-medium text-pencil-ink">{COPY.modeOfficer[mapMode]}</span>
+            </h2>
+            <ul className="m-0 flex list-none flex-wrap gap-x-4 p-0 text-[14px] text-ink">
+              {COPY.s3.mapLegend.map(([k, t]) => (
+                <li key={k} className="flex items-center gap-1.5">
+                  <svg width="28" height="8" aria-hidden="true">
+                    <line x1="1" y1="4" x2="27" y2="4" stroke={k === "solid" ? "var(--ink)" : "var(--pencil-ink)"} strokeWidth="2.6" strokeDasharray={k === "solid" ? undefined : "6 4"} />
+                  </svg>
+                  {t}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <VillageMap region={region} store={s.store} lines={lines} focusVillageId={storeVillage} pointId={sel?.pointId} ariaLabel="이어받는 곳 지도" />
+        </section>
+        <div className="flex min-w-0 flex-col gap-8">
+          {socialOn && plan.socialHubs.length ? (
+            <section className="border-t-2 border-ink pt-3" data-social="1">
+              <h2 className={h2}>{COPY.s3.social.title}</h2>
+              <p className="mt-2 mb-0 text-[16px]">{COPY.s3.social.line(plan.socialHubs.map((h) => resName(region, h)).join("·"))}</p>
+            </section>
+          ) : null}
+          <FeedbackQueue
+            region={region}
+            registry={cells.registry}
+            fb={st.fb}
+            conf={conf}
+            onSet={setCell}
+            onHandled={(id) => st.setFb((p) => p.map((f) => (f.id === id ? { ...f, handledAt: new Date().toISOString() } : f)))}
+          />
+          <LostRecord sid={sid} store={s.store} fns={fns} gaps={gaps} />
+          <ParamsPanel />
+        </div>
       </div>
     </div>
   );
 }
 
 function ConfirmedList({
-  region,
   conf,
   registry,
   onUndo,
 }: {
-  region: Region;
   conf: Confirmation[];
   registry: Map<string, { label: string; realNamed: boolean }>;
   onUndo: (cellKey: string) => void;
 }) {
-  void region;
   return (
-    <section className="rounded-2xl border border-line bg-card p-4" data-confirmed={conf.length}>
-      <h3 className="m-0 text-[17px] font-bold">{COPY.s3.voi.confirmedTitle}</h3>
-      <ul className="m-0 mt-2 flex list-none flex-col gap-2 p-0">
-        {conf.map((c) => {
+    <section className="border-t border-rule pt-2" data-confirmed={conf.length}>
+      <h3 className="m-0 text-[18px] font-semibold">{COPY.s3.voi.confirmedTitle}</h3>
+      <ul className="m-0 mt-1 flex list-none flex-col p-0">
+        {conf.map((c, i) => {
           const def = registry.get(c.cellKey);
           const word = c.value === "Y" ? COPY.tri.Y : c.value === "N" ? COPY.tri.N : COPY.tri.U;
           const badge =
@@ -326,11 +350,12 @@ function ConfirmedList({
               <Badge tone="browser">{COPY.badge.thisBrowser}</Badge>
             );
           return (
-            <li key={c.cellKey} className="flex flex-wrap items-center gap-2 text-[16px]" data-confirmed-cell={c.cellKey}>
-              <span className="font-semibold">{def?.label ?? c.cellKey}</span>
-              <span>→ {word}{c.note ? ` · ${c.note}` : ""}</span>
+            <li key={c.cellKey} className="flex flex-wrap items-center gap-x-3 gap-y-1 border-b border-rule py-2 text-[16px]" data-confirmed-cell={c.cellKey}>
+              <span className="min-w-0 font-semibold">{def?.label ?? c.cellKey}</span>
+              {c.value === "Y" ? <Stamp size="sm" word={word} tilt={i % 2 ? -4 : -8} /> : <span className="font-semibold">{word}</span>}
+              {c.note ? <span className="text-pencil-ink">{c.note}</span> : null}
               {badge}
-              <button type="button" onClick={() => onUndo(c.cellKey)} className="min-h-9 rounded-lg border border-line px-2 text-[14px]">
+              <button type="button" onClick={() => onUndo(c.cellKey)} className="min-h-11 rounded-[3px] border-2 border-slate px-3 text-[15px] font-semibold text-slate hover:bg-cell">
                 {COPY.s3.voi.unknown}
               </button>
             </li>

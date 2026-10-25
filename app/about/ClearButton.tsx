@@ -15,12 +15,12 @@ export function ClearButton() {
           clearAll();
           setDone(true);
         }}
-        className="min-h-11 rounded-xl border border-line bg-card px-4 py-2 text-[16px] font-semibold text-ink hover:border-brand hover:text-brand"
+        className="min-h-11 rounded-[3px] border-2 border-slate bg-paper px-4 py-2 text-[16px] font-semibold text-slate hover:bg-cell"
       >
         {COPY.s6.clear}
       </button>
       {done ? (
-        <span role="status" className="text-[15px] text-muted">
+        <span role="status" className="text-[15px] text-pencil-ink">
           지웠어요. 이 브라우저에 남은 확인 결과·승인 기록·주민 제보가 없습니다.
         </span>
       ) : null}

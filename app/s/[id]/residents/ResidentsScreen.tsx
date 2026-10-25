@@ -1,5 +1,7 @@
 "use client";
-import Link from "next/link";
+// S4 주민별 대안·안내: big mode tabs (주민 문구), 내 조건 as a form, resident ledgers with numbered 순위 lines
+// (이용방법 | 연락처 as form cells), the 「마을 안내문」 sheet (engine groups 확실 / 확인 중 / 끊김 + the AI draft in big
+// type), 연계 요청문 index tabs, 거른 예시, and the 결재란 승인 box. Logic (engine calls, documents, feedback) unchanged.
 import { useEffect, useMemo, useState } from "react";
 import type { Confirmation, FnCode, Mode, PlanDigest, Region, Resident, Scenario } from "@/lib/types";
 import type { ComposeRequest, ComposeResponse } from "@/lib/apiTypes";
@@ -12,11 +14,12 @@ import { computePlan, residentView, type ResidentView } from "@/lib/compute";
 import { useScenarioState } from "@/lib/store/scenario";
 import type { Feedback } from "@/lib/store/local";
 import { MODE_ORDER, confNoteFor, daysIn, pointName, resName } from "@/lib/view";
-import { Badge, ModeBadge } from "@/components/Badge";
+import { Badge, GoneWord, ModeBadge, PencilWord, Stamp } from "@/components/Badge";
 import { ResidentCard } from "@/components/ResidentCard";
 import { FeedbackButtons } from "@/components/FeedbackButtons";
 import { GroundingPanel } from "@/components/GroundingPanel";
 import { GateButton } from "@/components/GateButton";
+import { NoStore } from "@/components/NoStore";
 
 export interface E4Example { sentence: string; reason: string }
 
@@ -59,14 +62,7 @@ export function ResidentsScreen({
   const [toast, setToast] = useState<string | null>(null);
   const [tab, setTab] = useState<string | null>(null);
 
-  if (!s || !bundle) {
-    return (
-      <div className="rounded-2xl border border-line bg-card p-5">
-        <p className="m-0 text-[17px]">등록된 가게가 없어요.</p>
-        <Link href="/register" className="mt-3 inline-block font-semibold text-brand underline">{COPY.s0.register} →</Link>
-      </div>
-    );
-  }
+  if (!s || !bundle) return <NoStore />;
 
   const { cells, plan } = bundle;
   const socialOn = fns.some((f) => f.enabled && SOCIAL_FNS.includes(f.code));
@@ -103,12 +99,11 @@ export function ResidentsScreen({
   const lastFb = (rid: string, resId: string) => [...st.fb].reverse().find((f) => f.residentId === rid && f.resId === resId)?.kind;
 
   // per-function status: a resource can carry some functions for sure and others still being checked
-  const rankText = (v: ResidentView, rank: number, name: string, fns: FnCode[]) => {
+  const rankParts = (v: ResidentView, fnsOf: FnCode[]) => {
     const sure = (f: FnCode) => v.rows.find((r) => r.code === f)?.tri === "Y";
-    const fy = fns.filter(sure), fu = fns.filter((f) => !sure(f));
+    const fy = fnsOf.filter(sure), fu = fnsOf.filter((f) => !sure(f));
     const j = (xs: FnCode[]) => xs.map((f) => COPY.fnName[f]).join("·");
-    if (fy.length && fu.length) return COPY.s4.rank(rank, name, j(fy), COPY.tri.Y) + COPY.s4.rankMore(j(fu), COPY.tri.U);
-    return COPY.s4.rank(rank, name, j(fns), fy.length ? COPY.tri.Y : COPY.tri.U);
+    return { y: fy.length ? j(fy) : null, u: fu.length ? j(fu) : null };
   };
   // step 5 (objection E3-②): how to use each place + contact line. No phone numbers are invented —
   // until an officer checks, the contact line says 「확인 중」 and names the channel to check through.
@@ -125,32 +120,46 @@ export function ResidentsScreen({
     return { how, contact: via ? COPY.s4.contactVia(via) : COPY.s4.contactUnknown };
   };
   const rankLines = (v: ResidentView, who: { id: string; name: string; pointId: string; mode: Mode }, ordered = v.ordered) => (
-    <ol className="m-0 mt-3 flex list-none flex-col gap-2 p-0">
+    <ol className="m-0 mt-3 flex list-none flex-col p-0">
       {ordered.map((o, i) => {
         const note = confNoteFor(o.resId, cells.applied, cells.registry);
         const days = daysIn(note ?? "");
         const name = resName(region, o.resId) + (days.length ? `(${days.join("·")})` : "");
+        const parts = rankParts(v, o.fns);
+        const h = howTo(o.resId, o.fns);
         return (
-          <li key={o.resId} className="rounded-xl border border-line bg-white p-2.5" data-rank={o.resId}>
-            <span className="text-[16px] font-semibold">
-              {rankText(v, i + 1, name, o.fns)}
-            </span>
-            {tourBlocked(o.resId) && who.id === "me" ? <span className="ml-1 text-[14px] text-muted">({COPY.s4.badDays})</span> : null}
-            {(() => {
-              const h = howTo(o.resId, o.fns);
-              return h ? (
-                <dl className="m-0 mt-1.5 grid grid-cols-[auto_1fr] gap-x-2 gap-y-0.5 text-[14px] leading-snug" data-howto={o.resId}>
-                  {h.how ? (
-                    <>
-                      <dt className="font-semibold text-muted">{COPY.s4.howToLabel}</dt>
-                      <dd className="m-0">{h.how}</dd>
-                    </>
-                  ) : null}
-                  <dt className="font-semibold text-muted">{COPY.s4.contactLabel}</dt>
-                  <dd className="m-0 text-unsure" data-contact="unconfirmed">{h.contact}</dd>
-                </dl>
-              ) : null;
-            })()}
+          <li key={o.resId} className="border-t border-rule py-3" data-rank={o.resId}>
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5">
+              <span className="num inline-flex h-7 items-center border border-ink px-1.5 text-[14px] font-semibold">{COPY.s4.rankNo(i + 1)}</span>
+              <span className="text-[17px] font-semibold">{name}</span>
+              {tourBlocked(o.resId) && who.id === "me" ? <span className="text-[14px] text-pencil-ink">({COPY.s4.badDays})</span> : null}
+            </div>
+            <div className="mt-1.5 flex flex-wrap items-center gap-x-4 gap-y-1.5 text-[16px]">
+              {parts.y ? (
+                <span className="flex items-center gap-2">
+                  <span>{parts.y}</span>
+                  <Stamp size="sm" tilt={-6} />
+                </span>
+              ) : null}
+              {parts.u ? (
+                <span className="hatch flex items-center gap-2 px-1.5 py-1">
+                  <span className="bg-paper px-1">{parts.u}</span>
+                  <PencilWord />
+                </span>
+              ) : null}
+            </div>
+            {h ? (
+              <dl className="m-0 mt-2 grid grid-cols-[5.5em_minmax(0,1fr)] border-t border-rule text-[15px] leading-snug" data-howto={o.resId}>
+                {h.how ? (
+                  <>
+                    <dt className="border-b border-rule py-1 pr-2 font-semibold text-pencil-ink">{COPY.s4.howToLabel}</dt>
+                    <dd className="m-0 border-b border-l border-rule py-1 pl-2">{h.how}</dd>
+                  </>
+                ) : null}
+                <dt className="border-b border-rule py-1 pr-2 font-semibold text-pencil-ink">{COPY.s4.contactLabel}</dt>
+                <dd className="m-0 border-b border-l border-rule py-1 pl-2 text-pencil-ink" data-contact="unconfirmed">{h.contact}</dd>
+              </dl>
+            ) : null}
             <FeedbackButtons sent={lastFb(who.id, o.resId)} onSend={(kind, reason) => sendFb(who, o.resId, o.fns, kind, reason)} />
           </li>
         );
@@ -221,19 +230,29 @@ export function ResidentsScreen({
   const test = testDigest ? groundText(COPY.s4.testSentence, testDigest, regionNames) : null;
 
   const residentViews = residents.map((r) => residentView(region, cells, r, fns));
+  const h2 = "m-0 text-[22px] font-semibold leading-snug";
+  const groups = (["Y", "U", "N"] as const).map((t) => ({ t, rows: myView.rows.filter((r) => r.tri === t) })).filter((g) => g.rows.length);
+  const groupTitle = { Y: COPY.s4.bigText.groupY, U: COPY.s4.bigText.groupU, N: COPY.s4.bigText.groupN };
 
   return (
-    <div className="flex flex-col gap-6">
-      <div className="flex flex-wrap items-center gap-2">
-        {temp ? <Badge tone="warn">{COPY.badge.tempScenario}</Badge> : null}
-        {mock ? <Badge tone="warn">{COPY.badge.mock}</Badge> : null}
-        {conf.some((c) => c.by === "시연 입력값") ? <Badge tone="demo">{COPY.badge.demoValue}</Badge> : null}
+    <div className="flex flex-col gap-10">
+      <div className="flex flex-col gap-3">
+        {temp || mock || conf.some((c) => c.by === "시연 입력값") ? (
+          <div className="flex flex-wrap items-center gap-2">
+            {temp ? <Badge tone="warn">{COPY.badge.tempScenario}</Badge> : null}
+            {mock ? <Badge tone="warn">{COPY.badge.mock}</Badge> : null}
+            {conf.some((c) => c.by === "시연 입력값") ? <Badge tone="demo">{COPY.badge.demoValue}</Badge> : null}
+          </div>
+        ) : null}
+        <h1 className="m-0 border-b-2 border-ink pb-2 font-normal">
+          <span className="sign block text-[32px] leading-[1.1] sm:text-[38px]">{s.store.name}</span>
+          <span className="sign mt-1 block text-[22px] leading-tight text-pencil-ink sm:text-[24px]">{COPY.nav.s4}</span>
+        </h1>
       </div>
-      <h1 className="m-0 text-[26px] font-extrabold leading-tight sm:text-[30px]">{COPY.nav.s4}</h1>
 
-      {/* mode buttons + my conditions */}
-      <section className="rounded-2xl border border-line bg-card p-4" data-mycond="1">
-        <div className="flex flex-wrap gap-2" role="radiogroup" aria-label="이동 유형">
+      {/* big mode tabs + my conditions */}
+      <section className="flex min-w-0 flex-col gap-5" data-mycond="1">
+        <div className="grid grid-cols-1 gap-2 sm:grid-cols-3" role="radiogroup" aria-label={COPY.s4.modeTabs}>
           {MODE_ORDER.map((m) => (
             <button
               key={m}
@@ -244,34 +263,34 @@ export function ResidentsScreen({
                 setMyMode(m);
                 setMyPoint(residents.find((r) => r.mode === m)?.pointId ?? null);
               }}
-              className={`min-h-12 rounded-xl border-2 px-4 text-[17px] font-bold ${m === myMode ? "border-ink bg-ink text-white" : "border-line bg-white"}`}
+              className={`min-h-14 rounded-[3px] border-2 px-4 text-left text-[20px] font-semibold ${m === myMode ? "border-ink bg-slate text-paper" : "border-slate bg-paper text-slate hover:bg-cell"}`}
               data-mode-btn={m}
             >
               {COPY.modeResident[m]}
             </button>
           ))}
         </div>
-        <h2 className="mt-4 mb-2 text-[18px] font-bold">{COPY.s4.myCond}</h2>
-        <div className="flex flex-wrap items-end gap-4">
-          <label className="flex min-w-0 flex-col gap-1">
-            <span className="text-[15px] font-semibold">{COPY.s4.livePlace}</span>
-            <select value={myPoint} onChange={(e) => setMyPoint(e.target.value)} className="min-h-11 max-w-full rounded-xl border-2 border-line bg-white px-2 text-[16px]">
-              {region.villages.map((v) => (
-                <optgroup key={v.id} label={v.name}>
-                  {region.points
-                    .filter((p) => p.villageId === v.id)
-                    .map((p) => (
-                      <option key={p.id} value={p.id}>
-                        {pointName(region, p.id)}
-                      </option>
-                    ))}
-                </optgroup>
-              ))}
-            </select>
-          </label>
-          <fieldset className="m-0 min-w-0 border-0 p-0">
-            <legend className="mb-1 text-[15px] font-semibold">{COPY.s4.badDays}</legend>
-            <div className="flex flex-wrap gap-1.5">
+        <div className="border-t-2 border-ink pt-3">
+          <h2 className={h2}>{COPY.s4.myCond}</h2>
+          <div className="mt-2 grid grid-cols-1 border-t border-rule sm:grid-cols-[8em_minmax(0,1fr)]">
+            <label htmlFor="my-point" className="border-b border-rule py-2 pr-3 text-[16px] font-semibold text-pencil-ink sm:py-3">{COPY.s4.livePlace}</label>
+            <div className="border-b border-rule py-2 sm:border-l sm:py-2 sm:pl-3">
+              <select id="my-point" value={myPoint} onChange={(e) => setMyPoint(e.target.value)} className="min-h-11 max-w-full rounded-[3px] border-2 border-slate bg-paper px-2 text-[17px] text-ink">
+                {region.villages.map((v) => (
+                  <optgroup key={v.id} label={v.name}>
+                    {region.points
+                      .filter((p) => p.villageId === v.id)
+                      .map((p) => (
+                        <option key={p.id} value={p.id}>
+                          {pointName(region, p.id)}
+                        </option>
+                      ))}
+                  </optgroup>
+                ))}
+              </select>
+            </div>
+            <span id="bad-days" className="border-b border-rule py-2 pr-3 text-[16px] font-semibold text-pencil-ink sm:py-3">{COPY.s4.badDays}</span>
+            <div className="flex flex-wrap gap-1.5 border-b border-rule py-2 sm:border-l sm:pl-3" role="group" aria-labelledby="bad-days">
               {DAYS.map((d) => {
                 const on = badDays.includes(d);
                 return (
@@ -279,33 +298,33 @@ export function ResidentsScreen({
                     key={d}
                     type="button"
                     aria-pressed={on}
+                    aria-label={d}
                     onClick={() => setBadDays((p) => (on ? p.filter((x) => x !== d) : [...p, d]))}
-                    className={`min-h-10 rounded-full border-2 px-3 text-[15px] font-semibold ${on ? "border-warn bg-[#fbe9e4] text-warn" : "border-line bg-white"}`}
+                    className={`h-11 w-11 rounded-[3px] border-2 text-[17px] font-semibold ${on ? "border-slate-deep bg-slate text-paper" : "border-slate bg-paper text-slate hover:bg-cell"}`}
                   >
                     {d.slice(0, 1)}
                   </button>
                 );
               })}
             </div>
-          </fieldset>
+          </div>
         </div>
         <ResidentCard
-          className="mt-4"
           testId="me"
           virtual={false}
-          title={`${COPY.s4.myResult} · ${COPY.modeResident[myMode]} · ${pointName(region, myPoint)}`}
+          title={[COPY.s4.myResult, COPY.modeResident[myMode], pointName(region, myPoint)]}
           rows={myView.rows}
           countY={myView.countY}
           countU={myView.countU}
           countN={myView.countN}
-          headerExtra={<span className="text-[13px] text-muted">{COPY.s4.myResultNote}</span>}
+          headerExtra={<span className="text-[14px] text-pencil-ink">{COPY.s4.myResultNote}</span>}
         >
           {rankLines(myView, { id: "me", name: COPY.s4.myResult, pointId: myPoint, mode: myMode }, myOrdered)}
         </ResidentCard>
       </section>
 
-      {/* resident cards */}
-      <section className="grid grid-cols-1 items-start gap-4 lg:grid-cols-3" data-residents={residents.length}>
+      {/* resident ledgers */}
+      <section className="grid grid-cols-1 items-start gap-6 lg:grid-cols-3" data-residents={residents.length}>
         {residentViews.map((v) => (
           <ResidentCard
             key={v.resident.id}
@@ -318,23 +337,56 @@ export function ResidentsScreen({
             narrow
           >
             {rankLines(v, { id: v.resident.id, name: v.resident.name, pointId: v.resident.pointId, mode: v.resident.mode })}
-            {socialOn ? <p className="mt-3 mb-0 text-[15px] font-semibold text-brand">{COPY.s4.socialLine}</p> : null}
+            {socialOn ? <p className="mt-2 mb-0 border-t border-rule pt-2 text-[16px] font-medium">{COPY.s4.socialLine}</p> : null}
           </ResidentCard>
         ))}
       </section>
 
-      {/* big-text notice */}
-      <section className="rounded-2xl border-2 border-ink/70 bg-card p-4" data-bigtext="1">
-        <h2 className="m-0 text-[22px] font-extrabold">{COPY.s4.bigText.title}</h2>
-        <p className="m-0 text-[14px] text-muted">{COPY.s4.bigText.note}</p>
-        <DocBlock req={residentReq} pre={findPre(residentReq)} big />
+      {/* 마을 안내문 — big-text notice */}
+      <section className="min-w-0" data-bigtext="1">
+        <div className="border-t-2 border-ink pt-3">
+          <h2 className={h2}>{COPY.s4.bigText.title}</h2>
+          <p className="m-0 text-[15px] text-pencil-ink">{COPY.s4.bigText.note}</p>
+        </div>
+        <article className="mt-3 max-w-3xl border-2 border-ink bg-paper" style={{ boxShadow: "inset 0 0 0 3px var(--paper), inset 0 0 0 4px var(--rule)" }}>
+          <header className="flex flex-wrap items-baseline justify-between gap-2 border-b-2 border-ink px-5 py-3">
+            <span className="sign text-[30px] leading-none">{COPY.s4.bigText.sheet}</span>
+            <span className="text-[15px] text-pencil-ink">
+              {COPY.modeResident[myMode]}, {pointName(region, myPoint)}
+            </span>
+          </header>
+          <div className="grid grid-cols-1 border-b border-rule sm:grid-cols-3">
+            {groups.map((g) => (
+              <div key={g.t} className={`border-b border-rule px-5 py-3 sm:border-b-0 sm:border-r last:border-r-0 ${g.t === "U" ? "hatch" : g.t === "N" ? "slash" : ""}`} data-notice-group={g.t}>
+                <p className="m-0 mb-1.5 flex items-center gap-2">
+                  {g.t === "Y" ? <Stamp size="sm" tilt={-6} /> : g.t === "U" ? <PencilWord /> : <GoneWord className="border border-ink" />}
+                  <span className="bg-paper px-1 text-[15px] font-semibold">{groupTitle[g.t]}</span>
+                </p>
+                <ul className="m-0 list-none p-0 text-[20px] leading-snug">
+                  {g.rows.map((r) => (
+                    <li key={r.code} className="bg-paper/85 py-0.5">
+                      <span className="font-semibold">{COPY.fnName[r.code]}</span>
+                      {r.resName && r.tri !== "N" ? <span className="text-[17px] text-pencil-ink"> {r.resName}{r.note ? ` (${r.note})` : ""}</span> : null}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+          <p className="m-0 px-5 pt-2 text-[14px] text-pencil-ink">{COPY.s4.bigText.groupNote}</p>
+          <div className="px-5 pb-4">
+            <DocBlock req={residentReq} pre={findPre(residentReq)} big />
+          </div>
+        </article>
       </section>
 
       {/* agency request tabs */}
       {tabs.length ? (
-        <section className="rounded-2xl border border-line bg-card p-4" data-agency="1">
-          <h2 className="m-0 text-[20px] font-bold">{COPY.s4.agency.title}</h2>
-          <div className="mt-2 flex flex-wrap gap-2" role="tablist">
+        <section className="min-w-0" data-agency="1">
+          <div className="border-t-2 border-ink pt-3">
+            <h2 className={h2}>{COPY.s4.agency.title}</h2>
+          </div>
+          <div className="mt-3 flex flex-wrap items-end gap-1 border-b-2 border-ink" role="tablist">
             {tabs.map((t) => (
               <button
                 key={t.id}
@@ -342,48 +394,50 @@ export function ResidentsScreen({
                 role="tab"
                 aria-selected={curTab?.id === t.id}
                 onClick={() => setTab(t.id)}
-                className={`min-h-11 rounded-xl border-2 px-3 text-[15px] font-semibold ${curTab?.id === t.id ? "border-ink bg-ink text-white" : "border-line bg-white"}`}
+                className={`-mb-[2px] min-h-11 rounded-t-[3px] border-2 px-3 text-[16px] font-semibold ${curTab?.id === t.id ? "border-ink border-b-slate bg-slate text-paper" : "border-rule border-b-ink bg-paper text-slate hover:bg-cell"}`}
               >
                 {t.label}
               </button>
             ))}
           </div>
-          {curTab?.head ? <p className="mt-3 mb-0 text-[15px] font-semibold text-unsure">{curTab.head}</p> : null}
+          {curTab?.head ? <p className="mt-3 mb-0 text-[16px] font-semibold text-ink">{curTab.head}</p> : null}
           {agencyReq ? <DocBlock key={curTab?.id} req={agencyReq} pre={findPre(agencyReq)} /> : null}
         </section>
       ) : null}
 
       {/* filtered examples */}
-      <section className="rounded-2xl border border-line bg-card p-4" data-filtered="1">
-        <h2 className="m-0 text-[20px] font-bold">{COPY.s4.filtered.title}</h2>
-        <ul className="m-0 mt-2 flex list-none flex-col gap-3 p-0">
+      <section className="min-w-0" data-filtered="1">
+        <div className="border-t-2 border-ink pt-3">
+          <h2 className={h2}>{COPY.s4.filtered.title}</h2>
+        </div>
+        <ul className="m-0 mt-2 flex list-none flex-col p-0">
           {test ? (
-            <li className="rounded-xl border border-warn/50 bg-[#fdf3f0] p-3" data-test-sentence={test.pass ? "pass" : "blocked"}>
+            <li className="border-b border-rule py-3" data-test-sentence={test.pass ? "pass" : "blocked"}>
               <Badge tone="demo">{COPY.s4.filtered.testBadge}</Badge>
-              <p className={`mt-1.5 mb-0 text-[18px] ${test.pass ? "" : "text-warn line-through decoration-2"}`}>{COPY.s4.testSentence}</p>
+              <p className={`mt-1.5 mb-0 text-[19px] ${test.pass ? "" : "text-ink line-through decoration-ink decoration-2"}`}>{COPY.s4.testSentence}</p>
               {test.blocked.map((b, i) => (
-                <p key={i} className="mt-1 mb-0 text-[15px] font-semibold text-warn">
+                <p key={i} className="mt-1 mb-0 text-[16px] font-semibold text-ink">
                   {b.reason}
                 </p>
               ))}
             </li>
           ) : null}
-          {examples.length ? <li className="text-[14px] text-muted">{COPY.s4.e4Examples}</li> : null}
+          {examples.length ? <li className="pt-3 text-[15px] font-semibold text-pencil-ink">{COPY.s4.e4Examples}</li> : null}
           {examples.map((e, i) => (
-            <li key={i} className="rounded-xl border border-line p-3">
-              <p className="m-0 text-[17px] text-warn line-through decoration-2">{e.sentence}</p>
-              <p className="mt-1 mb-0 text-[15px] font-semibold text-warn">{e.reason}</p>
+            <li key={i} className="border-b border-rule py-3">
+              <p className="m-0 text-[17px] text-ink line-through decoration-ink decoration-2">{e.sentence}</p>
+              <p className="mt-1 mb-0 text-[15px] font-semibold text-ink">{e.reason}</p>
             </li>
           ))}
         </ul>
       </section>
 
-      <div className="flex flex-col gap-2 rounded-2xl border border-line bg-card p-4">
+      <section className="border-t-2 border-ink pt-3">
         <GateButton sid={sid} step="g3" note={COPY.s4.approveNote} />
-      </div>
+      </section>
 
       {toast ? (
-        <div role="status" className="fixed inset-x-4 bottom-4 z-50 mx-auto max-w-md rounded-xl bg-ink px-4 py-3 text-center text-[16px] font-semibold text-white shadow-lg" data-toast="1">
+        <div role="status" className="fixed inset-x-4 bottom-4 z-50 mx-auto max-w-md rounded-[3px] border-2 border-paper bg-ink px-4 py-3 text-center text-[16px] font-semibold text-paper outline outline-2 outline-ink" data-toast="1">
           {toast}
         </div>
       ) : null}
@@ -409,14 +463,14 @@ function DocBlock({ req, pre, big = false }: { req: ComposeRequest; pre: Compose
       alive = false;
     };
   }, [key, need]);
-  if (!res) return <p className="mt-3 mb-0 text-[16px] text-muted">{COPY.s4.noDoc}</p>;
+  if (!res) return <p className="mt-3 mb-0 text-[16px] text-pencil-ink">{COPY.s4.noDoc}</p>;
   return (
     <div className="mt-3 flex flex-col gap-2" data-doc={req.docType} data-doc-mode={res.mode}>
       <div className="flex flex-wrap items-center gap-2">
         <ModeBadge mode={res.template ? "template" : res.mode} model={res.model} at={res.generatedAt} />
       </div>
       <GroundingPanel grounding={res.grounding} template={res.template} fallbackReason={res.fallbackReason} />
-      <div className={`whitespace-pre-line rounded-xl bg-white p-4 leading-relaxed ${big ? "text-[22px] font-medium" : "text-[17px]"}`}>{res.text}</div>
+      <div className={`whitespace-pre-line ${big ? "note-paper measure pt-[0.35em] text-[22px] font-medium" : "border border-rule bg-paper p-4 text-[17px] leading-relaxed"}`}>{res.text}</div>
     </div>
   );
 }

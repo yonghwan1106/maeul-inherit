@@ -43,12 +43,12 @@ function assumedRows(myeonPop: number | null): [string, string, string, string][
 }
 
 function H2({ children }: { children: React.ReactNode }) {
-  return <h2 className="m-0 mb-3 text-[19px] font-bold leading-snug">{children}</h2>;
+  return <h2 className="m-0 mb-3 flex flex-wrap items-center gap-2 text-[22px] font-semibold leading-snug">{children}</h2>;
 }
 
 function Card({ children, testId }: { children: React.ReactNode; testId: string }) {
   return (
-    <section data-testid={testId} className="min-w-0 rounded-2xl border border-line bg-card p-4 sm:p-6">
+    <section data-testid={testId} className="min-w-0 border-t-2 border-ink pt-3">
       {children}
     </section>
   );
@@ -66,30 +66,34 @@ export default function AboutPage() {
   return (
     <>
       <SiteHeader />
-      <main className="mx-auto w-full max-w-6xl flex-1 px-4 py-6 sm:py-10">
-        <h1 className="m-0 text-[24px] font-bold leading-snug sm:text-[28px]">{COPY.nav.s6}</h1>
-        <p className="mt-2 text-[15px] text-muted">어떤 자료를 어떻게 썼는지, 무엇이 가정인지, 무엇을 쓰지 않았는지 적어 둡니다.</p>
+      <main className="mx-auto w-full max-w-6xl flex-1 px-4 pt-8 pb-14 sm:pt-10">
+        <h1 className="m-0 border-b-2 border-ink pb-2 font-normal">
+          <span className="sign block text-[34px] leading-tight sm:text-[38px]">{COPY.nav.s6}</span>
+          <span className="mt-1 block text-[17px] font-medium text-pencil-ink">어떤 자료를 어떻게 썼는지, 무엇이 가정인지, 무엇을 쓰지 않았는지 적어 둡니다.</span>
+        </h1>
 
-        <div className="mt-6 grid min-w-0 grid-cols-1 gap-6">
+        <div className="mt-8 grid min-w-0 grid-cols-1 gap-10">
           <Card testId="s6-sources">
             <H2>데이터 출처</H2>
-            <ul className="m-0 grid list-none gap-3 p-0 text-[16px]">
+            <ul className="m-0 list-none border-t border-rule p-0 text-[16px]">
               {sources.map((s) => (
-                <li key={s.id} className="min-w-0 border-b border-line/70 pb-3 last:border-0 last:pb-0">
-                  <div className="flex flex-wrap items-baseline gap-x-2 gap-y-1">
-                    <span className="font-semibold">{s.id}</span>
-                    <span className="min-w-0 break-words">{s.name}</span>
-                    {s.status ? <Badge tone="warn">{s.status}</Badge> : null}
+                <li key={s.id} className="grid min-w-0 grid-cols-[3em_minmax(0,1fr)] border-b border-rule py-2.5">
+                  <span className="num font-semibold">{s.id}</span>
+                  <div className="min-w-0 border-l border-rule pl-3">
+                    <div className="flex flex-wrap items-baseline gap-x-2 gap-y-1">
+                      <span className="min-w-0 break-words font-medium">{s.name}</span>
+                      {s.status ? <Badge tone="warn">{s.status}</Badge> : null}
+                    </div>
+                    <div className="mt-1 flex flex-wrap gap-x-4 text-[15px] text-pencil-ink">
+                      {s.asOf ? <span className="num">기준 {s.asOf}</span> : null}
+                      <span>{s.use}</span>
+                    </div>
+                    {s.url ? (
+                      <a href={s.url} className="inline-flex min-h-11 items-center break-all text-[14px] text-slate underline underline-offset-2" rel="noreferrer" target="_blank">
+                        {s.url}
+                      </a>
+                    ) : null}
                   </div>
-                  <div className="mt-1 text-[14px] text-muted">
-                    {s.asOf ? <span>기준 {s.asOf} · </span> : null}
-                    {s.use}
-                  </div>
-                  {s.url ? (
-                    <a href={s.url} className="mt-1 block break-all text-[13px] text-brand" rel="noreferrer" target="_blank">
-                      {s.url}
-                    </a>
-                  ) : null}
                 </li>
               ))}
             </ul>
@@ -99,34 +103,39 @@ export default function AboutPage() {
             <H2>
               기준값(가정) <Badge tone="assumed">{COPY.badge.assumed}</Badge>
             </H2>
-            <p className="mt-0 mb-3 text-[15px] text-muted">지역 사정에 맞게 담당자가 조정하는 값입니다. 계산은 모두 이 값으로 합니다.</p>
-            <dl className="m-0 grid gap-x-4 gap-y-1.5 text-[15px] sm:grid-cols-[minmax(0,1fr)_auto]">
-              {params.map(([k, v]) => (
-                <div key={k} className="contents">
-                  <dt className="text-muted">{PARAM_LABELS[k] ?? k}</dt>
-                  <dd className="m-0 font-semibold break-words sm:text-right">{String(v)}</dd>
-                </div>
-              ))}
-            </dl>
+            <p className="mt-0 mb-3 text-[16px] text-pencil-ink">지역 사정에 맞게 담당자가 조정하는 값입니다. 계산은 모두 이 값으로 합니다.</p>
+            <table className="ledger max-w-3xl text-[15px]">
+              <tbody>
+                {params.map(([k, v]) => (
+                  <tr key={k}>
+                    <th scope="row" className="py-1.5 pr-2 text-left font-medium text-pencil-ink">{PARAM_LABELS[k] ?? k}</th>
+                    <td className="vr num py-1.5 pl-3 text-right font-semibold break-words">{String(v)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </Card>
 
           <Card testId="s6-assumed">
             <H2>
               합성·가정 목록 <Badge tone="assumed">{COPY.badge.assumed}</Badge> <Badge>{COPY.badge.synth}</Badge>
             </H2>
-            <ul className="m-0 grid list-none gap-3 p-0 text-[15px]">
+            <ul className="m-0 list-none border-t border-rule p-0 text-[16px]">
               {assumedRows(myeonPop).map(([item, rule, basis, label]) => (
-                <li key={item} className="min-w-0 border-b border-line/70 pb-3 last:border-0 last:pb-0">
+                <li key={item} className="min-w-0 border-b border-rule py-2.5">
                   <div className="font-semibold">{item}</div>
                   <div className="mt-0.5">{rule}</div>
-                  <div className="mt-0.5 text-[14px] text-muted">근거: {basis} · 화면 표기: {label}</div>
+                  <dl className="m-0 mt-1 flex flex-wrap gap-x-5 text-[15px] text-pencil-ink">
+                    <div className="flex gap-1.5"><dt>근거</dt><dd className="m-0 text-ink">{basis}</dd></div>
+                    <div className="flex gap-1.5"><dt>화면 표기</dt><dd className="m-0 text-ink">{label}</dd></div>
+                  </dl>
                 </li>
               ))}
             </ul>
             {assumptions.length ? (
               <>
-                <h3 className="mt-5 mb-2 text-[16px] font-bold">데이터를 만들 때 둔 가정</h3>
-                <ul className="m-0 list-disc pl-5 text-[15px] leading-relaxed">
+                <h3 className="mt-5 mb-2 text-[18px] font-semibold">데이터를 만들 때 둔 가정</h3>
+                <ul className="measure m-0 list-disc pl-5 text-[16px] leading-relaxed">
                   {assumptions.map((a) => (
                     <li key={a}>{a}</li>
                   ))}
@@ -137,28 +146,37 @@ export default function AboutPage() {
 
           <Card testId="s6-ai">
             <H2>AI 사용 고지</H2>
-            <p className="m-0 text-[16px] leading-relaxed">{COPY.s6.aiNotice}</p>
+            <p className="measure m-0 text-[17px] leading-relaxed">{COPY.s6.aiNotice}</p>
           </Card>
 
           <Card testId="s6-privacy">
             <H2>개인정보</H2>
-            <p className="mt-0 mb-4 text-[16px] leading-relaxed">{COPY.s6.privacy}</p>
+            <p className="measure mt-0 mb-4 text-[17px] leading-relaxed">{COPY.s6.privacy}</p>
             <ClearButton />
           </Card>
 
           <Card testId="s6-checked">
             <H2>확인한 기관</H2>
-            <p className="m-0 text-[16px] leading-relaxed">{COPY.s6.notChecked}</p>
+            <p className="measure m-0 text-[17px] leading-relaxed">{COPY.s6.notChecked}</p>
           </Card>
 
           <Card testId="s6-refresh">
             <H2>갱신 주기</H2>
-            <p className="m-0 text-[16px] leading-relaxed">{COPY.s6.refresh}</p>
+            <table className="ledger max-w-xl text-[16px]">
+              <tbody>
+                {COPY.s6.refresh.map(([k, v]) => (
+                  <tr key={k}>
+                    <th scope="row" className="py-1.5 pr-3 text-left font-medium text-pencil-ink">{k}</th>
+                    <td className="vr py-1.5 pl-3">{v}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </Card>
 
           <Card testId="s6-notused">
             <H2>쓰지 않은 것</H2>
-            <ol className="m-0 grid gap-2 pl-5 text-[16px] leading-relaxed">
+            <ol className="measure m-0 grid gap-2 pl-5 text-[17px] leading-relaxed">
               {COPY.notUsed.map((l) => (
                 <li key={l}>{l}</li>
               ))}
@@ -167,7 +185,7 @@ export default function AboutPage() {
 
           <Card testId="s6-map">
             <H2>지도·데이터 고지</H2>
-            <ul className="m-0 grid list-none gap-2 p-0 text-[16px] leading-relaxed">
+            <ul className="measure m-0 grid list-none gap-0 border-t border-rule p-0 text-[17px] leading-relaxed [&>li]:border-b [&>li]:border-rule [&>li]:py-1.5">
               <li>{COPY.s6.odbl}</li>
               <li>{COPY.s6.riList(codeVerified)}</li>
               <li>{COPY.s6.judge(null)}</li>
@@ -175,12 +193,13 @@ export default function AboutPage() {
           </Card>
 
           <Card testId="s6-repo">
-            <p className="m-0 text-[16px] leading-relaxed">
-              <a href="https://github.com/yonghwan1106/maeul-inherit" className="font-semibold text-brand" rel="noreferrer" target="_blank">
-                GitHub — yonghwan1106/maeul-inherit
+            <p className="m-0 flex flex-wrap items-baseline gap-x-2 text-[17px] leading-relaxed">
+              <span className="text-pencil-ink">GitHub</span>
+              <a href="https://github.com/yonghwan1106/maeul-inherit" className="inline-flex min-h-11 items-center font-semibold text-slate underline underline-offset-4" rel="noreferrer" target="_blank">
+                yonghwan1106/maeul-inherit
               </a>
             </p>
-            <p className="mt-2 mb-0 text-[15px] text-muted">{COPY.s6.proposer}</p>
+            <p className="mt-1 mb-0 text-[15px] text-pencil-ink">{COPY.s6.proposer}</p>
           </Card>
         </div>
       </main>

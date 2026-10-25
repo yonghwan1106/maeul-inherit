@@ -1,4 +1,7 @@
 "use client";
+// S1 시설 중단 등록 as a 「시설 중단 신고서」: ruled form cells (item name left, input right), the map as a side
+// board. Pressing 「생활기능 나누기」 brings a shutter down over the form plate (a response to the press; skipped
+// with reduced motion). Logic (fill, redact, decompose API, custom record) unchanged.
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import type { Region, Scenario } from "@/lib/types";
@@ -13,6 +16,15 @@ import { Badge } from "@/components/Badge";
 const SUBS = ["슈퍼마켓", "편의점", "반찬/식료품 소매업", "채소/과일 소매업", "정육점", "수산물 소매업"];
 const MEMO_MAX = 600;
 const ITEMS_MAX = 20;
+const SHUTTER_MS = 480;
+
+const reducedMotion = () => {
+  try {
+    return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  } catch {
+    return true;
+  }
+};
 
 export function RegisterForm({ region, scenarios, mock }: { region: Region; scenarios: Scenario[]; mock: boolean }) {
   const router = useRouter();
@@ -25,6 +37,7 @@ export function RegisterForm({ region, scenarios, mock }: { region: Region; scen
   const [busy, setBusy] = useState(false);
   const [msg, setMsg] = useState<string | null>(null);
   const [fromScenario, setFromScenario] = useState<string | null>(null);
+  const [shutter, setShutter] = useState(false);
 
   const fill = (s: Scenario) => {
     setVillageId(s.store.villageId);
@@ -51,12 +64,22 @@ export function RegisterForm({ region, scenarios, mock }: { region: Region; scen
     s.store.memo === memo &&
     s.store.items.join("|") === items.join("|");
 
+  /** shutter comes down, then navigate (no wait with reduced motion) */
+  const go = (href: string) => {
+    if (reducedMotion()) {
+      router.push(href);
+      return;
+    }
+    setShutter(true);
+    window.setTimeout(() => router.push(href), SHUTTER_MS);
+  };
+
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
     const allItems = itemDraft.trim() ? Array.from(new Set([...items, ...itemDraft.split(/[,，、]/).map((x) => x.trim()).filter(Boolean)])).slice(0, ITEMS_MAX) : items;
     const sc = scenarios.find((s) => s.id === fromScenario);
     if (sc && sameAs(sc) && !itemDraft.trim()) {
-      router.push(`/s/${sc.id}/functions`);
+      go(`/s/${sc.id}/functions`);
       return;
     }
     setBusy(true);
@@ -95,136 +118,175 @@ export function RegisterForm({ region, scenarios, mock }: { region: Region; scen
     writeJson(keys.conf("custom"), null);
     writeJson(keys.fb("custom"), null);
     writeJson(keys.gate("custom"), null);
-    router.push("/s/custom/functions");
+    go("/s/custom/functions");
   };
 
-  const input = "w-full rounded-xl border-2 border-line bg-white px-3 py-2.5 text-[16px] focus:border-brand";
+  const input = "min-h-11 w-full rounded-[3px] border-2 border-pencil bg-paper px-3 py-2 text-[17px] text-ink placeholder:text-pencil-ink focus:border-slate";
+  const rowCls = "grid grid-cols-1 border-b border-rule sm:grid-cols-[9.5em_minmax(0,1fr)]";
+  const labCls = "px-3 pt-3 pb-1 text-[16px] font-semibold text-ink sm:border-r sm:border-rule sm:py-3";
+  const fieldCls = "min-w-0 px-3 pb-3 sm:py-2.5";
 
   return (
-    <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
-      <section aria-label="화산면 지도">
-        <h1 className="m-0 text-[26px] font-extrabold">{COPY.s1.title}</h1>
+    <div className="grid gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
+      <section aria-label="화산면 지도" className="min-w-0">
+        <h1 className="sign m-0 border-b-2 border-ink pb-2 text-[32px] leading-tight font-normal sm:text-[38px]">{COPY.s1.title}</h1>
         {mock ? <div className="mt-2"><Badge tone="warn">{COPY.badge.mock}</Badge></div> : null}
-        <div className="mt-3">
+        <div className="mt-4">
           <VillageMap region={region} focusVillageId={villageId} onVillageClick={setVillageId} ariaLabel="화산면 리 대표점·마을회관·시설 지도" />
         </div>
-        <p className="mt-2 mb-0 text-[14px] leading-relaxed text-muted">{COPY.s1.legend}</p>
-        <div className="mt-2 flex flex-wrap gap-2">
+        <ul className="m-0 mt-2 flex list-none flex-wrap gap-x-4 gap-y-1 p-0 text-[14px] text-ink">
+          {COPY.s1.legend.map(([sym, label]) => (
+            <li key={label} className="flex items-center gap-1.5">
+              <span aria-hidden="true" className={sym === "회색" ? "inline-block h-3 w-3 rounded-full bg-shutter" : "text-[15px] leading-none"}>
+                {sym === "회색" ? "" : sym}
+              </span>
+              {sym === "회색" ? <span className="text-pencil-ink">{sym}</span> : null}
+              <span>{label}</span>
+            </li>
+          ))}
+        </ul>
+        <div className="mt-3 flex flex-wrap gap-2">
           <Badge tone="assumed">{COPY.badge.hubAssumed}</Badge>
           <Badge tone="neutral">{COPY.badge.sbizUnverified}</Badge>
         </div>
       </section>
 
-      <section>
-        <div className="mb-4 flex flex-wrap items-center gap-2">
-          <span className="text-[15px] font-semibold text-muted">{COPY.s1.fillFrom}</span>
-          {scenarios.map((s) => (
-            <button
-              key={s.id}
-              type="button"
-              onClick={() => fill(s)}
-              className={`min-h-11 rounded-xl border-2 px-3 py-1.5 text-left text-[15px] font-semibold ${fromScenario === s.id ? "border-brand bg-brand-soft text-brand" : "border-line bg-card"}`}
-              data-fill={s.id}
-            >
-              {COPY.s0.scenarioTitles[s.id] ?? s.title}
-            </button>
-          ))}
+      <section className="min-w-0">
+        <div className="mb-4 flex flex-col gap-2">
+          <span className="text-[15px] font-semibold text-pencil-ink">{COPY.s1.fillFrom}</span>
+          <div className="flex flex-wrap gap-2">
+            {scenarios.map((s) => {
+              const t = COPY.s0.scenarioTitles[s.id];
+              return (
+                <button
+                  key={s.id}
+                  type="button"
+                  onClick={() => fill(s)}
+                  aria-pressed={fromScenario === s.id}
+                  className={`min-h-11 rounded-[3px] border-2 px-3 py-1.5 text-left leading-tight ${fromScenario === s.id ? "border-slate-deep bg-slate text-paper" : "border-slate bg-paper text-slate hover:bg-cell"}`}
+                  data-fill={s.id}
+                >
+                  <span className="sign block text-[19px]">{t?.name ?? s.title}</span>
+                  {t ? <span className="block text-[14px] font-medium">{t.desc}</span> : null}
+                </button>
+              );
+            })}
+          </div>
         </div>
 
-        <form onSubmit={submit} className="flex flex-col gap-4 rounded-2xl border border-line bg-card p-4">
-          <label className="flex flex-col gap-1.5">
-            <span className="text-[16px] font-bold">{COPY.s1.village}</span>
-            <select value={villageId} onChange={(e) => setVillageId(e.target.value)} className={input} name="villageId">
-              {region.villages.map((v) => (
-                <option key={v.id} value={v.id}>
-                  {v.name}
-                  {v.foodStores === 0 ? " (식료품 업소 0곳)" : ""}
-                </option>
-              ))}
-            </select>
-          </label>
-
-          <label className="flex flex-col gap-1.5">
-            <span className="text-[16px] font-bold">{COPY.s1.sbizSub}</span>
-            <select value={sbizSub} onChange={(e) => setSub(e.target.value)} className={input} name="sbizSub">
-              {SUBS.map((s) => (
-                <option key={s} value={s}>{s}</option>
-              ))}
-            </select>
-          </label>
-
-          <div className="flex flex-col gap-1.5">
-            <label htmlFor="items" className="text-[16px] font-bold">
-              {COPY.s1.items} <span className="text-[14px] font-normal text-muted">({COPY.s1.itemsHint})</span>
-            </label>
-            {items.length ? (
-              <ul className="m-0 flex list-none flex-wrap gap-1.5 p-0">
-                {items.map((it) => (
-                  <li key={it}>
-                    <button
-                      type="button"
-                      onClick={() => setItems((p) => p.filter((x) => x !== it))}
-                      className="rounded-full border border-line bg-paper px-3 py-1 text-[15px]"
-                      aria-label={`${it} 빼기`}
-                    >
-                      {it} ×
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            ) : null}
-            <input
-              id="items"
-              value={itemDraft}
-              onChange={(e) => {
-                const v = e.target.value;
-                if (/[,，、]/.test(v)) addItems(v);
-                else setItemDraft(v);
-              }}
-              onKeyDown={(e) => {
-                if (e.key === "Enter") {
-                  e.preventDefault();
-                  addItems(itemDraft);
-                }
-              }}
-              onBlur={() => addItems(itemDraft)}
-              className={input}
-              placeholder="라면, 쌀, 두부"
-            />
+        <form onSubmit={submit} className="relative border-2 border-ink bg-paper" aria-labelledby="form-title">
+          <div className="relative overflow-hidden border-b-2 border-ink bg-cell px-3 py-2.5">
+            <h2 id="form-title" className="sign m-0 text-[26px] font-normal">{COPY.s1.formTitle}</h2>
+            {shutter ? <span aria-hidden="true" className="shutter-drop shutter absolute inset-0" /> : null}
           </div>
 
-          <label className="flex flex-col gap-1.5">
-            <span className="text-[16px] font-bold">{COPY.s1.hours}</span>
-            <input value={hours} onChange={(e) => setHours(e.target.value)} className={input} placeholder="06:30-20:00" name="hours" />
-          </label>
+          <div className={rowCls}>
+            <label htmlFor="f-village" className={labCls}>{COPY.s1.village}</label>
+            <div className={fieldCls}>
+              <select id="f-village" value={villageId} onChange={(e) => setVillageId(e.target.value)} className={input} name="villageId">
+                {region.villages.map((v) => (
+                  <option key={v.id} value={v.id}>
+                    {v.name}
+                    {v.foodStores === 0 ? " (식료품 업소 0곳)" : ""}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
 
-          <label className="flex flex-col gap-1.5">
-            <span className="text-[16px] font-bold">{COPY.s1.memo}</span>
-            <textarea
-              value={memo}
-              onChange={(e) => setMemo(e.target.value.slice(0, MEMO_MAX))}
-              onBlur={() => setMemo((m) => redactPhones(m))}
-              rows={5}
-              maxLength={MEMO_MAX}
-              placeholder={COPY.s1.memoPlaceholder}
-              className={`${input} leading-relaxed`}
-              name="memo"
-            />
-            <span className="flex flex-wrap justify-between gap-2 text-[14px] text-muted">
-              <span>{COPY.s1.privacy}</span>
-              <span className="num">{COPY.s1.count(memo.length)}</span>
-            </span>
-          </label>
+          <div className={rowCls}>
+            <label htmlFor="f-sub" className={labCls}>{COPY.s1.sbizSub}</label>
+            <div className={fieldCls}>
+              <select id="f-sub" value={sbizSub} onChange={(e) => setSub(e.target.value)} className={input} name="sbizSub">
+                {SUBS.map((s) => (
+                  <option key={s} value={s}>{s}</option>
+                ))}
+              </select>
+            </div>
+          </div>
 
-          <button
-            type="submit"
-            disabled={busy}
-            className="min-h-12 rounded-xl bg-brand px-5 text-[18px] font-bold text-white disabled:opacity-60"
-            data-submit="decompose"
-          >
-            {busy ? COPY.s1.working : COPY.s1.submit}
-          </button>
-          {msg ? <p className="m-0 text-[15px] text-warn" role="status">{msg}</p> : null}
+          <div className={rowCls}>
+            <label htmlFor="items" className={labCls}>
+              {COPY.s1.items}
+              <span className="block text-[14px] font-normal text-pencil-ink">{COPY.s1.itemsHint}</span>
+            </label>
+            <div className={`${fieldCls} flex flex-col gap-2`}>
+              {items.length ? (
+                <ul className="m-0 flex list-none flex-wrap gap-1.5 p-0">
+                  {items.map((it) => (
+                    <li key={it}>
+                      <button
+                        type="button"
+                        onClick={() => setItems((p) => p.filter((x) => x !== it))}
+                        className="min-h-11 rounded-[3px] border border-pencil bg-paper px-3 text-[16px] hover:bg-cell"
+                        aria-label={`${it} 빼기`}
+                      >
+                        {it} <span aria-hidden="true" className="text-pencil-ink">×</span>
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              ) : null}
+              <input
+                id="items"
+                value={itemDraft}
+                onChange={(e) => {
+                  const v = e.target.value;
+                  if (/[,，、]/.test(v)) addItems(v);
+                  else setItemDraft(v);
+                }}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    e.preventDefault();
+                    addItems(itemDraft);
+                  }
+                }}
+                onBlur={() => addItems(itemDraft)}
+                className={input}
+                placeholder="라면, 쌀, 두부"
+              />
+            </div>
+          </div>
+
+          <div className={rowCls}>
+            <label htmlFor="f-hours" className={labCls}>{COPY.s1.hours}</label>
+            <div className={fieldCls}>
+              <input id="f-hours" value={hours} onChange={(e) => setHours(e.target.value)} className={`${input} num`} placeholder="06:30-20:00" name="hours" />
+            </div>
+          </div>
+
+          <div className={rowCls}>
+            <label htmlFor="f-memo" className={labCls}>{COPY.s1.memo}</label>
+            <div className={`${fieldCls} flex flex-col gap-1.5`}>
+              <textarea
+                id="f-memo"
+                value={memo}
+                onChange={(e) => setMemo(e.target.value.slice(0, MEMO_MAX))}
+                onBlur={() => setMemo((m) => redactPhones(m))}
+                rows={6}
+                maxLength={MEMO_MAX}
+                placeholder={COPY.s1.memoPlaceholder}
+                className={`${input} note-paper`}
+                name="memo"
+              />
+              <span className="flex flex-wrap justify-between gap-2 text-[14px] text-pencil-ink">
+                <span>{COPY.s1.privacy}</span>
+                <span className="num">{COPY.s1.count(memo.length)}</span>
+              </span>
+            </div>
+          </div>
+
+          <div className="flex flex-wrap items-center gap-3 px-3 py-3">
+            <button
+              type="submit"
+              disabled={busy || shutter}
+              className="min-h-12 rounded-[3px] border-2 border-slate-deep bg-slate px-6 text-[18px] font-semibold text-paper hover:bg-slate-deep disabled:opacity-70"
+              data-submit="decompose"
+            >
+              {busy ? COPY.s1.working : COPY.s1.submit}
+            </button>
+            {msg ? <p className="m-0 text-[16px] font-semibold text-ink" role="status">{msg}</p> : null}
+          </div>
         </form>
       </section>
     </div>

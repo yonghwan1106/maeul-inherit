@@ -16,7 +16,7 @@ const MODES: Mode[] = ["car", "walk", "homebound"];
 // Local labels not in COPY (structure only, no numbers).
 const L = {
   pending: "아직 실행 전",
-  pair: "합성 · 실문장",
+  pair: "합성 / 실문장",
   lUnit: "L 상승 기대값(%p, 이용권 리 평균) — 3번 확인 뒤",
   sum: "세 유형 합",
   pCol: "확인될 확률 p(가정)",
@@ -48,16 +48,16 @@ const kst = (iso: unknown) => {
 function Table({ head, rows, testId }: { head: React.ReactNode[]; rows: React.ReactNode[][]; testId: string }) {
   return (
     <div className="min-w-0">
-    {/^s5-t[12]/.test(testId) ? <p className="m-0 mb-1 text-[13px] font-semibold text-muted sm:hidden" data-scroll-hint={testId}>{COPY.s5.t1.scrollHint}</p> : null}
-    <div className="-mx-1 max-w-full overflow-x-auto px-1">
-      <table data-testid={testId} className="w-full min-w-[520px] border-collapse text-[14px] sm:min-w-[560px] sm:text-[15px]">
+    {/^s5-t[12]/.test(testId) ? <p className="m-0 mb-1 text-[14px] font-semibold text-pencil-ink sm:hidden" data-scroll-hint={testId}>{COPY.s5.t1.scrollHint}</p> : null}
+    <div className="max-w-full overflow-x-auto">
+      <table data-testid={testId} className="ledger min-w-[520px] text-[15px] sm:min-w-[560px]">
         <thead>
-          <tr>{head.map((h, i) => <th key={i} className={`border-b-2 border-line px-2 py-2 text-left align-bottom font-semibold ${i ? "text-right" : ""}`}>{h}</th>)}</tr>
+          <tr>{head.map((h, i) => <th key={i} className={`px-2 py-2 align-bottom text-[14px] leading-snug ${i ? "vr text-right" : "sticky left-0 z-10 bg-paper"}`}>{h}</th>)}</tr>
         </thead>
         <tbody>
           {rows.map((r, i) => (
-            <tr key={i} className="border-b border-line/70">
-              {r.map((c, j) => <td key={j} className={`px-2 py-1.5 align-top ${j ? "text-right tabular-nums" : "sticky left-0 z-10 bg-card text-ink"}`}>{c}</td>)}
+            <tr key={i}>
+              {r.map((c, j) => <td key={j} className={`px-2 py-1.5 align-top ${j ? "vr num text-right" : "sticky left-0 z-10 bg-paper font-medium text-ink"}`}>{c}</td>)}
             </tr>
           ))}
         </tbody>
@@ -67,11 +67,12 @@ function Table({ head, rows, testId }: { head: React.ReactNode[]; rows: React.Re
   );
 }
 
-function Section({ title, children, pending, testId }: { title: string; children: React.ReactNode; pending?: boolean; testId: string }) {
+function Section({ title, desc, children, pending, testId }: { title: string; desc?: string; children: React.ReactNode; pending?: boolean; testId: string }) {
   return (
-    <section data-testid={testId} className="min-w-0 rounded-2xl border border-line bg-card p-4 sm:p-6">
-      <div className="mb-3 flex flex-wrap items-center gap-2">
-        <h2 className="m-0 text-[19px] font-bold leading-snug">{title}</h2>
+    <section data-testid={testId} className="min-w-0 border-t-2 border-ink pt-3">
+      <div className="mb-3 flex flex-wrap items-baseline gap-x-3 gap-y-1">
+        <h2 className="m-0 text-[22px] font-semibold leading-snug">{title}</h2>
+        {desc ? <span className="text-[15px] text-pencil-ink">{desc}</span> : null}
         {pending ? <Badge tone="warn">{L.pending}</Badge> : null}
       </div>
       {children}
@@ -89,13 +90,13 @@ export default function EvalPage() {
   const e1 = get(R, "e1") as J | undefined;
   const e1Pending = !e1 || e1.pending === true;
   const e1Sys = ["b0_type", "b0", "b0plus", "haiku55"];
-  const pair = (s: string, ...p: string[]) => `${fx(get(e1, "systems", s, "synth", ...p))} · ${fx(get(e1, "systems", s, "real", ...p))}`;
-  const pairInt = (s: string, ...p: string[]) => `${fx(get(e1, "systems", s, "synth", ...p), 0)} · ${fx(get(e1, "systems", s, "real", ...p), 0)}`;
+  const pair = (s: string, ...p: string[]) => `${fx(get(e1, "systems", s, "synth", ...p))} / ${fx(get(e1, "systems", s, "real", ...p))}`;
+  const pairInt = (s: string, ...p: string[]) => `${fx(get(e1, "systems", s, "synth", ...p), 0)} / ${fx(get(e1, "systems", s, "real", ...p), 0)}`;
   const e1Rows: React.ReactNode[][] = [
     [c.t1.rows[0], ...e1Sys.map((s) => fx(get(e1, "systems", s, "synth", "microF1")))],
     [c.t1.rows[1], ...e1Sys.map((s) => fx(get(e1, "systems", s, "real", "microF1")))],
-    ...(["F06", "F07", "F09", "F10"] as const).map((f, i) => [<span key={f}>{c.t1.rows[2 + i]} <small className="text-muted">({L.pair})</small></span>, ...e1Sys.map((s) => pair(s, "recall", f))]),
-    [<span key="trap">{c.t1.rows[6]} <small className="text-muted">({L.pair})</small></span>, ...e1Sys.map((s) => pairInt(s, "trapFP"))],
+    ...(["F06", "F07", "F09", "F10"] as const).map((f, i) => [<span key={f}>{c.t1.rows[2 + i]} <small className="text-[14px] text-pencil-ink">({L.pair})</small></span>, ...e1Sys.map((s) => pair(s, "recall", f))]),
+    [<span key="trap">{c.t1.rows[6]} <small className="text-[14px] text-pencil-ink">({L.pair})</small></span>, ...e1Sys.map((s) => pairInt(s, "trapFP"))],
   ];
   const humanChecked = num(get(e1, "sets", "real", "humanChecked")) ?? 0;
 
@@ -133,10 +134,12 @@ export default function EvalPage() {
     const sum = get(e3, "byP", p, s, "sum");
     if (num(sum) === null) return "—";
     return (
-      <span title={`${COPY.modeOfficer.car} ${fx(get(e3, "byP", p, s, "car"))} · ${COPY.modeOfficer.walk} ${fx(get(e3, "byP", p, s, "walk"))} · ${COPY.modeOfficer.homebound} ${fx(get(e3, "byP", p, s, "homebound"))}`}>
+      <span title={`${COPY.modeOfficer.car} ${fx(get(e3, "byP", p, s, "car"))}, ${COPY.modeOfficer.walk} ${fx(get(e3, "byP", p, s, "walk"))}, ${COPY.modeOfficer.homebound} ${fx(get(e3, "byP", p, s, "homebound"))}`}>
         {fx(sum)}%p
-        <small className="block text-[12px] text-muted">
-          {COPY.modeOfficer.car} {fx(get(e3, "byP", p, s, "car"), 1)} · {COPY.modeOfficer.walk} {fx(get(e3, "byP", p, s, "walk"), 1)} · {COPY.modeOfficer.homebound} {fx(get(e3, "byP", p, s, "homebound"), 1)}
+        <small className="block text-[14px] leading-snug text-pencil-ink">
+          <span className="block">{COPY.modeOfficer.car} {fx(get(e3, "byP", p, s, "car"), 1)}</span>
+          <span className="block">{COPY.modeOfficer.walk} {fx(get(e3, "byP", p, s, "walk"), 1)}</span>
+          <span className="block">{COPY.modeOfficer.homebound} {fx(get(e3, "byP", p, s, "homebound"), 1)}</span>
         </small>
       </span>
     );
@@ -168,54 +171,69 @@ export default function EvalPage() {
   return (
     <>
       <SiteHeader />
-      <main className="mx-auto w-full max-w-6xl flex-1 px-4 py-6 sm:py-10">
-        <h1 className="m-0 text-[24px] font-bold leading-snug sm:text-[28px]">{c.title}</h1>
+      <main className="mx-auto w-full max-w-6xl flex-1 px-4 pt-8 pb-14 sm:pt-10">
+        <h1 className="m-0 border-b-2 border-ink pb-2 font-normal">
+          <span className="sign block text-[34px] leading-tight sm:text-[38px]">{c.title}</span>
+          <span className="mt-1 block text-[17px] font-medium text-pencil-ink">{c.titleDesc}</span>
+        </h1>
         {R ? (
-          <p data-testid="s5-meta" className="mt-2 text-[14px] text-muted">{c.meta(kst(meta.runAt), models, String(meta.commit ?? "—"))}</p>
+          <dl data-testid="s5-meta" className="m-0 mt-3 flex flex-wrap gap-x-6 gap-y-1 text-[15px]">
+            {([
+              [c.metaFields.runAt, kst(meta.runAt)],
+              [c.metaFields.models, models],
+              [c.metaFields.commit, String(meta.commit ?? "—")],
+              [c.metaFields.seed, c.seed],
+            ] as [string, string][]).map(([k, v]) => (
+              <div key={k} className="flex gap-1.5">
+                <dt className="text-pencil-ink">{k}</dt>
+                <dd className="num m-0 font-medium">{v}</dd>
+              </div>
+            ))}
+          </dl>
         ) : (
-          <p className="mt-2 text-[15px] text-warn">{L.noData}</p>
+          <p className="mt-2 text-[16px] font-semibold text-ink">{L.noData}</p>
         )}
 
-        <div className="mt-6 grid min-w-0 grid-cols-1 gap-6">
-          <Section testId="s5-t1" title={c.t1.title} pending={e1Pending}>
+        <div className="mt-8 grid min-w-0 grid-cols-1 gap-10">
+          <Section testId="s5-t1" title={c.t1.title} desc={c.t1.desc} pending={e1Pending}>
             <Table testId="s5-t1-table" head={["", ...c.t1.cols]} rows={e1Rows} />
-            <div className="mt-3 flex flex-wrap items-center gap-2 text-[14px] text-muted">
+            <div className="mt-3 flex flex-wrap items-center gap-2 text-[15px] text-pencil-ink">
               <Badge tone="assumed">{COPY.badge.synth}</Badge>
               <span>{c.t1.realNote(humanChecked)}</span>
             </div>
           </Section>
 
-          <Section testId="s5-t2" title={c.t2.title} pending={e2Pending}>
+          <Section testId="s5-t2" title={c.t2.title} desc={c.t2.desc} pending={e2Pending}>
             {e2Blocks.map((b) => (
               <div key={b.m} className="mb-4">
-                <h3 className="mb-1 mt-0 text-[16px] font-semibold">{COPY.modeOfficer[b.m]}</h3>
+                <h3 className="mb-1 mt-0 text-[17px] font-semibold">{COPY.modeOfficer[b.m]}</h3>
                 <Table testId={`s5-t2-${b.m}`} head={["", ...c.t2.cols]} rows={b.rows} />
               </div>
             ))}
             <Table testId="s5-t2-errors" head={["", ...c.t2.cols]} rows={errRows} />
-            <p className="mb-0 mt-3 text-[14px] leading-relaxed text-muted">{c.t2.note}</p>
+            <p className="measure mb-0 mt-3 text-[15px] leading-relaxed text-pencil-ink">{c.t2.note}</p>
           </Section>
 
-          <Section testId="s5-t3" title={c.t3.title} pending={e3Pending}>
-            <p className="mb-2 mt-0 text-[14px] text-muted">{L.lUnit}</p>
+          <Section testId="s5-t3" title={c.t3.title} desc={c.t3.desc} pending={e3Pending}>
+            <p className="mb-2 mt-0 text-[15px] text-pencil-ink">{L.lUnit}</p>
             <Table testId="s5-t3-table" head={[L.pCol, ...c.t3.cols, c.t3.ratio]} rows={e3Rows} />
-            <div className="mt-3 flex flex-wrap items-center gap-2 text-[14px] text-muted">
+            <div className="mt-3 flex flex-wrap items-center gap-2 text-[15px] text-pencil-ink">
               <Badge tone="assumed">{COPY.badge.assumed}</Badge>
               <span>{c.t3.note}</span>
             </div>
           </Section>
 
-          <Section testId="s5-t4" title={c.t4.title} pending={e4Pending}>
+          <Section testId="s5-t4" title={c.t4.title} desc={c.t4.desc} pending={e4Pending}>
             <Table testId="s5-t4-table" head={["", ...c.t4.cols]} rows={e4Rows} />
             <div className="mt-3 flex flex-wrap items-center gap-2"><Badge tone="assumed">{c.t4.unitBadge}</Badge></div>
             {examples.length ? (
               <div className="mt-4">
-                <h3 className="mb-2 mt-0 text-[16px] font-semibold">{L.examples}</h3>
-                <ul className="m-0 grid list-none gap-2 p-0">
+                <h3 className="mb-1 mt-0 text-[17px] font-semibold">{L.examples}</h3>
+                <ul className="m-0 grid list-none p-0">
                   {examples.slice(0, 3).map((x, i) => (
-                    <li key={i} className="rounded-lg border border-line bg-paper px-3 py-2 text-[15px]">
-                      <span className="text-warn line-through decoration-2">{x.sentence ?? ""}</span>
-                      <span className="block text-[13px] text-muted">{x.reason ?? ""}</span>
+                    <li key={i} className="border-b border-rule py-2 text-[16px]">
+                      <span className="text-ink line-through decoration-ink decoration-2">{x.sentence ?? ""}</span>
+                      <span className="block text-[15px] font-semibold text-ink">{x.reason ?? ""}</span>
                     </li>
                   ))}
                 </ul>
@@ -223,11 +241,20 @@ export default function EvalPage() {
             ) : null}
           </Section>
 
-          <p data-testid="s5-engine" className="m-0 rounded-xl border border-line bg-card px-4 py-3 text-[15px]">
-            {c.engine(bfN ?? 0, bfX === null ? "—" : bfX.toFixed(3), ms("planMs"), ms("voiMs"))}
-          </p>
+          <section className="min-w-0 border-t-2 border-ink pt-3">
+            <h2 className="m-0 mb-2 text-[22px] font-semibold">{c.engineTitle}</h2>
+            <dl data-testid="s5-engine" className="m-0 grid grid-cols-1 border-t border-rule text-[16px] sm:grid-cols-3">
+              {c.engine(bfN ?? 0, bfX === null ? "—" : bfX.toFixed(3), ms("planMs"), ms("voiMs")).map(([k, v]) => (
+                <div key={k} className="flex items-baseline justify-between gap-3 border-b border-rule px-1 py-2 sm:border-r sm:px-3 sm:last:border-r-0">
+                  <dt className="text-pencil-ink">{k}</dt>
+                  <dd className="num m-0 font-semibold">{v}</dd>
+                </div>
+              ))}
+            </dl>
+          </section>
 
-          <aside data-testid="s5-limits" className="rounded-2xl border-2 border-unsure/50 bg-unsure-soft p-4 text-[15px] leading-relaxed sm:p-5">
+          <aside data-testid="s5-limits" className="measure border-2 border-pencil p-4 text-[16px] leading-relaxed sm:p-5" style={{ boxShadow: "inset 0 0 0 2px var(--paper), inset 0 0 0 3px var(--pencil)" }}>
+            <h2 className="m-0 mb-1 text-[18px] font-semibold">{c.limitsTitle}</h2>
             {c.limits}
           </aside>
         </div>
