@@ -40,7 +40,13 @@ export function useScenarioState(sid: string, loaded: Scenario | null): Scenario
   const [edits, setEdits] = useLocal<FnEdit[]>(keys.fn(sid), EMPTY_FN);
   const [conf, setConf] = useLocal<Confirmation[]>(keys.conf(sid), EMPTY_CONF);
   const [fb, setFb] = useLocal<Feedback[]>(keys.fb(sid), EMPTY_FB);
-  const decompose = useMemo(() => (scenario ? parseDecompose(scenario.precomputed.decompose.response) : null), [scenario]);
+  // built-in scenarios carry the answer `npm run precompute` stored (generated live once) — the visitor makes no
+  // LLM call, so the badge must say 「사전계산」, not 「실시간 AI」. Custom records keep the mode of their real call.
+  const decompose = useMemo(() => {
+    if (!scenario) return null;
+    const d = parseDecompose(scenario.precomputed.decompose.response);
+    return sid !== "custom" && d.mode === "live" ? { ...d, mode: "precomputed" } : d;
+  }, [scenario, sid]);
   const fns = useMemo(() => (decompose ? applyFnEdits(decompose.functions, edits) : []), [decompose, edits]);
   return { sid, scenario, decompose, fns, edits, setEdits, conf, setConf, fb, setFb };
 }
