@@ -13,13 +13,13 @@ export function FeedbackButtons({
   sent?: "used" | "failed";
 }) {
   const [asking, setAsking] = useState(false);
-  const chip = "min-h-10 rounded-full border-2 px-3 text-[15px] font-semibold";
+  const chip = "min-h-11 rounded-[3px] border-2 px-3 text-[16px] font-semibold";
   return (
     <div className="mt-1.5 flex flex-wrap items-center gap-1.5" data-fb-buttons="1">
-      <button type="button" onClick={() => { setAsking(false); onSend("used"); }} className={`${chip} ${sent === "used" ? "border-brand bg-brand-soft text-brand" : "border-line bg-white"}`} data-fb="used">
+      <button type="button" onClick={() => { setAsking(false); onSend("used"); }} className={`${chip} ${sent === "used" ? "border-slate-deep bg-slate text-paper" : "border-slate bg-paper text-slate hover:bg-cell"}`} data-fb="used">
         {COPY.s4.fb.used}
       </button>
-      <button type="button" onClick={() => setAsking((v) => !v)} className={`${chip} ${sent === "failed" ? "border-warn bg-[#fbe9e4] text-warn" : "border-line bg-white"}`} data-fb="failed" aria-expanded={asking}>
+      <button type="button" onClick={() => setAsking((v) => !v)} className={`${chip} ${sent === "failed" ? "border-slate-deep bg-slate text-paper" : "border-slate bg-paper text-slate hover:bg-cell"}`} data-fb="failed" aria-expanded={asking}>
         {COPY.s4.fb.failed}
       </button>
       {asking
@@ -31,7 +31,7 @@ export function FeedbackButtons({
                 setAsking(false);
                 onSend("failed", r);
               }}
-              className={`${chip} border-dashed border-warn bg-white text-warn`}
+              className={`${chip} border-dashed border-ink bg-paper text-ink hover:bg-cell`}
               data-fb-reason={r}
             >
               {r}

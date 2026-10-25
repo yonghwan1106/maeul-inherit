@@ -9,17 +9,17 @@ export function GroundingPanel({ grounding, template, fallbackReason }: { ground
   if (!grounding) return null;
   if (template && (grounding.blocked.length > 0 || !fallbackReason)) {
     return (
-      <p className="m-0 rounded-xl border-2 border-dashed border-warn bg-[#fbe9e4] px-3 py-2 text-[15px] font-semibold text-warn" data-grounding="template">
+      <p className="m-0 border-2 border-dashed border-ink bg-paper px-3 py-2 text-[16px] font-semibold text-ink" data-grounding="template">
         {COPY.s4.grounding.blocked}
       </p>
     );
   }
   return (
-    <details className="rounded-xl border border-brand/40 bg-brand-soft px-3 py-2" data-grounding={grounding.pass ? "pass" : "blocked"}>
-      <summary className="cursor-pointer text-[15px] font-semibold text-brand">{COPY.s4.grounding.pass(grounding.checked.length)}</summary>
-      <ul className="mt-2 mb-0 flex list-none flex-wrap gap-1.5 p-0 text-[14px]">
+    <details className="border border-rule bg-paper px-3 py-1" data-grounding={grounding.pass ? "pass" : "blocked"}>
+      <summary className="flex min-h-11 cursor-pointer items-center text-[16px] font-semibold text-ink">{COPY.s4.grounding.pass(grounding.checked.length)}</summary>
+      <ul className="mt-1 mb-2 flex list-none flex-wrap gap-1.5 p-0 text-[14px]">
         {grounding.checked.map((c, i) => (
-          <li key={`${c.kind}-${c.value}-${i}`} className={`rounded-lg border px-2 py-0.5 ${c.ok ? "border-brand/40 bg-white" : "border-warn bg-[#fbe9e4] text-warn"}`}>
+          <li key={`${c.kind}-${c.value}-${i}`} className={`rounded-[2px] px-2 py-0.5 ${c.ok ? "border border-rule bg-paper" : "border-2 border-ink bg-paper font-semibold"}`}>
             {KIND[c.kind] ?? c.kind}: {c.value} {c.ok ? "✓" : "✕"}
           </li>
         ))}

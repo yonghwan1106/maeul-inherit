@@ -1,6 +1,5 @@
-// Function icons F01~F10 (inline SVG, no icon library) and the 3-value icon cell used on cards.
-import type { FnCode, Tri } from "@/lib/types";
-import { COPY } from "@/lib/copy";
+// Function icons F01~F10 (inline SVG, no icon library), drawn in ballpen line weight.
+import type { FnCode } from "@/lib/types";
 
 const P: Record<FnCode, React.ReactNode> = {
   // 장보기 — basket
@@ -93,40 +92,5 @@ export function FnIcon({ code, size = 24, className }: { code: FnCode; size?: nu
     >
       {P[code]}
     </svg>
-  );
-}
-
-const TRI_CLASS: Record<Tri, string> = { Y: "tri-y", U: "tri-u", N: "tri-n" };
-
-/**
- * One function cell in a 3-value row: icon + name + state word (never colour-only).
- * `sub` = who carries it (e.g. 「이동장터 A · 화요일 오전」).
- */
-export function FnTriCell({
-  code,
-  tri,
-  sub,
-  flash,
-  resident = true,
-}: {
-  code: FnCode;
-  tri: Tri;
-  sub?: string;
-  flash?: boolean;
-  resident?: boolean;
-}) {
-  const word = (resident ? COPY.triResident : COPY.tri)[tri];
-  return (
-    <div
-      className={`flash-host flex min-w-0 flex-col items-center gap-0.5 rounded-lg px-1 py-1.5 text-center ${TRI_CLASS[tri]}`}
-      data-flash={flash ? "1" : "0"}
-      data-fn={code}
-      data-tri={tri}
-    >
-      <FnIcon code={code} size={22} />
-      <span className="text-[13px] font-semibold leading-tight">{COPY.fnName[code]}</span>
-      <span className="text-[12px] leading-tight">{tri === "Y" ? "● " : tri === "U" ? "◐ " : "— "}{word}</span>
-      {sub ? <span className="line-clamp-3 text-[11px] leading-tight opacity-90">{sub}</span> : null}
-    </div>
   );
 }

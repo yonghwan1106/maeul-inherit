@@ -41,10 +41,10 @@ export function FeedbackQueue({
 }) {
   const [open, setOpen] = useState<string | null>(null);
   return (
-    <section className="rounded-2xl border border-line bg-card p-4" data-reports={fb.length}>
-      <h2 className="m-0 text-[18px] font-bold">{COPY.s3.reports.title(fb.length)}</h2>
-      {fb.length === 0 ? <p className="mt-2 mb-0 text-[16px] text-muted">{COPY.s3.reports.none}</p> : null}
-      <ul className="m-0 mt-2 flex list-none flex-col gap-3 p-0">
+    <section className="min-w-0 border-t-2 border-ink pt-3" data-reports={fb.length}>
+      <h2 className="m-0 text-[20px] font-semibold">{COPY.s3.reports.title(fb.length)}</h2>
+      {fb.length === 0 ? <p className="mt-2 mb-0 text-[16px] text-pencil-ink">{COPY.s3.reports.none}</p> : null}
+      <ul className="m-0 mt-1 flex list-none flex-col p-0">
         {fb.map((f) => {
           const fnText = f.fns.map((c) => COPY.fnName[c]).join("·");
           const line =
@@ -53,14 +53,14 @@ export function FeedbackQueue({
               : COPY.s3.reports.usedLine(f.residentName, resName(region, f.resId), fnText);
           const def = cellForFeedback(region, registry, f);
           return (
-            <li key={f.id} className="rounded-xl border border-line p-3" data-report={f.id}>
+            <li key={f.id} className="border-b border-rule py-2.5" data-report={f.id}>
               <div className="flex flex-wrap items-center gap-2">
                 <Badge tone="report">{COPY.badge.residentReport}</Badge>
                 <span className="text-[16px]">{line}</span>
               </div>
               {f.kind === "failed" && def ? (
                 open === f.id ? (
-                  <div className="mt-2 rounded-xl bg-paper p-3">
+                  <div className="mt-2 border border-rule bg-cell p-3">
                     <p className="m-0 text-[16px] font-semibold">{def.label}</p>
                     <ConfirmControls
                       cellKey={def.key}
@@ -76,7 +76,7 @@ export function FeedbackQueue({
                   <button
                     type="button"
                     onClick={() => setOpen(f.id)}
-                    className="mt-2 min-h-11 rounded-xl border-2 border-brand px-3 text-[15px] font-semibold text-brand"
+                    className="mt-2 min-h-11 rounded-[3px] border-2 border-slate px-3 text-[16px] font-semibold text-slate hover:bg-cell"
                     data-apply={f.id}
                   >
                     {COPY.s3.reports.apply}

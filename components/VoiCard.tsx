@@ -1,5 +1,6 @@
 "use client";
-// 「먼저 전화할 곳」 card + generic confirmation input (S3). 확실 / 아님 / 아직 모름 + 요일·시간 메모.
+// 「먼저 전화할 곳」 as a numbered phone memo (rank is a real order) + the generic confirmation input (S3):
+// what to ask (the cell), how many 생활 일 rise if it is confirmed, 확실 / 아님 / 아직 모름 + 요일·시간 메모.
 // 「시연 값 넣기」 only on realNamed=false cells that have a scenario demo value (spec 5.6, 8.5).
 import { useState } from "react";
 import type { Confirmation, Tri, VoiItem } from "@/lib/types";
@@ -17,28 +18,28 @@ export interface ConfirmControlsProps {
 export function ConfirmControls({ cellKey, realNamed, current, demo, onSet }: ConfirmControlsProps) {
   const [note, setNote] = useState(current?.note ?? "");
   const btn = (on: boolean) =>
-    `min-h-11 rounded-xl border-2 px-3 text-[16px] font-bold ${on ? "border-ink bg-ink text-white" : "border-line bg-white"}`;
+    `min-h-11 min-w-[5.5rem] rounded-[3px] border-2 px-3 text-[16px] font-semibold ${on ? "border-slate-deep bg-slate text-paper" : "border-slate bg-paper text-slate hover:bg-cell"}`;
   return (
     <div className="mt-3 flex flex-col gap-2" data-confirm={cellKey}>
       <div className="flex flex-wrap gap-2">
-        <button type="button" className={btn(current?.value === "Y")} onClick={() => onSet("Y", note, "이 브라우저")} data-set="Y">
-          ● {COPY.s3.voi.yes}
+        <button type="button" className={btn(current?.value === "Y")} aria-pressed={current?.value === "Y"} onClick={() => onSet("Y", note, "이 브라우저")} data-set="Y">
+          {COPY.s3.voi.yes}
         </button>
-        <button type="button" className={btn(current?.value === "N")} onClick={() => onSet("N", note, "이 브라우저")} data-set="N">
-          — {COPY.s3.voi.no}
+        <button type="button" className={btn(current?.value === "N")} aria-pressed={current?.value === "N"} onClick={() => onSet("N", note, "이 브라우저")} data-set="N">
+          {COPY.s3.voi.no}
         </button>
-        <button type="button" className={btn(!current)} onClick={() => onSet(null, "", "이 브라우저")} data-set="U">
-          ◐ {COPY.s3.voi.unknown}
+        <button type="button" className={btn(!current)} aria-pressed={!current} onClick={() => onSet(null, "", "이 브라우저")} data-set="U">
+          {COPY.s3.voi.unknown}
         </button>
       </div>
       <input
         value={note}
         onChange={(e) => setNote(e.target.value.slice(0, 60))}
         placeholder={COPY.s3.voi.memoPlaceholder}
-        className="w-full rounded-xl border-2 border-line bg-white px-3 py-2 text-[16px]"
+        className="min-h-11 w-full rounded-[3px] border-0 border-b-2 border-pencil bg-transparent px-1 py-2 text-[16px] placeholder:text-pencil-ink"
         aria-label={COPY.s3.voi.memoPlaceholder}
       />
-      {realNamed ? <p className="m-0 text-[14px] font-semibold text-warn">{COPY.s3.voi.realNamed}</p> : null}
+      {realNamed ? <p className="m-0 text-[15px] font-semibold text-ink">{COPY.s3.voi.realNamed}</p> : null}
       {!realNamed && demo ? (
         <button
           type="button"
@@ -46,7 +47,7 @@ export function ConfirmControls({ cellKey, realNamed, current, demo, onSet }: Co
             setNote(demo.note ?? "");
             onSet(demo.value, demo.note ?? "", "시연 입력값");
           }}
-          className="min-h-11 self-start rounded-xl border-2 border-dashed border-warn bg-[#fbe9e4] px-3 text-[15px] font-bold text-warn"
+          className="min-h-11 self-start rounded-[3px] border-2 border-dashed border-ink bg-paper px-3 text-[16px] font-semibold text-ink hover:bg-cell"
           data-demo={cellKey}
         >
           {COPY.s3.voi.demo(demo.note ?? "")}
@@ -72,21 +73,35 @@ export function VoiCard({
   compact?: boolean;
 }) {
   const w = ((item.uDropIfNo.car + item.uDropIfNo.walk + item.uDropIfNo.homebound) / 3) * 100;
+  const gains: [string, number][] = [
+    [COPY.modeOfficer.walk, item.dCount.walk],
+    [COPY.modeOfficer.homebound, item.dCount.homebound],
+    [COPY.modeOfficer.car, item.dCount.car],
+  ];
   return (
-    <article className={`rounded-2xl border-2 bg-card p-4 ${rank ? "border-brand/50" : "border-line"}`} data-voi={item.cellKey}>
-      <div className="flex items-start gap-2">
-        {rank ? (
-          <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-brand text-[16px] font-extrabold text-white">{rank}</span>
-        ) : null}
-        <h3 className={`m-0 font-bold leading-snug ${compact ? "text-[16px]" : "text-[18px]"}`}>{item.label}</h3>
+    <article className="note-paper relative min-w-0 border border-rule py-3 pr-3 pl-12" data-voi={item.cellKey}>
+      {/* memo-pad margin line */}
+      <span aria-hidden="true" className="absolute top-0 bottom-0 left-9 border-l-2 border-rule" />
+      {rank ? (
+        <span className="sign num absolute top-2 left-2 w-7 text-center text-[30px] leading-none text-ink" aria-label={`${rank}`}>
+          {rank}
+        </span>
+      ) : null}
+      <h3 className={`m-0 font-semibold leading-snug ${compact ? "text-[16px]" : "text-[18px]"}`}>{item.label}</h3>
+      {!item.realNamed ? (
+        <div className="mt-1">
+          <Badge tone="assumed">{COPY.badge.assumed}</Badge>
+        </div>
+      ) : null}
+      <div className="num mt-1 flex flex-wrap items-baseline gap-x-3 gap-y-0 text-[16px]">
+        <span className="text-[14px] font-semibold text-pencil-ink">{COPY.s3.voi.ifYesLabel}</span>
+        {gains.map(([m, x]) => (
+          <span key={m} className="font-medium">
+            {COPY.s3.voi.gain(m, f1(x))}
+          </span>
+        ))}
       </div>
-      <div className="mt-2 flex flex-wrap gap-1.5">
-        {!item.realNamed ? <Badge tone="assumed">{COPY.badge.assumed}</Badge> : null}
-      </div>
-      <p className="num mt-2 mb-0 text-[16px]">
-        {COPY.s3.voi.ifYes(f1(item.dCount.walk), f1(item.dCount.homebound), f1(item.dCount.car))}
-      </p>
-      <p className="num mt-1 mb-0 text-[15px] text-muted">{COPY.s3.voi.ifNo(f1(w))}</p>
+      <p className="num m-0 text-[15px] text-pencil-ink">{COPY.s3.voi.ifNo(f1(w))}</p>
       <ConfirmControls cellKey={item.cellKey} realNamed={item.realNamed} current={current} demo={demo} onSet={onSet} />
     </article>
   );

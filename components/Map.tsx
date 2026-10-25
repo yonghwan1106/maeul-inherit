@@ -1,6 +1,6 @@
 "use client";
-// SVG map of 화산면 — no map library (spec 2). ● 리 대표점 · ○ 마을회관·경로당 · ■ 하나로마트·농협·우체국 ·
-// ◇ 등록 업소 · grey = 식료품 업소 0곳 리. Optional lines from the closed store to the resources that take
+// SVG map of 화산면 on a ruled notice-board ground — no map library (spec 2). ● 리 대표점, ○ 마을회관·경로당,
+// ■ 하나로마트·농협·우체국, ◇ 등록 업소, grey = 식료품 업소 0곳 리. Optional lines from the closed store to the resources that take
 // over its work (solid = 확실, dashed = 확인 중).
 import { useEffect, useMemo, useState } from "react";
 import type { FnCode, Region, Resource } from "@/lib/types";
@@ -86,7 +86,7 @@ export function VillageMap({ region, store, lines = [], focusVillageId, pointId,
         width="100%"
         role="img"
         aria-label={ariaLabel ?? "화산면 지도"}
-        className="block h-auto w-full rounded-xl border border-line bg-[#fbfaf5]"
+        className="map-board block h-auto w-full border border-rule"
       >
         {/* resources: squares (hanaro/bank/post), diamonds (registered stores) */}
         {located.map((r) => {
@@ -96,7 +96,7 @@ export function VillageMap({ region, store, lines = [], focusVillageId, pointId,
           if (SQUARE_CLS.has(r.cls)) {
             return (
               <g key={r.id}>
-                <rect x={x - 6} y={y - 6} width={12} height={12} fill="var(--brand)" stroke="#fff" strokeWidth={1.5}>
+                <rect x={x - 6} y={y - 6} width={12} height={12} fill="var(--ink)" stroke="var(--paper)" strokeWidth={1.5}>
                   <title>{r.name}</title>
                 </rect>
               </g>
@@ -104,7 +104,7 @@ export function VillageMap({ region, store, lines = [], focusVillageId, pointId,
           }
           if (DIAMOND_CLS.has(r.cls)) {
             return (
-              <path key={r.id} d={`M${x} ${y - 7}L${x + 7} ${y}L${x} ${y + 7}L${x - 7} ${y}Z`} fill="#fff" stroke="var(--unsure)" strokeWidth={1.8}>
+              <path key={r.id} d={`M${x} ${y - 7}L${x + 7} ${y}L${x} ${y + 7}L${x - 7} ${y}Z`} fill="var(--paper)" stroke="var(--pencil-ink)" strokeWidth={1.8}>
                 <title>{`${r.name} — ${COPY.badge.sbizUnverified}`}</title>
               </path>
             );
@@ -119,7 +119,7 @@ export function VillageMap({ region, store, lines = [], focusVillageId, pointId,
             const { x, y } = proj(p.lat, p.lon);
             const sel = p.id === pointId;
             return (
-              <circle key={p.id} cx={x} cy={y} r={sel ? 7 : 5} fill="#fff" stroke={sel ? "var(--warn)" : "var(--ink)"} strokeWidth={sel ? 3 : 1.6}>
+              <circle key={p.id} cx={x} cy={y} r={sel ? 8 : 5} fill="var(--paper)" stroke="var(--ink)" strokeWidth={sel ? 3.5 : 1.6}>
                 <title>{p.name}</title>
               </circle>
             );
@@ -139,7 +139,7 @@ export function VillageMap({ region, store, lines = [], focusVillageId, pointId,
                     y1={storeXY.y}
                     x2={e.x}
                     y2={e.y}
-                    stroke={l.tri === "Y" ? "var(--sure)" : "var(--unsure)"}
+                    stroke={l.tri === "Y" ? "var(--ink)" : "var(--pencil-ink)"}
                     strokeWidth={l.tri === "Y" ? 3.2 : 2.6}
                     strokeDasharray={l.tri === "Y" ? undefined : "7 6"}
                     strokeLinecap="round"
@@ -163,16 +163,16 @@ export function VillageMap({ region, store, lines = [], focusVillageId, pointId,
               style={onVillageClick ? { cursor: "pointer" } : undefined}
               data-village={v.id}
             >
-              {v.isSeat ? <circle cx={x} cy={y} r={13} fill="none" stroke="var(--brand)" strokeWidth={2} strokeDasharray="2 3" /> : null}
+              {v.isSeat ? <circle cx={x} cy={y} r={13} fill="none" stroke="var(--slate)" strokeWidth={2} strokeDasharray="2 3" /> : null}
               <circle
                 cx={x}
                 cy={y}
                 r={focus ? 9 : 7}
-                fill={grey ? "#a9ada9" : "var(--brand)"}
-                stroke={focus || sel ? "var(--warn)" : "#fff"}
+                fill={grey ? "var(--shutter)" : "var(--slate)"}
+                stroke={focus || sel ? "var(--ink)" : "var(--paper)"}
                 strokeWidth={focus || sel ? 3 : 1.5}
               />
-              <text x={clampX(x)} y={Math.max(y - 12, 14)} textAnchor="middle" fontSize={focus ? 17 : 15} fontWeight={focus ? 800 : 600} fill={grey ? "#6d726e" : "var(--ink)"}>
+              <text x={clampX(x)} y={Math.max(y - 12, 14)} textAnchor="middle" fontSize={focus ? 17 : 15} fontWeight={focus ? 800 : 600} fill={grey ? "var(--pencil-ink)" : "var(--ink)"}>
                 {v.name}
               </text>
             </g>
@@ -182,9 +182,9 @@ export function VillageMap({ region, store, lines = [], focusVillageId, pointId,
         {/* closed store */}
         {storeXY && store ? (
           <g data-store="closed">
-            <rect x={storeXY.x - 9} y={storeXY.y - 9} width={18} height={18} rx={3} fill="var(--warn)" stroke="#fff" strokeWidth={2} />
-            <path d={`M${storeXY.x - 5} ${storeXY.y - 5}L${storeXY.x + 5} ${storeXY.y + 5}M${storeXY.x + 5} ${storeXY.y - 5}L${storeXY.x - 5} ${storeXY.y + 5}`} stroke="#fff" strokeWidth={2.2} />
-            <text x={Math.min(Math.max(storeXY.x, 64), W - 64)} y={storeXY.y + 27} textAnchor="middle" fontSize={15} fontWeight={800} fill="var(--warn)" stroke="#fbfaf5" strokeWidth={4} paintOrder="stroke">
+            <rect x={storeXY.x - 9} y={storeXY.y - 9} width={18} height={18} rx={1} fill="var(--ink)" stroke="var(--paper)" strokeWidth={2} />
+            <path d={`M${storeXY.x - 5} ${storeXY.y - 5}L${storeXY.x + 5} ${storeXY.y + 5}M${storeXY.x + 5} ${storeXY.y - 5}L${storeXY.x - 5} ${storeXY.y + 5}`} stroke="var(--paper)" strokeWidth={2.2} />
+            <text x={Math.min(Math.max(storeXY.x, 64), W - 64)} y={storeXY.y + 27} textAnchor="middle" fontSize={16} fontWeight={600} fill="var(--ink)" stroke="var(--paper)" strokeWidth={4} paintOrder="stroke">
               {store.name}
             </text>
           </g>
@@ -203,8 +203,8 @@ export function VillageMap({ region, store, lines = [], focusVillageId, pointId,
               const [ox, oy] = offs.find((d) => far(d) >= 30) ?? offs.reduce((m, d) => (far(d) > far(m) ? d : m));
               return (
                 <g key={`n-${l.resId}-${l.tri}`} className="fx-line" style={{ opacity: shown ? 1 : 0 }}>
-                  <circle cx={e.x + ox} cy={e.y + oy} r={10} fill={l.tri === "Y" ? "var(--sure)" : "var(--unsure)"} stroke="#fff" strokeWidth={1.5} />
-                  <text x={e.x + ox} y={e.y + oy + 4.5} textAnchor="middle" fontSize={13} fontWeight={800} fill="#fff">
+                  <circle cx={e.x + ox} cy={e.y + oy} r={10} fill={l.tri === "Y" ? "var(--ink)" : "var(--paper)"} stroke="var(--ink)" strokeWidth={1.5} strokeDasharray={l.tri === "Y" ? undefined : "3 2"} />
+                  <text x={e.x + ox} y={e.y + oy + 4.5} textAnchor="middle" fontSize={14} fontWeight={600} fill={l.tri === "Y" ? "var(--paper)" : "var(--ink)"}>
                     {i + 1}
                   </text>
                 </g>
@@ -214,28 +214,30 @@ export function VillageMap({ region, store, lines = [], focusVillageId, pointId,
 
       </svg>
       {storeXY && locatedLines.length > 0 ? (
-        <ol className="m-0 mt-2 flex list-none flex-col gap-1 p-0 text-[15px]" data-map-legend="1">
+        <ol className="m-0 mt-2 flex list-none flex-col p-0 text-[15px]" data-map-legend="1">
           {locatedLines.map((l, i) => (
-            <li key={`lg-${l.resId}-${l.tri}`} className="flex items-start gap-2" data-line-label={l.resId}>
-              <span className={`inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-[13px] font-extrabold text-white ${l.tri === "Y" ? "bg-sure" : "bg-unsure"}`}>{i + 1}</span>
-              <span className="min-w-0">
-                <b>{resById.get(l.resId)?.name ?? l.resId}</b> · {l.fns.map((f) => COPY.fnName[f]).join("·")} ({l.tri === "Y" ? COPY.tri.Y : COPY.tri.U})
+            <li key={`lg-${l.resId}-${l.tri}`} className="flex items-start gap-2 border-b border-rule py-1.5" data-line-label={l.resId}>
+              <span className={`inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full border-[1.5px] border-ink text-[14px] font-semibold ${l.tri === "Y" ? "bg-ink text-paper" : "border-dashed bg-paper text-ink"}`}>{i + 1}</span>
+              <span className="flex min-w-0 flex-wrap gap-x-2">
+                <b className="font-semibold">{resById.get(l.resId)?.name ?? l.resId}</b>
+                <span>{l.fns.map((f) => COPY.fnName[f]).join("·")}</span>
+                <span className="text-pencil-ink">({l.tri === "Y" ? COPY.tri.Y : COPY.tri.U})</span>
               </span>
             </li>
           ))}
         </ol>
       ) : null}
       {unlocatedLines.length > 0 ? (
-        <figcaption className="mt-2 flex flex-wrap items-center gap-2 text-[14px]">
-          <span className="text-muted">{COPY.s3.noLocation}:</span>
+        <figcaption className="mt-2 flex flex-wrap items-center gap-2 text-[15px]">
+          <span className="text-pencil-ink">{COPY.s3.noLocation}:</span>
           {unlocatedLines.map((l) => (
             <span
               key={`${l.resId}-${l.tri}`}
-              className={`max-w-full rounded-lg px-2 py-0.5 ${l.tri === "Y" ? "tri-y" : "tri-u"}`}
+              className={`max-w-full rounded-[2px] px-2 py-0.5 ${l.tri === "Y" ? "border-2 border-ink" : "border border-dashed border-pencil"}`}
               data-line={l.resId}
               data-line-tri={l.tri}
             >
-              {resById.get(l.resId)?.name ?? l.resId} · {l.fns.map((f) => COPY.fnName[f]).join("·")}
+              {resById.get(l.resId)?.name ?? l.resId} ({l.fns.map((f) => COPY.fnName[f]).join("·")}, {l.tri === "Y" ? COPY.tri.Y : COPY.tri.U})
             </span>
           ))}
         </figcaption>

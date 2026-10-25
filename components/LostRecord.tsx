@@ -1,5 +1,5 @@
 "use client";
-// 「사라진 기능 기록」 card + JSON download (제안자 답변서 4쪽: 재창업·재유치 판단용 기록).
+// 「사라진 기능 기록」 as a form sheet (항목 | 내용) + JSON download (제안자 답변서 4쪽: 재창업·재유치 판단용 기록).
 import type { FunctionPiece, Store } from "@/lib/types";
 import { COPY } from "@/lib/copy";
 
@@ -34,14 +34,28 @@ export function LostRecord({ sid, store, fns, gaps }: { sid: string; store: Stor
       /* download not available (preview) */
     }
   };
+  const F = COPY.s3.lost.fields;
+  const rows: [string, string][] = [
+    [F.fns, fnText],
+    [F.items, store.items.join("·")],
+    [F.hours, store.hours],
+    [F.gaps, gapText],
+  ];
   return (
-    <section className="rounded-2xl border border-line bg-card p-4" data-lost="1">
-      <h2 className="m-0 text-[18px] font-bold">{COPY.s3.lost.title}</h2>
-      <p className="mt-2 mb-0 text-[16px] leading-relaxed">{COPY.s3.lost.body(fnText, store.items.join("·"), store.hours, gapText)}</p>
-      <button type="button" onClick={download} className="mt-3 min-h-11 rounded-xl border-2 border-ink px-4 text-[16px] font-semibold">
+    <section className="min-w-0 border-t-2 border-ink pt-3" data-lost="1">
+      <h2 className="m-0 text-[20px] font-semibold">{COPY.s3.lost.title}</h2>
+      <dl className="m-0 mt-2 grid grid-cols-[minmax(0,8.5em)_minmax(0,1fr)] border-t border-rule text-[16px]">
+        {rows.map(([k, v]) => (
+          <div key={k} className="contents">
+            <dt className="border-b border-rule py-1.5 pr-2 text-[15px] font-semibold text-pencil-ink">{k}</dt>
+            <dd className="m-0 border-b border-l border-rule py-1.5 pl-3">{v}</dd>
+          </div>
+        ))}
+      </dl>
+      <button type="button" onClick={download} className="mt-3 min-h-11 rounded-[3px] border-2 border-slate px-4 text-[16px] font-semibold text-slate hover:bg-cell">
         {COPY.s3.lost.download}
       </button>
-      <p className="mt-2 mb-0 text-[13px] text-muted">{COPY.s3.lost.note}</p>
+      <p className="mt-2 mb-0 text-[14px] text-pencil-ink">{COPY.s3.lost.note}</p>
     </section>
   );
 }

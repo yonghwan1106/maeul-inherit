@@ -1,4 +1,4 @@
-// 「기준값(가정) — 지역 사정에 맞게 담당자가 조정」 — §5.2 values as they are in lib/engine/params.ts.
+// 「기준값(가정)」 / 「지역 사정에 맞게 담당자가 조정」 — §5.2 values as they are in lib/engine/params.ts.
 import { P } from "@/lib/engine";
 import { COPY, PARAM_LABELS } from "@/lib/copy";
 import { Badge } from "./Badge";
@@ -6,18 +6,22 @@ import { Badge } from "./Badge";
 export function ParamsPanel() {
   const rows = Object.entries(P) as [string, string | number][];
   return (
-    <details className="rounded-2xl border border-line bg-card p-4" data-params="1">
-      <summary className="cursor-pointer text-[17px] font-bold">
-        {COPY.s3.params.title} <Badge tone="assumed">{COPY.badge.assumed}</Badge>
+    <details className="min-w-0 border-t-2 border-ink pt-3" data-params="1">
+      <summary className="flex min-h-11 cursor-pointer flex-wrap items-center gap-x-3 gap-y-1">
+        <span className="text-[20px] font-semibold">{COPY.s3.params.title}</span>
+        <Badge tone="assumed">{COPY.badge.assumed}</Badge>
+        <span className="text-[15px] text-pencil-ink">{COPY.s3.params.desc}</span>
       </summary>
-      <dl className="mt-3 mb-0 grid gap-x-4 gap-y-1.5 text-[15px] sm:grid-cols-[minmax(0,1fr)_auto]">
-        {rows.map(([k, v]) => (
-          <div key={k} className="contents">
-            <dt className="text-muted">{PARAM_LABELS[k] ?? k}</dt>
-            <dd className="num m-0 font-semibold sm:text-right">{String(v)}</dd>
-          </div>
-        ))}
-      </dl>
+      <table className="ledger mt-2 text-[15px]">
+        <tbody>
+          {rows.map(([k, v]) => (
+            <tr key={k}>
+              <th scope="row" className="py-1.5 pr-2 text-left font-medium text-pencil-ink">{PARAM_LABELS[k] ?? k}</th>
+              <td className="vr num py-1.5 pl-3 text-right font-semibold break-words">{String(v)}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </details>
   );
 }
