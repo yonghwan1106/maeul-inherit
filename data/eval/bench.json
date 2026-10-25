@@ -1,20 +1,20 @@
 {
  "node": "v22.22.2",
- "runAt": "2026-10-25T10:34:22.401Z",
+ "runAt": "2026-10-25T10:43:28.467Z",
  "scenarios": {
   "sc1_seungchi": {
-   "cellsMs": 16.8,
-   "planMs": 0.33,
-   "voiMs": 208.96,
+   "cellsMs": 28.85,
+   "planMs": 0.52,
+   "voiMs": 262.63,
    "nVoi": 287,
    "scope": [
     "seungchi"
    ]
   },
   "sc2_waryong": {
-   "cellsMs": 15.85,
-   "planMs": 0.35,
-   "voiMs": 211.34,
+   "cellsMs": 16.84,
+   "planMs": 0.37,
+   "voiMs": 215.51,
    "nVoi": 290,
    "scope": [
     "jong",
@@ -22,9 +22,9 @@
    ]
   },
   "sc3_ungok": {
-   "cellsMs": 13.61,
-   "planMs": 0.21,
-   "voiMs": 86.7,
+   "cellsMs": 14.43,
+   "planMs": 0.19,
+   "voiMs": 84.9,
    "nVoi": 173,
    "scope": [
     "chunsan",
