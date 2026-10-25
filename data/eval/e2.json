@@ -1,0 +1,2895 @@
+{
+ "n": 33,
+ "nByMode": {
+  "car": 11,
+  "walk": 11,
+  "homebound": 11
+ },
+ "independent": false,
+ "fns": [
+  {
+   "code": "F01",
+   "importance": 3
+  },
+  {
+   "code": "F02",
+   "importance": 2
+  },
+  {
+   "code": "F04",
+   "importance": 1
+  },
+  {
+   "code": "F05",
+   "importance": 2
+  },
+  {
+   "code": "F06",
+   "importance": 2
+  },
+  {
+   "code": "F07",
+   "importance": 2
+  }
+ ],
+ "casesSha256": "89500f97c0fb1fc4d175d82bd05c6b05e094c6d26ac3e7464d8b93ee34db3883",
+ "llmOutputs": null,
+ "systems": {
+  "b1": {
+   "car": {
+    "L": 0.154,
+    "U": 0.786,
+    "countY": 0.8788,
+    "countU": 3.7197,
+    "countN": 1.4015
+   },
+   "walk": {
+    "L": 0.0101,
+    "U": 0.5588,
+    "countY": 0.0606,
+    "countU": 2.9455,
+    "countN": 2.9939
+   },
+   "homebound": {
+    "L": 0,
+    "U": 0.5265,
+    "countY": 0,
+    "countU": 2.7424,
+    "countN": 3.2576
+   }
+  },
+  "b1b": {
+   "car": {
+    "L": 0,
+    "U": 0.7765,
+    "countY": 0,
+    "countU": 4.2121,
+    "countN": 1.7879
+   },
+   "walk": {
+    "L": 0.0101,
+    "U": 0.7421,
+    "countY": 0.0606,
+    "countU": 3.998,
+    "countN": 1.9414
+   },
+   "homebound": {
+    "L": 0,
+    "U": 0.7559,
+    "countY": 0,
+    "countU": 4.0354,
+    "countN": 1.9646
+   }
+  },
+  "b1g": {
+   "car": {
+    "L": 0.8077,
+    "U": 0.9744,
+    "countY": 4.6924,
+    "countU": 1,
+    "countN": 0.3076
+   },
+   "walk": {
+    "L": 0.0884,
+    "U": 0.8253,
+    "countY": 0.5303,
+    "countU": 3.9747,
+    "countN": 1.4949
+   },
+   "homebound": {
+    "L": 0,
+    "U": 0.7618,
+    "countY": 0,
+    "countU": 4.0707,
+    "countN": 1.9293
+   }
+  },
+  "engine": {
+   "car": {
+    "L": 0.8092,
+    "U": 0.9804,
+    "countY": 4.7106,
+    "countU": 1.0545,
+    "countN": 0.2348
+   },
+   "walk": {
+    "L": 0.101,
+    "U": 0.8494,
+    "countY": 0.6061,
+    "countU": 4.0508,
+    "countN": 1.3432
+   },
+   "homebound": {
+    "L": 0,
+    "U": 0.8084,
+    "countY": 0,
+    "countU": 4.3505,
+    "countN": 1.6495
+   }
+  },
+  "b2a": null,
+  "b2b": null
+ },
+ "headline": {
+  "walkCountY": {
+   "engine": 0.6061,
+   "b1g": 0.5303,
+   "b1": 0.0606,
+   "diffVsB1g": 0.0758
+  },
+  "b2aAssertUCases": null
+ },
+ "note": "엔진은 같은 칸 위에서 최적화하므로 확실 몫이 기준선보다 낮을 수 없습니다. 수치는 '얼마나 더'를 뜻하며, 사례들은 자원을 공유해 서로 독립이 아닙니다.",
+ "engine": {
+  "bruteForceCases": 1000,
+  "bruteForceMatch": 1,
+  "seed": 42,
+  "maxCandidates": 10,
+  "maxPoints": 4
+ },
+ "cases": [
+  {
+   "caseId": "e2-chunsan-car",
+   "villageId": "chunsan",
+   "mode": "car",
+   "scope": [
+    "chunsan",
+    "seungchi",
+    "ungok"
+   ],
+   "b1": {
+    "sets": {
+     "chunsan": [
+      "sbiz_MA010120220807235431"
+     ],
+     "seungchi": [
+      "sbiz_MA010120220807235431"
+     ],
+     "ungok": [
+      "sbiz_MA010120220807235431"
+     ]
+    },
+    "L": 0,
+    "U": 0.7917,
+    "countY": 0,
+    "countU": 4.5,
+    "countN": 1.5
+   },
+   "b1b": {
+    "sets": {
+     "chunsan": [
+      "hub_10947413892",
+      "hub_10947413946",
+      "hubdrop_hanaro_hwasan_10947413946"
+     ],
+     "seungchi": [
+      "hub_10947413892",
+      "hub_10947413946",
+      "hubdrop_hanaro_hwasan_10947413946"
+     ],
+     "ungok": [
+      "hub_10942647666",
+      "hub_10942647803",
+      "hubdrop_hanaro_hwasan_10942647666"
+     ]
+    },
+    "L": 0,
+    "U": 0.75,
+    "countY": 0,
+    "countU": 4,
+    "countN": 2
+   },
+   "b1g": {
+    "sets": {
+     "chunsan": [
+      "care_link",
+      "hanaro_hwasan",
+      "post_hwasan"
+     ],
+     "seungchi": [
+      "care_link",
+      "hanaro_hwasan",
+      "post_hwasan"
+     ],
+     "ungok": [
+      "care_link",
+      "hanaro_hwasan",
+      "post_hwasan"
+     ]
+    },
+    "L": 0.7917,
+    "U": 0.9583,
+    "countY": 4.5,
+    "countU": 1,
+    "countN": 0.5
+   },
+   "engine": {
+    "sets": {
+     "chunsan": [
+      "hanaro_hwasan",
+      "post_hwasan"
+     ],
+     "seungchi": [
+      "hanaro_hwasan",
+      "post_hwasan"
+     ],
+     "ungok": [
+      "hanaro_hwasan",
+      "post_hwasan"
+     ]
+    },
+    "L": 0.7917,
+    "U": 0.9583,
+    "countY": 4.5,
+    "countU": 1,
+    "countN": 0.5
+   }
+  },
+  {
+   "caseId": "e2-chunsan-walk",
+   "villageId": "chunsan",
+   "mode": "walk",
+   "scope": [
+    "chunsan",
+    "seungchi",
+    "ungok"
+   ],
+   "b1": {
+    "sets": {
+     "chunsan": [
+      "sbiz_MA010120220807235431"
+     ],
+     "seungchi": [
+      "sbiz_MA010120220807235431"
+     ],
+     "ungok": [
+      "sbiz_MA010120220807235431"
+     ]
+    },
+    "L": 0,
+    "U": 0.5833,
+    "countY": 0,
+    "countU": 3,
+    "countN": 3
+   },
+   "b1b": {
+    "sets": {
+     "chunsan": [
+      "hanaro_hwasan",
+      "sbiz_MA010120220807235431",
+      "sbiz_MA010120220807279007"
+     ],
+     "seungchi": [
+      "hanaro_hwasan",
+      "sbiz_MA010120220807235431",
+      "sbiz_MA010120220807279007"
+     ],
+     "ungok": [
+      "hanaro_hwasan",
+      "sbiz_MA010120220807235431",
+      "sbiz_MA010120220807279007"
+     ]
+    },
+    "L": 0,
+    "U": 0.75,
+    "countY": 0,
+    "countU": 4,
+    "countN": 2
+   },
+   "b1g": {
+    "sets": {
+     "chunsan": [
+      "care_link",
+      "tour_A"
+     ],
+     "seungchi": [
+      "care_link",
+      "tour_A"
+     ],
+     "ungok": [
+      "care_link",
+      "tour_A"
+     ]
+    },
+    "L": 0,
+    "U": 0.75,
+    "countY": 0,
+    "countU": 4,
+    "countN": 2
+   },
+   "engine": {
+    "sets": {
+     "chunsan": [
+      "hanaro_hwasan"
+     ],
+     "seungchi": [
+      "hanaro_hwasan",
+      "hub_10947413892",
+      "hub_10947413946"
+     ],
+     "ungok": [
+      "hanaro_hwasan"
+     ]
+    },
+    "L": 0,
+    "U": 0.7917,
+    "countY": 0,
+    "countU": 4.25,
+    "countN": 1.75
+   }
+  },
+  {
+   "caseId": "e2-chunsan-homebound",
+   "villageId": "chunsan",
+   "mode": "homebound",
+   "scope": [
+    "chunsan",
+    "seungchi",
+    "ungok"
+   ],
+   "b1": {
+    "sets": {
+     "chunsan": [
+      "sbiz_MA010120220807235431"
+     ],
+     "seungchi": [
+      "sbiz_MA010120220807235431"
+     ],
+     "ungok": [
+      "sbiz_MA010120220807235431"
+     ]
+    },
+    "L": 0,
+    "U": 0.5833,
+    "countY": 0,
+    "countU": 3,
+    "countN": 3
+   },
+   "b1b": {
+    "sets": {
+     "chunsan": [
+      "hanaro_hwasan",
+      "sbiz_MA010120220807235431",
+      "sbiz_MA010120220807279007"
+     ],
+     "seungchi": [
+      "hanaro_hwasan",
+      "sbiz_MA010120220807235431",
+      "sbiz_MA010120220807279007"
+     ],
+     "ungok": [
+      "hanaro_hwasan",
+      "sbiz_MA010120220807235431",
+      "sbiz_MA010120220807279007"
+     ]
+    },
+    "L": 0,
+    "U": 0.75,
+    "countY": 0,
+    "countU": 4,
+    "countN": 2
+   },
+   "b1g": {
+    "sets": {
+     "chunsan": [
+      "care_link",
+      "tour_A"
+     ],
+     "seungchi": [
+      "care_link",
+      "tour_A"
+     ],
+     "ungok": [
+      "care_link",
+      "tour_A"
+     ]
+    },
+    "L": 0,
+    "U": 0.75,
+    "countY": 0,
+    "countU": 4,
+    "countN": 2
+   },
+   "engine": {
+    "sets": {
+     "chunsan": [
+      "hanaro_hwasan"
+     ],
+     "seungchi": [
+      "hanaro_hwasan",
+      "hub_10947413265",
+      "hub_10947413892"
+     ],
+     "ungok": [
+      "hanaro_hwasan"
+     ]
+    },
+    "L": 0,
+    "U": 0.7778,
+    "countY": 0,
+    "countU": 4.1667,
+    "countN": 1.8333
+   }
+  },
+  {
+   "caseId": "e2-hwapyeong-car",
+   "villageId": "hwapyeong",
+   "mode": "car",
+   "scope": [
+    "hwapyeong",
+    "hwawol",
+    "unje"
+   ],
+   "b1": {
+    "sets": {
+     "hwapyeong": [
+      "sbiz_MA010120220807235431"
+     ],
+     "hwawol": [
+      "hanaro_hwasan"
+     ],
+     "unje": [
+      "sbiz_MA010120220807235431"
+     ]
+    },
+    "L": 0.2222,
+    "U": 0.8333,
+    "countY": 1.3333,
+    "countU": 3.6667,
+    "countN": 1
+   },
+   "b1b": {
+    "sets": {
+     "hwapyeong": [
+      "hub_10887552862",
+      "hubdrop_hanaro_hwasan_10887552862",
+      "sbiz_MA010120220807235431"
+     ],
+     "hwawol": [
+      "hub_10864068572",
+      "hub_10864068661",
+      "hubdrop_hanaro_hwasan_10864068661"
+     ],
+     "unje": [
+      "hub_10859662554",
+      "hub_10887553485",
+      "hubdrop_hanaro_hwasan_10859662554"
+     ]
+    },
+    "L": 0,
+    "U": 0.8333,
+    "countY": 0,
+    "countU": 4.6667,
+    "countN": 1.3333
+   },
+   "b1g": {
+    "sets": {
+     "hwapyeong": [
+      "care_link",
+      "hanaro_hwasan",
+      "post_hwasan"
+     ],
+     "hwawol": [
+      "care_link",
+      "hanaro_hwasan",
+      "post_hwasan"
+     ],
+     "unje": [
+      "care_link",
+      "hanaro_hwasan",
+      "osm_n368880750"
+     ]
+    },
+    "L": 0.8333,
+    "U": 1,
+    "countY": 5,
+    "countU": 1,
+    "countN": 0
+   },
+   "engine": {
+    "sets": {
+     "hwapyeong": [
+      "hanaro_hwasan",
+      "post_hwasan"
+     ],
+     "hwawol": [
+      "hanaro_hwasan",
+      "post_hwasan"
+     ],
+     "unje": [
+      "hanaro_hwasan",
+      "osm_n368880750"
+     ]
+    },
+    "L": 0.8333,
+    "U": 1,
+    "countY": 5,
+    "countU": 1,
+    "countN": 0
+   }
+  },
+  {
+   "caseId": "e2-hwapyeong-walk",
+   "villageId": "hwapyeong",
+   "mode": "walk",
+   "scope": [
+    "hwapyeong",
+    "hwawol",
+    "unje"
+   ],
+   "b1": {
+    "sets": {
+     "hwapyeong": [
+      "sbiz_MA010120220807235431"
+     ],
+     "hwawol": [
+      "hanaro_hwasan"
+     ],
+     "unje": [
+      "sbiz_MA010120220807235431"
+     ]
+    },
+    "L": 0.0444,
+    "U": 0.7278,
+    "countY": 0.2667,
+    "countU": 3.8,
+    "countN": 1.9333
+   },
+   "b1b": {
+    "sets": {
+     "hwapyeong": [
+      "hub_10887552862",
+      "hubdrop_hanaro_hwasan_10887552862",
+      "sbiz_MA010120220807235431"
+     ],
+     "hwawol": [
+      "hanaro_hwasan",
+      "hub_10864068661",
+      "hubdrop_hanaro_hwasan_10864068661"
+     ],
+     "unje": [
+      "hub_10859662554",
+      "hubdrop_hanaro_hwasan_10859662554",
+      "sbiz_MA010120220807235431"
+     ]
+    },
+    "L": 0.0444,
+    "U": 0.9278,
+    "countY": 0.2667,
+    "countU": 5,
+    "countN": 0.7333
+   },
+   "b1g": {
+    "sets": {
+     "hwapyeong": [
+      "care_link",
+      "hanaro_hwasan",
+      "post_hwasan"
+     ],
+     "hwawol": [
+      "care_link",
+      "hub_10864068661",
+      "tour_A"
+     ],
+     "unje": [
+      "care_link",
+      "hub_10859662554",
+      "tour_A"
+     ]
+    },
+    "L": 0.2778,
+    "U": 0.9222,
+    "countY": 1.6667,
+    "countU": 3.5333,
+    "countN": 0.8
+   },
+   "engine": {
+    "sets": {
+     "hwapyeong": [
+      "hanaro_hwasan",
+      "post_hwasan"
+     ],
+     "hwawol": [
+      "hanaro_hwasan",
+      "hub_10864068661",
+      "post_hwasan"
+     ],
+     "unje": [
+      "hanaro_hwasan",
+      "hub_10859662554"
+     ]
+    },
+    "L": 0.3333,
+    "U": 0.9278,
+    "countY": 2,
+    "countU": 3.2667,
+    "countN": 0.7333
+   }
+  },
+  {
+   "caseId": "e2-hwapyeong-homebound",
+   "villageId": "hwapyeong",
+   "mode": "homebound",
+   "scope": [
+    "hwapyeong",
+    "hwawol",
+    "unje"
+   ],
+   "b1": {
+    "sets": {
+     "hwapyeong": [
+      "sbiz_MA010120220807235431"
+     ],
+     "hwawol": [
+      "hanaro_hwasan"
+     ],
+     "unje": [
+      "sbiz_MA010120220807235431"
+     ]
+    },
+    "L": 0,
+    "U": 0.6389,
+    "countY": 0,
+    "countU": 3.3333,
+    "countN": 2.6667
+   },
+   "b1b": {
+    "sets": {
+     "hwapyeong": [
+      "hub_10887552862",
+      "hubdrop_hanaro_hwasan_10887552862",
+      "sbiz_MA010120220807235431"
+     ],
+     "hwawol": [
+      "hanaro_hwasan",
+      "sbiz_MA010120220807235431",
+      "sbiz_MA010120220807279007"
+     ],
+     "unje": [
+      "hanaro_hwasan",
+      "sbiz_MA010120220807235431",
+      "sbiz_MA010120220807279007"
+     ]
+    },
+    "L": 0,
+    "U": 0.7685,
+    "countY": 0,
+    "countU": 4.1111,
+    "countN": 1.8889
+   },
+   "b1g": {
+    "sets": {
+     "hwapyeong": [
+      "care_link",
+      "hub_10887552862",
+      "tour_A"
+     ],
+     "hwawol": [
+      "care_link",
+      "tour_A"
+     ],
+     "unje": [
+      "care_link",
+      "tour_A"
+     ]
+    },
+    "L": 0,
+    "U": 0.787,
+    "countY": 0,
+    "countU": 4.2222,
+    "countN": 1.7778
+   },
+   "engine": {
+    "sets": {
+     "hwapyeong": [
+      "hanaro_hwasan",
+      "hub_10887533043",
+      "hub_10887552862"
+     ],
+     "hwawol": [
+      "hanaro_hwasan",
+      "hub_10864068572",
+      "hub_10864068661"
+     ],
+     "unje": [
+      "hanaro_hwasan",
+      "hub_10859662554"
+     ]
+    },
+    "L": 0,
+    "U": 0.8556,
+    "countY": 0,
+    "countU": 4.6333,
+    "countN": 1.3667
+   }
+  },
+  {
+   "caseId": "e2-hwawol-car",
+   "villageId": "hwawol",
+   "mode": "car",
+   "scope": [
+    "hwapyeong",
+    "hwawol"
+   ],
+   "b1": {
+    "sets": {
+     "hwapyeong": [
+      "sbiz_MA010120220807235431"
+     ],
+     "hwawol": [
+      "hanaro_hwasan"
+     ]
+    },
+    "L": 0.3333,
+    "U": 0.8333,
+    "countY": 2,
+    "countU": 3,
+    "countN": 1
+   },
+   "b1b": {
+    "sets": {
+     "hwapyeong": [
+      "hub_10887552862",
+      "hubdrop_hanaro_hwasan_10887552862",
+      "sbiz_MA010120220807235431"
+     ],
+     "hwawol": [
+      "hub_10864068572",
+      "hub_10864068661",
+      "hubdrop_hanaro_hwasan_10864068661"
+     ]
+    },
+    "L": 0,
+    "U": 0.875,
+    "countY": 0,
+    "countU": 5,
+    "countN": 1
+   },
+   "b1g": {
+    "sets": {
+     "hwapyeong": [
+      "care_link",
+      "hanaro_hwasan",
+      "post_hwasan"
+     ],
+     "hwawol": [
+      "care_link",
+      "hanaro_hwasan",
+      "post_hwasan"
+     ]
+    },
+    "L": 0.8333,
+    "U": 1,
+    "countY": 5,
+    "countU": 1,
+    "countN": 0
+   },
+   "engine": {
+    "sets": {
+     "hwapyeong": [
+      "hanaro_hwasan",
+      "post_hwasan"
+     ],
+     "hwawol": [
+      "hanaro_hwasan",
+      "post_hwasan"
+     ]
+    },
+    "L": 0.8333,
+    "U": 1,
+    "countY": 5,
+    "countU": 1,
+    "countN": 0
+   }
+  },
+  {
+   "caseId": "e2-hwawol-walk",
+   "villageId": "hwawol",
+   "mode": "walk",
+   "scope": [
+    "hwapyeong",
+    "hwawol"
+   ],
+   "b1": {
+    "sets": {
+     "hwapyeong": [
+      "sbiz_MA010120220807235431"
+     ],
+     "hwawol": [
+      "hanaro_hwasan"
+     ]
+    },
+    "L": 0.0667,
+    "U": 0.8,
+    "countY": 0.4,
+    "countU": 4.2,
+    "countN": 1.4
+   },
+   "b1b": {
+    "sets": {
+     "hwapyeong": [
+      "hub_10887552862",
+      "hubdrop_hanaro_hwasan_10887552862",
+      "sbiz_MA010120220807235431"
+     ],
+     "hwawol": [
+      "hanaro_hwasan",
+      "hub_10864068661",
+      "hubdrop_hanaro_hwasan_10864068661"
+     ]
+    },
+    "L": 0.0667,
+    "U": 0.9333,
+    "countY": 0.4,
+    "countU": 5,
+    "countN": 0.6
+   },
+   "b1g": {
+    "sets": {
+     "hwapyeong": [
+      "care_link",
+      "hanaro_hwasan",
+      "post_hwasan"
+     ],
+     "hwawol": [
+      "care_link",
+      "hub_10864068661",
+      "tour_A"
+     ]
+    },
+    "L": 0.4167,
+    "U": 0.925,
+    "countY": 2.5,
+    "countU": 2.8,
+    "countN": 0.7
+   },
+   "engine": {
+    "sets": {
+     "hwapyeong": [
+      "hanaro_hwasan",
+      "post_hwasan"
+     ],
+     "hwawol": [
+      "hanaro_hwasan",
+      "hub_10864068661",
+      "post_hwasan"
+     ]
+    },
+    "L": 0.5,
+    "U": 0.9333,
+    "countY": 3,
+    "countU": 2.4,
+    "countN": 0.6
+   }
+  },
+  {
+   "caseId": "e2-hwawol-homebound",
+   "villageId": "hwawol",
+   "mode": "homebound",
+   "scope": [
+    "hwapyeong",
+    "hwawol"
+   ],
+   "b1": {
+    "sets": {
+     "hwapyeong": [
+      "sbiz_MA010120220807235431"
+     ],
+     "hwawol": [
+      "hanaro_hwasan"
+     ]
+    },
+    "L": 0,
+    "U": 0.6667,
+    "countY": 0,
+    "countU": 3.5,
+    "countN": 2.5
+   },
+   "b1b": {
+    "sets": {
+     "hwapyeong": [
+      "hub_10887552862",
+      "hubdrop_hanaro_hwasan_10887552862",
+      "sbiz_MA010120220807235431"
+     ],
+     "hwawol": [
+      "hanaro_hwasan",
+      "sbiz_MA010120220807235431",
+      "sbiz_MA010120220807279007"
+     ]
+    },
+    "L": 0,
+    "U": 0.7778,
+    "countY": 0,
+    "countU": 4.1667,
+    "countN": 1.8333
+   },
+   "b1g": {
+    "sets": {
+     "hwapyeong": [
+      "care_link",
+      "hub_10887552862",
+      "tour_A"
+     ],
+     "hwawol": [
+      "care_link",
+      "tour_A"
+     ]
+    },
+    "L": 0,
+    "U": 0.8056,
+    "countY": 0,
+    "countU": 4.3333,
+    "countN": 1.6667
+   },
+   "engine": {
+    "sets": {
+     "hwapyeong": [
+      "hanaro_hwasan",
+      "hub_10887533043",
+      "hub_10887552862"
+     ],
+     "hwawol": [
+      "hanaro_hwasan",
+      "hub_10864068572",
+      "hub_10864068661"
+     ]
+    },
+    "L": 0,
+    "U": 0.8667,
+    "countY": 0,
+    "countU": 4.7,
+    "countN": 1.3
+   }
+  },
+  {
+   "caseId": "e2-jong-car",
+   "villageId": "jong",
+   "mode": "car",
+   "scope": [
+    "jong",
+    "waryong"
+   ],
+   "b1": {
+    "sets": {
+     "jong": [
+      "sbiz_MA010120220807279007"
+     ],
+     "waryong": [
+      "sbiz_MA010120220807227885"
+     ]
+    },
+    "L": 0,
+    "U": 0.75,
+    "countY": 0,
+    "countU": 4.5,
+    "countN": 1.5
+   },
+   "b1b": {
+    "sets": {
+     "jong": [
+      "hub_10911799241",
+      "hub_10911799251",
+      "hubdrop_hanaro_hwasan_10911799251"
+     ],
+     "waryong": [
+      "hub_10855545480",
+      "hub_10857207479",
+      "hubdrop_hanaro_hwasan_10855545480"
+     ]
+    },
+    "L": 0,
+    "U": 0.75,
+    "countY": 0,
+    "countU": 4,
+    "countN": 2
+   },
+   "b1g": {
+    "sets": {
+     "jong": [
+      "care_link",
+      "hanaro_hwasan",
+      "osm_n368880750"
+     ],
+     "waryong": [
+      "care_link",
+      "hanaro_hwasan",
+      "post_hwasan"
+     ]
+    },
+    "L": 0.8,
+    "U": 0.9667,
+    "countY": 4.6,
+    "countU": 1,
+    "countN": 0.4
+   },
+   "engine": {
+    "sets": {
+     "jong": [
+      "osm_n10828705928",
+      "osm_n368880750",
+      "sbiz_MA010120220807279007"
+     ],
+     "waryong": [
+      "hanaro_hwasan",
+      "post_hwasan"
+     ]
+    },
+    "L": 0.8083,
+    "U": 1,
+    "countY": 4.7,
+    "countU": 1.3,
+    "countN": 0
+   }
+  },
+  {
+   "caseId": "e2-jong-walk",
+   "villageId": "jong",
+   "mode": "walk",
+   "scope": [
+    "jong",
+    "waryong"
+   ],
+   "b1": {
+    "sets": {
+     "jong": [
+      "sbiz_MA010120220807279007"
+     ],
+     "waryong": [
+      "sbiz_MA010120220807227885"
+     ]
+    },
+    "L": 0,
+    "U": 0.3167,
+    "countY": 0,
+    "countU": 1.7,
+    "countN": 4.3
+   },
+   "b1b": {
+    "sets": {
+     "jong": [
+      "hub_10911799241",
+      "hub_10911799251",
+      "hubdrop_hanaro_hwasan_10911799251"
+     ],
+     "waryong": [
+      "hub_10855545480",
+      "hub_10857207479",
+      "hubdrop_hanaro_hwasan_10855545480"
+     ]
+    },
+    "L": 0,
+    "U": 0.3917,
+    "countY": 0,
+    "countU": 2.1,
+    "countN": 3.9
+   },
+   "b1g": {
+    "sets": {
+     "jong": [
+      "care_link",
+      "hub_10911799251",
+      "tour_A"
+     ],
+     "waryong": [
+      "care_link",
+      "hub_10855545480",
+      "tour_A"
+     ]
+    },
+    "L": 0,
+    "U": 0.8333,
+    "countY": 0,
+    "countU": 4.5,
+    "countN": 1.5
+   },
+   "engine": {
+    "sets": {
+     "jong": [
+      "hanaro_hwasan",
+      "hub_10855523302",
+      "hub_10911799241"
+     ],
+     "waryong": [
+      "hanaro_hwasan",
+      "hub_10855382015",
+      "hub_10857207479"
+     ]
+    },
+    "L": 0,
+    "U": 0.8833,
+    "countY": 0,
+    "countU": 4.8,
+    "countN": 1.2
+   }
+  },
+  {
+   "caseId": "e2-jong-homebound",
+   "villageId": "jong",
+   "mode": "homebound",
+   "scope": [
+    "jong",
+    "waryong"
+   ],
+   "b1": {
+    "sets": {
+     "jong": [
+      "sbiz_MA010120220807279007"
+     ],
+     "waryong": [
+      "sbiz_MA010120220807227885"
+     ]
+    },
+    "L": 0,
+    "U": 0.2917,
+    "countY": 0,
+    "countU": 1.5,
+    "countN": 4.5
+   },
+   "b1b": {
+    "sets": {
+     "jong": [
+      "hanaro_hwasan",
+      "sbiz_MA010120220807235431",
+      "sbiz_MA010120220807279007"
+     ],
+     "waryong": [
+      "hanaro_hwasan",
+      "sbiz_MA010120220807235431",
+      "sbiz_MA010120220807279007"
+     ]
+    },
+    "L": 0,
+    "U": 0.75,
+    "countY": 0,
+    "countU": 4,
+    "countN": 2
+   },
+   "b1g": {
+    "sets": {
+     "jong": [
+      "care_link",
+      "tour_A"
+     ],
+     "waryong": [
+      "care_link",
+      "tour_A"
+     ]
+    },
+    "L": 0,
+    "U": 0.75,
+    "countY": 0,
+    "countU": 4,
+    "countN": 2
+   },
+   "engine": {
+    "sets": {
+     "jong": [
+      "hanaro_hwasan",
+      "hub_10855523302",
+      "hub_10911799241"
+     ],
+     "waryong": [
+      "hanaro_hwasan",
+      "hub_10855382015",
+      "hub_10857207479"
+     ]
+    },
+    "L": 0,
+    "U": 0.8167,
+    "countY": 0,
+    "countU": 4.4,
+    "countN": 1.6
+   }
+  },
+  {
+   "caseId": "e2-seongbuk-car",
+   "villageId": "seongbuk",
+   "mode": "car",
+   "scope": [
+    "seongbuk",
+    "unje"
+   ],
+   "b1": {
+    "sets": {
+     "seongbuk": [
+      "sbiz_MA010120220800616689"
+     ],
+     "unje": [
+      "sbiz_MA010120220807235431"
+     ]
+    },
+    "L": 0,
+    "U": 0.75,
+    "countY": 0,
+    "countU": 4.5,
+    "countN": 1.5
+   },
+   "b1b": {
+    "sets": {
+     "seongbuk": [
+      "hub_10887553279",
+      "hub_10887553485",
+      "hubdrop_hanaro_hwasan_10887553485"
+     ],
+     "unje": [
+      "hub_10859662554",
+      "hub_10887553485",
+      "hubdrop_hanaro_hwasan_10859662554"
+     ]
+    },
+    "L": 0,
+    "U": 0.75,
+    "countY": 0,
+    "countU": 4,
+    "countN": 2
+   },
+   "b1g": {
+    "sets": {
+     "seongbuk": [
+      "care_link",
+      "hanaro_hwasan",
+      "osm_n368880750"
+     ],
+     "unje": [
+      "care_link",
+      "hanaro_hwasan",
+      "osm_n368880750"
+     ]
+    },
+    "L": 0.8333,
+    "U": 1,
+    "countY": 5,
+    "countU": 1,
+    "countN": 0
+   },
+   "engine": {
+    "sets": {
+     "seongbuk": [
+      "hanaro_hwasan",
+      "osm_n368880750"
+     ],
+     "unje": [
+      "hanaro_hwasan",
+      "osm_n368880750"
+     ]
+    },
+    "L": 0.8333,
+    "U": 1,
+    "countY": 5,
+    "countU": 1,
+    "countN": 0
+   }
+  },
+  {
+   "caseId": "e2-seongbuk-walk",
+   "villageId": "seongbuk",
+   "mode": "walk",
+   "scope": [
+    "seongbuk",
+    "unje"
+   ],
+   "b1": {
+    "sets": {
+     "seongbuk": [
+      "sbiz_MA010120220800616689"
+     ],
+     "unje": [
+      "sbiz_MA010120220807235431"
+     ]
+    },
+    "L": 0,
+    "U": 0.2917,
+    "countY": 0,
+    "countU": 1.5,
+    "countN": 4.5
+   },
+   "b1b": {
+    "sets": {
+     "seongbuk": [
+      "hub_10887553485",
+      "hubdrop_hanaro_hwasan_10887553485",
+      "sbiz_MA010120220807235431"
+     ],
+     "unje": [
+      "hub_10859662554",
+      "hubdrop_hanaro_hwasan_10859662554",
+      "sbiz_MA010120220807235431"
+     ]
+    },
+    "L": 0,
+    "U": 0.8611,
+    "countY": 0,
+    "countU": 4.6667,
+    "countN": 1.3333
+   },
+   "b1g": {
+    "sets": {
+     "seongbuk": [
+      "care_link",
+      "hub_10887553485",
+      "tour_A"
+     ],
+     "unje": [
+      "care_link",
+      "hub_10859662554",
+      "tour_A"
+     ]
+    },
+    "L": 0,
+    "U": 0.8889,
+    "countY": 0,
+    "countU": 4.8333,
+    "countN": 1.1667
+   },
+   "engine": {
+    "sets": {
+     "seongbuk": [
+      "hanaro_hwasan",
+      "hub_10887553279",
+      "hub_10887553485"
+     ],
+     "unje": [
+      "hanaro_hwasan",
+      "hub_10859662554"
+     ]
+    },
+    "L": 0,
+    "U": 0.9167,
+    "countY": 0,
+    "countU": 5,
+    "countN": 1
+   }
+  },
+  {
+   "caseId": "e2-seongbuk-homebound",
+   "villageId": "seongbuk",
+   "mode": "homebound",
+   "scope": [
+    "seongbuk",
+    "unje"
+   ],
+   "b1": {
+    "sets": {
+     "seongbuk": [
+      "sbiz_MA010120220800616689"
+     ],
+     "unje": [
+      "sbiz_MA010120220807235431"
+     ]
+    },
+    "L": 0,
+    "U": 0.2917,
+    "countY": 0,
+    "countU": 1.5,
+    "countN": 4.5
+   },
+   "b1b": {
+    "sets": {
+     "seongbuk": [
+      "hanaro_hwasan",
+      "sbiz_MA010120220807235431",
+      "sbiz_MA010120220807279007"
+     ],
+     "unje": [
+      "hanaro_hwasan",
+      "sbiz_MA010120220807235431",
+      "sbiz_MA010120220807279007"
+     ]
+    },
+    "L": 0,
+    "U": 0.75,
+    "countY": 0,
+    "countU": 4,
+    "countN": 2
+   },
+   "b1g": {
+    "sets": {
+     "seongbuk": [
+      "care_link",
+      "tour_A"
+     ],
+     "unje": [
+      "care_link",
+      "tour_A"
+     ]
+    },
+    "L": 0,
+    "U": 0.75,
+    "countY": 0,
+    "countU": 4,
+    "countN": 2
+   },
+   "engine": {
+    "sets": {
+     "seongbuk": [
+      "hanaro_hwasan",
+      "hub_10887553279",
+      "hub_10887553485"
+     ],
+     "unje": [
+      "hanaro_hwasan",
+      "hub_10859662554"
+     ]
+    },
+    "L": 0,
+    "U": 0.8472,
+    "countY": 0,
+    "countU": 4.5833,
+    "countN": 1.4167
+   }
+  },
+  {
+   "caseId": "e2-seungchi-car",
+   "villageId": "seungchi",
+   "mode": "car",
+   "scope": [
+    "chunsan",
+    "seungchi"
+   ],
+   "b1": {
+    "sets": {
+     "chunsan": [
+      "sbiz_MA010120220807235431"
+     ],
+     "seungchi": [
+      "sbiz_MA010120220807235431"
+     ]
+    },
+    "L": 0,
+    "U": 0.8125,
+    "countY": 0,
+    "countU": 4.75,
+    "countN": 1.25
+   },
+   "b1b": {
+    "sets": {
+     "chunsan": [
+      "hub_10947413892",
+      "hub_10947413946",
+      "hubdrop_hanaro_hwasan_10947413946"
+     ],
+     "seungchi": [
+      "hub_10947413892",
+      "hub_10947413946",
+      "hubdrop_hanaro_hwasan_10947413946"
+     ]
+    },
+    "L": 0,
+    "U": 0.75,
+    "countY": 0,
+    "countU": 4,
+    "countN": 2
+   },
+   "b1g": {
+    "sets": {
+     "chunsan": [
+      "care_link",
+      "hanaro_hwasan",
+      "post_hwasan"
+     ],
+     "seungchi": [
+      "care_link",
+      "hanaro_hwasan",
+      "post_hwasan"
+     ]
+    },
+    "L": 0.8125,
+    "U": 0.9792,
+    "countY": 4.75,
+    "countU": 1,
+    "countN": 0.25
+   },
+   "engine": {
+    "sets": {
+     "chunsan": [
+      "hanaro_hwasan",
+      "post_hwasan"
+     ],
+     "seungchi": [
+      "hanaro_hwasan",
+      "post_hwasan"
+     ]
+    },
+    "L": 0.8125,
+    "U": 0.9792,
+    "countY": 4.75,
+    "countU": 1,
+    "countN": 0.25
+   }
+  },
+  {
+   "caseId": "e2-seungchi-walk",
+   "villageId": "seungchi",
+   "mode": "walk",
+   "scope": [
+    "chunsan",
+    "seungchi"
+   ],
+   "b1": {
+    "sets": {
+     "chunsan": [
+      "sbiz_MA010120220807235431"
+     ],
+     "seungchi": [
+      "sbiz_MA010120220807235431"
+     ]
+    },
+    "L": 0,
+    "U": 0.5833,
+    "countY": 0,
+    "countU": 3,
+    "countN": 3
+   },
+   "b1b": {
+    "sets": {
+     "chunsan": [
+      "hanaro_hwasan",
+      "sbiz_MA010120220807235431",
+      "sbiz_MA010120220807279007"
+     ],
+     "seungchi": [
+      "hanaro_hwasan",
+      "sbiz_MA010120220807235431",
+      "sbiz_MA010120220807279007"
+     ]
+    },
+    "L": 0,
+    "U": 0.75,
+    "countY": 0,
+    "countU": 4,
+    "countN": 2
+   },
+   "b1g": {
+    "sets": {
+     "chunsan": [
+      "care_link",
+      "tour_A"
+     ],
+     "seungchi": [
+      "care_link",
+      "tour_A"
+     ]
+    },
+    "L": 0,
+    "U": 0.75,
+    "countY": 0,
+    "countU": 4,
+    "countN": 2
+   },
+   "engine": {
+    "sets": {
+     "chunsan": [
+      "hanaro_hwasan"
+     ],
+     "seungchi": [
+      "hanaro_hwasan",
+      "hub_10947413892",
+      "hub_10947413946"
+     ]
+    },
+    "L": 0,
+    "U": 0.8125,
+    "countY": 0,
+    "countU": 4.375,
+    "countN": 1.625
+   }
+  },
+  {
+   "caseId": "e2-seungchi-homebound",
+   "villageId": "seungchi",
+   "mode": "homebound",
+   "scope": [
+    "chunsan",
+    "seungchi"
+   ],
+   "b1": {
+    "sets": {
+     "chunsan": [
+      "sbiz_MA010120220807235431"
+     ],
+     "seungchi": [
+      "sbiz_MA010120220807235431"
+     ]
+    },
+    "L": 0,
+    "U": 0.5833,
+    "countY": 0,
+    "countU": 3,
+    "countN": 3
+   },
+   "b1b": {
+    "sets": {
+     "chunsan": [
+      "hanaro_hwasan",
+      "sbiz_MA010120220807235431",
+      "sbiz_MA010120220807279007"
+     ],
+     "seungchi": [
+      "hanaro_hwasan",
+      "sbiz_MA010120220807235431",
+      "sbiz_MA010120220807279007"
+     ]
+    },
+    "L": 0,
+    "U": 0.75,
+    "countY": 0,
+    "countU": 4,
+    "countN": 2
+   },
+   "b1g": {
+    "sets": {
+     "chunsan": [
+      "care_link",
+      "tour_A"
+     ],
+     "seungchi": [
+      "care_link",
+      "tour_A"
+     ]
+    },
+    "L": 0,
+    "U": 0.75,
+    "countY": 0,
+    "countU": 4,
+    "countN": 2
+   },
+   "engine": {
+    "sets": {
+     "chunsan": [
+      "hanaro_hwasan"
+     ],
+     "seungchi": [
+      "hanaro_hwasan",
+      "hub_10947413265",
+      "hub_10947413892"
+     ]
+    },
+    "L": 0,
+    "U": 0.7917,
+    "countY": 0,
+    "countU": 4.25,
+    "countN": 1.75
+   }
+  },
+  {
+   "caseId": "e2-ungok-car",
+   "villageId": "ungok",
+   "mode": "car",
+   "scope": [
+    "chunsan",
+    "ungok",
+    "uwol"
+   ],
+   "b1": {
+    "sets": {
+     "chunsan": [
+      "sbiz_MA010120220807235431"
+     ],
+     "ungok": [
+      "sbiz_MA010120220807235431"
+     ],
+     "uwol": [
+      "hanaro_hwasan"
+     ]
+    },
+    "L": 0.2222,
+    "U": 0.8056,
+    "countY": 1.3333,
+    "countU": 3.3333,
+    "countN": 1.3333
+   },
+   "b1b": {
+    "sets": {
+     "chunsan": [
+      "hub_10947413892",
+      "hub_10947413946",
+      "hubdrop_hanaro_hwasan_10947413946"
+     ],
+     "ungok": [
+      "hub_10942647666",
+      "hub_10942647803",
+      "hubdrop_hanaro_hwasan_10942647666"
+     ],
+     "uwol": [
+      "hub_10942647666",
+      "hub_10942647803",
+      "hubdrop_hanaro_hwasan_10942647666"
+     ]
+    },
+    "L": 0,
+    "U": 0.75,
+    "countY": 0,
+    "countU": 4,
+    "countN": 2
+   },
+   "b1g": {
+    "sets": {
+     "chunsan": [
+      "care_link",
+      "hanaro_hwasan",
+      "post_hwasan"
+     ],
+     "ungok": [
+      "care_link",
+      "hanaro_hwasan",
+      "post_hwasan"
+     ],
+     "uwol": [
+      "care_link",
+      "hanaro_hwasan",
+      "post_hwasan"
+     ]
+    },
+    "L": 0.8056,
+    "U": 0.9722,
+    "countY": 4.6667,
+    "countU": 1,
+    "countN": 0.3333
+   },
+   "engine": {
+    "sets": {
+     "chunsan": [
+      "hanaro_hwasan",
+      "post_hwasan"
+     ],
+     "ungok": [
+      "hanaro_hwasan",
+      "post_hwasan"
+     ],
+     "uwol": [
+      "hanaro_hwasan",
+      "post_hwasan"
+     ]
+    },
+    "L": 0.8056,
+    "U": 0.9722,
+    "countY": 4.6667,
+    "countU": 1,
+    "countN": 0.3333
+   }
+  },
+  {
+   "caseId": "e2-ungok-walk",
+   "villageId": "ungok",
+   "mode": "walk",
+   "scope": [
+    "chunsan",
+    "ungok",
+    "uwol"
+   ],
+   "b1": {
+    "sets": {
+     "chunsan": [
+      "sbiz_MA010120220807235431"
+     ],
+     "ungok": [
+      "sbiz_MA010120220807235431"
+     ],
+     "uwol": [
+      "hanaro_hwasan"
+     ]
+    },
+    "L": 0,
+    "U": 0.6389,
+    "countY": 0,
+    "countU": 3.3333,
+    "countN": 2.6667
+   },
+   "b1b": {
+    "sets": {
+     "chunsan": [
+      "hanaro_hwasan",
+      "sbiz_MA010120220807235431",
+      "sbiz_MA010120220807279007"
+     ],
+     "ungok": [
+      "hanaro_hwasan",
+      "sbiz_MA010120220807235431",
+      "sbiz_MA010120220807279007"
+     ],
+     "uwol": [
+      "hanaro_hwasan",
+      "sbiz_MA010120220807235431",
+      "sbiz_MA010120220807279007"
+     ]
+    },
+    "L": 0,
+    "U": 0.75,
+    "countY": 0,
+    "countU": 4,
+    "countN": 2
+   },
+   "b1g": {
+    "sets": {
+     "chunsan": [
+      "care_link",
+      "tour_A"
+     ],
+     "ungok": [
+      "care_link",
+      "tour_A"
+     ],
+     "uwol": [
+      "care_link",
+      "tour_A"
+     ]
+    },
+    "L": 0,
+    "U": 0.75,
+    "countY": 0,
+    "countU": 4,
+    "countN": 2
+   },
+   "engine": {
+    "sets": {
+     "chunsan": [
+      "hanaro_hwasan"
+     ],
+     "ungok": [
+      "hanaro_hwasan"
+     ],
+     "uwol": [
+      "hanaro_hwasan"
+     ]
+    },
+    "L": 0,
+    "U": 0.75,
+    "countY": 0,
+    "countU": 4,
+    "countN": 2
+   }
+  },
+  {
+   "caseId": "e2-ungok-homebound",
+   "villageId": "ungok",
+   "mode": "homebound",
+   "scope": [
+    "chunsan",
+    "ungok",
+    "uwol"
+   ],
+   "b1": {
+    "sets": {
+     "chunsan": [
+      "sbiz_MA010120220807235431"
+     ],
+     "ungok": [
+      "sbiz_MA010120220807235431"
+     ],
+     "uwol": [
+      "hanaro_hwasan"
+     ]
+    },
+    "L": 0,
+    "U": 0.6389,
+    "countY": 0,
+    "countU": 3.3333,
+    "countN": 2.6667
+   },
+   "b1b": {
+    "sets": {
+     "chunsan": [
+      "hanaro_hwasan",
+      "sbiz_MA010120220807235431",
+      "sbiz_MA010120220807279007"
+     ],
+     "ungok": [
+      "hanaro_hwasan",
+      "sbiz_MA010120220807235431",
+      "sbiz_MA010120220807279007"
+     ],
+     "uwol": [
+      "hanaro_hwasan",
+      "sbiz_MA010120220807235431",
+      "sbiz_MA010120220807279007"
+     ]
+    },
+    "L": 0,
+    "U": 0.75,
+    "countY": 0,
+    "countU": 4,
+    "countN": 2
+   },
+   "b1g": {
+    "sets": {
+     "chunsan": [
+      "care_link",
+      "tour_A"
+     ],
+     "ungok": [
+      "care_link",
+      "tour_A"
+     ],
+     "uwol": [
+      "care_link",
+      "tour_A"
+     ]
+    },
+    "L": 0,
+    "U": 0.75,
+    "countY": 0,
+    "countU": 4,
+    "countN": 2
+   },
+   "engine": {
+    "sets": {
+     "chunsan": [
+      "hanaro_hwasan"
+     ],
+     "ungok": [
+      "hanaro_hwasan"
+     ],
+     "uwol": [
+      "hanaro_hwasan"
+     ]
+    },
+    "L": 0,
+    "U": 0.75,
+    "countY": 0,
+    "countU": 4,
+    "countN": 2
+   }
+  },
+  {
+   "caseId": "e2-unje-car",
+   "villageId": "unje",
+   "mode": "car",
+   "scope": [
+    "hwapyeong",
+    "seongbuk",
+    "unje"
+   ],
+   "b1": {
+    "sets": {
+     "hwapyeong": [
+      "sbiz_MA010120220807235431"
+     ],
+     "seongbuk": [
+      "sbiz_MA010120220800616689"
+     ],
+     "unje": [
+      "sbiz_MA010120220807235431"
+     ]
+    },
+    "L": 0,
+    "U": 0.7778,
+    "countY": 0,
+    "countU": 4.6667,
+    "countN": 1.3333
+   },
+   "b1b": {
+    "sets": {
+     "hwapyeong": [
+      "hub_10887552862",
+      "hubdrop_hanaro_hwasan_10887552862",
+      "sbiz_MA010120220807235431"
+     ],
+     "seongbuk": [
+      "hub_10887553279",
+      "hub_10887553485",
+      "hubdrop_hanaro_hwasan_10887553485"
+     ],
+     "unje": [
+      "hub_10859662554",
+      "hub_10887553485",
+      "hubdrop_hanaro_hwasan_10859662554"
+     ]
+    },
+    "L": 0,
+    "U": 0.8333,
+    "countY": 0,
+    "countU": 4.6667,
+    "countN": 1.3333
+   },
+   "b1g": {
+    "sets": {
+     "hwapyeong": [
+      "care_link",
+      "hanaro_hwasan",
+      "post_hwasan"
+     ],
+     "seongbuk": [
+      "care_link",
+      "hanaro_hwasan",
+      "osm_n368880750"
+     ],
+     "unje": [
+      "care_link",
+      "hanaro_hwasan",
+      "osm_n368880750"
+     ]
+    },
+    "L": 0.8333,
+    "U": 1,
+    "countY": 5,
+    "countU": 1,
+    "countN": 0
+   },
+   "engine": {
+    "sets": {
+     "hwapyeong": [
+      "hanaro_hwasan",
+      "post_hwasan"
+     ],
+     "seongbuk": [
+      "hanaro_hwasan",
+      "osm_n368880750"
+     ],
+     "unje": [
+      "hanaro_hwasan",
+      "osm_n368880750"
+     ]
+    },
+    "L": 0.8333,
+    "U": 1,
+    "countY": 5,
+    "countU": 1,
+    "countN": 0
+   }
+  },
+  {
+   "caseId": "e2-unje-walk",
+   "villageId": "unje",
+   "mode": "walk",
+   "scope": [
+    "hwapyeong",
+    "seongbuk",
+    "unje"
+   ],
+   "b1": {
+    "sets": {
+     "hwapyeong": [
+      "sbiz_MA010120220807235431"
+     ],
+     "seongbuk": [
+      "sbiz_MA010120220800616689"
+     ],
+     "unje": [
+      "sbiz_MA010120220807235431"
+     ]
+    },
+    "L": 0,
+    "U": 0.4722,
+    "countY": 0,
+    "countU": 2.6667,
+    "countN": 3.3333
+   },
+   "b1b": {
+    "sets": {
+     "hwapyeong": [
+      "hub_10887552862",
+      "hubdrop_hanaro_hwasan_10887552862",
+      "sbiz_MA010120220807235431"
+     ],
+     "seongbuk": [
+      "hub_10887553485",
+      "hubdrop_hanaro_hwasan_10887553485",
+      "sbiz_MA010120220807235431"
+     ],
+     "unje": [
+      "hub_10859662554",
+      "hubdrop_hanaro_hwasan_10859662554",
+      "sbiz_MA010120220807235431"
+     ]
+    },
+    "L": 0,
+    "U": 0.9074,
+    "countY": 0,
+    "countU": 5.1111,
+    "countN": 0.8889
+   },
+   "b1g": {
+    "sets": {
+     "hwapyeong": [
+      "care_link",
+      "hanaro_hwasan",
+      "post_hwasan"
+     ],
+     "seongbuk": [
+      "care_link",
+      "hub_10887553485",
+      "tour_A"
+     ],
+     "unje": [
+      "care_link",
+      "hub_10859662554",
+      "tour_A"
+     ]
+    },
+    "L": 0.2778,
+    "U": 0.9259,
+    "countY": 1.6667,
+    "countU": 3.5556,
+    "countN": 0.7778
+   },
+   "engine": {
+    "sets": {
+     "hwapyeong": [
+      "hanaro_hwasan",
+      "post_hwasan"
+     ],
+     "seongbuk": [
+      "hanaro_hwasan",
+      "hub_10887553279",
+      "hub_10887553485"
+     ],
+     "unje": [
+      "hanaro_hwasan",
+      "hub_10859662554"
+     ]
+    },
+    "L": 0.2778,
+    "U": 0.9444,
+    "countY": 1.6667,
+    "countU": 3.6667,
+    "countN": 0.6667
+   }
+  },
+  {
+   "caseId": "e2-unje-homebound",
+   "villageId": "unje",
+   "mode": "homebound",
+   "scope": [
+    "hwapyeong",
+    "seongbuk",
+    "unje"
+   ],
+   "b1": {
+    "sets": {
+     "hwapyeong": [
+      "sbiz_MA010120220807235431"
+     ],
+     "seongbuk": [
+      "sbiz_MA010120220800616689"
+     ],
+     "unje": [
+      "sbiz_MA010120220807235431"
+     ]
+    },
+    "L": 0,
+    "U": 0.3889,
+    "countY": 0,
+    "countU": 2,
+    "countN": 4
+   },
+   "b1b": {
+    "sets": {
+     "hwapyeong": [
+      "hub_10887552862",
+      "hubdrop_hanaro_hwasan_10887552862",
+      "sbiz_MA010120220807235431"
+     ],
+     "seongbuk": [
+      "hanaro_hwasan",
+      "sbiz_MA010120220807235431",
+      "sbiz_MA010120220807279007"
+     ],
+     "unje": [
+      "hanaro_hwasan",
+      "sbiz_MA010120220807235431",
+      "sbiz_MA010120220807279007"
+     ]
+    },
+    "L": 0,
+    "U": 0.7685,
+    "countY": 0,
+    "countU": 4.1111,
+    "countN": 1.8889
+   },
+   "b1g": {
+    "sets": {
+     "hwapyeong": [
+      "care_link",
+      "hub_10887552862",
+      "tour_A"
+     ],
+     "seongbuk": [
+      "care_link",
+      "tour_A"
+     ],
+     "unje": [
+      "care_link",
+      "tour_A"
+     ]
+    },
+    "L": 0,
+    "U": 0.787,
+    "countY": 0,
+    "countU": 4.2222,
+    "countN": 1.7778
+   },
+   "engine": {
+    "sets": {
+     "hwapyeong": [
+      "hanaro_hwasan",
+      "hub_10887533043",
+      "hub_10887552862"
+     ],
+     "seongbuk": [
+      "hanaro_hwasan",
+      "hub_10887553279",
+      "hub_10887553485"
+     ],
+     "unje": [
+      "hanaro_hwasan",
+      "hub_10859662554"
+     ]
+    },
+    "L": 0,
+    "U": 0.8704,
+    "countY": 0,
+    "countU": 4.7222,
+    "countN": 1.2778
+   }
+  },
+  {
+   "caseId": "e2-unsan-car",
+   "villageId": "unsan",
+   "mode": "car",
+   "scope": [
+    "unsan"
+   ],
+   "b1": {
+    "sets": {
+     "unsan": [
+      "hanaro_hwasan"
+     ]
+    },
+    "L": 0.5833,
+    "U": 0.75,
+    "countY": 3,
+    "countU": 1,
+    "countN": 2
+   },
+   "b1b": {
+    "sets": {
+     "unsan": [
+      "hub_10942647666",
+      "hub_10942647803",
+      "hubdrop_hanaro_hwasan_10942647666"
+     ]
+    },
+    "L": 0,
+    "U": 0.75,
+    "countY": 0,
+    "countU": 4,
+    "countN": 2
+   },
+   "b1g": {
+    "sets": {
+     "unsan": [
+      "care_link",
+      "hanaro_hwasan",
+      "post_hwasan"
+     ]
+    },
+    "L": 0.75,
+    "U": 0.9167,
+    "countY": 4,
+    "countU": 1,
+    "countN": 1
+   },
+   "engine": {
+    "sets": {
+     "unsan": [
+      "hanaro_hwasan",
+      "post_hwasan"
+     ]
+    },
+    "L": 0.75,
+    "U": 0.9167,
+    "countY": 4,
+    "countU": 1,
+    "countN": 1
+   }
+  },
+  {
+   "caseId": "e2-unsan-walk",
+   "villageId": "unsan",
+   "mode": "walk",
+   "scope": [
+    "unsan"
+   ],
+   "b1": {
+    "sets": {
+     "unsan": [
+      "hanaro_hwasan"
+     ]
+    },
+    "L": 0,
+    "U": 0.75,
+    "countY": 0,
+    "countU": 4,
+    "countN": 2
+   },
+   "b1b": {
+    "sets": {
+     "unsan": [
+      "hanaro_hwasan",
+      "sbiz_MA010120220807235431",
+      "sbiz_MA010120220807279007"
+     ]
+    },
+    "L": 0,
+    "U": 0.75,
+    "countY": 0,
+    "countU": 4,
+    "countN": 2
+   },
+   "b1g": {
+    "sets": {
+     "unsan": [
+      "care_link",
+      "tour_A"
+     ]
+    },
+    "L": 0,
+    "U": 0.75,
+    "countY": 0,
+    "countU": 4,
+    "countN": 2
+   },
+   "engine": {
+    "sets": {
+     "unsan": [
+      "hanaro_hwasan"
+     ]
+    },
+    "L": 0,
+    "U": 0.75,
+    "countY": 0,
+    "countU": 4,
+    "countN": 2
+   }
+  },
+  {
+   "caseId": "e2-unsan-homebound",
+   "villageId": "unsan",
+   "mode": "homebound",
+   "scope": [
+    "unsan"
+   ],
+   "b1": {
+    "sets": {
+     "unsan": [
+      "hanaro_hwasan"
+     ]
+    },
+    "L": 0,
+    "U": 0.75,
+    "countY": 0,
+    "countU": 4,
+    "countN": 2
+   },
+   "b1b": {
+    "sets": {
+     "unsan": [
+      "hanaro_hwasan",
+      "sbiz_MA010120220807235431",
+      "sbiz_MA010120220807279007"
+     ]
+    },
+    "L": 0,
+    "U": 0.75,
+    "countY": 0,
+    "countU": 4,
+    "countN": 2
+   },
+   "b1g": {
+    "sets": {
+     "unsan": [
+      "care_link",
+      "tour_A"
+     ]
+    },
+    "L": 0,
+    "U": 0.75,
+    "countY": 0,
+    "countU": 4,
+    "countN": 2
+   },
+   "engine": {
+    "sets": {
+     "unsan": [
+      "hanaro_hwasan"
+     ]
+    },
+    "L": 0,
+    "U": 0.75,
+    "countY": 0,
+    "countU": 4,
+    "countN": 2
+   }
+  },
+  {
+   "caseId": "e2-uwol-car",
+   "villageId": "uwol",
+   "mode": "car",
+   "scope": [
+    "ungok",
+    "uwol"
+   ],
+   "b1": {
+    "sets": {
+     "ungok": [
+      "sbiz_MA010120220807235431"
+     ],
+     "uwol": [
+      "hanaro_hwasan"
+     ]
+    },
+    "L": 0.3333,
+    "U": 0.7917,
+    "countY": 2,
+    "countU": 2.5,
+    "countN": 1.5
+   },
+   "b1b": {
+    "sets": {
+     "ungok": [
+      "hub_10942647666",
+      "hub_10942647803",
+      "hubdrop_hanaro_hwasan_10942647666"
+     ],
+     "uwol": [
+      "hub_10942647666",
+      "hub_10942647803",
+      "hubdrop_hanaro_hwasan_10942647666"
+     ]
+    },
+    "L": 0,
+    "U": 0.75,
+    "countY": 0,
+    "countU": 4,
+    "countN": 2
+   },
+   "b1g": {
+    "sets": {
+     "ungok": [
+      "care_link",
+      "hanaro_hwasan",
+      "post_hwasan"
+     ],
+     "uwol": [
+      "care_link",
+      "hanaro_hwasan",
+      "post_hwasan"
+     ]
+    },
+    "L": 0.7917,
+    "U": 0.9583,
+    "countY": 4.5,
+    "countU": 1,
+    "countN": 0.5
+   },
+   "engine": {
+    "sets": {
+     "ungok": [
+      "hanaro_hwasan",
+      "post_hwasan"
+     ],
+     "uwol": [
+      "hanaro_hwasan",
+      "post_hwasan"
+     ]
+    },
+    "L": 0.7917,
+    "U": 0.9583,
+    "countY": 4.5,
+    "countU": 1,
+    "countN": 0.5
+   }
+  },
+  {
+   "caseId": "e2-uwol-walk",
+   "villageId": "uwol",
+   "mode": "walk",
+   "scope": [
+    "ungok",
+    "uwol"
+   ],
+   "b1": {
+    "sets": {
+     "ungok": [
+      "sbiz_MA010120220807235431"
+     ],
+     "uwol": [
+      "hanaro_hwasan"
+     ]
+    },
+    "L": 0,
+    "U": 0.6667,
+    "countY": 0,
+    "countU": 3.5,
+    "countN": 2.5
+   },
+   "b1b": {
+    "sets": {
+     "ungok": [
+      "hanaro_hwasan",
+      "sbiz_MA010120220807235431",
+      "sbiz_MA010120220807279007"
+     ],
+     "uwol": [
+      "hanaro_hwasan",
+      "sbiz_MA010120220807235431",
+      "sbiz_MA010120220807279007"
+     ]
+    },
+    "L": 0,
+    "U": 0.75,
+    "countY": 0,
+    "countU": 4,
+    "countN": 2
+   },
+   "b1g": {
+    "sets": {
+     "ungok": [
+      "care_link",
+      "tour_A"
+     ],
+     "uwol": [
+      "care_link",
+      "tour_A"
+     ]
+    },
+    "L": 0,
+    "U": 0.75,
+    "countY": 0,
+    "countU": 4,
+    "countN": 2
+   },
+   "engine": {
+    "sets": {
+     "ungok": [
+      "hanaro_hwasan"
+     ],
+     "uwol": [
+      "hanaro_hwasan"
+     ]
+    },
+    "L": 0,
+    "U": 0.75,
+    "countY": 0,
+    "countU": 4,
+    "countN": 2
+   }
+  },
+  {
+   "caseId": "e2-uwol-homebound",
+   "villageId": "uwol",
+   "mode": "homebound",
+   "scope": [
+    "ungok",
+    "uwol"
+   ],
+   "b1": {
+    "sets": {
+     "ungok": [
+      "sbiz_MA010120220807235431"
+     ],
+     "uwol": [
+      "hanaro_hwasan"
+     ]
+    },
+    "L": 0,
+    "U": 0.6667,
+    "countY": 0,
+    "countU": 3.5,
+    "countN": 2.5
+   },
+   "b1b": {
+    "sets": {
+     "ungok": [
+      "hanaro_hwasan",
+      "sbiz_MA010120220807235431",
+      "sbiz_MA010120220807279007"
+     ],
+     "uwol": [
+      "hanaro_hwasan",
+      "sbiz_MA010120220807235431",
+      "sbiz_MA010120220807279007"
+     ]
+    },
+    "L": 0,
+    "U": 0.75,
+    "countY": 0,
+    "countU": 4,
+    "countN": 2
+   },
+   "b1g": {
+    "sets": {
+     "ungok": [
+      "care_link",
+      "tour_A"
+     ],
+     "uwol": [
+      "care_link",
+      "tour_A"
+     ]
+    },
+    "L": 0,
+    "U": 0.75,
+    "countY": 0,
+    "countU": 4,
+    "countN": 2
+   },
+   "engine": {
+    "sets": {
+     "ungok": [
+      "hanaro_hwasan"
+     ],
+     "uwol": [
+      "hanaro_hwasan"
+     ]
+    },
+    "L": 0,
+    "U": 0.75,
+    "countY": 0,
+    "countU": 4,
+    "countN": 2
+   }
+  },
+  {
+   "caseId": "e2-waryong-car",
+   "villageId": "waryong",
+   "mode": "car",
+   "scope": [
+    "jong",
+    "waryong"
+   ],
+   "b1": {
+    "sets": {
+     "jong": [
+      "sbiz_MA010120220807279007"
+     ],
+     "waryong": [
+      "sbiz_MA010120220807227885"
+     ]
+    },
+    "L": 0,
+    "U": 0.75,
+    "countY": 0,
+    "countU": 4.5,
+    "countN": 1.5
+   },
+   "b1b": {
+    "sets": {
+     "jong": [
+      "hub_10911799241",
+      "hub_10911799251",
+      "hubdrop_hanaro_hwasan_10911799251"
+     ],
+     "waryong": [
+      "hub_10855545480",
+      "hub_10857207479",
+      "hubdrop_hanaro_hwasan_10855545480"
+     ]
+    },
+    "L": 0,
+    "U": 0.75,
+    "countY": 0,
+    "countU": 4,
+    "countN": 2
+   },
+   "b1g": {
+    "sets": {
+     "jong": [
+      "care_link",
+      "hanaro_hwasan",
+      "osm_n368880750"
+     ],
+     "waryong": [
+      "care_link",
+      "hanaro_hwasan",
+      "post_hwasan"
+     ]
+    },
+    "L": 0.8,
+    "U": 0.9667,
+    "countY": 4.6,
+    "countU": 1,
+    "countN": 0.4
+   },
+   "engine": {
+    "sets": {
+     "jong": [
+      "osm_n10828705928",
+      "osm_n368880750",
+      "sbiz_MA010120220807279007"
+     ],
+     "waryong": [
+      "hanaro_hwasan",
+      "post_hwasan"
+     ]
+    },
+    "L": 0.8083,
+    "U": 1,
+    "countY": 4.7,
+    "countU": 1.3,
+    "countN": 0
+   }
+  },
+  {
+   "caseId": "e2-waryong-walk",
+   "villageId": "waryong",
+   "mode": "walk",
+   "scope": [
+    "jong",
+    "waryong"
+   ],
+   "b1": {
+    "sets": {
+     "jong": [
+      "sbiz_MA010120220807279007"
+     ],
+     "waryong": [
+      "sbiz_MA010120220807227885"
+     ]
+    },
+    "L": 0,
+    "U": 0.3167,
+    "countY": 0,
+    "countU": 1.7,
+    "countN": 4.3
+   },
+   "b1b": {
+    "sets": {
+     "jong": [
+      "hub_10911799241",
+      "hub_10911799251",
+      "hubdrop_hanaro_hwasan_10911799251"
+     ],
+     "waryong": [
+      "hub_10855545480",
+      "hub_10857207479",
+      "hubdrop_hanaro_hwasan_10855545480"
+     ]
+    },
+    "L": 0,
+    "U": 0.3917,
+    "countY": 0,
+    "countU": 2.1,
+    "countN": 3.9
+   },
+   "b1g": {
+    "sets": {
+     "jong": [
+      "care_link",
+      "hub_10911799251",
+      "tour_A"
+     ],
+     "waryong": [
+      "care_link",
+      "hub_10855545480",
+      "tour_A"
+     ]
+    },
+    "L": 0,
+    "U": 0.8333,
+    "countY": 0,
+    "countU": 4.5,
+    "countN": 1.5
+   },
+   "engine": {
+    "sets": {
+     "jong": [
+      "hanaro_hwasan",
+      "hub_10855523302",
+      "hub_10911799241"
+     ],
+     "waryong": [
+      "hanaro_hwasan",
+      "hub_10855382015",
+      "hub_10857207479"
+     ]
+    },
+    "L": 0,
+    "U": 0.8833,
+    "countY": 0,
+    "countU": 4.8,
+    "countN": 1.2
+   }
+  },
+  {
+   "caseId": "e2-waryong-homebound",
+   "villageId": "waryong",
+   "mode": "homebound",
+   "scope": [
+    "jong",
+    "waryong"
+   ],
+   "b1": {
+    "sets": {
+     "jong": [
+      "sbiz_MA010120220807279007"
+     ],
+     "waryong": [
+      "sbiz_MA010120220807227885"
+     ]
+    },
+    "L": 0,
+    "U": 0.2917,
+    "countY": 0,
+    "countU": 1.5,
+    "countN": 4.5
+   },
+   "b1b": {
+    "sets": {
+     "jong": [
+      "hanaro_hwasan",
+      "sbiz_MA010120220807235431",
+      "sbiz_MA010120220807279007"
+     ],
+     "waryong": [
+      "hanaro_hwasan",
+      "sbiz_MA010120220807235431",
+      "sbiz_MA010120220807279007"
+     ]
+    },
+    "L": 0,
+    "U": 0.75,
+    "countY": 0,
+    "countU": 4,
+    "countN": 2
+   },
+   "b1g": {
+    "sets": {
+     "jong": [
+      "care_link",
+      "tour_A"
+     ],
+     "waryong": [
+      "care_link",
+      "tour_A"
+     ]
+    },
+    "L": 0,
+    "U": 0.75,
+    "countY": 0,
+    "countU": 4,
+    "countN": 2
+   },
+   "engine": {
+    "sets": {
+     "jong": [
+      "hanaro_hwasan",
+      "hub_10855523302",
+      "hub_10911799241"
+     ],
+     "waryong": [
+      "hanaro_hwasan",
+      "hub_10855382015",
+      "hub_10857207479"
+     ]
+    },
+    "L": 0,
+    "U": 0.8167,
+    "countY": 0,
+    "countU": 4.4,
+    "countN": 1.6
+   }
+  }
+ ]
+}
