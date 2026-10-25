@@ -37,6 +37,9 @@ export function FunctionsScreen({ sid, loaded, temp, mock }: { sid: string; load
   const social = st.fns.filter((f) => SOCIAL_FNS.includes(f.code));
   const ordered = [...living, ...social];
   const tagOf = new Map<FnCode, number>(ordered.map((f, i) => [f.code, i + 1]));
+  // a line keeps its number only when the same number tag stands in the memo (its evidence was found there);
+  // otherwise the number would be decoration, and the F-code at the line end already identifies the line
+  const tagged = new Set<FnCode>(st.fns.filter((f) => f.enabled && f.evidence.trim().length >= 2 && s.store.memo.includes(f.evidence.trim())).map((f) => f.code));
   const active = st.fns.filter((f) => f.enabled).length;
   const fallbackNote =
     d.mode === "rules" && !temp ? (d.fallbackReason === "limit" ? COPY.fallback.limit : COPY.fallback.noAi) : null;
@@ -50,23 +53,27 @@ export function FunctionsScreen({ sid, loaded, temp, mock }: { sid: string; load
           {temp ? <Badge tone="warn">{COPY.badge.tempScenario}</Badge> : null}
           {mock ? <Badge tone="warn">{COPY.badge.mock}</Badge> : null}
         </div>
-        <h1 className="sign m-0 border-b-2 border-ink pb-2 text-[32px] leading-[1.15] font-normal sm:text-[38px]">{COPY.s2.title(s.store.name)}</h1>
-        {fallbackNote ? <p className="m-0 border-2 border-dashed border-pencil px-3 py-2 text-[16px] font-medium text-ink">{fallbackNote}</p> : null}
+        <h1 className="sign m-0 border-b-2 border-ink pb-2 text-[30px] leading-[1.15] font-normal sm:text-[38px]">{COPY.s2.title(s.store.name)}</h1>
+        {fallbackNote ? <p className="m-0 border-2 border-dashed border-pencil px-3 py-2 text-[17px] font-medium text-ink">{fallbackNote}</p> : null}
       </div>
 
       {/* 가게 쪽지 */}
       <section className="min-w-0 border border-rule bg-[#fbfcf9]" aria-labelledby="note-title">
         <div className="flex flex-wrap items-baseline gap-x-5 gap-y-1 border-b-2 border-ink px-4 py-2">
           <h2 id="note-title" className="m-0 text-[20px] font-semibold">{COPY.s2.note}</h2>
-          <dl className="m-0 flex flex-wrap gap-x-5 gap-y-0 text-[15px]">
+          <dl className="m-0 flex flex-wrap gap-x-5 gap-y-0 text-[14px]">
             <div className="flex gap-1.5"><dt className="text-pencil-ink">{NF.sbizSub}</dt><dd className="m-0 font-medium">{s.store.sbizSub}</dd></div>
             <div className="flex gap-1.5"><dt className="text-pencil-ink">{NF.hours}</dt><dd className="num m-0 font-medium">{s.store.hours}</dd></div>
             <div className="flex gap-1.5"><dt className="text-pencil-ink">{NF.items}</dt><dd className="m-0 font-medium">{s.store.items.join("·")}</dd></div>
           </dl>
         </div>
-        <p className="note-paper measure m-0 px-4 pt-1 pb-3 text-[18px]" data-memo="1">
-          <Highlighted text={s.store.memo} phrases={st.fns.filter((f) => f.enabled).map((f) => ({ q: f.evidence, no: tagOf.get(f.code) ?? 0 }))} />
-        </p>
+        {/* the ruled lines run across the whole note (padding box) and one empty ruled line follows the last line of
+            the memo; only the words keep the 34em measure */}
+        <div className="note-paper px-4 pt-1 pb-[1.9em] text-[20px]" style={{ backgroundOrigin: "padding-box", backgroundPosition: "0 calc(0.25rem - 0.32em)" }}>
+          <p className="measure m-0" data-memo="1">
+            <Highlighted text={s.store.memo} phrases={st.fns.filter((f) => f.enabled).map((f) => ({ q: f.evidence, no: tagOf.get(f.code) ?? 0 }))} />
+          </p>
+        </div>
       </section>
 
       <div className="flex flex-wrap items-center gap-3">
@@ -75,7 +82,7 @@ export function FunctionsScreen({ sid, loaded, temp, mock }: { sid: string; load
           role="switch"
           aria-checked={typeOnly}
           onClick={() => setTypeOnly((v) => !v)}
-          className={`inline-flex min-h-11 items-center gap-2 rounded-[3px] border-2 px-4 text-[16px] font-semibold ${typeOnly ? "border-slate-deep bg-slate text-paper" : "border-slate bg-paper text-slate hover:bg-cell"}`}
+          className={`inline-flex min-h-11 items-center gap-2 rounded-[3px] border-2 px-4 text-[17px] font-semibold ${typeOnly ? "border-slate-deep bg-slate text-paper" : "border-slate bg-paper text-slate hover:bg-cell"}`}
           data-toggle="type-only"
         >
           <span aria-hidden="true" className={`relative inline-block h-4 w-8 rounded-[2px] border-2 ${typeOnly ? "border-paper" : "border-slate"}`}>
@@ -84,21 +91,21 @@ export function FunctionsScreen({ sid, loaded, temp, mock }: { sid: string; load
           {COPY.s2.typeOnlyToggle}
         </button>
         {typeOnly ? (
-          <p className="m-0 text-[18px] font-semibold" data-type-only-text="1">
+          <p className="m-0 text-[20px] font-semibold" data-type-only-text="1">
             {COPY.s2.typeOnly(typeSet.size, active)}
           </p>
         ) : null}
       </div>
 
-      <PieceRows title={COPY.s2.rowLiving} pieces={living} typeOnly={typeOnly} typeSet={typeSet} tagOf={tagOf} onEdit={setEdit} />
+      <PieceRows title={COPY.s2.rowLiving} pieces={living} typeOnly={typeOnly} typeSet={typeSet} tagOf={tagOf} tagged={tagged} onEdit={setEdit} />
       {social.length ? (
-        <PieceRows title={COPY.s2.rowSocial.title} desc={COPY.s2.rowSocial.desc} pieces={social} typeOnly={typeOnly} typeSet={typeSet} tagOf={tagOf} onEdit={setEdit} />
+        <PieceRows title={COPY.s2.rowSocial.title} desc={COPY.s2.rowSocial.desc} pieces={social} typeOnly={typeOnly} typeSet={typeSet} tagOf={tagOf} tagged={tagged} onEdit={setEdit} />
       ) : null}
 
       {d.unknowns.length ? (
         <section className="border-2 border-dashed border-pencil px-4 py-3">
-          <h2 className="m-0 text-[18px] font-semibold">{COPY.s2.unknowns}</h2>
-          <ul className="mt-1 mb-0 pl-5 text-[16px]">
+          <h2 className="m-0 text-[20px] font-semibold">{COPY.s2.unknowns}</h2>
+          <ul className="mt-1 mb-0 pl-5 text-[17px]">
             {d.unknowns.map((u) => (
               <li key={u}>{u}</li>
             ))}
@@ -121,6 +128,7 @@ function PieceRows({
   typeOnly,
   typeSet,
   tagOf,
+  tagged,
   onEdit,
 }: {
   title: string;
@@ -129,13 +137,14 @@ function PieceRows({
   typeOnly: boolean;
   typeSet: Set<FnCode>;
   tagOf: Map<FnCode, number>;
+  tagged: Set<FnCode>;
   onEdit: (f: FunctionPiece, patch: Partial<FnEdit>) => void;
 }) {
   return (
     <section className="min-w-0">
       <div className="border-b-2 border-ink pb-1.5">
-        <h2 className="m-0 text-[22px] font-semibold">{title}</h2>
-        {desc ? <p className="m-0 text-[15px] text-pencil-ink">{desc}</p> : null}
+        <h2 className="m-0 text-[24px] font-semibold">{title}</h2>
+        {desc ? <p className="m-0 text-[14px] text-pencil-ink">{desc}</p> : null}
       </div>
       <ol className="m-0 list-none p-0">
         {pieces.map((f) => {
@@ -150,9 +159,9 @@ function PieceRows({
               data-type-only-hidden={hidden ? "1" : "0"}
             >
               <div className="flex min-w-0 items-center gap-2">
-                <span className="tag-no">{tagOf.get(f.code)}</span>
+                {tagged.has(f.code) ? <span className="tag-no">{tagOf.get(f.code)}</span> : <span className="inline-block w-[1.35em]" aria-hidden="true" />}
                 <FnIcon code={f.code} size={24} className="shrink-0 text-pencil-ink" />
-                <span className="sign text-[26px] leading-none">{COPY.fnName[f.code]}</span>
+                <span className="sign text-[24px] leading-none">{COPY.fnName[f.code]}</span>
               </div>
               <span className="text-right text-[14px] text-pencil-ink md:order-last">{f.code}</span>
               <div className="flex items-center gap-2" role="group" aria-label={COPY.s2.importance}>
@@ -165,7 +174,7 @@ function PieceRows({
                         key={n}
                         type="button"
                         onClick={() => onEdit(f, { importance: n })}
-                        className={`-ml-[2px] h-11 w-11 border-2 text-[16px] font-semibold first:ml-0 first:rounded-l-[3px] last:rounded-r-[3px] ${
+                        className={`-ml-[2px] h-11 w-11 border-2 text-[17px] font-semibold first:ml-0 first:rounded-l-[3px] last:rounded-r-[3px] ${
                           on ? "relative z-[1] border-slate-deep bg-slate text-paper" : n < f.importance ? "border-slate bg-cell text-slate" : "border-slate bg-paper text-slate hover:bg-cell"
                         }`}
                         aria-label={`${COPY.s2.importance} ${n}`}
@@ -178,13 +187,13 @@ function PieceRows({
                 </span>
               </div>
               <div className="col-span-2 min-w-0 md:col-span-1">
-                {f.evidence ? <p className="m-0 text-[16px] leading-snug">{COPY.s2.evidence(f.evidence)}</p> : null}
-                {f.needsCheck ? <p className="m-0 mt-0.5 text-[15px] font-semibold text-ink">{COPY.s2.needsCheck}</p> : null}
+                {f.evidence ? <p className="m-0 text-[17px] leading-snug">{COPY.s2.evidence(f.evidence)}</p> : null}
+                {f.needsCheck ? <p className="m-0 mt-0.5 text-[14px] font-semibold text-ink">{COPY.s2.needsCheck}</p> : null}
               </div>
               <button
                 type="button"
                 onClick={() => onEdit(f, { enabled: !f.enabled })}
-                className="min-h-11 justify-self-start rounded-[3px] border-2 border-slate bg-paper px-4 text-[16px] font-semibold text-slate hover:bg-cell md:justify-self-end"
+                className="min-h-11 justify-self-start rounded-[3px] border-2 border-slate bg-paper px-4 text-[17px] font-semibold text-slate hover:bg-cell md:justify-self-end"
                 aria-pressed={!f.enabled}
               >
                 {f.enabled ? COPY.s2.off : COPY.s2.on}

@@ -83,7 +83,7 @@ export function PartsLine({ parts, as: Tag = "h3", className = "" }: { parts: re
     <Tag className={`m-0 flex flex-wrap items-baseline gap-x-3 gap-y-0 leading-snug ${className}`}>
       <span className="text-[20px] font-semibold text-ink">{first}</span>
       {rest.map((p) => (
-        <span key={p} className="text-[15px] font-medium text-pencil-ink">
+        <span key={p} className="text-[14px] font-medium text-pencil-ink">
           {p}
         </span>
       ))}
@@ -93,11 +93,11 @@ export function PartsLine({ parts, as: Tag = "h3", className = "" }: { parts: re
 
 export function LedgerRows({ rows, flashCodes, compact = false }: { rows: FnRow[]; flashCodes?: Set<FnCode>; compact?: boolean }) {
   return (
-    <table className="ledger text-[15px]">
+    <table className="ledger text-[14px]">
       <tbody>
         {rows.map((r, i) => (
           <tr key={r.code} data-fn={r.code} data-tri={r.tri}>
-            <th scope="row" className={`w-[38%] py-1.5 pr-2 text-left align-middle font-semibold ${compact ? "text-[15px]" : "text-[17px]"}`}>
+            <th scope="row" className={`w-[38%] py-1.5 pr-2 text-left align-middle font-semibold ${compact ? "text-[14px]" : "text-[17px]"}`}>
               <span className="inline-flex items-center gap-1.5">
                 <FnIcon code={r.code} size={20} className="shrink-0 text-pencil-ink" />
                 {COPY.fnName[r.code]}
@@ -108,7 +108,7 @@ export function LedgerRows({ rows, flashCodes, compact = false }: { rows: FnRow[
                 <TriMark tri={r.tri} resident land={!!flashCodes?.has(r.code) && r.tri === "Y"} tilt={tiltOf(i)} />
                 {r.tri !== "N" && r.resName ? (
                   <span className="min-w-0 bg-paper/80 leading-tight">
-                    <span className="block text-[15px] font-medium">{r.resName}</span>
+                    <span className="block text-[14px] font-medium">{r.resName}</span>
                     {r.note ? <span className="block text-[14px] text-pencil-ink">{r.note}</span> : null}
                   </span>
                 ) : null}

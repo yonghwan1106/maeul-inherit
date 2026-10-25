@@ -7,7 +7,7 @@ import { GoneWord, PencilWord, Stamp } from "./Badge";
 
 export function Bars({ summary, order, flash, active }: { summary: Record<Mode, ModeSummary>; order: Mode[]; flash: Set<string>; active?: Mode }) {
   const nCore = Math.max(...order.map((m) => summary[m].nCore), 0);
-  const num = "sign num text-[30px] leading-none";
+  const num = "sign num text-[30px] leading-none max-sm:text-[24px]";
   return (
     <section className="min-w-0" data-bars="1" aria-labelledby="tally-title">
       <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1">
@@ -16,15 +16,15 @@ export function Bars({ summary, order, flash, active }: { summary: Record<Mode, 
           {COPY.s3.barsOf(nCore)}, {COPY.s3.tallyDesc}
         </p>
       </div>
-      <div className="mt-2 max-w-full overflow-x-auto">
-        <table className="ledger min-w-[520px] text-[15px]">
+      <div className="mt-2 max-w-full overflow-x-auto max-sm:overflow-visible">
+        <table className="ledger text-[14px] sm:min-w-[520px]">
           <thead>
             <tr>
               <th className="py-1.5 pr-2 text-[14px] text-pencil-ink">이동 유형</th>
               <th className="vr px-2 py-1.5"><Stamp size="sm" tilt={-6} /></th>
               <th className="vr hatch px-2 py-1.5"><PencilWord /></th>
               <th className="vr slash px-2 py-1.5"><GoneWord /></th>
-              <th className="vr px-2 py-1.5 text-[14px] text-pencil-ink">몫</th>
+              <th className="vr px-2 py-1.5 text-[14px] text-pencil-ink max-sm:hidden">몫</th>
             </tr>
           </thead>
           <tbody>
@@ -41,6 +41,11 @@ export function Bars({ summary, order, flash, active }: { summary: Record<Mode, 
                 >
                   <th scope="row" className={`py-2 pr-2 text-left text-[17px] ${on ? "font-semibold" : "font-medium"}`}>
                     {COPY.modeOfficer[m]}
+                    {/* below 640 px the 몫 column drops to a second line here, so nothing is cut at 360 px */}
+                    <span className="num mt-1 block text-[14px] font-normal leading-snug sm:hidden">
+                      <span className="block">{COPY.s3.shareL(pct(s.L))}</span>
+                      <span className="block text-pencil-ink">{COPY.s3.shareU(pct(s.U))}</span>
+                    </span>
                   </th>
                   <td className="vr px-2 py-2 text-right" data-bar-text={m}>
                     <span className={num}>{f1(s.countY)}</span>
@@ -51,7 +56,7 @@ export function Bars({ summary, order, flash, active }: { summary: Record<Mode, 
                   <td className="vr px-2 py-2 text-right">
                     <span className={num}>{f1(s.countN)}</span>
                   </td>
-                  <td className="vr num px-2 py-2 text-[14px] leading-snug">
+                  <td className="vr num px-2 py-2 text-[14px] leading-snug max-sm:hidden">
                     <span className="block">{COPY.s3.shareL(pct(s.L))}</span>
                     <span className="block text-pencil-ink">{COPY.s3.shareU(pct(s.U))}</span>
                   </td>

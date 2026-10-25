@@ -10,14 +10,14 @@ export function ParamsPanel() {
       <summary className="flex min-h-11 cursor-pointer flex-wrap items-center gap-x-3 gap-y-1">
         <span className="text-[20px] font-semibold">{COPY.s3.params.title}</span>
         <Badge tone="assumed">{COPY.badge.assumed}</Badge>
-        <span className="text-[15px] text-pencil-ink">{COPY.s3.params.desc}</span>
+        <span className="text-[14px] text-pencil-ink">{COPY.s3.params.desc}</span>
       </summary>
-      <table className="ledger mt-2 text-[15px]">
+      <table className="ledger mt-2 text-[14px]">
         <tbody>
           {rows.map(([k, v]) => (
             <tr key={k}>
               <th scope="row" className="py-1.5 pr-2 text-left font-medium text-pencil-ink">{PARAM_LABELS[k] ?? k}</th>
-              <td className="vr num py-1.5 pl-3 text-right font-semibold break-words">{String(v)}</td>
+              <td className={`vr py-1.5 pl-3 font-semibold break-words ${typeof v === "number" ? "num text-right" : "text-left font-medium"}`}>{String(v)}</td>
             </tr>
           ))}
         </tbody>

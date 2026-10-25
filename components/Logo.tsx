@@ -5,7 +5,7 @@ import { COPY } from "@/lib/copy";
 
 export function Signboard({ size = "md" }: { size?: "md" | "lg" | "xl" }) {
   const [a, b] = COPY.sign;
-  const big = size === "xl" ? "text-[72px]" : size === "lg" ? "text-[38px]" : "text-[26px] sm:text-[30px]";
+  const big = size === "xl" ? "text-[72px]" : size === "lg" ? "text-[38px]" : "text-[24px] sm:text-[30px]";
   const small = size === "xl" ? "text-[34px]" : size === "lg" ? "text-[20px]" : "text-[17px]";
   return (
     <span className="inline-flex flex-col rounded-[2px] border-2 border-slate-deep bg-slate px-3 pt-1.5 pb-1 text-paper" style={{ boxShadow: "inset 0 0 0 2px var(--slate), inset 0 0 0 3px rgba(246,247,243,0.55)" }}>

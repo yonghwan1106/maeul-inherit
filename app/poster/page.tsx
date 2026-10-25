@@ -50,7 +50,7 @@ export default function Poster() {
             {SHUTTER_FNS.map((c) => (
               <div key={c} className="flex flex-col items-center text-pencil-ink">
                 <FnIcon code={c} size={28} />
-                <span className="text-[15px] font-medium">{COPY.fnName[c]}</span>
+                <span className="text-[14px] font-medium">{COPY.fnName[c]}</span>
               </div>
             ))}
           </div>
@@ -69,11 +69,11 @@ export default function Poster() {
             <div className="flex items-baseline justify-between gap-3 border-b-2 border-ink px-3 py-1.5">
               <span className="flex items-baseline gap-3">
                 <span className="sign leading-none" style={{ fontSize: 24 }}>{COPY.s0.ledgerTitle(kim?.name ?? "")}</span>
-                <span className="text-[15px] font-medium text-pencil-ink">{who.slice(1).join(", ")}</span>
+                <span className="text-[14px] font-medium text-pencil-ink">{who.slice(1).join(", ")}</span>
               </span>
               <Badge tone="assumed">{COPY.badge.virtualPerson}</Badge>
             </div>
-            <table className="ledger text-[15px]">
+            <table className="ledger text-[14px]">
               <thead>
                 <tr>
                   <th className="w-[34%] px-3 py-1 text-[14px] text-pencil-ink">{COPY.s0.colFn}</th>
@@ -85,7 +85,7 @@ export default function Poster() {
               <tbody>
                 {view.rows.map((r, i) => (
                   <tr key={r.code} data-tri={r.tri}>
-                    <th scope="row" className="px-3 text-left text-[18px] font-semibold" style={{ height: 38 }}>
+                    <th scope="row" className="px-3 text-left text-[20px] font-semibold" style={{ height: 38 }}>
                       <span className="inline-flex items-center gap-2">
                         <FnIcon code={r.code} size={20} className="text-pencil-ink" />
                         {COPY.fnName[r.code]}
@@ -95,7 +95,7 @@ export default function Poster() {
                       <span className="flex items-center gap-3">
                         <TriMark tri={r.tri} resident tilt={tiltOf(i)} className="[&_.stamp]:h-[2.2em] [&_.stamp]:w-[2.2em]" />
                         {r.tri !== "N" && r.resName ? (
-                          <span className="bg-paper/85 text-[16px] font-medium">
+                          <span className="bg-paper/85 text-[17px] font-medium">
                             {r.resName}
                             {r.note ? <span className="text-pencil-ink"> {r.note}</span> : null}
                           </span>
@@ -108,7 +108,7 @@ export default function Poster() {
             </table>
             <div className="mt-auto flex items-center justify-between gap-3 border-t-[3px] border-double border-rule px-2">
               <Tally y={view.countY} u={view.countU} n={view.countN} size={26} label={COPY.s0.tallyLabel} />
-              <p className="m-0 max-w-[420px] py-1 text-right text-[15px] leading-snug text-pencil-ink" data-poster-card="b1">
+              <p className="m-0 max-w-[420px] py-1 text-right text-[14px] leading-snug text-pencil-ink" data-poster-card="b1">
                 {COPY.poster.left} {COPY.tri.Y} {view.b1.countY}
                 {!view.b1.walkable && view.mode !== "car" ? `, ${COPY.s3.mini.notWalkable.replace(/^—\s*/, "")}` : ""}
               </p>
@@ -123,7 +123,7 @@ export default function Poster() {
         {COPY.oneLiner}
       </p>
 
-      <p className="absolute m-0 text-[15px] text-pencil-ink" style={{ right: 40, bottom: 12 }}>
+      <p className="absolute m-0 text-[14px] text-pencil-ink" style={{ right: 40, bottom: 12 }}>
         {COPY.poster.foot}
       </p>
     </div>

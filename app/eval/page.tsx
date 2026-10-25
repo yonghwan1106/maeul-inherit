@@ -17,7 +17,7 @@ const MODES: Mode[] = ["car", "walk", "homebound"];
 const L = {
   pending: "아직 실행 전",
   pair: "합성 / 실문장",
-  lUnit: "L 상승 기대값(%p, 이용권 리 평균) — 3번 확인 뒤",
+  lUnit: "L 상승 기대값(%p, 이용권 리 평균, 3번 확인 뒤)",
   sum: "세 유형 합",
   pCol: "확인될 확률 p(가정)",
   examples: "차단 사례 원문",
@@ -50,7 +50,7 @@ function Table({ head, rows, testId }: { head: React.ReactNode[]; rows: React.Re
     <div className="min-w-0">
     {/^s5-t[12]/.test(testId) ? <p className="m-0 mb-1 text-[14px] font-semibold text-pencil-ink sm:hidden" data-scroll-hint={testId}>{COPY.s5.t1.scrollHint}</p> : null}
     <div className="max-w-full overflow-x-auto">
-      <table data-testid={testId} className="ledger min-w-[520px] text-[15px] sm:min-w-[560px]">
+      <table data-testid={testId} className="ledger min-w-[520px] text-[14px] sm:min-w-[560px]">
         <thead>
           <tr>{head.map((h, i) => <th key={i} className={`px-2 py-2 align-bottom text-[14px] leading-snug ${i ? "vr text-right" : "sticky left-0 z-10 bg-paper"}`}>{h}</th>)}</tr>
         </thead>
@@ -71,8 +71,8 @@ function Section({ title, desc, children, pending, testId }: { title: string; de
   return (
     <section data-testid={testId} className="min-w-0 border-t-2 border-ink pt-3">
       <div className="mb-3 flex flex-wrap items-baseline gap-x-3 gap-y-1">
-        <h2 className="m-0 text-[22px] font-semibold leading-snug">{title}</h2>
-        {desc ? <span className="text-[15px] text-pencil-ink">{desc}</span> : null}
+        <h2 className="m-0 text-[24px] font-semibold leading-snug">{title}</h2>
+        {desc ? <span className="text-[14px] text-pencil-ink">{desc}</span> : null}
         {pending ? <Badge tone="warn">{L.pending}</Badge> : null}
       </div>
       {children}
@@ -173,11 +173,11 @@ export default function EvalPage() {
       <SiteHeader />
       <main className="mx-auto w-full max-w-6xl flex-1 px-4 pt-8 pb-14 sm:pt-10">
         <h1 className="m-0 border-b-2 border-ink pb-2 font-normal">
-          <span className="sign block text-[34px] leading-tight sm:text-[38px]">{c.title}</span>
+          <span className="sign block text-[30px] leading-tight sm:text-[38px]">{c.title}</span>
           <span className="mt-1 block text-[17px] font-medium text-pencil-ink">{c.titleDesc}</span>
         </h1>
         {R ? (
-          <dl data-testid="s5-meta" className="m-0 mt-3 flex flex-wrap gap-x-6 gap-y-1 text-[15px]">
+          <dl data-testid="s5-meta" className="m-0 mt-3 flex flex-wrap gap-x-6 gap-y-1 text-[14px]">
             {([
               [c.metaFields.runAt, kst(meta.runAt)],
               [c.metaFields.models, models],
@@ -191,13 +191,13 @@ export default function EvalPage() {
             ))}
           </dl>
         ) : (
-          <p className="mt-2 text-[16px] font-semibold text-ink">{L.noData}</p>
+          <p className="mt-2 text-[17px] font-semibold text-ink">{L.noData}</p>
         )}
 
         <div className="mt-8 grid min-w-0 grid-cols-1 gap-10">
           <Section testId="s5-t1" title={c.t1.title} desc={c.t1.desc} pending={e1Pending}>
             <Table testId="s5-t1-table" head={["", ...c.t1.cols]} rows={e1Rows} />
-            <div className="mt-3 flex flex-wrap items-center gap-2 text-[15px] text-pencil-ink">
+            <div className="mt-3 flex flex-wrap items-center gap-2 text-[14px] text-pencil-ink">
               <Badge tone="assumed">{COPY.badge.synth}</Badge>
               <span>{c.t1.realNote(humanChecked)}</span>
             </div>
@@ -211,13 +211,13 @@ export default function EvalPage() {
               </div>
             ))}
             <Table testId="s5-t2-errors" head={["", ...c.t2.cols]} rows={errRows} />
-            <p className="measure mb-0 mt-3 text-[15px] leading-relaxed text-pencil-ink">{c.t2.note}</p>
+            <p className="measure mb-0 mt-3 text-[14px] leading-relaxed text-pencil-ink">{c.t2.note}</p>
           </Section>
 
           <Section testId="s5-t3" title={c.t3.title} desc={c.t3.desc} pending={e3Pending}>
-            <p className="mb-2 mt-0 text-[15px] text-pencil-ink">{L.lUnit}</p>
+            <p className="mb-2 mt-0 text-[14px] text-pencil-ink">{L.lUnit}</p>
             <Table testId="s5-t3-table" head={[L.pCol, ...c.t3.cols, c.t3.ratio]} rows={e3Rows} />
-            <div className="mt-3 flex flex-wrap items-center gap-2 text-[15px] text-pencil-ink">
+            <div className="mt-3 flex flex-wrap items-center gap-2 text-[14px] text-pencil-ink">
               <Badge tone="assumed">{COPY.badge.assumed}</Badge>
               <span>{c.t3.note}</span>
             </div>
@@ -231,9 +231,9 @@ export default function EvalPage() {
                 <h3 className="mb-1 mt-0 text-[17px] font-semibold">{L.examples}</h3>
                 <ul className="m-0 grid list-none p-0">
                   {examples.slice(0, 3).map((x, i) => (
-                    <li key={i} className="border-b border-rule py-2 text-[16px]">
+                    <li key={i} className="border-b border-rule py-2 text-[17px]">
                       <span className="text-ink line-through decoration-ink decoration-2">{x.sentence ?? ""}</span>
-                      <span className="block text-[15px] font-semibold text-ink">{x.reason ?? ""}</span>
+                      <span className="block text-[14px] font-semibold text-ink">{x.reason ?? ""}</span>
                     </li>
                   ))}
                 </ul>
@@ -242,8 +242,8 @@ export default function EvalPage() {
           </Section>
 
           <section className="min-w-0 border-t-2 border-ink pt-3">
-            <h2 className="m-0 mb-2 text-[22px] font-semibold">{c.engineTitle}</h2>
-            <dl data-testid="s5-engine" className="m-0 grid grid-cols-1 border-t border-rule text-[16px] sm:grid-cols-3">
+            <h2 className="m-0 mb-2 text-[24px] font-semibold">{c.engineTitle}</h2>
+            <dl data-testid="s5-engine" className="m-0 grid grid-cols-1 border-t border-rule text-[17px] sm:grid-cols-3">
               {c.engine(bfN ?? 0, bfX === null ? "—" : bfX.toFixed(3), ms("planMs"), ms("voiMs")).map(([k, v]) => (
                 <div key={k} className="flex items-baseline justify-between gap-3 border-b border-rule px-1 py-2 sm:border-r sm:px-3 sm:last:border-r-0">
                   <dt className="text-pencil-ink">{k}</dt>
@@ -253,8 +253,8 @@ export default function EvalPage() {
             </dl>
           </section>
 
-          <aside data-testid="s5-limits" className="measure border-2 border-pencil p-4 text-[16px] leading-relaxed sm:p-5" style={{ boxShadow: "inset 0 0 0 2px var(--paper), inset 0 0 0 3px var(--pencil)" }}>
-            <h2 className="m-0 mb-1 text-[18px] font-semibold">{c.limitsTitle}</h2>
+          <aside data-testid="s5-limits" className="measure border-2 border-pencil p-4 text-[17px] leading-relaxed sm:p-5" style={{ boxShadow: "inset 0 0 0 2px var(--paper), inset 0 0 0 3px var(--pencil)" }}>
+            <h2 className="m-0 mb-1 text-[20px] font-semibold">{c.limitsTitle}</h2>
             {c.limits}
           </aside>
         </div>

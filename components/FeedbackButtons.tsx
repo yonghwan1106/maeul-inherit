@@ -13,7 +13,7 @@ export function FeedbackButtons({
   sent?: "used" | "failed";
 }) {
   const [asking, setAsking] = useState(false);
-  const chip = "min-h-11 rounded-[3px] border-2 px-3 text-[16px] font-semibold";
+  const chip = "min-h-11 rounded-[3px] border-2 px-3 text-[17px] font-semibold";
   return (
     <div className="mt-1.5 flex flex-wrap items-center gap-1.5" data-fb-buttons="1">
       <button type="button" onClick={() => { setAsking(false); onSend("used"); }} className={`${chip} ${sent === "used" ? "border-slate-deep bg-slate text-paper" : "border-slate bg-paper text-slate hover:bg-cell"}`} data-fb="used">

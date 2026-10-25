@@ -1,6 +1,6 @@
 "use client";
 // S1 시설 중단 등록 as a 「시설 중단 신고서」: ruled form cells (item name left, input right), the map as a side
-// board. Pressing 「생활기능 나누기」 brings a shutter down over the form plate (a response to the press; skipped
+// board. Pressing 「생활기능 나누기」 brings a shutter down over the form (a response to the press; skipped
 // with reduced motion). Logic (fill, redact, decompose API, custom record) unchanged.
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -123,13 +123,13 @@ export function RegisterForm({ region, scenarios, mock }: { region: Region; scen
 
   const input = "min-h-11 w-full rounded-[3px] border-2 border-pencil bg-paper px-3 py-2 text-[17px] text-ink placeholder:text-pencil-ink focus:border-slate";
   const rowCls = "grid grid-cols-1 border-b border-rule sm:grid-cols-[9.5em_minmax(0,1fr)]";
-  const labCls = "px-3 pt-3 pb-1 text-[16px] font-semibold text-ink sm:border-r sm:border-rule sm:py-3";
+  const labCls = "px-3 pt-3 pb-1 text-[17px] font-semibold text-ink sm:border-r sm:border-rule sm:py-3";
   const fieldCls = "min-w-0 px-3 pb-3 sm:py-2.5";
 
   return (
     <div className="grid gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
       <section aria-label="화산면 지도" className="min-w-0">
-        <h1 className="sign m-0 border-b-2 border-ink pb-2 text-[32px] leading-tight font-normal sm:text-[38px]">{COPY.s1.title}</h1>
+        <h1 className="sign m-0 border-b-2 border-ink pb-2 text-[30px] leading-tight font-normal sm:text-[38px]">{COPY.s1.title}</h1>
         {mock ? <div className="mt-2"><Badge tone="warn">{COPY.badge.mock}</Badge></div> : null}
         <div className="mt-4">
           <VillageMap region={region} focusVillageId={villageId} onVillageClick={setVillageId} ariaLabel="화산면 리 대표점·마을회관·시설 지도" />
@@ -137,7 +137,7 @@ export function RegisterForm({ region, scenarios, mock }: { region: Region; scen
         <ul className="m-0 mt-2 flex list-none flex-wrap gap-x-4 gap-y-1 p-0 text-[14px] text-ink">
           {COPY.s1.legend.map(([sym, label]) => (
             <li key={label} className="flex items-center gap-1.5">
-              <span aria-hidden="true" className={sym === "회색" ? "inline-block h-3 w-3 rounded-full bg-shutter" : "text-[15px] leading-none"}>
+              <span aria-hidden="true" className={sym === "회색" ? "inline-block h-3 w-3 rounded-full bg-shutter" : "text-[14px] leading-none"}>
                 {sym === "회색" ? "" : sym}
               </span>
               {sym === "회색" ? <span className="text-pencil-ink">{sym}</span> : null}
@@ -153,7 +153,7 @@ export function RegisterForm({ region, scenarios, mock }: { region: Region; scen
 
       <section className="min-w-0">
         <div className="mb-4 flex flex-col gap-2">
-          <span className="text-[15px] font-semibold text-pencil-ink">{COPY.s1.fillFrom}</span>
+          <span className="text-[14px] font-semibold text-pencil-ink">{COPY.s1.fillFrom}</span>
           <div className="flex flex-wrap gap-2">
             {scenarios.map((s) => {
               const t = COPY.s0.scenarioTitles[s.id];
@@ -166,7 +166,7 @@ export function RegisterForm({ region, scenarios, mock }: { region: Region; scen
                   className={`min-h-11 rounded-[3px] border-2 px-3 py-1.5 text-left leading-tight ${fromScenario === s.id ? "border-slate-deep bg-slate text-paper" : "border-slate bg-paper text-slate hover:bg-cell"}`}
                   data-fill={s.id}
                 >
-                  <span className="sign block text-[19px]">{t?.name ?? s.title}</span>
+                  <span className="sign block text-[20px]">{t?.name ?? s.title}</span>
                   {t ? <span className="block text-[14px] font-medium">{t.desc}</span> : null}
                 </button>
               );
@@ -175,9 +175,11 @@ export function RegisterForm({ region, scenarios, mock }: { region: Region; scen
         </div>
 
         <form onSubmit={submit} className="relative border-2 border-ink bg-paper" aria-labelledby="form-title">
+          {/* response to the press: a shutter comes down over the form, at most one screen tall and anchored at the
+              button end, so it is seen where the person pressed (skipped with reduced motion) */}
+          {shutter ? <span aria-hidden="true" className="shutter-drop shutter absolute inset-x-0 bottom-0 z-20 h-full max-h-[100vh]" /> : null}
           <div className="relative overflow-hidden border-b-2 border-ink bg-cell px-3 py-2.5">
-            <h2 id="form-title" className="sign m-0 text-[26px] font-normal">{COPY.s1.formTitle}</h2>
-            {shutter ? <span aria-hidden="true" className="shutter-drop shutter absolute inset-0" /> : null}
+            <h2 id="form-title" className="sign m-0 text-[24px] font-normal">{COPY.s1.formTitle}</h2>
           </div>
 
           <div className={rowCls}>
@@ -218,7 +220,7 @@ export function RegisterForm({ region, scenarios, mock }: { region: Region; scen
                       <button
                         type="button"
                         onClick={() => setItems((p) => p.filter((x) => x !== it))}
-                        className="min-h-11 rounded-[3px] border border-pencil bg-paper px-3 text-[16px] hover:bg-cell"
+                        className="min-h-11 rounded-[3px] border border-pencil bg-paper px-3 text-[17px] hover:bg-cell"
                         aria-label={`${it} 빼기`}
                       >
                         {it} <span aria-hidden="true" className="text-pencil-ink">×</span>
@@ -280,12 +282,12 @@ export function RegisterForm({ region, scenarios, mock }: { region: Region; scen
             <button
               type="submit"
               disabled={busy || shutter}
-              className="min-h-12 rounded-[3px] border-2 border-slate-deep bg-slate px-6 text-[18px] font-semibold text-paper hover:bg-slate-deep disabled:opacity-70"
+              className="min-h-12 rounded-[3px] border-2 border-slate-deep bg-slate px-6 text-[20px] font-semibold text-paper hover:bg-slate-deep disabled:opacity-70"
               data-submit="decompose"
             >
               {busy ? COPY.s1.working : COPY.s1.submit}
             </button>
-            {msg ? <p className="m-0 text-[16px] font-semibold text-ink" role="status">{msg}</p> : null}
+            {msg ? <p className="m-0 text-[17px] font-semibold text-ink" role="status">{msg}</p> : null}
           </div>
         </form>
       </section>

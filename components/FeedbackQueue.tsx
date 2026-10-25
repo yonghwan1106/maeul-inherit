@@ -43,7 +43,7 @@ export function FeedbackQueue({
   return (
     <section className="min-w-0 border-t-2 border-ink pt-3" data-reports={fb.length}>
       <h2 className="m-0 text-[20px] font-semibold">{COPY.s3.reports.title(fb.length)}</h2>
-      {fb.length === 0 ? <p className="mt-2 mb-0 text-[16px] text-pencil-ink">{COPY.s3.reports.none}</p> : null}
+      {fb.length === 0 ? <p className="mt-2 mb-0 text-[17px] text-pencil-ink">{COPY.s3.reports.none}</p> : null}
       <ul className="m-0 mt-1 flex list-none flex-col p-0">
         {fb.map((f) => {
           const fnText = f.fns.map((c) => COPY.fnName[c]).join("·");
@@ -56,12 +56,12 @@ export function FeedbackQueue({
             <li key={f.id} className="border-b border-rule py-2.5" data-report={f.id}>
               <div className="flex flex-wrap items-center gap-2">
                 <Badge tone="report">{COPY.badge.residentReport}</Badge>
-                <span className="text-[16px]">{line}</span>
+                <span className="text-[17px]">{line}</span>
               </div>
               {f.kind === "failed" && def ? (
                 open === f.id ? (
                   <div className="mt-2 border border-rule bg-cell p-3">
-                    <p className="m-0 text-[16px] font-semibold">{def.label}</p>
+                    <p className="m-0 text-[17px] font-semibold">{def.label}</p>
                     <ConfirmControls
                       cellKey={def.key}
                       realNamed={def.realNamed}
@@ -76,7 +76,7 @@ export function FeedbackQueue({
                   <button
                     type="button"
                     onClick={() => setOpen(f.id)}
-                    className="mt-2 min-h-11 rounded-[3px] border-2 border-slate px-3 text-[16px] font-semibold text-slate hover:bg-cell"
+                    className="mt-2 min-h-11 rounded-[3px] border-2 border-slate px-3 text-[17px] font-semibold text-slate hover:bg-cell"
                     data-apply={f.id}
                   >
                     {COPY.s3.reports.apply}

@@ -17,6 +17,12 @@ import { StepFlow } from "@/components/StepFlow";
 
 const SHUTTER_S = 0.6;
 const ROW_S = 0.12;
+const MARK_S = 0.34; // .scene-mark duration
+/** 「승치 마을상회(가상)」 -> ["승치 마을상회", "(가상)"] for the two-line plate */
+const splitStoreName = (name: string) => {
+  const i = name.indexOf("(");
+  return i > 0 ? [name.slice(0, i).trim(), name.slice(i)] : [name];
+};
 const delay = (s: number) => ({ "--delay": `${s.toFixed(2)}s` }) as CSSProperties;
 
 function MarkCell({ r, i, d, mobileStack = true }: { r: FnRow; i: number; d: number; mobileStack?: boolean }) {
@@ -26,7 +32,7 @@ function MarkCell({ r, i, d, mobileStack = true }: { r: FnRow; i: number; d: num
         <TriMark tri={r.tri} resident tilt={tiltOf(i)} />
         {r.tri !== "N" && r.resName ? (
           <span className="min-w-0 bg-paper/85 leading-tight">
-            <span className="block text-[15px] font-medium">{r.resName}</span>
+            <span className="block text-[14px] font-medium">{r.resName}</span>
             {r.note ? <span className="block text-[14px] text-pencil-ink">{r.note}</span> : null}
           </span>
         ) : null}
@@ -60,6 +66,8 @@ export default function Home() {
   const [l1, l2, l3] = COPY.oneLinerLines;
   const n = view?.rows.length ?? 0;
   const afterStart = SHUTTER_S + n * ROW_S + 0.15;
+  const planTallyAt = SHUTTER_S + Math.max(n - 1, 0) * ROW_S + MARK_S;
+  const afterTallyAt = afterStart + Math.max(n - 1, 0) * ROW_S + MARK_S;
   const store = sc1?.scenario.store;
 
   return (
@@ -76,7 +84,7 @@ export default function Home() {
         <section className="grid items-start gap-x-12 gap-y-8 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)] lg:grid-rows-[auto_1fr]">
           {/* 제목 + 한 줄 소개 (the official sentence, only broken into lines) */}
           <div className="min-w-0 lg:col-start-1 lg:row-start-1">
-            <h1 className="sign m-0 text-[36px] leading-[1.18] font-normal sm:text-[52px] lg:text-[56px]">
+            <h1 className="sign m-0 text-[30px] leading-[1.18] font-normal min-[380px]:text-[38px] sm:text-[48px]">
               <span className="block [text-wrap:balance]">{l1}</span>
               <span className="block [text-wrap:balance]">{l2}</span>
             </h1>
@@ -87,9 +95,9 @@ export default function Home() {
           {view && kim && store ? (
             <section className="min-w-0 overflow-hidden border-2 border-ink bg-paper lg:col-start-2 lg:row-span-2 lg:row-start-1" data-card="s0-hero" aria-label={COPY.s0.ledgerTitle(kim.name)}>
               <div className="flex flex-wrap items-center gap-x-3 gap-y-1 border-b-2 border-ink px-3 py-2.5 sm:px-4">
-                <h2 className="sign m-0 text-[26px] leading-tight font-normal">{COPY.s0.ledgerTitle(kim.name)}</h2>
+                <h2 className="sign m-0 text-[24px] leading-tight font-normal">{COPY.s0.ledgerTitle(kim.name)}</h2>
                 <Badge tone="assumed">{COPY.badge.virtualPerson}</Badge>
-                <p className="m-0 flex w-full flex-wrap gap-x-3 text-[15px] font-medium text-pencil-ink">
+                <p className="m-0 flex w-full flex-wrap gap-x-3 text-[14px] font-medium text-pencil-ink">
                   {COPY.s0.heroCard(kim.name, kim.age, COPY.modeResident[kim.mode], pointName(region, kim.pointId))
                     .slice(1)
                     .map((p) => (
@@ -101,23 +109,30 @@ export default function Home() {
                   <span className="relative inline-block h-8 w-12 overflow-hidden border border-ink">
                     <span className="scene-shutter shutter absolute inset-0" />
                   </span>
-                  <span className="sign text-[18px]">{store.name}</span>
+                  <span className="sign text-[17px]">{store.name}</span>
                 </div>
               </div>
-              <table className="ledger text-[15px]">
+              <table className="ledger text-[14px]">
                 <thead>
                   <tr>
                     <th className="w-[30%] px-2 py-2 text-[14px] text-pencil-ink sm:w-[21%] sm:px-3">{COPY.s0.colFn}</th>
-                    <th className="vr hidden w-[17%] px-2 py-2 sm:table-cell">
-                      <span className="sign block text-[17px] leading-tight font-normal">{store.name}</span>
+                    <th className="vr hidden w-[20%] px-1.5 py-2 sm:table-cell">
+                      {/* a small signboard plate over the shutter: the shop name in at most two lines */}
+                      <span className="sign inline-flex flex-col rounded-[2px] border-2 border-slate-deep bg-slate px-1.5 py-0.5 text-[17px] leading-[1.1] font-normal text-paper">
+                        {splitStoreName(store.name).map((part) => (
+                          <span key={part} className="block whitespace-nowrap">
+                            {part}
+                          </span>
+                        ))}
+                      </span>
                     </th>
                     <th className="vr px-2 py-2">
-                      <span className="block text-[15px]">{COPY.s0.colPlan}</span>
+                      <span className="block text-[14px]">{COPY.s0.colPlan}</span>
                       <span className="block text-[14px] font-medium text-pencil-ink">{COPY.s0.afterCloseLabel}</span>
                     </th>
                     {viewDemo ? (
                       <th className="vr px-2 py-2">
-                        <span className="block text-[15px]">{COPY.s0.colAfter}</span>
+                        <span className="block text-[14px]">{COPY.s0.colAfter}</span>
                         <span className="block text-[14px] font-medium text-pencil-ink">{COPY.s0.colAfterNote}</span>
                       </th>
                     ) : null}
@@ -128,8 +143,8 @@ export default function Home() {
                     const a = viewDemo?.rows.find((x) => x.code === r.code);
                     return (
                       <tr key={r.code} data-fn={r.code}>
-                        <th scope="row" className="px-2 py-2 text-left text-[16px] font-semibold sm:px-3 sm:text-[17px]">
-                          <span className="inline-flex items-center gap-1.5">
+                        <th scope="row" className="px-2 py-2 text-left text-[17px] font-semibold sm:px-3 sm:text-[17px]">
+                          <span className="inline-flex items-center gap-1.5 whitespace-nowrap">
                             <FnIcon code={r.code} size={20} className="hidden shrink-0 text-pencil-ink sm:block" />
                             {COPY.fnName[r.code]}
                           </span>
@@ -152,21 +167,28 @@ export default function Home() {
                 </tbody>
                 <tfoot>
                   <tr>
-                    <th scope="row" className="sign px-2 py-2 text-left text-[22px] font-normal sm:px-3">{COPY.s0.tallyLabel}</th>
+                    <th scope="row" className="sign px-2 py-2 text-left text-[24px] font-normal sm:px-3">
+                      <span className="scene-mark block" style={delay(planTallyAt)}>{COPY.s0.tallyLabel}</span>
+                    </th>
                     <td className="vr hidden sm:table-cell" />
+                    {/* each total lands only after the last mark of its column (part of the same one scene) */}
                     <td className="vr px-1 py-1 align-top">
-                      <Tally y={view.countY} u={view.countU} n={view.countN} size={24} stack />
+                      <div className="scene-mark" style={delay(planTallyAt)}>
+                        <Tally y={view.countY} u={view.countU} n={view.countN} size={24} stack />
+                      </div>
                     </td>
                     {viewDemo ? (
                       <td className="vr px-1 py-1 align-top">
-                        <Tally y={viewDemo.countY} u={viewDemo.countU} n={viewDemo.countN} size={24} testAttr={false} stack />
+                        <div className="scene-mark" style={delay(afterTallyAt)}>
+                          <Tally y={viewDemo.countY} u={viewDemo.countU} n={viewDemo.countN} size={24} testAttr={false} stack />
+                        </div>
                       </td>
                     ) : null}
                   </tr>
                 </tfoot>
               </table>
               <div className="border-t border-rule px-3 py-2.5 sm:px-4">
-                <p className="num m-0 text-[15px] font-medium" data-steps="s0">
+                <p className="num m-0 text-[14px] font-medium" data-steps="s0">
                   {COPY.s3.mini.steps(view.rows.length, view.b1.countY, view.countY, viewDemo ? viewDemo.countY : null)}
                 </p>
                 {viewDemo ? <p className="mt-1 mb-0 text-[14px] text-pencil-ink">{COPY.s0.demoNote}</p> : null}
@@ -215,8 +237,8 @@ export default function Home() {
                 <li key={scenario.id} className="grid grid-cols-1 gap-x-6 gap-y-2 border-b border-rule py-4 sm:grid-cols-[9rem_minmax(0,1fr)_auto] sm:items-center" data-scenario={scenario.id}>
                   <h3 className="sign m-0 text-[30px] leading-none font-normal">{t?.name ?? scenario.title}</h3>
                   <div className="min-w-0">
-                    {t ? <p className="m-0 text-[18px] font-semibold">{t.desc}</p> : null}
-                    <p className="m-0 mt-0.5 flex flex-wrap gap-x-3 text-[15px] text-pencil-ink">
+                    {t ? <p className="m-0 text-[20px] font-semibold">{t.desc}</p> : null}
+                    <p className="m-0 mt-0.5 flex flex-wrap gap-x-3 text-[14px] text-pencil-ink">
                       <span className="sign text-[17px] text-ink">{scenario.store.name}</span>
                       <span>{scenario.store.sbizSub}</span>
                       <span>{scenario.store.items.join("·")}</span>
@@ -246,7 +268,7 @@ export default function Home() {
 
         {/* 처리 경로 (6단계) */}
         <section className="mt-16" aria-labelledby="route-title">
-          <h2 id="route-title" className="m-0 mb-3 text-[22px] font-semibold">{COPY.stepsTitle}</h2>
+          <h2 id="route-title" className="m-0 mb-3 text-[24px] font-semibold">{COPY.stepsTitle}</h2>
           <StepFlow active={[]} className="" />
           <p className="mt-2 mb-0 text-[14px] text-pencil-ink">{COPY.s0.flowNote}</p>
         </section>

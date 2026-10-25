@@ -7,7 +7,7 @@ export function TopBand() {
     <div className="mx-auto w-full max-w-6xl px-4 pt-4">
       <p
         role="note"
-        className="m-0 inline-block max-w-full border-2 border-pencil px-3 py-1.5 text-[15px] font-medium leading-snug text-ink"
+        className="m-0 inline-block max-w-full border-2 border-pencil px-3 py-1.5 text-[14px] font-medium leading-snug text-ink"
         style={{ boxShadow: "inset 0 0 0 2px var(--paper), inset 0 0 0 3px var(--pencil)" }}
         data-band="scenario"
       >

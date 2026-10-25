@@ -116,12 +116,12 @@ export function PlanScreen({ sid, region, loaded, temp, mock }: { sid: string; r
   const truncated = plan.byVM.some((v) => v.truncated);
   const socialOn = fns.some((f) => f.enabled && SOCIAL_FNS.includes(f.code));
   const commonRows = (Object.entries(plan.common) as [FnCode, string[]][]).filter(([f, ids]) => CORE_FNS.includes(f) && core.includes(f) && ids.length);
-  const h2 = "m-0 text-[22px] font-semibold leading-snug";
+  const h2 = "m-0 text-[24px] font-semibold leading-snug max-sm:text-[20px]";
 
   return (
-    <div className="flex flex-col gap-10" data-plan-ms={planMs ?? ""} data-recalc-ms={recalcMs ?? ""} data-conf-n={conf.length}>
-      <div className="flex flex-col gap-3">
-        <div className="flex flex-wrap items-center gap-2">
+    <div className="flex flex-col gap-10 max-sm:gap-8" data-plan-ms={planMs ?? ""} data-recalc-ms={recalcMs ?? ""} data-conf-n={conf.length}>
+      <div className="flex flex-col gap-3 max-sm:gap-2">
+        <div className="flex flex-wrap items-center gap-2 max-sm:gap-1.5">
           {st.decompose ? <ModeBadge mode={st.decompose.mode} model={st.decompose.model} at={st.decompose.generatedAt} /> : null}
           {temp ? <Badge tone="warn">{COPY.badge.tempScenario}</Badge> : null}
           {mock ? <Badge tone="warn">{COPY.badge.mock}</Badge> : null}
@@ -131,8 +131,8 @@ export function PlanScreen({ sid, region, loaded, temp, mock }: { sid: string; r
         {/* title + 장부 색인 탭 */}
         <div className="flex flex-wrap items-end justify-between gap-x-6 gap-y-3 border-b-2 border-ink">
           <h1 className="m-0 pb-2 font-normal">
-            <span className="sign block text-[32px] leading-[1.1] sm:text-[38px]">{s.store.name}</span>
-            <span className="sign mt-1 block text-[22px] leading-tight text-pencil-ink sm:text-[24px]">{COPY.nav.s3}</span>
+            <span className="sign block text-[30px] leading-[1.1] sm:text-[38px]">{s.store.name}</span>
+            <span className="sign mt-1 block text-[20px] leading-tight text-ink sm:text-[24px]">{COPY.nav.s3}</span>
           </h1>
           <div className="flex flex-wrap items-end gap-1" role="tablist" aria-label="이동 유형">
             <span className="mr-2 self-center pb-1 text-[14px] text-pencil-ink">{villageName(region, storeVillage)}</span>
@@ -161,14 +161,14 @@ export function PlanScreen({ sid, region, loaded, temp, mock }: { sid: string; r
       <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-[minmax(0,1.25fr)_minmax(0,1fr)]">
         <div className="min-w-0">
           <Bars summary={plan.summary} order={MODE_ORDER} flash={flashBars} active={mapMode} />
-          <p className="mt-3 mb-0 text-[16px] font-medium text-ink" data-optimal={truncated ? "truncated" : "ok"}>
+          <p className="mt-3 mb-0 text-[17px] font-medium text-ink" data-optimal={truncated ? "truncated" : "ok"}>
             {truncated ? COPY.s3.optimal.truncated : COPY.s3.optimal.ok}
           </p>
         </div>
         <div className="flex min-w-0 flex-col gap-6">
           <section className="border-t-2 border-ink pt-3" data-gaps={gaps.length}>
             <h2 className={h2}>{COPY.s3.gaps.title}</h2>
-            <ul className="mt-2 mb-0 flex list-none flex-wrap gap-2 p-0 text-[16px]">
+            <ul className="mt-2 mb-0 flex list-none flex-wrap gap-2 p-0 text-[17px]">
               {gaps.length ? (
                 gaps.map((g) => (
                   <li key={`${g.fn}-${g.mode}`} className="slash flex items-center gap-2 border border-ink px-2 py-1">
@@ -183,7 +183,7 @@ export function PlanScreen({ sid, region, loaded, temp, mock }: { sid: string; r
           </section>
           <section className="border-t-2 border-ink pt-3" data-common="1">
             <h2 className={h2}>{COPY.s3.common.title}</h2>
-            <ul className="mt-1 mb-0 flex list-none flex-col p-0 text-[16px]">
+            <ul className="mt-1 mb-0 flex list-none flex-col p-0 text-[17px]">
               {commonRows.map(([f, ids]) => (
                 <li key={f} className="border-b border-rule py-1.5">
                   {COPY.s3.common.line(COPY.fnName[f], resName(region, ids[0]), ids[1] ? resName(region, ids[1]) : undefined)}
@@ -199,7 +199,7 @@ export function PlanScreen({ sid, region, loaded, temp, mock }: { sid: string; r
         <section className="flex min-w-0 flex-col gap-3" data-voi-list={voi.length}>
           <div className="border-t-2 border-ink pt-3">
             <h2 className={h2}>{COPY.s3.voi.title}</h2>
-            <p className="m-0 mt-1 text-[15px] text-pencil-ink">{COPY.s3.voi.note}</p>
+            <p className="m-0 mt-1 text-[14px] text-pencil-ink">{COPY.s3.voi.note}</p>
           </div>
           <ol className="m-0 flex list-none flex-col gap-3 p-0">
             {top.map((v, i) => (
@@ -212,7 +212,7 @@ export function PlanScreen({ sid, region, loaded, temp, mock }: { sid: string; r
             <div className="flex flex-col gap-3">
               {demoCells.map((v) => (
                 <div key={v.cellKey}>
-                  <p className="m-0 mb-1 text-[15px] font-semibold text-ink">{COPY.s3.voi.demoCell}</p>
+                  <p className="m-0 mb-1 text-[14px] font-semibold text-ink">{COPY.s3.voi.demoCell}</p>
                   <VoiCard item={v} current={confOf(v.cellKey)} demo={demoOf(v.cellKey)} onSet={(val, note, by) => setCell(v.cellKey, val, note, by)} />
                 </div>
               ))}
@@ -223,7 +223,7 @@ export function PlanScreen({ sid, region, loaded, temp, mock }: { sid: string; r
           ) : null}
           {rest.length ? (
             <details className="border-t border-rule pt-2">
-              <summary className="flex min-h-11 cursor-pointer items-center text-[16px] font-semibold text-slate">{COPY.s3.voi.more(rest.length)}</summary>
+              <summary className="flex min-h-11 cursor-pointer items-center text-[17px] font-semibold text-slate">{COPY.s3.voi.more(rest.length)}</summary>
               <div className="mt-3 grid gap-3 md:grid-cols-2">
                 {rest.map((v) => (
                   <VoiCard key={v.cellKey} compact item={v} current={confOf(v.cellKey)} demo={demoOf(v.cellKey)} onSet={(val, note, by) => setCell(v.cellKey, val, note, by)} />
@@ -241,7 +241,7 @@ export function PlanScreen({ sid, region, loaded, temp, mock }: { sid: string; r
                 <select
                   value={sel?.id}
                   onChange={(e) => setUi((u) => ({ ...u, resident: { ...(u.resident ?? {}), [sid]: e.target.value } }))}
-                  className="min-h-11 max-w-full rounded-[3px] border-2 border-slate bg-paper px-2 text-[16px] text-ink"
+                  className="min-h-11 max-w-full rounded-[3px] border-2 border-slate bg-paper px-2 text-[17px] text-ink"
                   aria-label={COPY.s3.mini.title}
                 >
                   {residents.map((r) => (
@@ -262,16 +262,16 @@ export function PlanScreen({ sid, region, loaded, temp, mock }: { sid: string; r
                 countN={view.countN}
                 flashCodes={flashMini as Set<FnCode>}
               >
-                <p className="num mt-3 mb-0 text-[16px]" data-b1="1">
+                <p className="num mt-3 mb-0 text-[17px]" data-b1="1">
                   {COPY.s3.mini.b1(view.b1.distKm.toFixed(1), view.b1.countY)}
                   {!view.b1.walkable && sel.mode !== "car" ? <strong className="font-semibold text-ink"> {COPY.s3.mini.notWalkable}</strong> : null}
                 </p>
-                <p className="num mt-2 mb-0 border border-dashed border-pencil px-3 py-2 text-[15px] font-medium" data-steps="1">
+                <p className="num mt-2 mb-0 border border-dashed border-pencil px-3 py-2 text-[14px] font-medium" data-steps="1">
                   {COPY.s3.mini.steps(core.length, view.b1.countY, view0.countY, conf.length ? view.countY : null)}
                 </p>
               </ResidentCard>
             ) : (
-              <p className="mt-2 mb-0 text-[16px] text-pencil-ink">{COPY.s3.mini.noResidents}</p>
+              <p className="mt-2 mb-0 text-[17px] text-pencil-ink">{COPY.s3.mini.noResidents}</p>
             )}
           </section>
 
@@ -287,7 +287,7 @@ export function PlanScreen({ sid, region, loaded, temp, mock }: { sid: string; r
         <section className="min-w-0 border-t-2 border-ink pt-3" aria-label="이어받는 곳 지도">
           <div className="mb-2 flex flex-wrap items-baseline justify-between gap-2">
             <h2 className={h2}>
-              {COPY.s3.mapTitle} <span className="text-[15px] font-medium text-pencil-ink">{COPY.modeOfficer[mapMode]}</span>
+              {COPY.s3.mapTitle} <span className="text-[14px] font-medium text-pencil-ink">{COPY.modeOfficer[mapMode]}</span>
             </h2>
             <ul className="m-0 flex list-none flex-wrap gap-x-4 p-0 text-[14px] text-ink">
               {COPY.s3.mapLegend.map(([k, t]) => (
@@ -306,7 +306,7 @@ export function PlanScreen({ sid, region, loaded, temp, mock }: { sid: string; r
           {socialOn && plan.socialHubs.length ? (
             <section className="border-t-2 border-ink pt-3" data-social="1">
               <h2 className={h2}>{COPY.s3.social.title}</h2>
-              <p className="mt-2 mb-0 text-[16px]">{COPY.s3.social.line(plan.socialHubs.map((h) => resName(region, h)).join("·"))}</p>
+              <p className="mt-2 mb-0 text-[17px]">{COPY.s3.social.line(plan.socialHubs.map((h) => resName(region, h)).join("·"))}</p>
             </section>
           ) : null}
           <FeedbackQueue
@@ -336,7 +336,7 @@ function ConfirmedList({
 }) {
   return (
     <section className="border-t border-rule pt-2" data-confirmed={conf.length}>
-      <h3 className="m-0 text-[18px] font-semibold">{COPY.s3.voi.confirmedTitle}</h3>
+      <h3 className="m-0 text-[20px] font-semibold">{COPY.s3.voi.confirmedTitle}</h3>
       <ul className="m-0 mt-1 flex list-none flex-col p-0">
         {conf.map((c, i) => {
           const def = registry.get(c.cellKey);
@@ -350,12 +350,12 @@ function ConfirmedList({
               <Badge tone="browser">{COPY.badge.thisBrowser}</Badge>
             );
           return (
-            <li key={c.cellKey} className="flex flex-wrap items-center gap-x-3 gap-y-1 border-b border-rule py-2 text-[16px]" data-confirmed-cell={c.cellKey}>
+            <li key={c.cellKey} className="flex flex-wrap items-center gap-x-3 gap-y-1 border-b border-rule py-2 text-[17px]" data-confirmed-cell={c.cellKey}>
               <span className="min-w-0 font-semibold">{def?.label ?? c.cellKey}</span>
               {c.value === "Y" ? <Stamp size="sm" word={word} tilt={i % 2 ? -4 : -8} /> : <span className="font-semibold">{word}</span>}
               {c.note ? <span className="text-pencil-ink">{c.note}</span> : null}
               {badge}
-              <button type="button" onClick={() => onUndo(c.cellKey)} className="min-h-11 rounded-[3px] border-2 border-slate px-3 text-[15px] font-semibold text-slate hover:bg-cell">
+              <button type="button" onClick={() => onUndo(c.cellKey)} className="min-h-11 rounded-[3px] border-2 border-slate px-3 text-[14px] font-semibold text-slate hover:bg-cell">
                 {COPY.s3.voi.unknown}
               </button>
             </li>

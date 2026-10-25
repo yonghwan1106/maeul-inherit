@@ -307,7 +307,19 @@ a {
     transform: translateY(0) scale(1) rotate(var(--tilt, 0deg));
   }
 }
+@keyframes line-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 @layer components {
+/* S3 map: a line that appears after a confirmation fades in once (the first paint shows every line at once) */
+.line-in {
+  animation: line-in 0.6s ease-out both;
+}
 .scene-shutter {
   transform-origin: top center;
   animation: shutter-down 0.6s cubic-bezier(0.3, 0.1, 0.3, 1) both;
@@ -358,6 +370,7 @@ a {
   }
   .scene-shutter,
   .scene-mark,
+  .line-in,
   .stamp-land,
   .shutter-drop {
     animation: none !important;

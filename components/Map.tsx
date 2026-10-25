@@ -2,7 +2,7 @@
 // SVG map of 화산면 on a ruled notice-board ground — no map library (spec 2). ● 리 대표점, ○ 마을회관·경로당,
 // ■ 하나로마트·농협·우체국, ◇ 등록 업소, grey = 식료품 업소 0곳 리. Optional lines from the closed store to the resources that take
 // over its work (solid = 확실, dashed = 확인 중).
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import type { FnCode, Region, Resource } from "@/lib/types";
 import { bboxOf, makeProjector } from "@/lib/geo";
 import { COPY } from "@/lib/copy";
@@ -41,11 +41,10 @@ function locOf(region: Region, r: Resource): { lat: number; lon: number } | null
 }
 
 export function VillageMap({ region, store, lines = [], focusVillageId, pointId, onVillageClick, ariaLabel }: MapProps) {
-  const [shown, setShown] = useState(false);
-  useEffect(() => {
-    const t = window.setTimeout(() => setShown(true), 30);
-    return () => window.clearTimeout(t);
-  }, []);
+  // Lines are drawn at full strength from the first paint (nothing on S3 moves by itself). Only a line that appears
+  // later — after a confirmation or a mode switch, i.e. a user action — fades in once (.line-in).
+  const [firstKeys] = useState(() => new Set(lines.map((l) => `${l.resId}-${l.tri}`)));
+  const isNew = (k: string) => !firstKeys.has(k);
 
   const resById = useMemo(() => new Map(region.resources.map((r) => [r.id, r])), [region]);
 
@@ -133,7 +132,7 @@ export function VillageMap({ region, store, lines = [], focusVillageId, pointId,
               if (!r || !loc) return null;
               const e = proj(loc.lat, loc.lon);
               return (
-                <g key={`${l.resId}-${l.tri}`} className="fx-line" style={{ opacity: shown ? 1 : 0 }} data-line={l.resId} data-line-tri={l.tri}>
+                <g key={`${l.resId}-${l.tri}`} className={isNew(`${l.resId}-${l.tri}`) ? "line-in" : undefined} data-line={l.resId} data-line-tri={l.tri}>
                   <line
                     x1={storeXY.x}
                     y1={storeXY.y}
@@ -172,7 +171,7 @@ export function VillageMap({ region, store, lines = [], focusVillageId, pointId,
                 stroke={focus || sel ? "var(--ink)" : "var(--paper)"}
                 strokeWidth={focus || sel ? 3 : 1.5}
               />
-              <text x={clampX(x)} y={Math.max(y - 12, 14)} textAnchor="middle" fontSize={focus ? 17 : 15} fontWeight={focus ? 800 : 600} fill={grey ? "var(--pencil-ink)" : "var(--ink)"}>
+              <text x={clampX(x)} y={Math.max(y - 12, 14)} textAnchor="middle" fontSize={focus ? 17 : 14} fontWeight={focus ? 800 : 600} fill={grey ? "var(--pencil-ink)" : "var(--ink)"}>
                 {v.name}
               </text>
             </g>
@@ -184,7 +183,7 @@ export function VillageMap({ region, store, lines = [], focusVillageId, pointId,
           <g data-store="closed">
             <rect x={storeXY.x - 9} y={storeXY.y - 9} width={18} height={18} rx={1} fill="var(--ink)" stroke="var(--paper)" strokeWidth={2} />
             <path d={`M${storeXY.x - 5} ${storeXY.y - 5}L${storeXY.x + 5} ${storeXY.y + 5}M${storeXY.x + 5} ${storeXY.y - 5}L${storeXY.x - 5} ${storeXY.y + 5}`} stroke="var(--paper)" strokeWidth={2.2} />
-            <text x={Math.min(Math.max(storeXY.x, 64), W - 64)} y={storeXY.y + 27} textAnchor="middle" fontSize={16} fontWeight={600} fill="var(--ink)" stroke="var(--paper)" strokeWidth={4} paintOrder="stroke">
+            <text x={Math.min(Math.max(storeXY.x, 64), W - 64)} y={storeXY.y + 27} textAnchor="middle" fontSize={17} fontWeight={600} fill="var(--ink)" stroke="var(--paper)" strokeWidth={4} paintOrder="stroke">
               {store.name}
             </text>
           </g>
@@ -202,7 +201,7 @@ export function VillageMap({ region, store, lines = [], focusVillageId, pointId,
                 storeXY ? Math.min(Math.hypot(e.x + d[0] - storeXY.x, e.y + d[1] - storeXY.y), Math.hypot(e.x + d[0] - storeXY.x, e.y + d[1] - storeXY.y - 22)) : 99;
               const [ox, oy] = offs.find((d) => far(d) >= 30) ?? offs.reduce((m, d) => (far(d) > far(m) ? d : m));
               return (
-                <g key={`n-${l.resId}-${l.tri}`} className="fx-line" style={{ opacity: shown ? 1 : 0 }}>
+                <g key={`n-${l.resId}-${l.tri}`} className={isNew(`${l.resId}-${l.tri}`) ? "line-in" : undefined}>
                   <circle cx={e.x + ox} cy={e.y + oy} r={10} fill={l.tri === "Y" ? "var(--ink)" : "var(--paper)"} stroke="var(--ink)" strokeWidth={1.5} strokeDasharray={l.tri === "Y" ? undefined : "3 2"} />
                   <text x={e.x + ox} y={e.y + oy + 4.5} textAnchor="middle" fontSize={14} fontWeight={600} fill={l.tri === "Y" ? "var(--paper)" : "var(--ink)"}>
                     {i + 1}
@@ -214,7 +213,7 @@ export function VillageMap({ region, store, lines = [], focusVillageId, pointId,
 
       </svg>
       {storeXY && locatedLines.length > 0 ? (
-        <ol className="m-0 mt-2 flex list-none flex-col p-0 text-[15px]" data-map-legend="1">
+        <ol className="m-0 mt-2 flex list-none flex-col p-0 text-[14px]" data-map-legend="1">
           {locatedLines.map((l, i) => (
             <li key={`lg-${l.resId}-${l.tri}`} className="flex items-start gap-2 border-b border-rule py-1.5" data-line-label={l.resId}>
               <span className={`inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full border-[1.5px] border-ink text-[14px] font-semibold ${l.tri === "Y" ? "bg-ink text-paper" : "border-dashed bg-paper text-ink"}`}>{i + 1}</span>
@@ -228,7 +227,7 @@ export function VillageMap({ region, store, lines = [], focusVillageId, pointId,
         </ol>
       ) : null}
       {unlocatedLines.length > 0 ? (
-        <figcaption className="mt-2 flex flex-wrap items-center gap-2 text-[15px]">
+        <figcaption className="mt-2 flex flex-wrap items-center gap-2 text-[14px]">
           <span className="text-pencil-ink">{COPY.s3.noLocation}:</span>
           {unlocatedLines.map((l) => (
             <span

@@ -35,7 +35,7 @@ export function GateButton({ sid, step, note }: { sid: string; step: Step; note?
       <table className="w-max max-w-full border-collapse border-2 border-ink bg-paper" aria-label={COPY.gate.boxTitle}>
         <tbody>
           <tr>
-            <th rowSpan={2} scope="row" className="w-9 border-r-2 border-ink px-1 text-center text-[15px] font-semibold" style={{ writingMode: "vertical-rl", letterSpacing: "0.4em" }}>
+            <th rowSpan={2} scope="row" className="w-9 border-r-2 border-ink px-1 text-center text-[14px] font-semibold" style={{ writingMode: "vertical-rl", letterSpacing: "0.4em" }}>
               {COPY.gate.boxTitle}
             </th>
             {STEPS.map((g) => (
@@ -56,7 +56,7 @@ export function GateButton({ sid, step, note }: { sid: string; step: Step; note?
                         setPressed(true);
                         setGates((x) => ({ ...x, [step]: { at: new Date().toISOString(), role: "담당자" } }));
                       }}
-                      className={`inline-flex min-h-11 w-full flex-col items-center justify-center rounded-[3px] px-1 py-1 text-[15px] font-semibold leading-tight ${
+                      className={`inline-flex min-h-11 w-full flex-col items-center justify-center rounded-[3px] px-1 py-1 text-[14px] font-semibold leading-tight ${
                         rec ? "bg-transparent text-ink" : "border-2 border-slate-deep bg-slate text-paper hover:bg-slate-deep"
                       }`}
                       aria-pressed={!!rec}
@@ -78,12 +78,12 @@ export function GateButton({ sid, step, note }: { sid: string; step: Step; note?
       </table>
       <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
         {recordText ? (
-          <span className="text-[15px] font-medium text-ink" data-gate-record={step}>
+          <span className="text-[14px] font-medium text-ink" data-gate-record={step}>
             {recordText}
           </span>
         ) : null}
-        {step === "g3" && !rec ? <span className="text-[15px] font-semibold text-ink">{COPY.gate.beforeApprove}</span> : null}
-        {note ? <span className="text-[15px] text-pencil-ink">{note}</span> : null}
+        {step === "g3" && !rec ? <span className="text-[14px] font-semibold text-ink">{COPY.gate.beforeApprove}</span> : null}
+        {note ? <span className="text-[14px] text-pencil-ink">{note}</span> : null}
       </div>
     </div>
   );
@@ -102,7 +102,7 @@ export function GatedLink({ sid, step, href, label }: { sid: string; step: Step;
         >
           {label}
         </span>
-        <span className="text-[15px] text-pencil-ink">{COPY.gate.locked}</span>
+        <span className="text-[14px] text-pencil-ink">{COPY.gate.locked}</span>
       </span>
     );
   }

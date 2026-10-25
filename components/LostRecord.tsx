@@ -44,15 +44,15 @@ export function LostRecord({ sid, store, fns, gaps }: { sid: string; store: Stor
   return (
     <section className="min-w-0 border-t-2 border-ink pt-3" data-lost="1">
       <h2 className="m-0 text-[20px] font-semibold">{COPY.s3.lost.title}</h2>
-      <dl className="m-0 mt-2 grid grid-cols-[minmax(0,8.5em)_minmax(0,1fr)] border-t border-rule text-[16px]">
+      <dl className="m-0 mt-2 grid grid-cols-[minmax(0,8.5em)_minmax(0,1fr)] border-t border-rule text-[17px]">
         {rows.map(([k, v]) => (
           <div key={k} className="contents">
-            <dt className="border-b border-rule py-1.5 pr-2 text-[15px] font-semibold text-pencil-ink">{k}</dt>
+            <dt className="border-b border-rule py-1.5 pr-2 text-[14px] font-semibold text-pencil-ink">{k}</dt>
             <dd className="m-0 border-b border-l border-rule py-1.5 pl-3">{v}</dd>
           </div>
         ))}
       </dl>
-      <button type="button" onClick={download} className="mt-3 min-h-11 rounded-[3px] border-2 border-slate px-4 text-[16px] font-semibold text-slate hover:bg-cell">
+      <button type="button" onClick={download} className="mt-3 min-h-11 rounded-[3px] border-2 border-slate px-4 text-[17px] font-semibold text-slate hover:bg-cell">
         {COPY.s3.lost.download}
       </button>
       <p className="mt-2 mb-0 text-[14px] text-pencil-ink">{COPY.s3.lost.note}</p>

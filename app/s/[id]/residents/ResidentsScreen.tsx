@@ -134,7 +134,7 @@ export function ResidentsScreen({
               <span className="text-[17px] font-semibold">{name}</span>
               {tourBlocked(o.resId) && who.id === "me" ? <span className="text-[14px] text-pencil-ink">({COPY.s4.badDays})</span> : null}
             </div>
-            <div className="mt-1.5 flex flex-wrap items-center gap-x-4 gap-y-1.5 text-[16px]">
+            <div className="mt-1.5 flex flex-wrap items-center gap-x-4 gap-y-1.5 text-[17px]">
               {parts.y ? (
                 <span className="flex items-center gap-2">
                   <span>{parts.y}</span>
@@ -149,7 +149,7 @@ export function ResidentsScreen({
               ) : null}
             </div>
             {h ? (
-              <dl className="m-0 mt-2 grid grid-cols-[5.5em_minmax(0,1fr)] border-t border-rule text-[15px] leading-snug" data-howto={o.resId}>
+              <dl className="m-0 mt-2 grid grid-cols-[5.5em_minmax(0,1fr)] border-t border-rule text-[14px] leading-snug" data-howto={o.resId}>
                 {h.how ? (
                   <>
                     <dt className="border-b border-rule py-1 pr-2 font-semibold text-pencil-ink">{COPY.s4.howToLabel}</dt>
@@ -230,7 +230,7 @@ export function ResidentsScreen({
   const test = testDigest ? groundText(COPY.s4.testSentence, testDigest, regionNames) : null;
 
   const residentViews = residents.map((r) => residentView(region, cells, r, fns));
-  const h2 = "m-0 text-[22px] font-semibold leading-snug";
+  const h2 = "m-0 text-[24px] font-semibold leading-snug";
   const groups = (["Y", "U", "N"] as const).map((t) => ({ t, rows: myView.rows.filter((r) => r.tri === t) })).filter((g) => g.rows.length);
   const groupTitle = { Y: COPY.s4.bigText.groupY, U: COPY.s4.bigText.groupU, N: COPY.s4.bigText.groupN };
 
@@ -245,8 +245,8 @@ export function ResidentsScreen({
           </div>
         ) : null}
         <h1 className="m-0 border-b-2 border-ink pb-2 font-normal">
-          <span className="sign block text-[32px] leading-[1.1] sm:text-[38px]">{s.store.name}</span>
-          <span className="sign mt-1 block text-[22px] leading-tight text-pencil-ink sm:text-[24px]">{COPY.nav.s4}</span>
+          <span className="sign block text-[30px] leading-[1.1] sm:text-[38px]">{s.store.name}</span>
+          <span className="sign mt-1 block text-[20px] leading-tight text-ink sm:text-[24px]">{COPY.nav.s4}</span>
         </h1>
       </div>
 
@@ -273,7 +273,7 @@ export function ResidentsScreen({
         <div className="border-t-2 border-ink pt-3">
           <h2 className={h2}>{COPY.s4.myCond}</h2>
           <div className="mt-2 grid grid-cols-1 border-t border-rule sm:grid-cols-[8em_minmax(0,1fr)]">
-            <label htmlFor="my-point" className="border-b border-rule py-2 pr-3 text-[16px] font-semibold text-pencil-ink sm:py-3">{COPY.s4.livePlace}</label>
+            <label htmlFor="my-point" className="border-b border-rule py-2 pr-3 text-[17px] font-semibold text-pencil-ink sm:py-3">{COPY.s4.livePlace}</label>
             <div className="border-b border-rule py-2 sm:border-l sm:py-2 sm:pl-3">
               <select id="my-point" value={myPoint} onChange={(e) => setMyPoint(e.target.value)} className="min-h-11 max-w-full rounded-[3px] border-2 border-slate bg-paper px-2 text-[17px] text-ink">
                 {region.villages.map((v) => (
@@ -289,7 +289,7 @@ export function ResidentsScreen({
                 ))}
               </select>
             </div>
-            <span id="bad-days" className="border-b border-rule py-2 pr-3 text-[16px] font-semibold text-pencil-ink sm:py-3">{COPY.s4.badDays}</span>
+            <span id="bad-days" className="border-b border-rule py-2 pr-3 text-[17px] font-semibold text-pencil-ink sm:py-3">{COPY.s4.badDays}</span>
             <div className="flex flex-wrap gap-1.5 border-b border-rule py-2 sm:border-l sm:pl-3" role="group" aria-labelledby="bad-days">
               {DAYS.map((d) => {
                 const on = badDays.includes(d);
@@ -323,6 +323,58 @@ export function ResidentsScreen({
         </ResidentCard>
       </section>
 
+      {/* 마을 안내문 — big-text notice */}
+      <section className="min-w-0" data-bigtext="1">
+        <div className="border-t-2 border-ink pt-3">
+          <h2 className={h2}>{COPY.s4.bigText.title}</h2>
+          <p className="m-0 text-[14px] text-pencil-ink">{COPY.s4.bigText.note}</p>
+        </div>
+        <article className="mt-3 max-w-3xl border-2 border-ink bg-paper" style={{ boxShadow: "inset 0 0 0 3px var(--paper), inset 0 0 0 4px var(--rule)" }}>
+          <header className="flex flex-wrap items-baseline justify-between gap-2 border-b-2 border-ink px-5 py-3">
+            <span className="sign text-[30px] leading-none">{COPY.s4.bigText.sheet}</span>
+            <span className="text-[14px] text-pencil-ink">
+              {COPY.modeResident[myMode]}, {pointName(region, myPoint)}
+            </span>
+          </header>
+          <div className="grid grid-cols-1 border-b border-rule sm:grid-cols-3">
+            {groups.map((g) => (
+              <div key={g.t} className={`border-b border-rule px-5 py-3 sm:border-b-0 sm:border-r last:border-r-0 ${g.t === "U" ? "hatch" : ""}`} data-notice-group={g.t}>
+                <p className="m-0 mb-2 flex items-start gap-2">
+                  {g.t === "Y" ? (
+                    <Stamp size="sm" tilt={-6} className="mt-0.5" />
+                  ) : g.t === "U" ? (
+                    <PencilWord className="mt-1" />
+                  ) : (
+                    // 끊김: the diagonal crosses only this blank mark cell, never the words of the notice
+                    <span className="slash mt-0.5 inline-flex h-9 w-12 shrink-0 items-center justify-center border border-ink">
+                      <GoneWord />
+                    </span>
+                  )}
+                  <span className="bg-paper px-1 text-[20px] font-semibold leading-snug [text-wrap:balance]">{groupTitle[g.t]}</span>
+                </p>
+                <ul className="m-0 list-none p-0 text-[20px] leading-snug">
+                  {g.rows.map((r) => (
+                    <li key={r.code} className="bg-paper/85 py-1">
+                      <span className="font-semibold">{COPY.fnName[r.code]}</span>
+                      {r.resName && r.tri !== "N" ? (
+                        <span className="block text-[20px] text-ink">
+                          {r.resName}
+                          {r.note ? ` (${r.note})` : ""}
+                        </span>
+                      ) : null}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+          <p className="m-0 px-5 pt-2 text-[17px] text-pencil-ink">{COPY.s4.bigText.groupNote}</p>
+          <div className="px-5 pb-4">
+            <DocBlock req={residentReq} pre={findPre(residentReq)} big />
+          </div>
+        </article>
+      </section>
+
       {/* resident ledgers */}
       <section className="grid grid-cols-1 items-start gap-6 lg:grid-cols-3" data-residents={residents.length}>
         {residentViews.map((v) => (
@@ -337,47 +389,9 @@ export function ResidentsScreen({
             narrow
           >
             {rankLines(v, { id: v.resident.id, name: v.resident.name, pointId: v.resident.pointId, mode: v.resident.mode })}
-            {socialOn ? <p className="mt-2 mb-0 border-t border-rule pt-2 text-[16px] font-medium">{COPY.s4.socialLine}</p> : null}
+            {socialOn ? <p className="mt-2 mb-0 border-t border-rule pt-2 text-[17px] font-medium">{COPY.s4.socialLine}</p> : null}
           </ResidentCard>
         ))}
-      </section>
-
-      {/* 마을 안내문 — big-text notice */}
-      <section className="min-w-0" data-bigtext="1">
-        <div className="border-t-2 border-ink pt-3">
-          <h2 className={h2}>{COPY.s4.bigText.title}</h2>
-          <p className="m-0 text-[15px] text-pencil-ink">{COPY.s4.bigText.note}</p>
-        </div>
-        <article className="mt-3 max-w-3xl border-2 border-ink bg-paper" style={{ boxShadow: "inset 0 0 0 3px var(--paper), inset 0 0 0 4px var(--rule)" }}>
-          <header className="flex flex-wrap items-baseline justify-between gap-2 border-b-2 border-ink px-5 py-3">
-            <span className="sign text-[30px] leading-none">{COPY.s4.bigText.sheet}</span>
-            <span className="text-[15px] text-pencil-ink">
-              {COPY.modeResident[myMode]}, {pointName(region, myPoint)}
-            </span>
-          </header>
-          <div className="grid grid-cols-1 border-b border-rule sm:grid-cols-3">
-            {groups.map((g) => (
-              <div key={g.t} className={`border-b border-rule px-5 py-3 sm:border-b-0 sm:border-r last:border-r-0 ${g.t === "U" ? "hatch" : g.t === "N" ? "slash" : ""}`} data-notice-group={g.t}>
-                <p className="m-0 mb-1.5 flex items-center gap-2">
-                  {g.t === "Y" ? <Stamp size="sm" tilt={-6} /> : g.t === "U" ? <PencilWord /> : <GoneWord className="border border-ink" />}
-                  <span className="bg-paper px-1 text-[15px] font-semibold">{groupTitle[g.t]}</span>
-                </p>
-                <ul className="m-0 list-none p-0 text-[20px] leading-snug">
-                  {g.rows.map((r) => (
-                    <li key={r.code} className="bg-paper/85 py-0.5">
-                      <span className="font-semibold">{COPY.fnName[r.code]}</span>
-                      {r.resName && r.tri !== "N" ? <span className="text-[17px] text-pencil-ink"> {r.resName}{r.note ? ` (${r.note})` : ""}</span> : null}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-          <p className="m-0 px-5 pt-2 text-[14px] text-pencil-ink">{COPY.s4.bigText.groupNote}</p>
-          <div className="px-5 pb-4">
-            <DocBlock req={residentReq} pre={findPre(residentReq)} big />
-          </div>
-        </article>
       </section>
 
       {/* agency request tabs */}
@@ -394,13 +408,13 @@ export function ResidentsScreen({
                 role="tab"
                 aria-selected={curTab?.id === t.id}
                 onClick={() => setTab(t.id)}
-                className={`-mb-[2px] min-h-11 rounded-t-[3px] border-2 px-3 text-[16px] font-semibold ${curTab?.id === t.id ? "border-ink border-b-slate bg-slate text-paper" : "border-rule border-b-ink bg-paper text-slate hover:bg-cell"}`}
+                className={`-mb-[2px] min-h-11 rounded-t-[3px] border-2 px-3 text-[17px] font-semibold ${curTab?.id === t.id ? "border-ink border-b-slate bg-slate text-paper" : "border-rule border-b-ink bg-paper text-slate hover:bg-cell"}`}
               >
                 {t.label}
               </button>
             ))}
           </div>
-          {curTab?.head ? <p className="mt-3 mb-0 text-[16px] font-semibold text-ink">{curTab.head}</p> : null}
+          {curTab?.head ? <p className="mt-3 mb-0 text-[17px] font-semibold text-ink">{curTab.head}</p> : null}
           {agencyReq ? <DocBlock key={curTab?.id} req={agencyReq} pre={findPre(agencyReq)} /> : null}
         </section>
       ) : null}
@@ -414,19 +428,19 @@ export function ResidentsScreen({
           {test ? (
             <li className="border-b border-rule py-3" data-test-sentence={test.pass ? "pass" : "blocked"}>
               <Badge tone="demo">{COPY.s4.filtered.testBadge}</Badge>
-              <p className={`mt-1.5 mb-0 text-[19px] ${test.pass ? "" : "text-ink line-through decoration-ink decoration-2"}`}>{COPY.s4.testSentence}</p>
+              <p className={`mt-1.5 mb-0 text-[20px] ${test.pass ? "" : "text-ink line-through decoration-ink decoration-2"}`}>{COPY.s4.testSentence}</p>
               {test.blocked.map((b, i) => (
-                <p key={i} className="mt-1 mb-0 text-[16px] font-semibold text-ink">
+                <p key={i} className="mt-1 mb-0 text-[17px] font-semibold text-ink">
                   {b.reason}
                 </p>
               ))}
             </li>
           ) : null}
-          {examples.length ? <li className="pt-3 text-[15px] font-semibold text-pencil-ink">{COPY.s4.e4Examples}</li> : null}
+          {examples.length ? <li className="pt-3 text-[14px] font-semibold text-pencil-ink">{COPY.s4.e4Examples}</li> : null}
           {examples.map((e, i) => (
             <li key={i} className="border-b border-rule py-3">
               <p className="m-0 text-[17px] text-ink line-through decoration-ink decoration-2">{e.sentence}</p>
-              <p className="mt-1 mb-0 text-[15px] font-semibold text-ink">{e.reason}</p>
+              <p className="mt-1 mb-0 text-[14px] font-semibold text-ink">{e.reason}</p>
             </li>
           ))}
         </ul>
@@ -437,7 +451,7 @@ export function ResidentsScreen({
       </section>
 
       {toast ? (
-        <div role="status" className="fixed inset-x-4 bottom-4 z-50 mx-auto max-w-md rounded-[3px] border-2 border-paper bg-ink px-4 py-3 text-center text-[16px] font-semibold text-paper outline outline-2 outline-ink" data-toast="1">
+        <div role="status" className="fixed inset-x-4 bottom-4 z-50 mx-auto max-w-md rounded-[3px] border-2 border-paper bg-ink px-4 py-3 text-center text-[17px] font-semibold text-paper outline outline-2 outline-ink" data-toast="1">
           {toast}
         </div>
       ) : null}
@@ -463,14 +477,14 @@ function DocBlock({ req, pre, big = false }: { req: ComposeRequest; pre: Compose
       alive = false;
     };
   }, [key, need]);
-  if (!res) return <p className="mt-3 mb-0 text-[16px] text-pencil-ink">{COPY.s4.noDoc}</p>;
+  if (!res) return <p className="mt-3 mb-0 text-[17px] text-pencil-ink">{COPY.s4.noDoc}</p>;
   return (
     <div className="mt-3 flex flex-col gap-2" data-doc={req.docType} data-doc-mode={res.mode}>
       <div className="flex flex-wrap items-center gap-2">
         <ModeBadge mode={res.template ? "template" : res.mode} model={res.model} at={res.generatedAt} />
       </div>
       <GroundingPanel grounding={res.grounding} template={res.template} fallbackReason={res.fallbackReason} />
-      <div className={`whitespace-pre-line ${big ? "note-paper measure pt-[0.35em] text-[22px] font-medium" : "border border-rule bg-paper p-4 text-[17px] leading-relaxed"}`}>{res.text}</div>
+      <div className={`whitespace-pre-line ${big ? "note-paper measure pt-[0.35em] text-[20px] font-medium sm:text-[24px]" : "border border-rule bg-paper p-4 text-[17px] leading-relaxed"}`}>{res.text}</div>
     </div>
   );
 }
