@@ -91,6 +91,17 @@ export default function Home() {
             <p className="measure mt-5 mb-0 text-[20px] leading-[1.6]">{l3}</p>
           </div>
 
+          {/* below 640 px the button sits right under the one-liner (inside the first screen); from 640 px it follows the ledger as before */}
+          <div className="sm:order-1 lg:col-start-1 lg:row-start-2">
+            <Link
+              href="/s/sc1_seungchi/functions"
+              className="inline-flex min-h-14 items-center rounded-[3px] border-2 border-slate-deep bg-slate px-7 text-[20px] font-semibold text-paper no-underline hover:bg-slate-deep"
+              data-cta="start"
+            >
+              {COPY.s0.start}
+            </Link>
+          </div>
+
           {/* 김순자 어르신의 장부 */}
           {view && kim && store ? (
             <section className="min-w-0 overflow-hidden border-2 border-ink bg-paper lg:col-start-2 lg:row-span-2 lg:row-start-1" data-card="s0-hero" aria-label={COPY.s0.ledgerTitle(kim.name)}>
@@ -168,18 +179,18 @@ export default function Home() {
                 <tfoot>
                   <tr>
                     <th scope="row" className="sign px-2 py-2 text-left text-[24px] font-normal sm:px-3">
-                      <span className="scene-mark block" style={delay(planTallyAt)}>{COPY.s0.tallyLabel}</span>
+                      <span className="scene-fade block" style={delay(planTallyAt)}>{COPY.s0.tallyLabel}</span>
                     </th>
                     <td className="vr hidden sm:table-cell" />
-                    {/* each total lands only after the last mark of its column (part of the same one scene) */}
+                    {/* each total appears only after the last mark of its column (opacity only: a scaled total overshot the box edge) */}
                     <td className="vr px-1 py-1 align-top">
-                      <div className="scene-mark" style={delay(planTallyAt)}>
+                      <div className="scene-fade" style={delay(planTallyAt)}>
                         <Tally y={view.countY} u={view.countU} n={view.countN} size={24} stack />
                       </div>
                     </td>
                     {viewDemo ? (
                       <td className="vr px-1 py-1 align-top">
-                        <div className="scene-mark" style={delay(afterTallyAt)}>
+                        <div className="scene-fade" style={delay(afterTallyAt)}>
                           <Tally y={viewDemo.countY} u={viewDemo.countU} n={viewDemo.countN} size={24} testAttr={false} stack />
                         </div>
                       </td>
@@ -195,16 +206,6 @@ export default function Home() {
               </div>
             </section>
           ) : null}
-
-          <div className="lg:col-start-1 lg:row-start-2">
-            <Link
-              href="/s/sc1_seungchi/functions"
-              className="inline-flex min-h-14 items-center rounded-[3px] border-2 border-slate-deep bg-slate px-7 text-[20px] font-semibold text-paper no-underline hover:bg-slate-deep"
-              data-cta="start"
-            >
-              {COPY.s0.start}
-            </Link>
-          </div>
         </section>
 
         {/* 이 마을의 형편 */}

@@ -328,6 +328,11 @@ a {
   animation: mark-in 0.34s ease-out both;
   animation-delay: var(--delay, 0s);
 }
+/* S0 total line: appears by opacity only (no scale), so the wide 「확인 후」 total never overshoots the ledger box edge */
+.scene-fade {
+  animation: line-in 0.34s ease-out both;
+  animation-delay: var(--delay, 0s);
+}
 /* response to a confirmation: the stamp lands in the cell that just became 확실 */
 .stamp-land {
   animation: mark-in 0.4s ease-out both;
@@ -370,6 +375,7 @@ a {
   }
   .scene-shutter,
   .scene-mark,
+  .scene-fade,
   .line-in,
   .stamp-land,
   .shutter-drop {
