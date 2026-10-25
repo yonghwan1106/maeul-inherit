@@ -126,7 +126,7 @@ export function FnTriCell({
       <FnIcon code={code} size={22} />
       <span className="text-[13px] font-semibold leading-tight">{COPY.fnName[code]}</span>
       <span className="text-[12px] leading-tight">{tri === "Y" ? "● " : tri === "U" ? "◐ " : "— "}{word}</span>
-      {sub ? <span className="line-clamp-2 text-[11px] leading-tight opacity-90">{sub}</span> : null}
+      {sub ? <span className="line-clamp-3 text-[11px] leading-tight opacity-90">{sub}</span> : null}
     </div>
   );
 }

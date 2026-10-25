@@ -192,6 +192,7 @@ export const COPY = {
     card: (name: string, age: number, mode: string, place: string) =>
       `${age >= 65 ? `${name} 어르신` : `${name} 씨`} · ${age}세 · ${mode} · ${place}`,
     rank: (i: number, res: string, fns: string, tri: string) => `${i}순위 ${res} — ${fns} (${tri})`,
+    rankMore: (fns: string, tri: string) => ` · ${fns} (${tri})`,
     socialLine: "마을회관으로 연결 제안: 사랑방·안부",
     fb: { used: "이용해 봤어요", failed: "안 됐어요", reasons: ["안 왔어요", "물건이 없어요", "너무 멀어요", "기타"], toast: "주민 제보로 담당자에게 올렸어요(이 브라우저에만 저장)" },
     bigText: { title: "큰 글씨 안내문", note: "시골 부모님께 그대로 보여 드릴 수 있는 안내문" },

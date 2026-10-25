@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
-import type { Confirmation, Mode, PlanDigest, Region, Resident, Scenario } from "@/lib/types";
+import type { Confirmation, FnCode, Mode, PlanDigest, Region, Resident, Scenario } from "@/lib/types";
 import type { ComposeRequest, ComposeResponse } from "@/lib/apiTypes";
 import { apiCompose } from "@/lib/api";
 import { groundText } from "@/lib/validate/grounding";
@@ -102,6 +102,14 @@ export function ResidentsScreen({
   };
   const lastFb = (rid: string, resId: string) => [...st.fb].reverse().find((f) => f.residentId === rid && f.resId === resId)?.kind;
 
+  // per-function status: a resource can carry some functions for sure and others still being checked
+  const rankText = (v: ResidentView, rank: number, name: string, fns: FnCode[]) => {
+    const sure = (f: FnCode) => v.rows.find((r) => r.code === f)?.tri === "Y";
+    const fy = fns.filter(sure), fu = fns.filter((f) => !sure(f));
+    const j = (xs: FnCode[]) => xs.map((f) => COPY.fnName[f]).join("·");
+    if (fy.length && fu.length) return COPY.s4.rank(rank, name, j(fy), COPY.tri.Y) + COPY.s4.rankMore(j(fu), COPY.tri.U);
+    return COPY.s4.rank(rank, name, j(fns), fy.length ? COPY.tri.Y : COPY.tri.U);
+  };
   const rankLines = (v: ResidentView, who: { id: string; name: string; pointId: string; mode: Mode }, ordered = v.ordered) => (
     <ol className="m-0 mt-3 flex list-none flex-col gap-2 p-0">
       {ordered.map((o, i) => {
@@ -111,7 +119,7 @@ export function ResidentsScreen({
         return (
           <li key={o.resId} className="rounded-xl border border-line bg-white p-2.5" data-rank={o.resId}>
             <span className="text-[16px] font-semibold">
-              {COPY.s4.rank(i + 1, name, o.fns.map((f) => COPY.fnName[f]).join("·"), COPY.tri[o.tri])}
+              {rankText(v, i + 1, name, o.fns)}
             </span>
             {tourBlocked(o.resId) && who.id === "me" ? <span className="ml-1 text-[14px] text-muted">({COPY.s4.badDays})</span> : null}
             <FeedbackButtons sent={lastFb(who.id, o.resId)} onSend={(kind, reason) => sendFb(who, o.resId, o.fns, kind, reason)} />

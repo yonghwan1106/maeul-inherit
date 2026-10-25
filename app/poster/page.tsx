@@ -36,7 +36,7 @@ export default function Poster() {
         {COPY.logo}
       </h1>
 
-      <div className="mt-5 grid gap-5" style={{ gridTemplateColumns: "360px 1fr", height: 300 }}>
+      <div className="mt-5 grid gap-5" style={{ gridTemplateColumns: "360px 1fr", height: 350 }}>
         {/* left 1/3: shutter (CSS) + grey icons */}
         <div className="flex flex-col rounded-2xl border border-line bg-card p-4">
           <div className="rounded-t-lg bg-band px-3 py-2 text-center text-[20px] font-bold text-white">
@@ -78,9 +78,9 @@ export default function Poster() {
               <div className="mt-3 grid grid-cols-3 gap-2">
                 {view.rows.map((r) => (
                   <div key={r.code} className={`flex flex-col items-center rounded-lg px-1 py-2 ${TRI_CLASS[r.tri]}`} data-tri={r.tri}>
-                    <FnIcon code={r.code} size={26} />
-                    <span className="text-[15px] font-semibold leading-tight">{COPY.fnName[r.code]}</span>
-                    <span className="text-[13px] leading-tight">
+                    <FnIcon code={r.code} size={30} />
+                    <span className="mt-0.5 text-[17px] font-semibold leading-tight">{COPY.fnName[r.code]}</span>
+                    <span className="text-[14px] leading-tight">
                       {r.tri === "Y" ? "● " : r.tri === "U" ? "◐ " : "— "}
                       {COPY.triResident[r.tri]}
                     </span>
