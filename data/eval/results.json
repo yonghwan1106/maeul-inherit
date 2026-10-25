@@ -1,7 +1,7 @@
 {
  "meta": {
-  "runAt": "2026-10-25T10:44:06.123Z",
-  "commit": "1e0940a",
+  "runAt": "2026-10-25T10:54:45.563Z",
+  "commit": "00d8b38",
   "seed": 42,
   "regionSha256": "0957c22af88a6b0e96149c3e6369e1bdd484ee0ad04d6427f32528c7a8b0f2c3",
   "paramsSha256": "8ce00e6ca5e88b23e36a8f0699f2df81f911d5360670ffee6aa2fcd20a36fd68",
@@ -12,7 +12,7 @@
    "data/eval/e1.json": "540695029fdedf460f9f1c6667427a636141825cdfbbdc042274016c17832fe3",
    "data/eval/e2.json": "e9aac090baf1348f1eeae97f390d125643d53a09b72c01965db6e9804f4c9da2",
    "data/eval/e3.json": "e23bd99ee2f652cfb6659c5ab578defb72562423f886afc0f2f22c82a754bbcb",
-   "data/eval/e4.json": "86914e9da5ac09417267e48d4ff9f76b67eaa0e63feb7624d1d9122bfe893f60",
+   "data/eval/e4.json": "4235b0be00fe58315b40ad28dc035948ceeedd1be0dd828d4f94537ba56da54f",
    "data/eval/engine_check.json": "dbba38702ea2f9c7fd6539bd432dc3508502efe70d594ce9543218eddd0606f6",
    "data/eval/bench.json": "44e63afe3cab7ccf64023a1bc537125f124de2978965730d09d8cb9298cb8031",
    "data/eval/e2_cases.json": "9013b119119b9465178abeffbca1f711f4c48c953b40bad47c7384b98611b7d0",
@@ -602,7 +602,7 @@
   }
  },
  "e4": {
-  "runAt": "2026-10-25T10:31:11.127Z",
+  "runAt": "2026-10-25T10:54:44.769Z",
   "prompt": "l4-v1",
   "n": 30,
   "firstPass": 1,
@@ -614,7 +614,7 @@
   "models": [
    "claude-haiku-5-5"
   ],
-  "generatedAt": "2026-10-25T10:30:33.641Z",
+  "generatedAt": "2026-10-25T10:54:44.769Z",
   "unit": {
    "label": "단위 시험(같은 팀 작성)",
    "nWrong": 20,
@@ -657,7 +657,7 @@
    }
   },
   "outOfScope": {
-   "promiseLike": 7,
+   "promiseLike": 2,
    "n": 30,
    "note": "근거 대조기 검사 항목 밖 — 약속 표현(「다시 안내드리겠습니다」 등)이 남은 최종 문서 수(정규식 집계)"
   },

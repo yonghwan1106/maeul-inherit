@@ -43,20 +43,24 @@ export function digestFor(region: Region, plan: Plan, target: DigestTarget, scen
     for (const o of target.ordered) {
       const r = idx.res.get(o.resId);
       if (!r) continue;
+      // one item per (resource, status): a resource that carries some functions for sure and others still
+      // unconfirmed (e.g. tour A: F01 F02 sure, F05 unconfirmed) must not list the unconfirmed ones as sure.
+      const fY = o.fns.filter((f) => target.perFn[f]?.tri === "Y");
+      const fU = o.fns.filter((f) => target.perFn[f]?.tri !== "Y");
       const days = daysFromNotes(r, conf);
-      items.push({ resId: r.id, name: r.name, fns: o.fns.map((f) => FNS[f].name), status: o.tri === "Y" ? "확실" : "확인 중", ...(days.length ? { days } : {}) });
+      if (fY.length) items.push({ resId: r.id, name: r.name, fns: fY.map((f) => FNS[f].name), status: "확실", ...(days.length ? { days } : {}) });
+      if (fU.length) items.push({ resId: r.id, name: r.name, fns: fU.map((f) => FNS[f].name), status: "확인 중" });
     }
     for (const [fn, v] of Object.entries(target.perFn) as [FnCode, { tri: string }][]) if (v.tri === "N") gaps.push(FNS[fn].name);
     counts = { Y: target.countY, U: target.countU, N: target.countN };
     if (target.b1.resId) numbers.add(target.b1.distKm);
   } else {
     villageId = target.villageId;
-    const byRes = new Map<string, { fns: FnCode[]; y: boolean }>();
+    const byRes = new Map<string, { fY: FnCode[]; fU: FnCode[] }>();
     for (const [fn, list] of Object.entries(target.byFn) as [FnCode, { resId: string; tri: string }[]][]) {
       for (const a of list) {
-        const cur = byRes.get(a.resId) ?? { fns: [], y: false };
-        cur.fns.push(fn);
-        cur.y = cur.y || a.tri === "Y";
+        const cur = byRes.get(a.resId) ?? { fY: [], fU: [] };
+        (a.tri === "Y" ? cur.fY : cur.fU).push(fn);
         byRes.set(a.resId, cur);
       }
     }
@@ -64,8 +68,10 @@ export function digestFor(region: Region, plan: Plan, target: DigestTarget, scen
       const r = idx.res.get(rid);
       const v = byRes.get(rid);
       if (!r || !v) continue;
+      const fU = v.fU.filter((f) => !v.fY.includes(f));
       const days = daysFromNotes(r, conf);
-      items.push({ resId: r.id, name: r.name, fns: v.fns.map((f) => FNS[f].name), status: v.y ? "확실" : "확인 중", ...(days.length ? { days } : {}) });
+      if (v.fY.length) items.push({ resId: r.id, name: r.name, fns: v.fY.map((f) => FNS[f].name), status: "확실", ...(days.length ? { days } : {}) });
+      if (fU.length) items.push({ resId: r.id, name: r.name, fns: fU.map((f) => FNS[f].name), status: "확인 중" });
     }
     for (const fn of target.gaps) gaps.push(FNS[fn].name);
     counts = { Y: Math.round(target.countY), U: Math.round(target.countU), N: Math.round(target.countN) };
