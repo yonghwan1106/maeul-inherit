@@ -303,6 +303,117 @@
    },
    {
     "state": "demo",
+    "docType": "resident",
+    "agencyResId": null,
+    "audience": {
+     "villageId": "jong",
+     "mode": "walk",
+     "pointId": "p_jong_hub_10855523302"
+    },
+    "inputHash": "ebe4bf78d70841a1522ed66a6f33d03d39affe1abaae47e67981ea30581dd77d",
+    "response": {
+     "mode": "live",
+     "text": "종리에 있던 가게가 문을 닫아서, 생활에 필요한 일을 주변에서 나눠 맡고 있어요.\n걸어서 다니시는 주민분들을 위해 용수상회에서 장보기와 신선식품, 급할 때 필요한 물건, 생활용품을 이어받을 수 있는지 확인하고 있어요.\n아직 확인이 끝나지 않아서 자세한 내용은 정해지는 대로 다시 알려 드릴 수 있도록 하고 있어요.\n걱정되시는 일이 있으면 면사무소로 편하게 문의해 주세요.",
+     "grounding": {
+      "pass": true,
+      "attempts": 1,
+      "checked": [
+       {
+        "kind": "resource",
+        "value": "용수상회",
+        "ok": true
+       },
+       {
+        "kind": "assertive",
+        "value": "용수상회",
+        "ok": true
+       }
+      ],
+      "blocked": []
+     },
+     "model": "claude-haiku-5-5",
+     "template": false,
+     "inputHash": "ebe4bf78d70841a1522ed66a6f33d03d39affe1abaae47e67981ea30581dd77d",
+     "generatedAt": "2026-10-25T10:23:52.379Z",
+     "fallbackReason": null
+    }
+   },
+   {
+    "state": "demo",
+    "docType": "resident",
+    "agencyResId": null,
+    "audience": {
+     "villageId": "waryong",
+     "mode": "car",
+     "pointId": "p_waryong_node"
+    },
+    "inputHash": "c3b19ae4014529dc59c51d6c96e3a99fd486c7584a0dcc2a819e9374927d8e2b",
+    "response": {
+     "mode": "live",
+     "text": "와룡리 어르신, 가게 대신 장을 볼 곳을 알려 드려요.\n하나로마트(화산)에서 장보기, 신선식품, 급할 때 필요한 물건, 생활용품을 살 수 있어요.\n차가 있는 주민은 하나로마트(화산)를 이용하시면 편해요.\n아직 맡을 곳을 찾지 못한 일은 없어요.\n궁금한 점은 면사무소로 문의해 주세요.",
+     "grounding": {
+      "pass": true,
+      "attempts": 1,
+      "checked": [
+       {
+        "kind": "resource",
+        "value": "하나로마트(화산)",
+        "ok": true
+       },
+       {
+        "kind": "resource",
+        "value": "하나로마트(화산)",
+        "ok": true
+       }
+      ],
+      "blocked": []
+     },
+     "model": "claude-haiku-5-5",
+     "template": false,
+     "inputHash": "c3b19ae4014529dc59c51d6c96e3a99fd486c7584a0dcc2a819e9374927d8e2b",
+     "generatedAt": "2026-10-25T10:23:53.736Z",
+     "fallbackReason": null
+    }
+   },
+   {
+    "state": "demo",
+    "docType": "resident",
+    "agencyResId": null,
+    "audience": {
+     "villageId": "waryong",
+     "mode": "homebound",
+     "pointId": "p_waryong_hub_10855545480"
+    },
+    "inputHash": "f02b3f5843200026ad1e3f386dae239b14a34681e92400992b08d8b555b2d345",
+    "response": {
+     "mode": "live",
+     "text": "와룡리 주민 안내문\n와룡리 가게가 문을 닫아 생활 물품을 구하기 어려워졌어요.\n거동이 불편하신 분들은 하나로마트(화산)에서 맡아 줄 수 있는지 확인하고 있어요.\n장보기, 신선식품, 생활용품을 어떻게 이어 드릴지 살펴보는 중이에요.\n급할 때 필요한 도움은 아직 찾고 있어요.\n궁금한 점은 면사무소로 문의해 주세요.",
+     "grounding": {
+      "pass": true,
+      "attempts": 1,
+      "checked": [
+       {
+        "kind": "resource",
+        "value": "하나로마트(화산)",
+        "ok": true
+       },
+       {
+        "kind": "assertive",
+        "value": "하나로마트(화산)",
+        "ok": true
+       }
+      ],
+      "blocked": []
+     },
+     "model": "claude-haiku-5-5",
+     "template": false,
+     "inputHash": "f02b3f5843200026ad1e3f386dae239b14a34681e92400992b08d8b555b2d345",
+     "generatedAt": "2026-10-25T10:23:55.284Z",
+     "fallbackReason": null
+    }
+   },
+   {
+    "state": "demo",
     "docType": "agency",
     "agencyResId": "hanaro_hwasan",
     "audience": {

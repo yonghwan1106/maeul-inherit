@@ -78,7 +78,8 @@ async function main() {
           calls += r.texts.length;
           response = r.response;
         }
-        if (compose.some((c) => c.inputHash === h)) continue;
+        // same hash in both states (resident not touched by the demo value) is stored per state so screens can look up by state
+        if (compose.some((c) => c.inputHash === h && c.state === state)) continue;
         compose.push({ state, docType: req.docType, agencyResId: req.agencyResId, audience: req.audience, inputHash: h, response });
         const tag = req.docType === "agency" ? `agency:${req.agencyResId}` : `resident:${req.audience.pointId}`;
         console.log(`${id} ${state} ${tag} ${response.mode} pass=${response.grounding.pass} attempts=${response.grounding.attempts}`);

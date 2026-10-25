@@ -404,6 +404,90 @@
    },
    {
     "state": "demo",
+    "docType": "resident",
+    "agencyResId": null,
+    "audience": {
+     "villageId": "seungchi",
+     "mode": "car",
+     "pointId": "p_seungchi_node"
+    },
+    "inputHash": "9ab849bfa4ca9dfa85a4fa044b7fc59a95073709d99699dd2cb0c10c629c9608",
+    "response": {
+     "mode": "live",
+     "text": "승치리 주민 여러분께 안내드립니다.\n승치리 가게가 문을 닫아 생활 물건은 다른 곳에서 이어서 준비하고 있어요.\n차가 있는 주민은 하나로마트(화산)에서 장보기, 신선식품, 생활용품, 배달을 이용할 수 있어요.\n택배는 완주화산우체국에서 받을 수 있어요.\n급할 때 필요한 일은 아직 찾고 있어요.",
+     "grounding": {
+      "pass": true,
+      "attempts": 1,
+      "checked": [
+       {
+        "kind": "resource",
+        "value": "하나로마트(화산)",
+        "ok": true
+       },
+       {
+        "kind": "resource",
+        "value": "완주화산우체국",
+        "ok": true
+       }
+      ],
+      "blocked": []
+     },
+     "model": "claude-haiku-5-5",
+     "template": false,
+     "inputHash": "9ab849bfa4ca9dfa85a4fa044b7fc59a95073709d99699dd2cb0c10c629c9608",
+     "generatedAt": "2026-10-25T10:23:30.678Z",
+     "fallbackReason": null
+    }
+   },
+   {
+    "state": "demo",
+    "docType": "resident",
+    "agencyResId": null,
+    "audience": {
+     "villageId": "seungchi",
+     "mode": "homebound",
+     "pointId": "p_seungchi_hub_10947413946"
+    },
+    "inputHash": "c5f3929ed00fb2b174da6a2c264ddde2e6aeb3c0b93e857b3ee56f32c7690684",
+    "response": {
+     "mode": "live",
+     "text": "승치리 어르신들께 안내드립니다.\n가게가 문을 닫은 뒤 집 밖에 나서기 어려우신 분들의 생활을 돕기 위해 준비하고 있어요.\n하나로마트(화산)에서 장보기, 신선식품, 생활용품, 배달 일을 맡을 수 있는지 확인하고 있어요.\n원승경로회관에서는 택배 일을 맡을 수 있는지 확인하고 있어요.\n급할 때 도와줄 곳은 아직 찾고 있어요.",
+     "grounding": {
+      "pass": true,
+      "attempts": 1,
+      "checked": [
+       {
+        "kind": "resource",
+        "value": "하나로마트(화산)",
+        "ok": true
+       },
+       {
+        "kind": "assertive",
+        "value": "하나로마트(화산)",
+        "ok": true
+       },
+       {
+        "kind": "resource",
+        "value": "원승경로회관",
+        "ok": true
+       },
+       {
+        "kind": "assertive",
+        "value": "원승경로회관",
+        "ok": true
+       }
+      ],
+      "blocked": []
+     },
+     "model": "claude-haiku-5-5",
+     "template": false,
+     "inputHash": "c5f3929ed00fb2b174da6a2c264ddde2e6aeb3c0b93e857b3ee56f32c7690684",
+     "generatedAt": "2026-10-25T10:23:34.855Z",
+     "fallbackReason": null
+    }
+   },
+   {
+    "state": "demo",
     "docType": "agency",
     "agencyResId": "hanaro_hwasan",
     "audience": {
