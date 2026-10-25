@@ -1,0 +1,334 @@
+{
+ "runAt": "2026-10-25T10:31:11.127Z",
+ "prompt": "l4-v1",
+ "n": 30,
+ "firstPass": 1,
+ "regenRate": 0,
+ "templateRate": 0,
+ "finalPass": 1,
+ "reasons": {},
+ "examples": [],
+ "perCase": [
+  {
+   "id": "sc1_seungchi base resident",
+   "firstPass": true,
+   "regenerated": false,
+   "template": false,
+   "finalPass": true,
+   "model": "claude-haiku-5-5",
+   "firstBlocked": []
+  },
+  {
+   "id": "sc1_seungchi base agency:hanaro_hwasan",
+   "firstPass": true,
+   "regenerated": false,
+   "template": false,
+   "finalPass": true,
+   "model": "claude-haiku-5-5",
+   "firstBlocked": []
+  },
+  {
+   "id": "sc1_seungchi demo1 resident",
+   "firstPass": true,
+   "regenerated": false,
+   "template": false,
+   "finalPass": true,
+   "model": "claude-haiku-5-5",
+   "firstBlocked": []
+  },
+  {
+   "id": "sc1_seungchi demo1 agency:hanaro_hwasan",
+   "firstPass": true,
+   "regenerated": false,
+   "template": false,
+   "finalPass": true,
+   "model": "claude-haiku-5-5",
+   "firstBlocked": []
+  },
+  {
+   "id": "sc1_seungchi demo2 resident",
+   "firstPass": true,
+   "regenerated": false,
+   "template": false,
+   "finalPass": true,
+   "model": "claude-haiku-5-5",
+   "firstBlocked": []
+  },
+  {
+   "id": "sc1_seungchi demo2 agency:hanaro_hwasan",
+   "firstPass": true,
+   "regenerated": false,
+   "template": false,
+   "finalPass": true,
+   "model": "claude-haiku-5-5",
+   "firstBlocked": []
+  },
+  {
+   "id": "sc1_seungchi allN resident",
+   "firstPass": true,
+   "regenerated": false,
+   "template": false,
+   "finalPass": true,
+   "model": "claude-haiku-5-5",
+   "firstBlocked": []
+  },
+  {
+   "id": "sc1_seungchi allN agency:hanaro_hwasan",
+   "firstPass": true,
+   "regenerated": false,
+   "template": false,
+   "finalPass": true,
+   "model": "claude-haiku-5-5",
+   "firstBlocked": []
+  },
+  {
+   "id": "sc1_seungchi report resident",
+   "firstPass": true,
+   "regenerated": false,
+   "template": false,
+   "finalPass": true,
+   "model": "claude-haiku-5-5",
+   "firstBlocked": []
+  },
+  {
+   "id": "sc1_seungchi report agency:hanaro_hwasan",
+   "firstPass": true,
+   "regenerated": false,
+   "template": false,
+   "finalPass": true,
+   "model": "claude-haiku-5-5",
+   "firstBlocked": []
+  },
+  {
+   "id": "sc2_waryong base resident",
+   "firstPass": true,
+   "regenerated": false,
+   "template": false,
+   "finalPass": true,
+   "model": "claude-haiku-5-5",
+   "firstBlocked": []
+  },
+  {
+   "id": "sc2_waryong base agency:hanaro_hwasan",
+   "firstPass": true,
+   "regenerated": false,
+   "template": false,
+   "finalPass": true,
+   "model": "claude-haiku-5-5",
+   "firstBlocked": []
+  },
+  {
+   "id": "sc2_waryong demo1 resident",
+   "firstPass": true,
+   "regenerated": false,
+   "template": false,
+   "finalPass": true,
+   "model": "claude-haiku-5-5",
+   "firstBlocked": []
+  },
+  {
+   "id": "sc2_waryong demo1 agency:hanaro_hwasan",
+   "firstPass": true,
+   "regenerated": false,
+   "template": false,
+   "finalPass": true,
+   "model": "claude-haiku-5-5",
+   "firstBlocked": []
+  },
+  {
+   "id": "sc2_waryong demo2 resident",
+   "firstPass": true,
+   "regenerated": false,
+   "template": false,
+   "finalPass": true,
+   "model": "claude-haiku-5-5",
+   "firstBlocked": []
+  },
+  {
+   "id": "sc2_waryong demo2 agency:hanaro_hwasan",
+   "firstPass": true,
+   "regenerated": false,
+   "template": false,
+   "finalPass": true,
+   "model": "claude-haiku-5-5",
+   "firstBlocked": []
+  },
+  {
+   "id": "sc2_waryong allN resident",
+   "firstPass": true,
+   "regenerated": false,
+   "template": false,
+   "finalPass": true,
+   "model": "claude-haiku-5-5",
+   "firstBlocked": []
+  },
+  {
+   "id": "sc2_waryong allN agency:hanaro_hwasan",
+   "firstPass": true,
+   "regenerated": false,
+   "template": false,
+   "finalPass": true,
+   "model": "claude-haiku-5-5",
+   "firstBlocked": []
+  },
+  {
+   "id": "sc2_waryong report resident",
+   "firstPass": true,
+   "regenerated": false,
+   "template": false,
+   "finalPass": true,
+   "model": "claude-haiku-5-5",
+   "firstBlocked": []
+  },
+  {
+   "id": "sc2_waryong report agency:hanaro_hwasan",
+   "firstPass": true,
+   "regenerated": false,
+   "template": false,
+   "finalPass": true,
+   "model": "claude-haiku-5-5",
+   "firstBlocked": []
+  },
+  {
+   "id": "sc3_ungok base resident",
+   "firstPass": true,
+   "regenerated": false,
+   "template": false,
+   "finalPass": true,
+   "model": "claude-haiku-5-5",
+   "firstBlocked": []
+  },
+  {
+   "id": "sc3_ungok base agency:hanaro_hwasan",
+   "firstPass": true,
+   "regenerated": false,
+   "template": false,
+   "finalPass": true,
+   "model": "claude-haiku-5-5",
+   "firstBlocked": []
+  },
+  {
+   "id": "sc3_ungok demo1 resident",
+   "firstPass": true,
+   "regenerated": false,
+   "template": false,
+   "finalPass": true,
+   "model": "claude-haiku-5-5",
+   "firstBlocked": []
+  },
+  {
+   "id": "sc3_ungok demo1 agency:hanaro_hwasan",
+   "firstPass": true,
+   "regenerated": false,
+   "template": false,
+   "finalPass": true,
+   "model": "claude-haiku-5-5",
+   "firstBlocked": []
+  },
+  {
+   "id": "sc3_ungok demo2 resident",
+   "firstPass": true,
+   "regenerated": false,
+   "template": false,
+   "finalPass": true,
+   "model": "claude-haiku-5-5",
+   "firstBlocked": []
+  },
+  {
+   "id": "sc3_ungok demo2 agency:hanaro_hwasan",
+   "firstPass": true,
+   "regenerated": false,
+   "template": false,
+   "finalPass": true,
+   "model": "claude-haiku-5-5",
+   "firstBlocked": []
+  },
+  {
+   "id": "sc3_ungok allN resident",
+   "firstPass": true,
+   "regenerated": false,
+   "template": false,
+   "finalPass": true,
+   "model": "claude-haiku-5-5",
+   "firstBlocked": []
+  },
+  {
+   "id": "sc3_ungok allN agency:hanaro_hwasan",
+   "firstPass": true,
+   "regenerated": false,
+   "template": false,
+   "finalPass": true,
+   "model": "claude-haiku-5-5",
+   "firstBlocked": []
+  },
+  {
+   "id": "sc3_ungok report resident",
+   "firstPass": true,
+   "regenerated": false,
+   "template": false,
+   "finalPass": true,
+   "model": "claude-haiku-5-5",
+   "firstBlocked": []
+  },
+  {
+   "id": "sc3_ungok report agency:hanaro_hwasan",
+   "firstPass": true,
+   "regenerated": false,
+   "template": false,
+   "finalPass": true,
+   "model": "claude-haiku-5-5",
+   "firstBlocked": []
+  }
+ ],
+ "models": [
+  "claude-haiku-5-5"
+ ],
+ "generatedAt": "2026-10-25T10:30:33.641Z",
+ "unit": {
+  "label": "단위 시험(같은 팀 작성)",
+  "nWrong": 20,
+  "nRight": 20,
+  "recall": 1,
+  "falseBlock": 0,
+  "detected": 20,
+  "falselyBlocked": 0,
+  "byCategory": {
+   "day": {
+    "n": 4,
+    "blocked": 4
+   },
+   "resource": {
+    "n": 4,
+    "blocked": 4
+   },
+   "assertive": {
+    "n": 4,
+    "blocked": 4
+   },
+   "number": {
+    "n": 4,
+    "blocked": 4
+   },
+   "phone": {
+    "n": 4,
+    "blocked": 4
+   },
+   "right": {
+    "n": 20,
+    "blocked": 0
+   }
+  },
+  "misses": [],
+  "pinned": {
+   "sentence": "이동장터 A가 매주 목요일 미남경로회관 앞에 옵니다.",
+   "blocked": true,
+   "reason": "목요일 — 확인된 요일(화요일)과 다름"
+  }
+ },
+ "outOfScope": {
+  "promiseLike": 7,
+  "n": 30,
+  "note": "근거 대조기 검사 항목 밖 — 약속 표현(「다시 안내드리겠습니다」 등)이 남은 최종 문서 수(정규식 집계)"
+ },
+ "note": "생성 30건 = 시나리오 3 × 확인 상태 5 × 문서 2. 사전계산 캐시를 쓰지 않은 실제 호출. 단위 시험은 같은 팀 작성."
+}
