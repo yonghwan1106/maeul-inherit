@@ -1,21 +1,113 @@
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css");
 @import "tailwindcss";
 
-/* A1 skeleton tokens — bundle C (C1) owns and extends this file. */
+/* Design tokens (bundle C). Warm paper, deep field-green ink; three values are never colour-only:
+   확실 = filled ●, 확인 중 = dashed outline ◐ + text, 끊김/없음 = empty — (spec 8). */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --paper: #f7f4ec;
+  --card: #fffdf8;
+  --ink: #1d2721;
+  --muted: #5b655e;
+  --line: #d9d3c4;
+  --brand: #1f5e4a;
+  --brand-soft: #dceadf;
+  --sure: #1f5e4a;
+  --unsure: #9a5b12;
+  --unsure-soft: #fbefd9;
+  --gone: #8b918c;
+  --warn: #a2341f;
+  --band: #2b2f2c;
+  --focus: #2f6fd6;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-paper: var(--paper);
+  --color-card: var(--card);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-brand: var(--brand);
+  --color-brand-soft: var(--brand-soft);
+  --color-sure: var(--sure);
+  --color-unsure: var(--unsure);
+  --color-unsure-soft: var(--unsure-soft);
+  --color-gone: var(--gone);
+  --color-warn: var(--warn);
+  --color-band: var(--band);
   --font-sans: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", sans-serif;
 }
 
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: var(--paper);
+  color: var(--ink);
   font-family: var(--font-sans);
   font-size: 16px;
+  line-height: 1.6;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+
+:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.num {
+  font-variant-numeric: tabular-nums;
+}
+
+/* The one CSS transition (spec 8): opacity + transform 0.8 s; line draw 1 s. */
+.fx {
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.fx-line {
+  transition: opacity 1s ease;
+}
+
+/* Changed-cell highlight: overlay fades out over 0.8 s (same transition family). */
+.flash-host {
+  position: relative;
+}
+.flash-host::after {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  background: #f5c84c;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.8s ease;
+}
+.flash-host[data-flash="1"]::after {
+  opacity: 0.45;
+  transition: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fx,
+  .fx-line,
+  .flash-host::after {
+    transition: none !important;
+  }
+}
+
+/* Three-value marks */
+.tri-y {
+  background: var(--sure);
+  color: #fff;
+  border: 2px solid var(--sure);
+}
+.tri-u {
+  background: var(--unsure-soft);
+  color: var(--unsure);
+  border: 2px dashed var(--unsure);
+}
+.tri-n {
+  background: transparent;
+  color: var(--gone);
+  border: 2px solid var(--line);
 }
