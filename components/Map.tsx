@@ -73,7 +73,7 @@ export function VillageMap({ region, store, lines = [], focusVillageId, pointId,
   });
 
   return (
-    <figure className="m-0">
+    <figure className="m-0 min-w-0">
       <svg
         viewBox={`0 0 ${W} ${H}`}
         width="100%"
@@ -191,7 +191,7 @@ export function VillageMap({ region, store, lines = [], focusVillageId, pointId,
           {unlocatedLines.map((l) => (
             <span
               key={`${l.resId}-${l.tri}`}
-              className={`rounded-lg px-2 py-0.5 ${l.tri === "Y" ? "tri-y" : "tri-u"}`}
+              className={`max-w-full rounded-lg px-2 py-0.5 ${l.tri === "Y" ? "tri-y" : "tri-u"}`}
               data-line={l.resId}
               data-line-tri={l.tri}
             >

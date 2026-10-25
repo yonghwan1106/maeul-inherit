@@ -150,6 +150,7 @@ export const COPY = {
       more: (n: number) => `다른 확인 대상 ${n}칸`,
       top30: "상위 30칸만 계산",
       current: (v: string) => `지금 입력: ${v}`,
+      confirmedTitle: "확인 입력",
     },
     optimal: {
       ok: "최대 3곳 조건과 지금 기준값 안에서는 더 나은 조합이 없습니다",
