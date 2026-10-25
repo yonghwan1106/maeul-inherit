@@ -1,0 +1,455 @@
+{
+ "meta": {
+  "runAt": "2026-10-25T10:18:56.363Z",
+  "commit": "584c303",
+  "seed": 42,
+  "regionSha256": "ff2de716140f35e1cb855ada2c9fbe439de0b0daebabb1d59974c10fd043fb8d",
+  "paramsSha256": "8ce00e6ca5e88b23e36a8f0699f2df81f911d5360670ffee6aa2fcd20a36fd68",
+  "models": [],
+  "inputs": {
+   "data/eval/e2.json": "33082ef4ad8a681616a702ccec627161a1178323cb8761b86cb02b5b59c8d95d",
+   "data/eval/e3.json": "a2b118f2c2b9728ca34cd456969a08d7f2fc1efcc35f4679d4d6acd947ae8c12",
+   "data/eval/engine_check.json": "dbba38702ea2f9c7fd6539bd432dc3508502efe70d594ce9543218eddd0606f6",
+   "data/eval/bench.json": "e57479fba12aa465317e7a5d08b252052d657bae953a46f096534a887ae5ecfd",
+   "data/eval/e2_cases.json": "89500f97c0fb1fc4d175d82bd05c6b05e094c6d26ac3e7464d8b93ee34db3883",
+   "data/eval/testset_e1_dev.json": "3cec8019c2d01a5bd8fdcd01e06954c12636ff3a30f94ead6725a21a205e552f",
+   "data/eval/testset_e4_unit.json": "559251000e0ccc3a2e71760320fdb724b02142a104d6d3dca20dc3b82f7377de"
+  },
+  "pending": {
+   "e1": true,
+   "e2": false,
+   "e3": false,
+   "e4": true,
+   "b2": true
+  }
+ },
+ "engine": {
+  "bruteForceCases": 1000,
+  "bruteForceMatch": 1,
+  "planMs": {
+   "sc1": 0.37,
+   "sc2": 0.37,
+   "sc3": 0.21
+  },
+  "voiMs": {
+   "sc1": 260.03,
+   "sc2": 257.33,
+   "sc3": 84.68
+  }
+ },
+ "e1": {
+  "pending": true,
+  "sets": {
+   "synth": {
+    "n": 60,
+    "sha256": null
+   },
+   "real": {
+    "n": 20,
+    "sha256": null,
+    "humanChecked": 0
+   },
+   "dev": {
+    "n": 15
+   }
+  },
+  "systems": {
+   "b0_type": {
+    "synth": {
+     "microF1": null,
+     "recall": {
+      "F06": null,
+      "F07": null,
+      "F09": null,
+      "F10": null
+     },
+     "trapFP": null
+    },
+    "real": {
+     "microF1": null,
+     "recall": {
+      "F06": null,
+      "F07": null,
+      "F09": null,
+      "F10": null
+     },
+     "trapFP": null
+    }
+   },
+   "b0": {
+    "synth": {
+     "microF1": null,
+     "recall": {
+      "F06": null,
+      "F07": null,
+      "F09": null,
+      "F10": null
+     },
+     "trapFP": null
+    },
+    "real": {
+     "microF1": null,
+     "recall": {
+      "F06": null,
+      "F07": null,
+      "F09": null,
+      "F10": null
+     },
+     "trapFP": null
+    }
+   },
+   "b0plus": {
+    "synth": {
+     "microF1": null,
+     "recall": {
+      "F06": null,
+      "F07": null,
+      "F09": null,
+      "F10": null
+     },
+     "trapFP": null
+    },
+    "real": {
+     "microF1": null,
+     "recall": {
+      "F06": null,
+      "F07": null,
+      "F09": null,
+      "F10": null
+     },
+     "trapFP": null
+    }
+   },
+   "haiku55": {
+    "synth": {
+     "microF1": null,
+     "recall": {
+      "F06": null,
+      "F07": null,
+      "F09": null,
+      "F10": null
+     },
+     "trapFP": null
+    },
+    "real": {
+     "microF1": null,
+     "recall": {
+      "F06": null,
+      "F07": null,
+      "F09": null,
+      "F10": null
+     },
+     "trapFP": null
+    },
+    "evidenceRate": null,
+    "schemaViolation": null
+   },
+   "sonnet5": null
+  },
+  "sc1Pieces": {
+   "b0_type": null,
+   "haiku55": null
+  }
+ },
+ "e2": {
+  "n": 33,
+  "nByMode": {
+   "car": 11,
+   "walk": 11,
+   "homebound": 11
+  },
+  "independent": false,
+  "fns": [
+   {
+    "code": "F01",
+    "importance": 3
+   },
+   {
+    "code": "F02",
+    "importance": 2
+   },
+   {
+    "code": "F04",
+    "importance": 1
+   },
+   {
+    "code": "F05",
+    "importance": 2
+   },
+   {
+    "code": "F06",
+    "importance": 2
+   },
+   {
+    "code": "F07",
+    "importance": 2
+   }
+  ],
+  "casesSha256": "89500f97c0fb1fc4d175d82bd05c6b05e094c6d26ac3e7464d8b93ee34db3883",
+  "llmOutputs": null,
+  "systems": {
+   "b1": {
+    "car": {
+     "L": 0.154,
+     "U": 0.786,
+     "countY": 0.8788,
+     "countU": 3.7197,
+     "countN": 1.4015
+    },
+    "walk": {
+     "L": 0.0101,
+     "U": 0.5588,
+     "countY": 0.0606,
+     "countU": 2.9455,
+     "countN": 2.9939
+    },
+    "homebound": {
+     "L": 0,
+     "U": 0.5265,
+     "countY": 0,
+     "countU": 2.7424,
+     "countN": 3.2576
+    }
+   },
+   "b1b": {
+    "car": {
+     "L": 0,
+     "U": 0.7765,
+     "countY": 0,
+     "countU": 4.2121,
+     "countN": 1.7879
+    },
+    "walk": {
+     "L": 0.0101,
+     "U": 0.7421,
+     "countY": 0.0606,
+     "countU": 3.998,
+     "countN": 1.9414
+    },
+    "homebound": {
+     "L": 0,
+     "U": 0.7559,
+     "countY": 0,
+     "countU": 4.0354,
+     "countN": 1.9646
+    }
+   },
+   "b1g": {
+    "car": {
+     "L": 0.8077,
+     "U": 0.9744,
+     "countY": 4.6924,
+     "countU": 1,
+     "countN": 0.3076
+    },
+    "walk": {
+     "L": 0.0884,
+     "U": 0.8253,
+     "countY": 0.5303,
+     "countU": 3.9747,
+     "countN": 1.4949
+    },
+    "homebound": {
+     "L": 0,
+     "U": 0.7618,
+     "countY": 0,
+     "countU": 4.0707,
+     "countN": 1.9293
+    }
+   },
+   "engine": {
+    "car": {
+     "L": 0.8092,
+     "U": 0.9804,
+     "countY": 4.7106,
+     "countU": 1.0545,
+     "countN": 0.2348
+    },
+    "walk": {
+     "L": 0.101,
+     "U": 0.8494,
+     "countY": 0.6061,
+     "countU": 4.0508,
+     "countN": 1.3432
+    },
+    "homebound": {
+     "L": 0,
+     "U": 0.8084,
+     "countY": 0,
+     "countU": 4.3505,
+     "countN": 1.6495
+    }
+   },
+   "b2a": null,
+   "b2b": null
+  },
+  "headline": {
+   "walkCountY": {
+    "engine": 0.6061,
+    "b1g": 0.5303,
+    "b1": 0.0606,
+    "diffVsB1g": 0.0758
+   },
+   "b2aAssertUCases": null
+  },
+  "note": "엔진은 같은 칸 위에서 최적화하므로 확실 몫이 기준선보다 낮을 수 없습니다. 수치는 '얼마나 더'를 뜻하며, 사례들은 자원을 공유해 서로 독립이 아닙니다."
+ },
+ "e3": {
+  "n": 11,
+  "depth": 3,
+  "nRandomOrders": 200,
+  "seed": 42,
+  "ps": [
+   0.3,
+   0.5,
+   0.7
+  ],
+  "unit": "L 상승 기대값 = %p(이용권 리 평균), countY = 확실 개수 상승 기대값",
+  "note": "설계 검증 — 같은 기준으로 고르고 채점하므로 VOI가 유리한 것은 거의 정의상 당연",
+  "candidatesExclude": [
+   "bus"
+  ],
+  "ms": 34198,
+  "byP": {
+   "0.3": {
+    "voi": {
+     "car": 6.56,
+     "walk": 26.93,
+     "homebound": 27.68,
+     "sum": 61.17
+    },
+    "nearest": {
+     "car": 4.12,
+     "walk": 15.81,
+     "homebound": 16.85,
+     "sum": 36.78
+    },
+    "random": {
+     "car": 0.12,
+     "walk": 0.72,
+     "homebound": 0.42,
+     "sum": 1.27
+    },
+    "ratioVoiRandom": 48.17,
+    "countY": {
+     "voi": {
+      "car": 0.394,
+      "walk": 1.425,
+      "homebound": 1.464,
+      "sum": 3.282
+     },
+     "nearest": {
+      "car": 0.247,
+      "walk": 0.835,
+      "homebound": 0.887,
+      "sum": 1.97
+     },
+     "random": {
+      "car": 0.008,
+      "walk": 0.037,
+      "homebound": 0.022,
+      "sum": 0.068
+     }
+    }
+   },
+   "0.5": {
+    "voi": {
+     "car": 10.42,
+     "walk": 42.61,
+     "homebound": 44.41,
+     "sum": 97.44
+    },
+    "nearest": {
+     "car": 6.06,
+     "walk": 23.69,
+     "homebound": 25.25,
+     "sum": 55.01
+    },
+    "random": {
+     "car": 0.21,
+     "walk": 1.2,
+     "homebound": 0.7,
+     "sum": 2.12
+    },
+    "ratioVoiRandom": 46.04,
+    "countY": {
+     "voi": {
+      "car": 0.625,
+      "walk": 2.262,
+      "homebound": 2.352,
+      "sum": 5.239
+     },
+     "nearest": {
+      "car": 0.364,
+      "walk": 1.255,
+      "homebound": 1.333,
+      "sum": 2.952
+     },
+     "random": {
+      "car": 0.014,
+      "walk": 0.062,
+      "homebound": 0.037,
+      "sum": 0.113
+     }
+    }
+   },
+   "0.7": {
+    "voi": {
+     "car": 13.61,
+     "walk": 55.89,
+     "homebound": 58.93,
+     "sum": 128.43
+    },
+    "nearest": {
+     "car": 7.35,
+     "walk": 29.44,
+     "homebound": 31.39,
+     "sum": 68.19
+    },
+    "random": {
+     "car": 0.29,
+     "walk": 1.68,
+     "homebound": 0.99,
+     "sum": 2.96
+    },
+    "ratioVoiRandom": 43.35,
+    "countY": {
+     "voi": {
+      "car": 0.816,
+      "walk": 2.979,
+      "homebound": 3.128,
+      "sum": 6.923
+     },
+     "nearest": {
+      "car": 0.441,
+      "walk": 1.564,
+      "homebound": 1.663,
+      "sum": 3.668
+     },
+     "random": {
+      "car": 0.019,
+      "walk": 0.087,
+      "homebound": 0.051,
+      "sum": 0.158
+     }
+    }
+   }
+  }
+ },
+ "e4": {
+  "pending": true,
+  "n": 30,
+  "firstPass": null,
+  "regenRate": null,
+  "templateRate": null,
+  "finalPass": null,
+  "reasons": {},
+  "unit": {
+   "nWrong": 20,
+   "nRight": 20,
+   "recall": null,
+   "falseBlock": null
+  },
+  "examples": []
+ }
+}
