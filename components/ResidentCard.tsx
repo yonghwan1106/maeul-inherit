@@ -27,6 +27,8 @@ export function ResidentCard({
   className = "",
   headerExtra,
   testId,
+  virtual = true,
+  narrow = false,
 }: {
   title: string;
   rows: FnRow[];
@@ -38,15 +40,17 @@ export function ResidentCard({
   className?: string;
   headerExtra?: React.ReactNode;
   testId?: string;
+  virtual?: boolean;
+  narrow?: boolean;
 }) {
   return (
     <section className={`rounded-2xl border border-line bg-card p-4 shadow-sm ${className}`} data-card={testId}>
       <div className="flex flex-wrap items-center gap-2">
         <h3 className="m-0 text-[17px] font-bold leading-snug">{title}</h3>
-        <Badge tone="assumed">{COPY.badge.virtualPerson}</Badge>
+        {virtual ? <Badge tone="assumed">{COPY.badge.virtualPerson}</Badge> : null}
         {headerExtra}
       </div>
-      <div className={`mt-3 grid gap-1.5 ${rows.length > 4 ? "grid-cols-3 sm:grid-cols-6" : "grid-cols-2 sm:grid-cols-4"}`}>
+      <div className={`mt-3 grid gap-1.5 ${narrow ? "grid-cols-3" : rows.length > 4 ? "grid-cols-3 sm:grid-cols-6" : "grid-cols-2 sm:grid-cols-4"}`}>
         {rows.map((r) => (
           <FnTriCell key={r.code} code={r.code} tri={r.tri} sub={fnSub(r)} flash={flashCodes?.has(r.code)} />
         ))}

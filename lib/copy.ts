@@ -182,6 +182,11 @@ export const COPY = {
   // 8.6 S4 -------------------------------------------------------------------
   s4: {
     myCond: "내 조건",
+    myResult: "내 조건으로 보면",
+    myResultNote: "주민 입력은 이 브라우저 안에서만 계산합니다",
+    testSentence: "이동장터 A가 매주 목요일 미남경로회관 앞에 옵니다.",
+    e4Examples: "평가(E4)에서 실제로 막힌 문장",
+    noDoc: "문서를 만드는 중이에요…",
     livePlace: "사는 마을",
     badDays: "안 되는 요일",
     card: (name: string, age: number, mode: string, place: string) =>

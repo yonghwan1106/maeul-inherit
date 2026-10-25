@@ -17,9 +17,12 @@ export function useFlashSet(values: Record<string, string>): Set<string> {
     const changed = new Set<string>();
     for (const k of Object.keys(cur)) if (before[k] !== undefined && before[k] !== cur[k]) changed.add(k);
     if (!changed.size) return;
-    setFlash(changed);
+    const raf = requestAnimationFrame(() => setFlash(changed));
     const t = window.setTimeout(() => setFlash(EMPTY), 800);
-    return () => window.clearTimeout(t);
+    return () => {
+      cancelAnimationFrame(raf);
+      window.clearTimeout(t);
+    };
   }, [sig]);
   return flash;
 }

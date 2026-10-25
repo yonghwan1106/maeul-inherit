@@ -20,6 +20,8 @@ import { ParamsPanel } from "@/components/ParamsPanel";
 import { ResidentCard } from "@/components/ResidentCard";
 import { GateButton, GatedLink } from "@/components/GateButton";
 
+const nowMs = () => performance.now();
+
 export function PlanScreen({ sid, region, loaded, temp, mock }: { sid: string; region: Region; loaded: Scenario | null; temp: boolean; mock: boolean }) {
   const st = useScenarioState(sid, loaded);
   const [ui, setUi] = useLocal<UiState>(keys.ui, EMPTY_UI);
@@ -79,7 +81,7 @@ export function PlanScreen({ sid, region, loaded, temp, mock }: { sid: string; r
 
   const { plan, voi, cells } = bundle;
   const setCell = (cellKey: string, value: Tri | null, note: string, by: Confirmation["by"]) => {
-    clickAt.current = performance.now();
+    clickAt.current = nowMs();
     st.setConf((prev) => {
       const rest = prev.filter((c) => c.cellKey !== cellKey);
       if (value === null) return rest;
