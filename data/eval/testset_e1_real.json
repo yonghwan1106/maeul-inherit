@@ -1,0 +1,155 @@
+{
+ "meta": {
+  "split": "real",
+  "n": 20,
+  "author": "묶음 A(프롬프트 작성자 아님) — lib/llm/prompts.ts를 보지 않고 작성",
+  "accessed": "2026-10-25",
+  "rubric": "구현명세 §7.1-a: 「그 시설이 실제로 그 일을 했다」고 문장이 말할 때만 라벨. 예전에 했지만 그만둔 일·다른 곳 이야기·바람·하지 않는다는 말은 라벨 아님(traps). 한 문장에 여러 기능 가능.",
+  "quoting": "memo는 기사 원문 1~2문장 그대로(같은 기사), 사람 이름·상호는 ○○. sbizSub는 기사에 나온 시설 종류(없으면 슈퍼마켓). items는 기사에서 그 시설이 판다고 한 물건만.",
+  "humanChecked": 0,
+  "labelStatus": "개발팀(묶음 A) 라벨, Advisor 검수 전",
+  "sourcesNote": "수집 기록: 03_설계/_wip/research_E3_impl.md"
+ },
+ "cases": [
+  {
+   "id": "real-01", "kind": "real",
+   "input": { "sbizSub": "슈퍼마켓", "items": ["과자", "사탕", "아이스크림", "소주", "콩나물", "설탕", "라면", "비누"], "hours": "", "villageId": "",
+     "memo": "점방은 과자와 사탕, 아이스크림뿐 아니라 소주·콩나물·설탕·라면·비누 등 모든 생활용품의 보고다." },
+   "gold": ["F01", "F02", "F05"], "traps": [],
+   "source": { "url": "https://www.seoul.co.kr/news/2021/06/08/20210608014010", "outlet": "서울신문", "date": "2021-06-07", "accessed": "2026-10-25" }, "humanChecked": false
+  },
+  {
+   "id": "real-02", "kind": "real",
+   "input": { "sbizSub": "슈퍼마켓", "items": ["막걸리"], "hours": "", "villageId": "",
+     "memo": "하루 일과를 마친 마을 주민들은 저녁 어스름이 깔리는 무렵이면 구멍가게의 탁자에 삼삼오오 둘러앉아 막걸리잔을 놓고 세상 돌아가는 이야기를 하다 보면 시간 가는 줄을 몰랐다." },
+   "gold": ["F09"], "traps": [],
+   "source": { "url": "https://www.seoul.co.kr/news/2021/06/08/20210608014010", "outlet": "서울신문", "date": "2021-06-07", "accessed": "2026-10-25" }, "humanChecked": false
+  },
+  {
+   "id": "real-03", "kind": "real",
+   "input": { "sbizSub": "슈퍼마켓", "items": [], "hours": "", "villageId": "",
+     "memo": "라디오나 TV, 전화가 없고 신문도 귀했던 그때 그 시절 마을마다 바깥세상 소식을 가장 빨리 들을 수 있는 장소 또한 동네 구멍가게였다." },
+   "gold": ["F10"], "traps": [],
+   "source": { "url": "https://www.seoul.co.kr/news/2021/06/08/20210608014010", "outlet": "서울신문", "date": "2021-06-07", "accessed": "2026-10-25" }, "humanChecked": false
+  },
+  {
+   "id": "real-04", "kind": "real",
+   "input": { "sbizSub": "슈퍼마켓", "items": [], "hours": "", "villageId": "",
+     "memo": "마을의 쉼터이자 뉴스센터 역할을 하던 구멍가게 앞 평상도 사라진 지 오래다." },
+   "gold": [], "traps": [ { "fn": "F09", "kind": "past" }, { "fn": "F10", "kind": "past" } ],
+   "source": { "url": "https://www.seoul.co.kr/news/2021/06/08/20210608014010", "outlet": "서울신문", "date": "2021-06-07", "accessed": "2026-10-25" }, "humanChecked": false
+  },
+  {
+   "id": "real-05", "kind": "real",
+   "input": { "sbizSub": "슈퍼마켓", "items": [], "hours": "", "villageId": "",
+     "memo": "마트와 편의점이 생겨 동네 사람들조차 오지 않고 주변 편의점을 간다고 했다." },
+   "gold": [], "traps": [ { "fn": "F01", "kind": "other" } ],
+   "source": { "url": "https://www.seoul.co.kr/news/2021/06/08/20210608014010", "outlet": "서울신문", "date": "2021-06-07", "accessed": "2026-10-25" }, "humanChecked": false
+  },
+  {
+   "id": "real-06", "kind": "real",
+   "input": { "sbizSub": "슈퍼마켓", "items": ["술"], "hours": "", "villageId": "",
+     "memo": "술도 팔고 여러 가지 식료품도 팔고 했었는데 없어졌어." },
+   "gold": ["F01"], "traps": [],
+   "source": { "url": "https://v.daum.net/v/20250622231239925", "outlet": "KBS 더 보다(다음뉴스)", "date": "2025-06-22", "accessed": "2026-10-25" }, "humanChecked": false
+  },
+  {
+   "id": "real-07", "kind": "real",
+   "input": { "sbizSub": "이동 장터", "items": [], "hours": "", "villageId": "",
+     "memo": "직접 물건을 가져가기 벅찬 어르신들에겐 집까지 배달도 해줍니다." },
+   "gold": ["F07"], "traps": [],
+   "source": { "url": "https://v.daum.net/v/20250622231239925", "outlet": "KBS 더 보다(다음뉴스)", "date": "2025-06-22", "accessed": "2026-10-25" }, "humanChecked": false
+  },
+  {
+   "id": "real-08", "kind": "real",
+   "input": { "sbizSub": "슈퍼마켓", "items": ["라면", "과자", "조미료"], "hours": "", "villageId": "",
+     "memo": "이 마을의 유일한 가게에서 파는 먹거리는 라면과 과자, 조미료 정도가 전부이다. 손님이 적어 유통기간이 짧은 우유나 채소는 아예 판매할 엄두를 내지 못한다." },
+   "gold": ["F01"], "traps": [ { "fn": "F02", "kind": "neg" } ],
+   "source": { "url": "https://www.jjan.kr/article/20240422580177", "outlet": "전북일보(기고)", "date": "2024-04-23", "accessed": "2026-10-25" }, "humanChecked": false
+  },
+  {
+   "id": "real-09", "kind": "real",
+   "input": { "sbizSub": "이동 장터", "items": [], "hours": "", "villageId": "",
+     "memo": "○○점빵은 생필품을 공급하는데 그치지 않고, 매주 어르신들의 안부와 건강을 살피는 일을 하고, 지역 내 복지 서비스가 필요한 곳에 연결되도록 한다." },
+   "gold": ["F01", "F10"], "traps": [],
+   "source": { "url": "https://www.jjan.kr/article/20240422580177", "outlet": "전북일보(기고)", "date": "2024-04-23", "accessed": "2026-10-25" }, "humanChecked": false
+  },
+  {
+   "id": "real-10", "kind": "real",
+   "input": { "sbizSub": "슈퍼마켓", "items": [], "hours": "", "villageId": "",
+     "memo": "고령의 주민들이 채소를 사려면 10km 이상 떨어진 다른 지역 마트에 가야 하는데, 버스를 타고 2시간 가까이 가야 하는 실정이다." },
+   "gold": [], "traps": [ { "fn": "F02", "kind": "other" } ],
+   "source": { "url": "https://www.jjan.kr/article/20240422580177", "outlet": "전북일보(기고)", "date": "2024-04-23", "accessed": "2026-10-25" }, "humanChecked": false
+  },
+  {
+   "id": "real-11", "kind": "real",
+   "input": { "sbizSub": "슈퍼마켓", "items": ["커피"], "hours": "", "villageId": "",
+     "memo": "커피가 다 끓었으니 한 잔 마시고 가라고 권한다. 커피를 마시노라면 이런 얘기, 저런 얘기 길어질 수밖에 없다." },
+   "gold": ["F09"], "traps": [],
+   "source": { "url": "https://pressian.com/pages/articles/98773", "outlet": "프레시안", "date": "2010-01-04", "accessed": "2026-10-25" }, "humanChecked": false
+  },
+  {
+   "id": "real-12", "kind": "real",
+   "input": { "sbizSub": "슈퍼마켓", "items": [], "hours": "", "villageId": "",
+     "memo": "동네 주민들이 모이는 사랑방 역할까지도 톡톡히 해왔다." },
+   "gold": ["F09"], "traps": [],
+   "source": { "url": "https://v.daum.net/v/20250420120009606", "outlet": "오마이뉴스(월간 옥이네)", "date": "2025-04-20", "accessed": "2026-10-25" }, "humanChecked": false
+  },
+  {
+   "id": "real-13", "kind": "real",
+   "input": { "sbizSub": "슈퍼마켓", "items": [], "hours": "", "villageId": "",
+     "memo": "뭐 필요할 때는 보통 하나로마트 가는데, 일요일에는 문을 닫으니까 급할 때 동네 슈퍼 가지요." },
+   "gold": ["F04"], "traps": [],
+   "source": { "url": "https://v.daum.net/v/20250420120009606", "outlet": "오마이뉴스(월간 옥이네)", "date": "2025-04-20", "accessed": "2026-10-25" }, "humanChecked": false
+  },
+  {
+   "id": "real-14", "kind": "real",
+   "input": { "sbizSub": "슈퍼마켓", "items": ["제과", "음료"], "hours": "", "villageId": "",
+     "memo": "지금은 기호식품과 제과·음료류를 판매하는 ○○슈퍼지만 과일·생선·채소 신선식품도 판매했다." },
+   "gold": ["F01"], "traps": [ { "fn": "F02", "kind": "past" }, { "fn": "F03", "kind": "past" } ],
+   "source": { "url": "https://v.daum.net/v/20250420120009606", "outlet": "오마이뉴스(월간 옥이네)", "date": "2025-04-20", "accessed": "2026-10-25" }, "humanChecked": false
+  },
+  {
+   "id": "real-15", "kind": "real",
+   "input": { "sbizSub": "주유소", "items": [], "hours": "", "villageId": "",
+     "memo": "주민들이 주문한 택배는 마을 진입로의 한 주유소에 쌓여있다. 택배사가 이 곳에 두고 가면, 주민들은 차를 타고 나와 찾아간다." },
+   "gold": ["F06"], "traps": [],
+   "source": { "url": "https://v.daum.net/v/V9bzRZXDv3", "outlet": "강원일보(다음뉴스)", "date": "2025-09-22", "accessed": "2026-10-25" }, "humanChecked": false
+  },
+  {
+   "id": "real-16", "kind": "real",
+   "input": { "sbizSub": "마을회관", "items": [], "hours": "", "villageId": "",
+     "memo": "방내2리 주민들은 택배사가 방내1리 마을회관에 두고 간 택배를 찾아가고 있다." },
+   "gold": ["F06"], "traps": [],
+   "source": { "url": "https://v.daum.net/v/V9bzRZXDv3", "outlet": "강원일보(다음뉴스)", "date": "2025-09-22", "accessed": "2026-10-25" }, "humanChecked": false
+  },
+  {
+   "id": "real-17", "kind": "real",
+   "input": { "sbizSub": "이동 장터", "items": ["파스", "상비약품", "형광등", "식용유"], "hours": "", "villageId": "",
+     "memo": "트럭에는 파스 등 상비약품과 형광등·식용유 등 각종 생필품 300여개 품목이 실려 있다. 그리고 마을주민들에게 생필품을 팔고 주문받은 물건은 배달도 해준다." },
+   "gold": ["F01", "F05", "F07"], "traps": [],
+   "source": { "url": "https://www.nongmin.com/article/20160628011422", "outlet": "농민신문", "date": "2016-06-29", "accessed": "2026-10-25" }, "humanChecked": false
+  },
+  {
+   "id": "real-18", "kind": "real",
+   "input": { "sbizSub": "이동 장터", "items": [], "hours": "", "villageId": "",
+     "memo": "친구의 안부를 전하고 잔심부름도 하며 나이든 주민에게는 손자 역할까지 한다." },
+   "gold": ["F10"], "traps": [],
+   "source": { "url": "https://www.nongmin.com/article/20160628011422", "outlet": "농민신문", "date": "2016-06-29", "accessed": "2026-10-25" }, "humanChecked": false
+  },
+  {
+   "id": "real-19", "kind": "real",
+   "input": { "sbizSub": "슈퍼마켓", "items": ["콩나물", "두부", "생선", "고기류"], "hours": "", "villageId": "",
+     "memo": "주로 농협 마트에서 콩나물, 두부, 생선, 고기류를 산다." },
+   "gold": ["F01", "F02", "F03"], "traps": [],
+   "source": { "url": "https://www.ohmynews.com/NWS_Web/View/at_pg.aspx?CNTN_CD=A0003206190", "outlet": "오마이뉴스", "date": "2026-02-12", "accessed": "2026-10-25" }, "humanChecked": false
+  },
+  {
+   "id": "real-20", "kind": "real",
+   "input": { "sbizSub": "슈퍼마켓", "items": [], "hours": "", "villageId": "",
+     "memo": "가까운 하나로마트에서도 3만 원 이상이면 배송을 해준다고 한다. 막상 배송을 시켜 보면 배송할 사람이 없어서 배송이 안 된다고 하는 경우가 많다." },
+   "gold": [], "traps": [ { "fn": "F07", "kind": "neg" } ],
+   "source": { "url": "https://www.ohmynews.com/NWS_Web/View/at_pg.aspx?CNTN_CD=A0003206190", "outlet": "오마이뉴스", "date": "2026-02-12", "accessed": "2026-10-25" }, "humanChecked": false
+  }
+ ]
+}
