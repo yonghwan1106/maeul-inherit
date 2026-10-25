@@ -1,0 +1,6409 @@
+{
+ "meta": {
+  "model": "claude-haiku-5-5",
+  "prompt": "b2-v1",
+  "runAt": "2026-10-25T10:28:08.666Z",
+  "n": 66,
+  "cases": 33,
+  "maxTokens": 1200,
+  "usage": {
+   "input": 732811,
+   "output": 33393
+  },
+  "failures": 2,
+  "casesSha256": "ff2de716140f35e1cb855ada2c9fbe439de0b0daebabb1d59974c10fd043fb8d"
+ },
+ "outputs": [
+  {
+   "caseId": "e2-chunsan-car",
+   "variant": "b2a",
+   "raw": "{\"plans\":[{\"villageId\":\"chunsan\",\"set\":[\"hanaro_hwasan\",\"osm_n10821614149\",\"post_hwasan\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hanaro_hwasan\",\"status\":\"확실\"},{\"fn\":\"F02\",\"resId\":\"hanaro_hwasan\",\"status\":\"확실\"},{\"fn\":\"F04\",\"resId\":\"hanaro_hwasan\",\"status\":\"확실\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확실\"},{\"fn\":\"F06\",\"resId\":\"post_hwasan\",\"status\":\"확실\"},{\"fn\":\"F07\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"}]}, {\"plans\":[{\"villageId\":\"chunsan\",\"set\":[\"hanaro_hwasan\",\"osm_n10821614149\",\"post_hwasan\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hanaro_hwasan\",\"status\":\"확실\"},{\"fn\":\"F02\",\"resId\":\"hanaro_hwasan\",\"status\":\"확실\"},{\"fn\":\"F04\",\"resId\":\"hanaro_hwasan\",\"status\":\"확실\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확실\"},{\"fn\":\"F06\",\"resId\":\"post_hwasan\",\"status\":\"확실\"},{\"fn\":\"F07\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"}]}]}",
+   "parsed": null,
+   "fail": "parse",
+   "usage": {
+    "input": 16415,
+    "output": 475
+   }
+  },
+  {
+   "caseId": "e2-chunsan-car",
+   "variant": "b2b",
+   "raw": "{\"plans\":[{\"villageId\":\"chunsan\",\"set\":[\"hanaro_hwasan\",\"care_link\",\"sbiz_MA010120220807235431\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hanaro_hwasan\",\"status\":\"확실\"},{\"fn\":\"F02\",\"resId\":\"hanaro_hwasan\",\"status\":\"확실\"},{\"fn\":\"F04\",\"resId\":\"sbiz_MA010120220807235431\",\"status\":\"확인 필요\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확실\"},{\"fn\":\"F06\",\"resId\":\"care_link\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"care_link\",\"status\":\"확인 필요\"}]},{\"villageId\":\"seungchi\",\"set\":[\"hanaro_hwasan\",\"care_link\",\"sbiz_MA010120220807235431\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hanaro_hwasan\",\"status\":\"확실\"},{\"fn\":\"F02\",\"resId\":\"hanaro_hwasan\",\"status\":\"확실\"},{\"fn\":\"F04\",\"resId\":\"sbiz_MA010120220807235431\",\"status\":\"확인 필요\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확실\"},{\"fn\":\"F06\",\"resId\":\"care_link\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"care_link\",\"status\":\"확인 필요\"}]},{\"villageId\":\"ungok\",\"set\":[\"hanaro_hwasan\",\"care_link\",\"sbiz_MA010120220807235431\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hanaro_hwasan\",\"status\":\"확실\"},{\"fn\":\"F02\",\"resId\":\"hanaro_hwasan\",\"status\":\"확실\"},{\"fn\":\"F04\",\"resId\":\"sbiz_MA010120220807235431\",\"status\":\"확인 필요\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확실\"},{\"fn\":\"F06\",\"resId\":\"care_link\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"care_link\",\"status\":\"확인 필요\"}]}]}",
+   "parsed": {
+    "plans": [
+     {
+      "villageId": "chunsan",
+      "set": [
+       "hanaro_hwasan",
+       "care_link",
+       "sbiz_MA010120220807235431"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hanaro_hwasan",
+        "status": "확실"
+       },
+       {
+        "fn": "F02",
+        "resId": "hanaro_hwasan",
+        "status": "확실"
+       },
+       {
+        "fn": "F04",
+        "resId": "sbiz_MA010120220807235431",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F05",
+        "resId": "hanaro_hwasan",
+        "status": "확실"
+       },
+       {
+        "fn": "F06",
+        "resId": "care_link",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "care_link",
+        "status": "확인 필요"
+       }
+      ]
+     },
+     {
+      "villageId": "seungchi",
+      "set": [
+       "hanaro_hwasan",
+       "care_link",
+       "sbiz_MA010120220807235431"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hanaro_hwasan",
+        "status": "확실"
+       },
+       {
+        "fn": "F02",
+        "resId": "hanaro_hwasan",
+        "status": "확실"
+       },
+       {
+        "fn": "F04",
+        "resId": "sbiz_MA010120220807235431",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F05",
+        "resId": "hanaro_hwasan",
+        "status": "확실"
+       },
+       {
+        "fn": "F06",
+        "resId": "care_link",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "care_link",
+        "status": "확인 필요"
+       }
+      ]
+     },
+     {
+      "villageId": "ungok",
+      "set": [
+       "hanaro_hwasan",
+       "care_link",
+       "sbiz_MA010120220807235431"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hanaro_hwasan",
+        "status": "확실"
+       },
+       {
+        "fn": "F02",
+        "resId": "hanaro_hwasan",
+        "status": "확실"
+       },
+       {
+        "fn": "F04",
+        "resId": "sbiz_MA010120220807235431",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F05",
+        "resId": "hanaro_hwasan",
+        "status": "확실"
+       },
+       {
+        "fn": "F06",
+        "resId": "care_link",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "care_link",
+        "status": "확인 필요"
+       }
+      ]
+     }
+    ]
+   },
+   "fail": null,
+   "usage": {
+    "input": 31645,
+    "output": 705
+   }
+  },
+  {
+   "caseId": "e2-chunsan-walk",
+   "variant": "b2a",
+   "raw": "{\"plans\":[{\"villageId\":\"chunsan\",\"set\":[\"hanaro_hwasan\",\"hub_10947413265\",\"care_link\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F02\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F04\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F06\",\"resId\":\"hub_10947413265\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"care_link\",\"status\":\"확인 필요\"}]}, {\"villageId\":\"seungchi\",\"set\":[\"hub_10947413265\",\"hub_10947413892\",\"hub_10947413946\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F02\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F04\",\"resId\":\"hub_10947413265\",\"status\":\"확인 필요\"},{\"fn\":\"F05\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F06\",\"resId\":\"hub_10947413265\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"\",\"status\":\"없음\"}]}, {\"villageId\":\"ungok\",\"set\":[\"hanaro_hwasan\",\"care_link\",\"tour_A\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"tour_A\",\"status\":\"확인 필요\"},{\"fn\":\"F02\",\"resId\":\"tour_A\",\"status\":\"확인 필요\"},{\"fn\":\"F04\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F05\",\"resId\":\"tour_A\",\"status\":\"확인 필요\"},{\"fn\":\"F06\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F07\",\"resId\":\"care_link\",\"status\":\"확인 필요\"}]}]}",
+   "parsed": {
+    "plans": [
+     {
+      "villageId": "chunsan",
+      "set": [
+       "hanaro_hwasan",
+       "hub_10947413265",
+       "care_link"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F02",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F04",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F05",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F06",
+        "resId": "hub_10947413265",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "care_link",
+        "status": "확인 필요"
+       }
+      ]
+     },
+     {
+      "villageId": "seungchi",
+      "set": [
+       "hub_10947413265",
+       "hub_10947413892",
+       "hub_10947413946"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F02",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F04",
+        "resId": "hub_10947413265",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F05",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F06",
+        "resId": "hub_10947413265",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "",
+        "status": "없음"
+       }
+      ]
+     },
+     {
+      "villageId": "ungok",
+      "set": [
+       "hanaro_hwasan",
+       "care_link",
+       "tour_A"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "tour_A",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F02",
+        "resId": "tour_A",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F04",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F05",
+        "resId": "tour_A",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F06",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F07",
+        "resId": "care_link",
+        "status": "확인 필요"
+       }
+      ]
+     }
+    ]
+   },
+   "fail": null,
+   "usage": {
+    "input": 3219,
+    "output": 622
+   }
+  },
+  {
+   "caseId": "e2-chunsan-walk",
+   "variant": "b2b",
+   "raw": "{\"plans\":[{\"villageId\":\"chunsan\",\"set\":[\"hanaro_hwasan\",\"care_link\",\"tour_A\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F02\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F04\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F06\",\"resId\":\"care_link\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"care_link\",\"status\":\"확인 필요\"}]},{\"villageId\":\"seungchi\",\"set\":[\"hanaro_hwasan\",\"hub_10947413265\",\"care_link\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F02\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F04\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F06\",\"resId\":\"hub_10947413265\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"care_link\",\"status\":\"확인 필요\"}]},{\"villageId\":\"ungok\",\"set\":[\"hanaro_hwasan\",\"tour_A\",\"care_link\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F02\",\"resId\":\"tour_A\",\"status\":\"확인 필요\"},{\"fn\":\"F04\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F06\",\"resId\":\"care_link\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"care_link\",\"status\":\"확인 필요\"}]}]}",
+   "parsed": {
+    "plans": [
+     {
+      "villageId": "chunsan",
+      "set": [
+       "hanaro_hwasan",
+       "care_link",
+       "tour_A"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F02",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F04",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F05",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F06",
+        "resId": "care_link",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "care_link",
+        "status": "확인 필요"
+       }
+      ]
+     },
+     {
+      "villageId": "seungchi",
+      "set": [
+       "hanaro_hwasan",
+       "hub_10947413265",
+       "care_link"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F02",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F04",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F05",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F06",
+        "resId": "hub_10947413265",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "care_link",
+        "status": "확인 필요"
+       }
+      ]
+     },
+     {
+      "villageId": "ungok",
+      "set": [
+       "hanaro_hwasan",
+       "tour_A",
+       "care_link"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F02",
+        "resId": "tour_A",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F04",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F05",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F06",
+        "resId": "care_link",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "care_link",
+        "status": "확인 필요"
+       }
+      ]
+     }
+    ]
+   },
+   "fail": null,
+   "usage": {
+    "input": 4211,
+    "output": 659
+   }
+  },
+  {
+   "caseId": "e2-chunsan-homebound",
+   "variant": "b2a",
+   "raw": "{\"plans\":[{\"villageId\":\"chunsan\",\"set\":[\"care_link\",\"hanaro_hwasan\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F02\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F04\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F06\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F07\",\"resId\":\"care_link\",\"status\":\"확인 필요\"}]}, {\"villageId\":\"seungchi\",\"set\":[\"hub_10947413265\",\"hubdrop_hanaro_hwasan_10947413265\",\"care_link\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hubdrop_hanaro_hwasan_10947413265\",\"status\":\"확인 필요\"},{\"fn\":\"F02\",\"resId\":\"hubdrop_hanaro_hwasan_10947413265\",\"status\":\"확인 필요\"},{\"fn\":\"F04\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F05\",\"resId\":\"hubdrop_hanaro_hwasan_10947413265\",\"status\":\"확인 필요\"},{\"fn\":\"F06\",\"resId\":\"hub_10947413265\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"care_link\",\"status\":\"확인 필요\"}]}, {\"villageId\":\"ungok\",\"set\":[\"care_link\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F02\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F04\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F05\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F06\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F07\",\"resId\":\"care_link\",\"status\":\"확인 필요\"}]}]}",
+   "parsed": {
+    "plans": [
+     {
+      "villageId": "chunsan",
+      "set": [
+       "care_link",
+       "hanaro_hwasan"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F02",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F04",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F05",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F06",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F07",
+        "resId": "care_link",
+        "status": "확인 필요"
+       }
+      ]
+     },
+     {
+      "villageId": "seungchi",
+      "set": [
+       "hub_10947413265",
+       "hubdrop_hanaro_hwasan_10947413265",
+       "care_link"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hubdrop_hanaro_hwasan_10947413265",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F02",
+        "resId": "hubdrop_hanaro_hwasan_10947413265",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F04",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F05",
+        "resId": "hubdrop_hanaro_hwasan_10947413265",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F06",
+        "resId": "hub_10947413265",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "care_link",
+        "status": "확인 필요"
+       }
+      ]
+     },
+     {
+      "villageId": "ungok",
+      "set": [
+       "care_link"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F02",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F04",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F05",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F06",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F07",
+        "resId": "care_link",
+        "status": "확인 필요"
+       }
+      ]
+     }
+    ]
+   },
+   "fail": null,
+   "usage": {
+    "input": 3228,
+    "output": 642
+   }
+  },
+  {
+   "caseId": "e2-chunsan-homebound",
+   "variant": "b2b",
+   "raw": "{\"plans\":[{\"villageId\":\"chunsan\",\"set\":[\"care_link\",\"hanaro_hwasan\",\"tour_A\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F02\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F04\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F06\",\"resId\":\"care_link\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"care_link\",\"status\":\"확인 필요\"}]},{\"villageId\":\"seungchi\",\"set\":[\"care_link\",\"hanaro_hwasan\",\"hub_10947413265\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F02\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F04\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F06\",\"resId\":\"hub_10947413265\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"care_link\",\"status\":\"확인 필요\"}]},{\"villageId\":\"ungok\",\"set\":[\"care_link\",\"hanaro_hwasan\",\"tour_A\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F02\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F04\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F06\",\"resId\":\"care_link\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"care_link\",\"status\":\"확인 필요\"}]}]}",
+   "parsed": {
+    "plans": [
+     {
+      "villageId": "chunsan",
+      "set": [
+       "care_link",
+       "hanaro_hwasan",
+       "tour_A"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F02",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F04",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F05",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F06",
+        "resId": "care_link",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "care_link",
+        "status": "확인 필요"
+       }
+      ]
+     },
+     {
+      "villageId": "seungchi",
+      "set": [
+       "care_link",
+       "hanaro_hwasan",
+       "hub_10947413265"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F02",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F04",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F05",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F06",
+        "resId": "hub_10947413265",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "care_link",
+        "status": "확인 필요"
+       }
+      ]
+     },
+     {
+      "villageId": "ungok",
+      "set": [
+       "care_link",
+       "hanaro_hwasan",
+       "tour_A"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F02",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F04",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F05",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F06",
+        "resId": "care_link",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "care_link",
+        "status": "확인 필요"
+       }
+      ]
+     }
+    ]
+   },
+   "fail": null,
+   "usage": {
+    "input": 4130,
+    "output": 664
+   }
+  },
+  {
+   "caseId": "e2-hwapyeong-car",
+   "variant": "b2a",
+   "raw": "{\"plans\":[{\"villageId\":\"hwapyeong\",\"set\":[\"hanaro_hwasan\",\"post_hwasan\",\"sbiz_MA010120220807235431\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hanaro_hwasan\",\"status\":\"확실\"},{\"fn\":\"F02\",\"resId\":\"sbiz_MA010120220807235431\",\"status\":\"확인 필요\"},{\"fn\":\"F04\",\"resId\":\"sbiz_MA010120220807235431\",\"status\":\"확실\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확실\"},{\"fn\":\"F06\",\"resId\":\"post_hwasan\",\"status\":\"확실\"},{\"fn\":\"F07\",\"resId\":\"sbiz_MA010120220807235431\",\"status\":\"확인 필요\"}]},{\"villageId\":\"hwawol\",\"set\":[\"hub_10864068572\",\"hub_10942647803\",\"hanaro_hwasan\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F02\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F04\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F06\",\"resId\":\"hub_10864068572\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"hubdrop_hanaro_hwasan_10864068572\",\"status\":\"확인 필요\"}]},{\"villageId\":\"unje\",\"set\":[\"hub_10859662554\",\"hanaro_hwasan\",\"sbiz_MA010120220807279007\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F02\",\"resId\":\"sbiz_MA010120220807279007\",\"status\":\"확인 필요\"},{\"fn\":\"F04\",\"resId\":\"sbiz_MA010120220807279007\",\"status\":\"확인 필요\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F06\",\"resId\":\"hub_10859662554\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"sbiz_MA010120220807279007\",\"status\":\"확인 필요\"}]}]}",
+   "parsed": {
+    "plans": [
+     {
+      "villageId": "hwapyeong",
+      "set": [
+       "hanaro_hwasan",
+       "post_hwasan",
+       "sbiz_MA010120220807235431"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hanaro_hwasan",
+        "status": "확실"
+       },
+       {
+        "fn": "F02",
+        "resId": "sbiz_MA010120220807235431",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F04",
+        "resId": "sbiz_MA010120220807235431",
+        "status": "확실"
+       },
+       {
+        "fn": "F05",
+        "resId": "hanaro_hwasan",
+        "status": "확실"
+       },
+       {
+        "fn": "F06",
+        "resId": "post_hwasan",
+        "status": "확실"
+       },
+       {
+        "fn": "F07",
+        "resId": "sbiz_MA010120220807235431",
+        "status": "확인 필요"
+       }
+      ]
+     },
+     {
+      "villageId": "hwawol",
+      "set": [
+       "hub_10864068572",
+       "hub_10942647803",
+       "hanaro_hwasan"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F02",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F04",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F05",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F06",
+        "resId": "hub_10864068572",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "hubdrop_hanaro_hwasan_10864068572",
+        "status": "확인 필요"
+       }
+      ]
+     },
+     {
+      "villageId": "unje",
+      "set": [
+       "hub_10859662554",
+       "hanaro_hwasan",
+       "sbiz_MA010120220807279007"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F02",
+        "resId": "sbiz_MA010120220807279007",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F04",
+        "resId": "sbiz_MA010120220807279007",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F05",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F06",
+        "resId": "hub_10859662554",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "sbiz_MA010120220807279007",
+        "status": "확인 필요"
+       }
+      ]
+     }
+    ]
+   },
+   "fail": null,
+   "usage": {
+    "input": 17489,
+    "output": 766
+   }
+  },
+  {
+   "caseId": "e2-hwapyeong-car",
+   "variant": "b2b",
+   "raw": "{\"plans\":[{\"villageId\":\"hwapyeong\",\"set\":[\"hanaro_hwasan\",\"sbiz_MA010120220807235431\",\"hubdrop_hanaro_hwasan_10887552862\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hanaro_hwasan\",\"status\":\"확실\"},{\"fn\":\"F02\",\"resId\":\"hanaro_hwasan\",\"status\":\"확실\"},{\"fn\":\"F04\",\"resId\":\"sbiz_MA010120220807235431\",\"status\":\"확실\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확실\"},{\"fn\":\"F06\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"hubdrop_hanaro_hwasan_10887552862\",\"status\":\"확인 필요\"}]},{\"villageId\":\"hwawol\",\"set\":[\"hanaro_hwasan\",\"hub_10864068572\",\"hub_10942647666\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F02\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F04\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F06\",\"resId\":\"hub_10864068572\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"hubdrop_hanaro_hwasan_10864068572\",\"status\":\"확인 필요\"}]},{\"villageId\":\"unje\",\"set\":[\"hub_10859662554\",\"hanaro_hwasan\",\"sbiz_MA010120220807279007\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"sbiz_MA010120220807279007\",\"status\":\"확인 필요\"},{\"fn\":\"F02\",\"resId\":\"sbiz_MA010120220807279007\",\"status\":\"확인 필요\"},{\"fn\":\"F04\",\"resId\":\"sbiz_MA010120220807279007\",\"status\":\"확인 필요\"},{\"fn\":\"F05\",\"resId\":\"sbiz_MA010120220807279007\",\"status\":\"확인 필요\"},{\"fn\":\"F06\",\"resId\":\"hub_10859662554\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"hubdrop_hanaro_hwasan_10859662554\",\"status\":\"확인 필요\"}]}]}",
+   "parsed": {
+    "plans": [
+     {
+      "villageId": "hwapyeong",
+      "set": [
+       "hanaro_hwasan",
+       "sbiz_MA010120220807235431",
+       "hubdrop_hanaro_hwasan_10887552862"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hanaro_hwasan",
+        "status": "확실"
+       },
+       {
+        "fn": "F02",
+        "resId": "hanaro_hwasan",
+        "status": "확실"
+       },
+       {
+        "fn": "F04",
+        "resId": "sbiz_MA010120220807235431",
+        "status": "확실"
+       },
+       {
+        "fn": "F05",
+        "resId": "hanaro_hwasan",
+        "status": "확실"
+       },
+       {
+        "fn": "F06",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "hubdrop_hanaro_hwasan_10887552862",
+        "status": "확인 필요"
+       }
+      ]
+     },
+     {
+      "villageId": "hwawol",
+      "set": [
+       "hanaro_hwasan",
+       "hub_10864068572",
+       "hub_10942647666"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F02",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F04",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F05",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F06",
+        "resId": "hub_10864068572",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "hubdrop_hanaro_hwasan_10864068572",
+        "status": "확인 필요"
+       }
+      ]
+     },
+     {
+      "villageId": "unje",
+      "set": [
+       "hub_10859662554",
+       "hanaro_hwasan",
+       "sbiz_MA010120220807279007"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "sbiz_MA010120220807279007",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F02",
+        "resId": "sbiz_MA010120220807279007",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F04",
+        "resId": "sbiz_MA010120220807279007",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F05",
+        "resId": "sbiz_MA010120220807279007",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F06",
+        "resId": "hub_10859662554",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "hubdrop_hanaro_hwasan_10859662554",
+        "status": "확인 필요"
+       }
+      ]
+     }
+    ]
+   },
+   "fail": null,
+   "usage": {
+    "input": 46388,
+    "output": 801
+   }
+  },
+  {
+   "caseId": "e2-hwapyeong-walk",
+   "variant": "b2a",
+   "raw": "{\"plans\":[{\"villageId\":\"hwapyeong\",\"set\":[\"hanaro_hwasan\",\"hub_10887533043\",\"care_link\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F02\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F04\",\"resId\":\"hub_10887533043\",\"status\":\"확인 필요\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F06\",\"resId\":\"hub_10887533043\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"care_link\",\"status\":\"확인 필요\"}]},{\"villageId\":\"hwawol\",\"set\":[\"hub_10864068572\",\"hub_10942647666\",\"hub_10942647803\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F02\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F04\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F05\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F06\",\"resId\":\"hub_10864068572\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"\",\"status\":\"없음\"}]},{\"villageId\":\"unje\",\"set\":[\"hub_10859662554\",\"hubdrop_hanaro_hwasan_10859662554\",\"care_link\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hubdrop_hanaro_hwasan_10859662554\",\"status\":\"확인 필요\"},{\"fn\":\"F02\",\"resId\":\"hubdrop_hanaro_hwasan_10859662554\",\"status\":\"확인 필요\"},{\"fn\":\"F04\",\"resId\":\"hub_10859662554\",\"status\":\"확인 필요\"},{\"fn\":\"F05\",\"resId\":\"hubdrop_hanaro_hwasan_10859662554\",\"status\":\"확인 필요\"},{\"fn\":\"F06\",\"resId\":\"hub_10859662554\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"care_link\",\"status\":\"확인 필요\"}]}]}",
+   "parsed": {
+    "plans": [
+     {
+      "villageId": "hwapyeong",
+      "set": [
+       "hanaro_hwasan",
+       "hub_10887533043",
+       "care_link"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F02",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F04",
+        "resId": "hub_10887533043",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F05",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F06",
+        "resId": "hub_10887533043",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "care_link",
+        "status": "확인 필요"
+       }
+      ]
+     },
+     {
+      "villageId": "hwawol",
+      "set": [
+       "hub_10864068572",
+       "hub_10942647666",
+       "hub_10942647803"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F02",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F04",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F05",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F06",
+        "resId": "hub_10864068572",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "",
+        "status": "없음"
+       }
+      ]
+     },
+     {
+      "villageId": "unje",
+      "set": [
+       "hub_10859662554",
+       "hubdrop_hanaro_hwasan_10859662554",
+       "care_link"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hubdrop_hanaro_hwasan_10859662554",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F02",
+        "resId": "hubdrop_hanaro_hwasan_10859662554",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F04",
+        "resId": "hub_10859662554",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F05",
+        "resId": "hubdrop_hanaro_hwasan_10859662554",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F06",
+        "resId": "hub_10859662554",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "care_link",
+        "status": "확인 필요"
+       }
+      ]
+     }
+    ]
+   },
+   "fail": null,
+   "usage": {
+    "input": 4626,
+    "output": 703
+   }
+  },
+  {
+   "caseId": "e2-hwapyeong-walk",
+   "variant": "b2b",
+   "raw": "{\"plans\":[{\"villageId\":\"hwapyeong\",\"set\":[\"hanaro_hwasan\",\"post_hwasan\",\"sbiz_MA010120220807235431\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hanaro_hwasan\",\"status\":\"확실\"},{\"fn\":\"F02\",\"resId\":\"hanaro_hwasan\",\"status\":\"확실\"},{\"fn\":\"F04\",\"resId\":\"sbiz_MA010120220807235431\",\"status\":\"확인 필요\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확실\"},{\"fn\":\"F06\",\"resId\":\"post_hwasan\",\"status\":\"확실\"},{\"fn\":\"F07\",\"resId\":\"sbiz_MA010120220807235431\",\"status\":\"확인 필요\"}]},{\"villageId\":\"hwawol\",\"set\":[\"hanaro_hwasan\",\"hub_10864068661\",\"care_link\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F02\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F04\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F06\",\"resId\":\"hub_10864068661\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"care_link\",\"status\":\"확인 필요\"}]},{\"villageId\":\"unje\",\"set\":[\"hanaro_hwasan\",\"hub_10859662554\",\"care_link\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F02\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F04\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F06\",\"resId\":\"hub_10859662554\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"care_link\",\"status\":\"확인 필요\"}]}]}",
+   "parsed": {
+    "plans": [
+     {
+      "villageId": "hwapyeong",
+      "set": [
+       "hanaro_hwasan",
+       "post_hwasan",
+       "sbiz_MA010120220807235431"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hanaro_hwasan",
+        "status": "확실"
+       },
+       {
+        "fn": "F02",
+        "resId": "hanaro_hwasan",
+        "status": "확실"
+       },
+       {
+        "fn": "F04",
+        "resId": "sbiz_MA010120220807235431",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F05",
+        "resId": "hanaro_hwasan",
+        "status": "확실"
+       },
+       {
+        "fn": "F06",
+        "resId": "post_hwasan",
+        "status": "확실"
+       },
+       {
+        "fn": "F07",
+        "resId": "sbiz_MA010120220807235431",
+        "status": "확인 필요"
+       }
+      ]
+     },
+     {
+      "villageId": "hwawol",
+      "set": [
+       "hanaro_hwasan",
+       "hub_10864068661",
+       "care_link"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F02",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F04",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F05",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F06",
+        "resId": "hub_10864068661",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "care_link",
+        "status": "확인 필요"
+       }
+      ]
+     },
+     {
+      "villageId": "unje",
+      "set": [
+       "hanaro_hwasan",
+       "hub_10859662554",
+       "care_link"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F02",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F04",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F05",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F06",
+        "resId": "hub_10859662554",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "care_link",
+        "status": "확인 필요"
+       }
+      ]
+     }
+    ]
+   },
+   "fail": null,
+   "usage": {
+    "input": 6780,
+    "output": 701
+   }
+  },
+  {
+   "caseId": "e2-hwapyeong-homebound",
+   "variant": "b2a",
+   "raw": "{\"plans\":[{\"villageId\":\"hwapyeong\",\"set\":[\"hanaro_hwasan\",\"hub_10887533043\",\"care_link\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hub_10887533043\",\"status\":\"확인 필요\"},{\"fn\":\"F02\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F04\",\"resId\":\"hub_10887533043\",\"status\":\"확인 필요\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F06\",\"resId\":\"hub_10887533043\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"care_link\",\"status\":\"확인 필요\"}]},{\"villageId\":\"hwawol\",\"set\":[\"hub_10864068572\",\"hub_10864068661\",\"care_link\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hub_10864068572\",\"status\":\"확인 필요\"},{\"fn\":\"F02\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F04\",\"resId\":\"hub_10864068572\",\"status\":\"확인 필요\"},{\"fn\":\"F05\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F06\",\"resId\":\"hub_10864068572\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"care_link\",\"status\":\"확인 필요\"}]},{\"villageId\":\"unje\",\"set\":[\"hub_10859662554\",\"care_link\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hub_10859662554\",\"status\":\"확인 필요\"},{\"fn\":\"F02\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F04\",\"resId\":\"hub_10859662554\",\"status\":\"확인 필요\"},{\"fn\":\"F05\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F06\",\"resId\":\"hub_10859662554\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"care_link\",\"status\":\"확인 필요\"}]}]}",
+   "parsed": {
+    "plans": [
+     {
+      "villageId": "hwapyeong",
+      "set": [
+       "hanaro_hwasan",
+       "hub_10887533043",
+       "care_link"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hub_10887533043",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F02",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F04",
+        "resId": "hub_10887533043",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F05",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F06",
+        "resId": "hub_10887533043",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "care_link",
+        "status": "확인 필요"
+       }
+      ]
+     },
+     {
+      "villageId": "hwawol",
+      "set": [
+       "hub_10864068572",
+       "hub_10864068661",
+       "care_link"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hub_10864068572",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F02",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F04",
+        "resId": "hub_10864068572",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F05",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F06",
+        "resId": "hub_10864068572",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "care_link",
+        "status": "확인 필요"
+       }
+      ]
+     },
+     {
+      "villageId": "unje",
+      "set": [
+       "hub_10859662554",
+       "care_link"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hub_10859662554",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F02",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F04",
+        "resId": "hub_10859662554",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F05",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F06",
+        "resId": "hub_10859662554",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "care_link",
+        "status": "확인 필요"
+       }
+      ]
+     }
+    ]
+   },
+   "fail": null,
+   "usage": {
+    "input": 4549,
+    "output": 631
+   }
+  },
+  {
+   "caseId": "e2-hwapyeong-homebound",
+   "variant": "b2b",
+   "raw": "{\"plans\":[{\"villageId\":\"hwapyeong\",\"set\":[\"hanaro_hwasan\",\"hubdrop_hanaro_hwasan_10887533043\",\"care_link\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hubdrop_hanaro_hwasan_10887533043\",\"status\":\"확인 필요\"},{\"fn\":\"F02\",\"resId\":\"hubdrop_hanaro_hwasan_10887533043\",\"status\":\"확인 필요\"},{\"fn\":\"F04\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F05\",\"resId\":\"hubdrop_hanaro_hwasan_10887533043\",\"status\":\"확인 필요\"},{\"fn\":\"F06\",\"resId\":\"hub_10887533043\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"care_link\",\"status\":\"확인 필요\"}]},{\"villageId\":\"hwawol\",\"set\":[\"hubdrop_hanaro_hwasan_10864068572\",\"hub_10864068572\",\"care_link\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hubdrop_hanaro_hwasan_10864068572\",\"status\":\"확인 필요\"},{\"fn\":\"F02\",\"resId\":\"hubdrop_hanaro_hwasan_10864068572\",\"status\":\"확인 필요\"},{\"fn\":\"F04\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F05\",\"resId\":\"hubdrop_hanaro_hwasan_10864068572\",\"status\":\"확인 필요\"},{\"fn\":\"F06\",\"resId\":\"hub_10864068572\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"care_link\",\"status\":\"확인 필요\"}]},{\"villageId\":\"unje\",\"set\":[\"hubdrop_hanaro_hwasan_10859662554\",\"hub_10859662554\",\"care_link\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hubdrop_hanaro_hwasan_10859662554\",\"status\":\"확인 필요\"},{\"fn\":\"F02\",\"resId\":\"hubdrop_hanaro_hwasan_10859662554\",\"status\":\"확인 필요\"},{\"fn\":\"F04\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F05\",\"resId\":\"hubdrop_hanaro_hwasan_10859662554\",\"status\":\"확인 필요\"},{\"fn\":\"F06\",\"resId\":\"hub_10859662554\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"care_link\",\"status\":\"확인 필요\"}]}]}",
+   "parsed": {
+    "plans": [
+     {
+      "villageId": "hwapyeong",
+      "set": [
+       "hanaro_hwasan",
+       "hubdrop_hanaro_hwasan_10887533043",
+       "care_link"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hubdrop_hanaro_hwasan_10887533043",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F02",
+        "resId": "hubdrop_hanaro_hwasan_10887533043",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F04",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F05",
+        "resId": "hubdrop_hanaro_hwasan_10887533043",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F06",
+        "resId": "hub_10887533043",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "care_link",
+        "status": "확인 필요"
+       }
+      ]
+     },
+     {
+      "villageId": "hwawol",
+      "set": [
+       "hubdrop_hanaro_hwasan_10864068572",
+       "hub_10864068572",
+       "care_link"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hubdrop_hanaro_hwasan_10864068572",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F02",
+        "resId": "hubdrop_hanaro_hwasan_10864068572",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F04",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F05",
+        "resId": "hubdrop_hanaro_hwasan_10864068572",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F06",
+        "resId": "hub_10864068572",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "care_link",
+        "status": "확인 필요"
+       }
+      ]
+     },
+     {
+      "villageId": "unje",
+      "set": [
+       "hubdrop_hanaro_hwasan_10859662554",
+       "hub_10859662554",
+       "care_link"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hubdrop_hanaro_hwasan_10859662554",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F02",
+        "resId": "hubdrop_hanaro_hwasan_10859662554",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F04",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F05",
+        "resId": "hubdrop_hanaro_hwasan_10859662554",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F06",
+        "resId": "hub_10859662554",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "care_link",
+        "status": "확인 필요"
+       }
+      ]
+     }
+    ]
+   },
+   "fail": null,
+   "usage": {
+    "input": 6103,
+    "output": 813
+   }
+  },
+  {
+   "caseId": "e2-hwawol-car",
+   "variant": "b2a",
+   "raw": "{\"plans\":[{\"villageId\":\"hwapyeong\",\"set\":[\"hanaro_hwasan\",\"sbiz_MA010120220807235431\",\"post_hwasan\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hanaro_hwasan\",\"status\":\"확실\"},{\"fn\":\"F02\",\"resId\":\"sbiz_MA010120220807235431\",\"status\":\"확인 필요\"},{\"fn\":\"F04\",\"resId\":\"sbiz_MA010120220807235431\",\"status\":\"확인 필요\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확실\"},{\"fn\":\"F06\",\"resId\":\"post_hwasan\",\"status\":\"확실\"},{\"fn\":\"F07\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"}]},{\"villageId\":\"hwawol\",\"set\":[\"hub_10864068572\",\"hanaro_hwasan\",\"post_hwasan\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hanaro_hwasan\",\"status\":\"확실\"},{\"fn\":\"F02\",\"resId\":\"hanaro_hwasan\",\"status\":\"확실\"},{\"fn\":\"F04\",\"resId\":\"sbiz_MA010120220807235431\",\"status\":\"확인 필요\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확실\"},{\"fn\":\"F06\",\"resId\":\"post_hwasan\",\"status\":\"확실\"},{\"fn\":\"F07\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"}]}]}",
+   "parsed": {
+    "plans": [
+     {
+      "villageId": "hwapyeong",
+      "set": [
+       "hanaro_hwasan",
+       "sbiz_MA010120220807235431",
+       "post_hwasan"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hanaro_hwasan",
+        "status": "확실"
+       },
+       {
+        "fn": "F02",
+        "resId": "sbiz_MA010120220807235431",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F04",
+        "resId": "sbiz_MA010120220807235431",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F05",
+        "resId": "hanaro_hwasan",
+        "status": "확실"
+       },
+       {
+        "fn": "F06",
+        "resId": "post_hwasan",
+        "status": "확실"
+       },
+       {
+        "fn": "F07",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       }
+      ]
+     },
+     {
+      "villageId": "hwawol",
+      "set": [
+       "hub_10864068572",
+       "hanaro_hwasan",
+       "post_hwasan"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hanaro_hwasan",
+        "status": "확실"
+       },
+       {
+        "fn": "F02",
+        "resId": "hanaro_hwasan",
+        "status": "확실"
+       },
+       {
+        "fn": "F04",
+        "resId": "sbiz_MA010120220807235431",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F05",
+        "resId": "hanaro_hwasan",
+        "status": "확실"
+       },
+       {
+        "fn": "F06",
+        "resId": "post_hwasan",
+        "status": "확실"
+       },
+       {
+        "fn": "F07",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       }
+      ]
+     }
+    ]
+   },
+   "fail": null,
+   "usage": {
+    "input": 16959,
+    "output": 495
+   }
+  },
+  {
+   "caseId": "e2-hwawol-car",
+   "variant": "b2b",
+   "raw": "{\"plans\":[{\"villageId\":\"hwawol\",\"set\":[\"hanaro_hwasan\",\"hub_10864068572\",\"sbiz_MA010120220807279007\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hanaro_hwasan\",\"status\":\"확실\"},{\"fn\":\"F02\",\"resId\":\"hanaro_hwasan\",\"status\":\"확실\"},{\"fn\":\"F04\",\"resId\":\"hub_10864068572\",\"status\":\"없음\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확실\"},{\"fn\":\"F06\",\"resId\":\"hanaro_hwasan\",\"status\":\"확실\"},{\"fn\":\"F07\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"}]}]}",
+   "parsed": {
+    "plans": [
+     {
+      "villageId": "hwawol",
+      "set": [
+       "hanaro_hwasan",
+       "hub_10864068572",
+       "sbiz_MA010120220807279007"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hanaro_hwasan",
+        "status": "확실"
+       },
+       {
+        "fn": "F02",
+        "resId": "hanaro_hwasan",
+        "status": "확실"
+       },
+       {
+        "fn": "F04",
+        "resId": "hub_10864068572",
+        "status": "없음"
+       },
+       {
+        "fn": "F05",
+        "resId": "hanaro_hwasan",
+        "status": "확실"
+       },
+       {
+        "fn": "F06",
+        "resId": "hanaro_hwasan",
+        "status": "확실"
+       },
+       {
+        "fn": "F07",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       }
+      ]
+     }
+    ]
+   },
+   "fail": null,
+   "usage": {
+    "input": 39959,
+    "output": 246
+   }
+  },
+  {
+   "caseId": "e2-hwawol-walk",
+   "variant": "b2a",
+   "raw": "{\"plans\":[{\"villageId\":\"hwapyeong\",\"set\":[\"hanaro_hwasan\",\"hub_10887533043\",\"hub_10887552862\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F02\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F04\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F06\",\"resId\":\"hub_10887533043\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"}]},{\"villageId\":\"hwawol\",\"set\":[\"hanaro_hwasan\",\"hub_10864068572\",\"hub_10942647803\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F02\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F04\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F06\",\"resId\":\"hub_10864068572\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"}]}]}",
+   "parsed": {
+    "plans": [
+     {
+      "villageId": "hwapyeong",
+      "set": [
+       "hanaro_hwasan",
+       "hub_10887533043",
+       "hub_10887552862"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F02",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F04",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F05",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F06",
+        "resId": "hub_10887533043",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       }
+      ]
+     },
+     {
+      "villageId": "hwawol",
+      "set": [
+       "hanaro_hwasan",
+       "hub_10864068572",
+       "hub_10942647803"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F02",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F04",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F05",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F06",
+        "resId": "hub_10864068572",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       }
+      ]
+     }
+    ]
+   },
+   "fail": null,
+   "usage": {
+    "input": 4249,
+    "output": 502
+   }
+  },
+  {
+   "caseId": "e2-hwawol-walk",
+   "variant": "b2b",
+   "raw": "{\"plans\":[{\"villageId\":\"hwapyeong\",\"set\":[\"hanaro_hwasan\",\"sbiz_MA010120220807235431\",\"post_hwasan\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hanaro_hwasan\",\"status\":\"확실\"},{\"fn\":\"F02\",\"resId\":\"hanaro_hwasan\",\"status\":\"확실\"},{\"fn\":\"F04\",\"resId\":\"sbiz_MA010120220807235431\",\"status\":\"확인 필요\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F06\",\"resId\":\"post_hwasan\",\"status\":\"확실\"},{\"fn\":\"F07\",\"resId\":\"sbiz_MA010120220807235431\",\"status\":\"확인 필요\"}]},{\"villageId\":\"hwawol\",\"set\":[\"hanaro_hwasan\",\"care_link\",\"hub_10864068572\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F02\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F04\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F06\",\"resId\":\"hub_10864068572\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"care_link\",\"status\":\"확인 필요\"}]}]}",
+   "parsed": {
+    "plans": [
+     {
+      "villageId": "hwapyeong",
+      "set": [
+       "hanaro_hwasan",
+       "sbiz_MA010120220807235431",
+       "post_hwasan"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hanaro_hwasan",
+        "status": "확실"
+       },
+       {
+        "fn": "F02",
+        "resId": "hanaro_hwasan",
+        "status": "확실"
+       },
+       {
+        "fn": "F04",
+        "resId": "sbiz_MA010120220807235431",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F05",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F06",
+        "resId": "post_hwasan",
+        "status": "확실"
+       },
+       {
+        "fn": "F07",
+        "resId": "sbiz_MA010120220807235431",
+        "status": "확인 필요"
+       }
+      ]
+     },
+     {
+      "villageId": "hwawol",
+      "set": [
+       "hanaro_hwasan",
+       "care_link",
+       "hub_10864068572"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F02",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F04",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F05",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F06",
+        "resId": "hub_10864068572",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "care_link",
+        "status": "확인 필요"
+       }
+      ]
+     }
+    ]
+   },
+   "fail": null,
+   "usage": {
+    "input": 6111,
+    "output": 495
+   }
+  },
+  {
+   "caseId": "e2-hwawol-homebound",
+   "variant": "b2a",
+   "raw": "{\"plans\":[{\"villageId\":\"hwapyeong\",\"set\":[\"care_link\",\"hubdrop_hanaro_hwasan_10887533043\",\"hub_10887533043\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hubdrop_hanaro_hwasan_10887533043\",\"status\":\"확인 필요\"},{\"fn\":\"F02\",\"resId\":\"care_link\",\"status\":\"확인 필요\"},{\"fn\":\"F04\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F05\",\"resId\":\"hubdrop_hanaro_hwasan_10887533043\",\"status\":\"확인 필요\"},{\"fn\":\"F06\",\"resId\":\"hub_10887533043\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"care_link\",\"status\":\"확인 필요\"}]},{\"villageId\":\"hwawol\",\"set\":[\"care_link\",\"hubdrop_hanaro_hwasan_10864068572\",\"hub_10864068572\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hubdrop_hanaro_hwasan_10864068572\",\"status\":\"확인 필요\"},{\"fn\":\"F02\",\"resId\":\"care_link\",\"status\":\"확인 필요\"},{\"fn\":\"F04\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F05\",\"resId\":\"hubdrop_hanaro_hwasan_10864068572\",\"status\":\"확인 필요\"},{\"fn\":\"F06\",\"resId\":\"hub_10864068572\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"care_link\",\"status\":\"확인 필요\"}]}]}",
+   "parsed": {
+    "plans": [
+     {
+      "villageId": "hwapyeong",
+      "set": [
+       "care_link",
+       "hubdrop_hanaro_hwasan_10887533043",
+       "hub_10887533043"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hubdrop_hanaro_hwasan_10887533043",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F02",
+        "resId": "care_link",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F04",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F05",
+        "resId": "hubdrop_hanaro_hwasan_10887533043",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F06",
+        "resId": "hub_10887533043",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "care_link",
+        "status": "확인 필요"
+       }
+      ]
+     },
+     {
+      "villageId": "hwawol",
+      "set": [
+       "care_link",
+       "hubdrop_hanaro_hwasan_10864068572",
+       "hub_10864068572"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hubdrop_hanaro_hwasan_10864068572",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F02",
+        "resId": "care_link",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F04",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F05",
+        "resId": "hubdrop_hanaro_hwasan_10864068572",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F06",
+        "resId": "hub_10864068572",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "care_link",
+        "status": "확인 필요"
+       }
+      ]
+     }
+    ]
+   },
+   "fail": null,
+   "usage": {
+    "input": 4172,
+    "output": 512
+   }
+  },
+  {
+   "caseId": "e2-hwawol-homebound",
+   "variant": "b2b",
+   "raw": "{\"plans\":[{\"villageId\":\"hwapyeong\",\"set\":[\"hanaro_hwasan\",\"care_link\",\"hubdrop_hanaro_hwasan_10887533043\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F02\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F04\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F06\",\"resId\":\"care_link\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"}]},{\"villageId\":\"hwawol\",\"set\":[\"hanaro_hwasan\",\"care_link\",\"hubdrop_hanaro_hwasan_10864068572\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F02\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F04\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F06\",\"resId\":\"care_link\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"}]}]}",
+   "parsed": {
+    "plans": [
+     {
+      "villageId": "hwapyeong",
+      "set": [
+       "hanaro_hwasan",
+       "care_link",
+       "hubdrop_hanaro_hwasan_10887533043"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F02",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F04",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F05",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F06",
+        "resId": "care_link",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       }
+      ]
+     },
+     {
+      "villageId": "hwawol",
+      "set": [
+       "hanaro_hwasan",
+       "care_link",
+       "hubdrop_hanaro_hwasan_10864068572"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F02",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F04",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F05",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F06",
+        "resId": "care_link",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       }
+      ]
+     }
+    ]
+   },
+   "fail": null,
+   "usage": {
+    "input": 5479,
+    "output": 488
+   }
+  },
+  {
+   "caseId": "e2-jong-car",
+   "variant": "b2a",
+   "raw": "{\"plans\":[{\"villageId\":\"jong\",\"set\":[\"hanaro_hwasan\",\"sbiz_MA010120220807279007\",\"hub_10911799251\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F02\",\"resId\":\"sbiz_MA010120220807279007\",\"status\":\"확인 필요\"},{\"fn\":\"F04\",\"resId\":\"sbiz_MA010120220807279007\",\"status\":\"확인 필요\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F06\",\"resId\":\"hub_10911799251\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"sbiz_MA010120220807279007\",\"status\":\"확인 필요\"}]},{\"villageId\":\"waryong\",\"set\":[\"hub_10855382015\",\"hub_10855545480\",\"hub_10864068195\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F02\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F04\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F05\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F06\",\"resId\":\"hub_10855545480\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"\",\"status\":\"없음\"}]}]}",
+   "parsed": {
+    "plans": [
+     {
+      "villageId": "jong",
+      "set": [
+       "hanaro_hwasan",
+       "sbiz_MA010120220807279007",
+       "hub_10911799251"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F02",
+        "resId": "sbiz_MA010120220807279007",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F04",
+        "resId": "sbiz_MA010120220807279007",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F05",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F06",
+        "resId": "hub_10911799251",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "sbiz_MA010120220807279007",
+        "status": "확인 필요"
+       }
+      ]
+     },
+     {
+      "villageId": "waryong",
+      "set": [
+       "hub_10855382015",
+       "hub_10855545480",
+       "hub_10864068195"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F02",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F04",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F05",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F06",
+        "resId": "hub_10855545480",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "",
+        "status": "없음"
+       }
+      ]
+     }
+    ]
+   },
+   "fail": null,
+   "usage": {
+    "input": 18065,
+    "output": 453
+   }
+  },
+  {
+   "caseId": "e2-jong-car",
+   "variant": "b2b",
+   "raw": "{\"plans\":[{\"villageId\":\"jong\",\"set\":[\"hanaro_hwasan\",\"care_link\",\"hubdrop_hanaro_hwasan_10855523301\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hanaro_hwasan\",\"status\":\"확실\"},{\"fn\":\"F02\",\"resId\":\"hanaro_hwasan\",\"status\":\"확실\"},{\"fn\":\"F04\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확실\"},{\"fn\":\"F06\",\"resId\":\"hanaro_hwasan\",\"status\":\"없음\"},{\"fn\":\"F07\",\"resId\":\"care_link\",\"status\":\"확인 필요\"}]}]}",
+   "parsed": {
+    "plans": [
+     {
+      "villageId": "jong",
+      "set": [
+       "hanaro_hwasan",
+       "care_link",
+       "hubdrop_hanaro_hwasan_10855523301"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hanaro_hwasan",
+        "status": "확실"
+       },
+       {
+        "fn": "F02",
+        "resId": "hanaro_hwasan",
+        "status": "확실"
+       },
+       {
+        "fn": "F04",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F05",
+        "resId": "hanaro_hwasan",
+        "status": "확실"
+       },
+       {
+        "fn": "F06",
+        "resId": "hanaro_hwasan",
+        "status": "없음"
+       },
+       {
+        "fn": "F07",
+        "resId": "care_link",
+        "status": "확인 필요"
+       }
+      ]
+     }
+    ]
+   },
+   "fail": null,
+   "usage": {
+    "input": 48310,
+    "output": 246
+   }
+  },
+  {
+   "caseId": "e2-jong-walk",
+   "variant": "b2a",
+   "raw": "{\"plans\":[{\"villageId\":\"jong\",\"set\":[\"hanaro_hwasan\",\"sbiz_MA010120220807279007\",\"care_link\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F02\",\"resId\":\"sbiz_MA010120220807279007\",\"status\":\"확인 필요\"},{\"fn\":\"F04\",\"resId\":\"sbiz_MA010120220807279007\",\"status\":\"확인 필요\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F06\",\"resId\":\"hub_10855523301\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"care_link\",\"status\":\"확인 필요\"}]},{\"villageId\":\"waryong\",\"set\":[\"hanaro_hwasan\",\"hub_10855382015\",\"care_link\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F02\",\"resId\":\"care_link\",\"status\":\"확인 필요\"},{\"fn\":\"F04\",\"resId\":\"hub_10855382015\",\"status\":\"확인 필요\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F06\",\"resId\":\"hub_10855382015\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"care_link\",\"status\":\"확인 필요\"}]}]}",
+   "parsed": {
+    "plans": [
+     {
+      "villageId": "jong",
+      "set": [
+       "hanaro_hwasan",
+       "sbiz_MA010120220807279007",
+       "care_link"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F02",
+        "resId": "sbiz_MA010120220807279007",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F04",
+        "resId": "sbiz_MA010120220807279007",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F05",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F06",
+        "resId": "hub_10855523301",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "care_link",
+        "status": "확인 필요"
+       }
+      ]
+     },
+     {
+      "villageId": "waryong",
+      "set": [
+       "hanaro_hwasan",
+       "hub_10855382015",
+       "care_link"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F02",
+        "resId": "care_link",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F04",
+        "resId": "hub_10855382015",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F05",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F06",
+        "resId": "hub_10855382015",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "care_link",
+        "status": "확인 필요"
+       }
+      ]
+     }
+    ]
+   },
+   "fail": null,
+   "usage": {
+    "input": 4738,
+    "output": 483
+   }
+  },
+  {
+   "caseId": "e2-jong-walk",
+   "variant": "b2b",
+   "raw": "{\"plans\":[{\"villageId\":\"jong\",\"set\":[\"hanaro_hwasan\",\"sbiz_MA010120220807279007\",\"care_link\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"sbiz_MA010120220807279007\",\"status\":\"확인 필요\"},{\"fn\":\"F02\",\"resId\":\"sbiz_MA010120220807279007\",\"status\":\"확인 필요\"},{\"fn\":\"F04\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F06\",\"resId\":\"sbiz_MA010120220807279007\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"care_link\",\"status\":\"확인 필요\"}]},{\"villageId\":\"waryong\",\"set\":[\"hanaro_hwasan\",\"sbiz_MA010120220807235431\",\"care_link\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"sbiz_MA010120220807235431\",\"status\":\"확인 필요\"},{\"fn\":\"F02\",\"resId\":\"sbiz_MA010120220807235431\",\"status\":\"확인 필요\"},{\"fn\":\"F04\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F06\",\"resId\":\"sbiz_MA010120220807235431\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"care_link\",\"status\":\"확인 필요\"}]}]}",
+   "parsed": {
+    "plans": [
+     {
+      "villageId": "jong",
+      "set": [
+       "hanaro_hwasan",
+       "sbiz_MA010120220807279007",
+       "care_link"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "sbiz_MA010120220807279007",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F02",
+        "resId": "sbiz_MA010120220807279007",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F04",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F05",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F06",
+        "resId": "sbiz_MA010120220807279007",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "care_link",
+        "status": "확인 필요"
+       }
+      ]
+     },
+     {
+      "villageId": "waryong",
+      "set": [
+       "hanaro_hwasan",
+       "sbiz_MA010120220807235431",
+       "care_link"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "sbiz_MA010120220807235431",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F02",
+        "resId": "sbiz_MA010120220807235431",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F04",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F05",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F06",
+        "resId": "sbiz_MA010120220807235431",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "care_link",
+        "status": "확인 필요"
+       }
+      ]
+     }
+    ]
+   },
+   "fail": null,
+   "usage": {
+    "input": 6776,
+    "output": 493
+   }
+  },
+  {
+   "caseId": "e2-jong-homebound",
+   "variant": "b2a",
+   "raw": "{\"plans\":[{\"villageId\":\"jong\",\"set\":[\"hub_10855523301\",\"care_link\",\"hanaro_hwasan\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F02\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F04\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F06\",\"resId\":\"hub_10855523301\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"care_link\",\"status\":\"확인 필요\"}]}, {\"villageId\":\"waryong\",\"set\":[\"hub_10855545480\",\"care_link\",\"hanaro_hwasan\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F02\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F04\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F06\",\"resId\":\"hub_10855545480\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"care_link\",\"status\":\"확인 필요\"}]}]}",
+   "parsed": {
+    "plans": [
+     {
+      "villageId": "jong",
+      "set": [
+       "hub_10855523301",
+       "care_link",
+       "hanaro_hwasan"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F02",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F04",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F05",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F06",
+        "resId": "hub_10855523301",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "care_link",
+        "status": "확인 필요"
+       }
+      ]
+     },
+     {
+      "villageId": "waryong",
+      "set": [
+       "hub_10855545480",
+       "care_link",
+       "hanaro_hwasan"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F02",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F04",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F05",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F06",
+        "resId": "hub_10855545480",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "care_link",
+        "status": "확인 필요"
+       }
+      ]
+     }
+    ]
+   },
+   "fail": null,
+   "usage": {
+    "input": 4747,
+    "output": 454
+   }
+  },
+  {
+   "caseId": "e2-jong-homebound",
+   "variant": "b2b",
+   "raw": "{\"plans\":[{\"villageId\":\"jong\",\"set\":[\"hanaro_hwasan\",\"care_link\",\"tour_A\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F02\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F04\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F06\",\"resId\":\"care_link\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"care_link\",\"status\":\"확인 필요\"}]},{\"villageId\":\"waryong\",\"set\":[\"hanaro_hwasan\",\"care_link\",\"tour_A\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F02\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F04\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F06\",\"resId\":\"care_link\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"care_link\",\"status\":\"확인 필요\"}]}]}",
+   "parsed": {
+    "plans": [
+     {
+      "villageId": "jong",
+      "set": [
+       "hanaro_hwasan",
+       "care_link",
+       "tour_A"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F02",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F04",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F05",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F06",
+        "resId": "care_link",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "care_link",
+        "status": "확인 필요"
+       }
+      ]
+     },
+     {
+      "villageId": "waryong",
+      "set": [
+       "hanaro_hwasan",
+       "care_link",
+       "tour_A"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F02",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F04",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F05",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F06",
+        "resId": "care_link",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "care_link",
+        "status": "확인 필요"
+       }
+      ]
+     }
+    ]
+   },
+   "fail": null,
+   "usage": {
+    "input": 6290,
+    "output": 439
+   }
+  },
+  {
+   "caseId": "e2-seongbuk-car",
+   "variant": "b2a",
+   "raw": "{\"plans\":[{\"villageId\":\"seongbuk\",\"set\":[\"hub_10887553485\",\"hanaro_hwasan\",\"hub_10887553279\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hanaro_hwasan\",\"status\":\"확실\"},{\"fn\":\"F02\",\"resId\":\"hanaro_hwasan\",\"status\":\"확실\"},{\"fn\":\"F04\",\"resId\":\"hub_10887553485\",\"status\":\"확인 필요\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확실\"},{\"fn\":\"F06\",\"resId\":\"hub_10887553485\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"}]},{\"villageId\":\"unje\",\"set\":[\"hub_10859662554\",\"hanaro_hwasan\",\"care_link\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hanaro_hwasan\",\"status\":\"확실\"},{\"fn\":\"F02\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F04\",\"resId\":\"hub_10859662554\",\"status\":\"확인 필요\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F06\",\"resId\":\"hub_10859662554\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"care_link\",\"status\":\"확인 필요\"}]}]}",
+   "parsed": {
+    "plans": [
+     {
+      "villageId": "seongbuk",
+      "set": [
+       "hub_10887553485",
+       "hanaro_hwasan",
+       "hub_10887553279"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hanaro_hwasan",
+        "status": "확실"
+       },
+       {
+        "fn": "F02",
+        "resId": "hanaro_hwasan",
+        "status": "확실"
+       },
+       {
+        "fn": "F04",
+        "resId": "hub_10887553485",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F05",
+        "resId": "hanaro_hwasan",
+        "status": "확실"
+       },
+       {
+        "fn": "F06",
+        "resId": "hub_10887553485",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       }
+      ]
+     },
+     {
+      "villageId": "unje",
+      "set": [
+       "hub_10859662554",
+       "hanaro_hwasan",
+       "care_link"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hanaro_hwasan",
+        "status": "확실"
+       },
+       {
+        "fn": "F02",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F04",
+        "resId": "hub_10859662554",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F05",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F06",
+        "resId": "hub_10859662554",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "care_link",
+        "status": "확인 필요"
+       }
+      ]
+     }
+    ]
+   },
+   "fail": null,
+   "usage": {
+    "input": 17141,
+    "output": 473
+   }
+  },
+  {
+   "caseId": "e2-seongbuk-car",
+   "variant": "b2b",
+   "raw": "{\"plans\":[{\"villageId\":\"seongbuk\",\"set\":[\"hanaro_hwasan\",\"sbiz_MA010120220807235431\",\"care_link\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hanaro_hwasan\",\"status\":\"확실\"},{\"fn\":\"F02\",\"resId\":\"hanaro_hwasan\",\"status\":\"확실\"},{\"fn\":\"F04\",\"resId\":\"sbiz_MA010120220807235431\",\"status\":\"확실\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확실\"},{\"fn\":\"F06\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"care_link\",\"status\":\"확인 필요\"}]},{\"villageId\":\"unje\",\"set\":[\"hanaro_hwasan\",\"sbiz_MA010120220807279007\",\"care_link\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hanaro_hwasan\",\"status\":\"확실\"},{\"fn\":\"F02\",\"resId\":\"hanaro_hwasan\",\"status\":\"확실\"},{\"fn\":\"F04\",\"resId\":\"sbiz_MA010120220807279007\",\"status\":\"확실\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확실\"},{\"fn\":\"F06\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"care_link\",\"status\":\"확인 필요\"}]}]}",
+   "parsed": {
+    "plans": [
+     {
+      "villageId": "seongbuk",
+      "set": [
+       "hanaro_hwasan",
+       "sbiz_MA010120220807235431",
+       "care_link"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hanaro_hwasan",
+        "status": "확실"
+       },
+       {
+        "fn": "F02",
+        "resId": "hanaro_hwasan",
+        "status": "확실"
+       },
+       {
+        "fn": "F04",
+        "resId": "sbiz_MA010120220807235431",
+        "status": "확실"
+       },
+       {
+        "fn": "F05",
+        "resId": "hanaro_hwasan",
+        "status": "확실"
+       },
+       {
+        "fn": "F06",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "care_link",
+        "status": "확인 필요"
+       }
+      ]
+     },
+     {
+      "villageId": "unje",
+      "set": [
+       "hanaro_hwasan",
+       "sbiz_MA010120220807279007",
+       "care_link"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hanaro_hwasan",
+        "status": "확실"
+       },
+       {
+        "fn": "F02",
+        "resId": "hanaro_hwasan",
+        "status": "확실"
+       },
+       {
+        "fn": "F04",
+        "resId": "sbiz_MA010120220807279007",
+        "status": "확실"
+       },
+       {
+        "fn": "F05",
+        "resId": "hanaro_hwasan",
+        "status": "확실"
+       },
+       {
+        "fn": "F06",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "care_link",
+        "status": "확인 필요"
+       }
+      ]
+     }
+    ]
+   },
+   "fail": null,
+   "usage": {
+    "input": 31914,
+    "output": 479
+   }
+  },
+  {
+   "caseId": "e2-seongbuk-walk",
+   "variant": "b2a",
+   "raw": "{\"plans\":[{\"villageId\":\"seongbuk\",\"set\":[\"hub_10887553279\",\"hub_10887553485\",\"hanaro_hwasan\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F02\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F04\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F06\",\"resId\":\"hub_10887553279\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"}]}, {\"villageId\":\"unje\",\"set\":[\"hub_10859662554\",\"hubdrop_hanaro_hwasan_10859662554\",\"hanaro_hwasan\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F02\",\"resId\":\"hubdrop_hanaro_hwasan_10859662554\",\"status\":\"확인 필요\"},{\"fn\":\"F04\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F06\",\"resId\":\"hub_10859662554\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"hubdrop_hanaro_hwasan_10859662554\",\"status\":\"확인 필요\"}]}]}",
+   "parsed": {
+    "plans": [
+     {
+      "villageId": "seongbuk",
+      "set": [
+       "hub_10887553279",
+       "hub_10887553485",
+       "hanaro_hwasan"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F02",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F04",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F05",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F06",
+        "resId": "hub_10887553279",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       }
+      ]
+     },
+     {
+      "villageId": "unje",
+      "set": [
+       "hub_10859662554",
+       "hubdrop_hanaro_hwasan_10859662554",
+       "hanaro_hwasan"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F02",
+        "resId": "hubdrop_hanaro_hwasan_10859662554",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F04",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F05",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F06",
+        "resId": "hub_10859662554",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "hubdrop_hanaro_hwasan_10859662554",
+        "status": "확인 필요"
+       }
+      ]
+     }
+    ]
+   },
+   "fail": null,
+   "usage": {
+    "input": 3152,
+    "output": 511
+   }
+  },
+  {
+   "caseId": "e2-seongbuk-walk",
+   "variant": "b2b",
+   "raw": "{\"plans\":[{\"villageId\":\"seongbuk\",\"set\":[\"hanaro_hwasan\",\"care_link\",\"tour_A\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F02\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F04\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F06\",\"resId\":\"care_link\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"care_link\",\"status\":\"확인 필요\"}]},{\"villageId\":\"unje\",\"set\":[\"hanaro_hwasan\",\"care_link\",\"tour_A\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F02\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F04\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F06\",\"resId\":\"care_link\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"care_link\",\"status\":\"확인 필요\"}]}]}",
+   "parsed": {
+    "plans": [
+     {
+      "villageId": "seongbuk",
+      "set": [
+       "hanaro_hwasan",
+       "care_link",
+       "tour_A"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F02",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F04",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F05",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F06",
+        "resId": "care_link",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "care_link",
+        "status": "확인 필요"
+       }
+      ]
+     },
+     {
+      "villageId": "unje",
+      "set": [
+       "hanaro_hwasan",
+       "care_link",
+       "tour_A"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F02",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F04",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F05",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F06",
+        "resId": "care_link",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "care_link",
+        "status": "확인 필요"
+       }
+      ]
+     }
+    ]
+   },
+   "fail": null,
+   "usage": {
+    "input": 4044,
+    "output": 441
+   }
+  },
+  {
+   "caseId": "e2-seongbuk-homebound",
+   "variant": "b2a",
+   "raw": "{\"plans\":[{\"villageId\":\"seongbuk\",\"set\":[\"hub_10887553485\",\"hubdrop_hanaro_hwasan_10887553279\",\"care_link\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hubdrop_hanaro_hwasan_10887553279\",\"status\":\"확인 필요\"},{\"fn\":\"F02\",\"resId\":\"hubdrop_hanaro_hwasan_10887553279\",\"status\":\"확인 필요\"},{\"fn\":\"F04\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F05\",\"resId\":\"hubdrop_hanaro_hwasan_10887553279\",\"status\":\"확인 필요\"},{\"fn\":\"F06\",\"resId\":\"hub_10887553485\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"care_link\",\"status\":\"확인 필요\"}]},{\"villageId\":\"unje\",\"set\":[\"hub_10859662554\",\"hubdrop_hanaro_hwasan_10859662554\",\"care_link\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hubdrop_hanaro_hwasan_10859662554\",\"status\":\"확인 필요\"},{\"fn\":\"F02\",\"resId\":\"hubdrop_hanaro_hwasan_10859662554\",\"status\":\"확인 필요\"},{\"fn\":\"F04\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F05\",\"resId\":\"hubdrop_hanaro_hwasan_10859662554\",\"status\":\"확인 필요\"},{\"fn\":\"F06\",\"resId\":\"hub_10859662554\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"care_link\",\"status\":\"확인 필요\"}]}]}",
+   "parsed": {
+    "plans": [
+     {
+      "villageId": "seongbuk",
+      "set": [
+       "hub_10887553485",
+       "hubdrop_hanaro_hwasan_10887553279",
+       "care_link"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hubdrop_hanaro_hwasan_10887553279",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F02",
+        "resId": "hubdrop_hanaro_hwasan_10887553279",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F04",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F05",
+        "resId": "hubdrop_hanaro_hwasan_10887553279",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F06",
+        "resId": "hub_10887553485",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "care_link",
+        "status": "확인 필요"
+       }
+      ]
+     },
+     {
+      "villageId": "unje",
+      "set": [
+       "hub_10859662554",
+       "hubdrop_hanaro_hwasan_10859662554",
+       "care_link"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hubdrop_hanaro_hwasan_10859662554",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F02",
+        "resId": "hubdrop_hanaro_hwasan_10859662554",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F04",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F05",
+        "resId": "hubdrop_hanaro_hwasan_10859662554",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F06",
+        "resId": "hub_10859662554",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "care_link",
+        "status": "확인 필요"
+       }
+      ]
+     }
+    ]
+   },
+   "fail": null,
+   "usage": {
+    "input": 3161,
+    "output": 543
+   }
+  },
+  {
+   "caseId": "e2-seongbuk-homebound",
+   "variant": "b2b",
+   "raw": "{\"plans\":[{\"villageId\":\"seongbuk\",\"set\":[\"care_link\",\"hanaro_hwasan\",\"hubdrop_hanaro_hwasan_10887553279\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F02\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F04\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F06\",\"resId\":\"hubdrop_hanaro_hwasan_10887553279\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"care_link\",\"status\":\"확인 필요\"}]},{\"villageId\":\"unje\",\"set\":[\"care_link\",\"hanaro_hwasan\",\"hubdrop_hanaro_hwasan_10859662554\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F02\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F04\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F06\",\"resId\":\"hubdrop_hanaro_hwasan_10859662554\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"care_link\",\"status\":\"확인 필요\"}]}]}",
+   "parsed": {
+    "plans": [
+     {
+      "villageId": "seongbuk",
+      "set": [
+       "care_link",
+       "hanaro_hwasan",
+       "hubdrop_hanaro_hwasan_10887553279"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F02",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F04",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F05",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F06",
+        "resId": "hubdrop_hanaro_hwasan_10887553279",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "care_link",
+        "status": "확인 필요"
+       }
+      ]
+     },
+     {
+      "villageId": "unje",
+      "set": [
+       "care_link",
+       "hanaro_hwasan",
+       "hubdrop_hanaro_hwasan_10859662554"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F02",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F04",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F05",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F06",
+        "resId": "hubdrop_hanaro_hwasan_10859662554",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "care_link",
+        "status": "확인 필요"
+       }
+      ]
+     }
+    ]
+   },
+   "fail": null,
+   "usage": {
+    "input": 3963,
+    "output": 507
+   }
+  },
+  {
+   "caseId": "e2-seungchi-car",
+   "variant": "b2a",
+   "raw": "{\"plans\":[{\"villageId\":\"seungchi\",\"set\":[\"hanaro_hwasan\",\"hub_10947413265\",\"osm_n10821614149\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hanaro_hwasan\",\"status\":\"확실\"},{\"fn\":\"F02\",\"resId\":\"hanaro_hwasan\",\"status\":\"확실\"},{\"fn\":\"F04\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확실\"},{\"fn\":\"F06\",\"resId\":\"hub_10947413265\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"care_link\",\"status\":\"확인 필요\"}]}]}",
+   "parsed": {
+    "plans": [
+     {
+      "villageId": "seungchi",
+      "set": [
+       "hanaro_hwasan",
+       "hub_10947413265",
+       "osm_n10821614149"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hanaro_hwasan",
+        "status": "확실"
+       },
+       {
+        "fn": "F02",
+        "resId": "hanaro_hwasan",
+        "status": "확실"
+       },
+       {
+        "fn": "F04",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F05",
+        "resId": "hanaro_hwasan",
+        "status": "확실"
+       },
+       {
+        "fn": "F06",
+        "resId": "hub_10947413265",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "care_link",
+        "status": "확인 필요"
+       }
+      ]
+     }
+    ]
+   },
+   "fail": null,
+   "usage": {
+    "input": 16084,
+    "output": 229
+   }
+  },
+  {
+   "caseId": "e2-seungchi-car",
+   "variant": "b2b",
+   "raw": "{\"plans\":[{\"villageId\":\"seungchi\",\"set\":[\"hanaro_hwasan\",\"care_link\",\"osm_n10828705928\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hanaro_hwasan\",\"status\":\"확실\"},{\"fn\":\"F02\",\"resId\":\"hanaro_hwasan\",\"status\":\"확실\"},{\"fn\":\"F04\",\"resId\":\"osm_n10828705928\",\"status\":\"확실\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F06\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"care_link\",\"status\":\"확인 필요\"}]},{\"villageId\":\"chunsan\",\"set\":[\"hanaro_hwasan\",\"care_link\",\"osm_n10828705928\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hanaro_hwasan\",\"status\":\"확실\"},{\"fn\":\"F02\",\"resId\":\"hanaro_hwasan\",\"status\":\"확실\"},{\"fn\":\"F04\",\"resId\":\"osm_n10828705928\",\"status\":\"확실\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F06\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"care_link\",\"status\":\"확인 필요\"}]}]}",
+   "parsed": {
+    "plans": [
+     {
+      "villageId": "seungchi",
+      "set": [
+       "hanaro_hwasan",
+       "care_link",
+       "osm_n10828705928"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hanaro_hwasan",
+        "status": "확실"
+       },
+       {
+        "fn": "F02",
+        "resId": "hanaro_hwasan",
+        "status": "확실"
+       },
+       {
+        "fn": "F04",
+        "resId": "osm_n10828705928",
+        "status": "확실"
+       },
+       {
+        "fn": "F05",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F06",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "care_link",
+        "status": "확인 필요"
+       }
+      ]
+     },
+     {
+      "villageId": "chunsan",
+      "set": [
+       "hanaro_hwasan",
+       "care_link",
+       "osm_n10828705928"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hanaro_hwasan",
+        "status": "확실"
+       },
+       {
+        "fn": "F02",
+        "resId": "hanaro_hwasan",
+        "status": "확실"
+       },
+       {
+        "fn": "F04",
+        "resId": "osm_n10828705928",
+        "status": "확실"
+       },
+       {
+        "fn": "F05",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F06",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "care_link",
+        "status": "확인 필요"
+       }
+      ]
+     }
+    ]
+   },
+   "fail": null,
+   "usage": {
+    "input": 28853,
+    "output": 466
+   }
+  },
+  {
+   "caseId": "e2-seungchi-walk",
+   "variant": "b2a",
+   "raw": "{\"plans\":[{\"villageId\":\"chunsan\",\"set\":[\"hanaro_hwasan\",\"tour_A\",\"care_link\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F02\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F04\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F06\",\"resId\":\"care_link\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"care_link\",\"status\":\"확인 필요\"}]},{\"villageId\":\"seungchi\",\"set\":[\"hubdrop_hanaro_hwasan_10947413265\",\"hub_10947413265\",\"care_link\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hubdrop_hanaro_hwasan_10947413265\",\"status\":\"확인 필요\"},{\"fn\":\"F02\",\"resId\":\"hubdrop_hanaro_hwasan_10947413265\",\"status\":\"확인 필요\"},{\"fn\":\"F04\",\"resId\":\"hub_10947413265\",\"status\":\"확인 필요\"},{\"fn\":\"F05\",\"resId\":\"hubdrop_hanaro_hwasan_10947413265\",\"status\":\"확인 필요\"},{\"fn\":\"F06\",\"resId\":\"hub_10947413265\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"care_link\",\"status\":\"확인 필요\"}]}]}",
+   "parsed": {
+    "plans": [
+     {
+      "villageId": "chunsan",
+      "set": [
+       "hanaro_hwasan",
+       "tour_A",
+       "care_link"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F02",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F04",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F05",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F06",
+        "resId": "care_link",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "care_link",
+        "status": "확인 필요"
+       }
+      ]
+     },
+     {
+      "villageId": "seungchi",
+      "set": [
+       "hubdrop_hanaro_hwasan_10947413265",
+       "hub_10947413265",
+       "care_link"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hubdrop_hanaro_hwasan_10947413265",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F02",
+        "resId": "hubdrop_hanaro_hwasan_10947413265",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F04",
+        "resId": "hub_10947413265",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F05",
+        "resId": "hubdrop_hanaro_hwasan_10947413265",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F06",
+        "resId": "hub_10947413265",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "care_link",
+        "status": "확인 필요"
+       }
+      ]
+     }
+    ]
+   },
+   "fail": null,
+   "usage": {
+    "input": 3158,
+    "output": 515
+   }
+  },
+  {
+   "caseId": "e2-seungchi-walk",
+   "variant": "b2b",
+   "raw": "{\"plans\":[{\"villageId\":\"chunsan\",\"set\":[\"hanaro_hwasan\",\"tour_A\",\"care_link\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hanaro_hwasan\",\"status\":\"확실\"},{\"fn\":\"F02\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F04\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F06\",\"resId\":\"care_link\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"care_link\",\"status\":\"확인 필요\"}]},{\"villageId\":\"seungchi\",\"set\":[\"hubdrop_hanaro_hwasan_10947413265\",\"hub_10947413265\",\"tour_A\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hubdrop_hanaro_hwasan_10947413265\",\"status\":\"확인 필요\"},{\"fn\":\"F02\",\"resId\":\"tour_A\",\"status\":\"확인 필요\"},{\"fn\":\"F04\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F05\",\"resId\":\"tour_A\",\"status\":\"확인 필요\"},{\"fn\":\"F06\",\"resId\":\"hub_10947413265\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"hubdrop_hanaro_hwasan_10947413265\",\"status\":\"확인 필요\"}]}]}",
+   "parsed": {
+    "plans": [
+     {
+      "villageId": "chunsan",
+      "set": [
+       "hanaro_hwasan",
+       "tour_A",
+       "care_link"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hanaro_hwasan",
+        "status": "확실"
+       },
+       {
+        "fn": "F02",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F04",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F05",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F06",
+        "resId": "care_link",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "care_link",
+        "status": "확인 필요"
+       }
+      ]
+     },
+     {
+      "villageId": "seungchi",
+      "set": [
+       "hubdrop_hanaro_hwasan_10947413265",
+       "hub_10947413265",
+       "tour_A"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hubdrop_hanaro_hwasan_10947413265",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F02",
+        "resId": "tour_A",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F04",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F05",
+        "resId": "tour_A",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F06",
+        "resId": "hub_10947413265",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "hubdrop_hanaro_hwasan_10947413265",
+        "status": "확인 필요"
+       }
+      ]
+     }
+    ]
+   },
+   "fail": null,
+   "usage": {
+    "input": 4051,
+    "output": 476
+   }
+  },
+  {
+   "caseId": "e2-seungchi-homebound",
+   "variant": "b2a",
+   "raw": "{\"plans\":[{\"villageId\":\"chunsan\",\"set\":[\"hanaro_hwasan\",\"care_link\",\"tour_A\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F02\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F04\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F06\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F07\",\"resId\":\"care_link\",\"status\":\"확인 필요\"}]},{\"villageId\":\"seungchi\",\"set\":[\"hubdrop_hanaro_hwasan_10947413265\",\"hub_10947413265\",\"care_link\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hubdrop_hanaro_hwasan_10947413265\",\"status\":\"확인 필요\"},{\"fn\":\"F02\",\"resId\":\"hubdrop_hanaro_hwasan_10947413265\",\"status\":\"확인 필요\"},{\"fn\":\"F04\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F05\",\"resId\":\"hubdrop_hanaro_hwasan_10947413265\",\"status\":\"확인 필요\"},{\"fn\":\"F06\",\"resId\":\"hub_10947413265\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"care_link\",\"status\":\"확인 필요\"}]}]}",
+   "parsed": {
+    "plans": [
+     {
+      "villageId": "chunsan",
+      "set": [
+       "hanaro_hwasan",
+       "care_link",
+       "tour_A"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F02",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F04",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F05",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F06",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F07",
+        "resId": "care_link",
+        "status": "확인 필요"
+       }
+      ]
+     },
+     {
+      "villageId": "seungchi",
+      "set": [
+       "hubdrop_hanaro_hwasan_10947413265",
+       "hub_10947413265",
+       "care_link"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hubdrop_hanaro_hwasan_10947413265",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F02",
+        "resId": "hubdrop_hanaro_hwasan_10947413265",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F04",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F05",
+        "resId": "hubdrop_hanaro_hwasan_10947413265",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F06",
+        "resId": "hub_10947413265",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "care_link",
+        "status": "확인 필요"
+       }
+      ]
+     }
+    ]
+   },
+   "fail": null,
+   "usage": {
+    "input": 3167,
+    "output": 487
+   }
+  },
+  {
+   "caseId": "e2-seungchi-homebound",
+   "variant": "b2b",
+   "raw": "{\"plans\":[{\"villageId\":\"chunsan\",\"set\":[\"care_link\",\"hanaro_hwasan\",\"tour_A\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F02\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F04\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F06\",\"resId\":\"care_link\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"care_link\",\"status\":\"확인 필요\"}]},{\"villageId\":\"seungchi\",\"set\":[\"care_link\",\"hub_10947413265\",\"hubdrop_hanaro_hwasan_10947413265\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hubdrop_hanaro_hwasan_10947413265\",\"status\":\"확인 필요\"},{\"fn\":\"F02\",\"resId\":\"hubdrop_hanaro_hwasan_10947413265\",\"status\":\"확인 필요\"},{\"fn\":\"F04\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F05\",\"resId\":\"hubdrop_hanaro_hwasan_10947413265\",\"status\":\"확인 필요\"},{\"fn\":\"F06\",\"resId\":\"hub_10947413265\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"care_link\",\"status\":\"확인 필요\"}]}]}",
+   "parsed": {
+    "plans": [
+     {
+      "villageId": "chunsan",
+      "set": [
+       "care_link",
+       "hanaro_hwasan",
+       "tour_A"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F02",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F04",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F05",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F06",
+        "resId": "care_link",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "care_link",
+        "status": "확인 필요"
+       }
+      ]
+     },
+     {
+      "villageId": "seungchi",
+      "set": [
+       "care_link",
+       "hub_10947413265",
+       "hubdrop_hanaro_hwasan_10947413265"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hubdrop_hanaro_hwasan_10947413265",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F02",
+        "resId": "hubdrop_hanaro_hwasan_10947413265",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F04",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F05",
+        "resId": "hubdrop_hanaro_hwasan_10947413265",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F06",
+        "resId": "hub_10947413265",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "care_link",
+        "status": "확인 필요"
+       }
+      ]
+     }
+    ]
+   },
+   "fail": null,
+   "usage": {
+    "input": 3970,
+    "output": 493
+   }
+  },
+  {
+   "caseId": "e2-ungok-car",
+   "variant": "b2a",
+   "raw": "{\"plans\":[{\"villageId\":\"chunsan\",\"set\":[\"hanaro_hwasan\",\"hub_10855382015\",\"care_link\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hanaro_hwasan\",\"status\":\"확실\"},{\"fn\":\"F02\",\"resId\":\"hanaro_hwasan\",\"status\":\"확실\"},{\"fn\":\"F04\",\"resId\":\"hanaro_hwasan\",\"status\":\"확실\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확실\"},{\"fn\":\"F06\",\"resId\":\"hub_10855382015\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"care_link\",\"status\":\"확인 필요\"}]},{\"id\":\"ungok\",\"set\":[\"osm_n10828705928\",\"osm_n368880753\",\"hanaro_hwasan\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"osm_n10828705928\",\"status\":\"확실\"},{\"fn\":\"F02\",\"resId\":\"osm_n10828705928\",\"status\":\"확실\"},{\"fn\":\"F04\",\"resId\":\"osm_n10828705928\",\"status\":\"확실\"},{\"fn\":\"F05\",\"resId\":\"osm_n10828705928\",\"status\":\"확실\"},{\"fn\":\"F06\",\"resId\":\"osm_n368880753\",\"status\":\"확실\"},{\"fn\":\"F07\",\"resId\":\"care_link\",\"status\":\"확인 필요\"}]},{\"villageId\":\"uwol\",\"set\":[\"hanaro_hwasan\",\"post_hwasan\",\"care_link\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hanaro_hwasan\",\"status\":\"확실\"},{\"fn\":\"F02\",\"resId\":\"hanaro_hwasan\",\"status\":\"확실\"},{\"fn\":\"F04\",\"resId\":\"hanaro_hwasan\",\"status\":\"확실\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확실\"},{\"fn\":\"F06\",\"resId\":\"post_hwasan\",\"status\":\"확실\"},{\"fn\":\"F07\",\"resId\":\"care_link\",\"status\":\"확인 필요\"}]}]}",
+   "parsed": {
+    "plans": [
+     {
+      "villageId": "chunsan",
+      "set": [
+       "hanaro_hwasan",
+       "hub_10855382015",
+       "care_link"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hanaro_hwasan",
+        "status": "확실"
+       },
+       {
+        "fn": "F02",
+        "resId": "hanaro_hwasan",
+        "status": "확실"
+       },
+       {
+        "fn": "F04",
+        "resId": "hanaro_hwasan",
+        "status": "확실"
+       },
+       {
+        "fn": "F05",
+        "resId": "hanaro_hwasan",
+        "status": "확실"
+       },
+       {
+        "fn": "F06",
+        "resId": "hub_10855382015",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "care_link",
+        "status": "확인 필요"
+       }
+      ]
+     },
+     {
+      "id": "ungok",
+      "set": [
+       "osm_n10828705928",
+       "osm_n368880753",
+       "hanaro_hwasan"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "osm_n10828705928",
+        "status": "확실"
+       },
+       {
+        "fn": "F02",
+        "resId": "osm_n10828705928",
+        "status": "확실"
+       },
+       {
+        "fn": "F04",
+        "resId": "osm_n10828705928",
+        "status": "확실"
+       },
+       {
+        "fn": "F05",
+        "resId": "osm_n10828705928",
+        "status": "확실"
+       },
+       {
+        "fn": "F06",
+        "resId": "osm_n368880753",
+        "status": "확실"
+       },
+       {
+        "fn": "F07",
+        "resId": "care_link",
+        "status": "확인 필요"
+       }
+      ]
+     },
+     {
+      "villageId": "uwol",
+      "set": [
+       "hanaro_hwasan",
+       "post_hwasan",
+       "care_link"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hanaro_hwasan",
+        "status": "확실"
+       },
+       {
+        "fn": "F02",
+        "resId": "hanaro_hwasan",
+        "status": "확실"
+       },
+       {
+        "fn": "F04",
+        "resId": "hanaro_hwasan",
+        "status": "확실"
+       },
+       {
+        "fn": "F05",
+        "resId": "hanaro_hwasan",
+        "status": "확실"
+       },
+       {
+        "fn": "F06",
+        "resId": "post_hwasan",
+        "status": "확실"
+       },
+       {
+        "fn": "F07",
+        "resId": "care_link",
+        "status": "확인 필요"
+       }
+      ]
+     }
+    ]
+   },
+   "fail": null,
+   "usage": {
+    "input": 15030,
+    "output": 668
+   }
+  },
+  {
+   "caseId": "e2-ungok-car",
+   "variant": "b2b",
+   "raw": "{\"plans\":[{\"villageId\":\"chunsan\",\"set\":[\"hanaro_hwasan\",\"osm_n10821614149\",\"sbiz_MA010120220807235431\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hanaro_hwasan\",\"status\":\"확실\"},{\"fn\":\"F02\",\"resId\":\"hanaro_hwasan\",\"status\":\"확실\"},{\"fn\":\"F04\",\"resId\":\"osm_n10821614149\",\"status\":\"확실\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확실\"},{\"fn\":\"F06\",\"resId\":\"post_hwasan\",\"status\":\"없음\"},{\"fn\":\"F07\",\"resId\":\"sbiz_MA010120220807235431\",\"status\":\"확인 필요\"}]},{\"fn\":\"F06\",\"resId\":\"hanaro_hwasan\",\"status\":\"없음\"}]},{\"villageId\":\"ungok\",\"set\":[\"hanaro_hwasan\",\"osm_n10828705928\",\"osm_n10821614149\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hanaro_hwasan\",\"status\":\"확실\"},{\"fn\":\"F02\",\"resId\":\"osm_n10828705928\",\"status\":\"확실\"},{\"fn\":\"F04\",\"resId\":\"osm_n10828705928\",\"status\":\"확실\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확실\"},{\"fn\":\"F06\",\"resId\":\"post_hwasan\",\"status\":\"없음\"},{\"fn\":\"F07\",\"resId\":\"sbiz_MA010120220807235431\",\"status\":\"확인 필요\"}]},{\"villageId\":\"uwol\",\"set\":[\"hanaro_hwasan\",\"osm_n12428721996\",\"osm_n10828705928\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hanaro_hwasan\",\"status\":\"확실\"},{\"fn\":\"F02\",\"resId\":\"hanaro_hwasan\",\"status\":\"확실\"},{\"fn\":\"F04\",\"resId\":\"osm_n12428721996\",\"status\":\"확실\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확실\"},{\"fn\":\"F06\",\"resId\":\"post_hwasan\",\"status\":\"없음\"},{\"fn\":\"F07\",\"resId\":\"sbiz_MA010120220807235431\",\"status\":\"확인 필요\"}]}]}",
+   "parsed": null,
+   "fail": "parse",
+   "usage": {
+    "input": 22592,
+    "output": 746
+   }
+  },
+  {
+   "caseId": "e2-ungok-walk",
+   "variant": "b2a",
+   "raw": "{\"plans\":[{\"villageId\":\"chunsan\",\"set\":[\"hanaro_hwasan\",\"care_link\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F02\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F04\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F06\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"care_link\",\"status\":\"확인 필요\"}]}, {\"villageId\":\"ungok\",\"set\":[\"care_link\",\"tour_A\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"tour_A\",\"status\":\"확인 필요\"},{\"fn\":\"F02\",\"resId\":\"care_link\",\"status\":\"확인 필요\"},{\"fn\":\"F04\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F05\",\"resId\":\"tour_A\",\"status\":\"확인 필요\"},{\"fn\":\"F06\",\"resId\":\"care_link\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"care_link\",\"status\":\"확인 필요\"}]}, {\"villageId\":\"uwol\",\"set\":[\"hanaro_hwasan\",\"care_link\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F02\",\"resId\":\"care_link\",\"status\":\"확인 필요\"},{\"fn\":\"F04\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F06\",\"resId\":\"care_link\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"care_link\",\"status\":\"확인 필요\"}]}]}",
+   "parsed": {
+    "plans": [
+     {
+      "villageId": "chunsan",
+      "set": [
+       "hanaro_hwasan",
+       "care_link"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F02",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F04",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F05",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F06",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "care_link",
+        "status": "확인 필요"
+       }
+      ]
+     },
+     {
+      "villageId": "ungok",
+      "set": [
+       "care_link",
+       "tour_A"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "tour_A",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F02",
+        "resId": "care_link",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F04",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F05",
+        "resId": "tour_A",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F06",
+        "resId": "care_link",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "care_link",
+        "status": "확인 필요"
+       }
+      ]
+     },
+     {
+      "villageId": "uwol",
+      "set": [
+       "hanaro_hwasan",
+       "care_link"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F02",
+        "resId": "care_link",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F04",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F05",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F06",
+        "resId": "care_link",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "care_link",
+        "status": "확인 필요"
+       }
+      ]
+     }
+    ]
+   },
+   "fail": null,
+   "usage": {
+    "input": 2234,
+    "output": 622
+   }
+  },
+  {
+   "caseId": "e2-ungok-walk",
+   "variant": "b2b",
+   "raw": "{\"plans\":[{\"villageId\":\"chunsan\",\"set\":[\"hanaro_hwasan\",\"care_link\",\"tour_A\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F02\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F04\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F06\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"}]},{\"villageId\":\"ungok\",\"set\":[\"hanaro_hwasan\",\"care_link\",\"tour_A\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F02\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F04\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F06\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"}]},{\"villageId\":\"uwol\",\"set\":[\"hanaro_hwasan\",\"care_link\",\"tour_A\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F02\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F04\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F06\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"}]}]}",
+   "parsed": {
+    "plans": [
+     {
+      "villageId": "chunsan",
+      "set": [
+       "hanaro_hwasan",
+       "care_link",
+       "tour_A"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F02",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F04",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F05",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F06",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       }
+      ]
+     },
+     {
+      "villageId": "ungok",
+      "set": [
+       "hanaro_hwasan",
+       "care_link",
+       "tour_A"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F02",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F04",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F05",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F06",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       }
+      ]
+     },
+     {
+      "villageId": "uwol",
+      "set": [
+       "hanaro_hwasan",
+       "care_link",
+       "tour_A"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F02",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F04",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F05",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F06",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       }
+      ]
+     }
+    ]
+   },
+   "fail": null,
+   "usage": {
+    "input": 2682,
+    "output": 692
+   }
+  },
+  {
+   "caseId": "e2-ungok-homebound",
+   "variant": "b2a",
+   "raw": "{\"plans\":[{\"villageId\":\"chunsan\",\"set\":[\"care_link\",\"hanaro_hwasan\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F02\",\"resId\":\"care_link\",\"status\":\"확인 필요\"},{\"fn\":\"F04\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F06\",\"resId\":\"care_link\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"care_link\",\"status\":\"확인 필요\"}]},{\"villageId\":\"ungok\",\"set\":[\"care_link\",\"hanaro_hwasan\",\"sbiz_MA010120220807235431\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F02\",\"resId\":\"care_link\",\"status\":\"확인 필요\"},{\"fn\":\"F04\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F06\",\"resId\":\"care_link\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"care_link\",\"status\":\"확인 필요\"}]},{\"villageId\":\"uwol\",\"set\":[\"care_link\",\"hanaro_hwasan\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F02\",\"resId\":\"care_link\",\"status\":\"확인 필요\"},{\"fn\":\"F04\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F06\",\"resId\":\"care_link\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"care_link\",\"status\":\"확인 필요\"}]}]}",
+   "parsed": {
+    "plans": [
+     {
+      "villageId": "chunsan",
+      "set": [
+       "care_link",
+       "hanaro_hwasan"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F02",
+        "resId": "care_link",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F04",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F05",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F06",
+        "resId": "care_link",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "care_link",
+        "status": "확인 필요"
+       }
+      ]
+     },
+     {
+      "villageId": "ungok",
+      "set": [
+       "care_link",
+       "hanaro_hwasan",
+       "sbiz_MA010120220807235431"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F02",
+        "resId": "care_link",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F04",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F05",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F06",
+        "resId": "care_link",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "care_link",
+        "status": "확인 필요"
+       }
+      ]
+     },
+     {
+      "villageId": "uwol",
+      "set": [
+       "care_link",
+       "hanaro_hwasan"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F02",
+        "resId": "care_link",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F04",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F05",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F06",
+        "resId": "care_link",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "care_link",
+        "status": "확인 필요"
+       }
+      ]
+     }
+    ]
+   },
+   "fail": null,
+   "usage": {
+    "input": 2243,
+    "output": 637
+   }
+  },
+  {
+   "caseId": "e2-ungok-homebound",
+   "variant": "b2b",
+   "raw": "{\"plans\":[{\"villageId\":\"chunsan\",\"set\":[\"care_link\",\"hanaro_hwasan\",\"tour_A\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F02\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F04\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F06\",\"resId\":\"care_link\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"care_link\",\"status\":\"확인 필요\"}]},{\"villageId\":\"ungok\",\"set\":[\"care_link\",\"hanaro_hwasan\",\"tour_A\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F02\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F04\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F06\",\"resId\":\"care_link\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"care_link\",\"status\":\"확인 필요\"}]},{\"villageId\":\"uwol\",\"set\":[\"care_link\",\"hanaro_hwasan\",\"tour_A\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F02\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F04\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F06\",\"resId\":\"care_link\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"care_link\",\"status\":\"확인 필요\"}]}]}",
+   "parsed": {
+    "plans": [
+     {
+      "villageId": "chunsan",
+      "set": [
+       "care_link",
+       "hanaro_hwasan",
+       "tour_A"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F02",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F04",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F05",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F06",
+        "resId": "care_link",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "care_link",
+        "status": "확인 필요"
+       }
+      ]
+     },
+     {
+      "villageId": "ungok",
+      "set": [
+       "care_link",
+       "hanaro_hwasan",
+       "tour_A"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F02",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F04",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F05",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F06",
+        "resId": "care_link",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "care_link",
+        "status": "확인 필요"
+       }
+      ]
+     },
+     {
+      "villageId": "uwol",
+      "set": [
+       "care_link",
+       "hanaro_hwasan",
+       "tour_A"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F02",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F04",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F05",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F06",
+        "resId": "care_link",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "care_link",
+        "status": "확인 필요"
+       }
+      ]
+     }
+    ]
+   },
+   "fail": null,
+   "usage": {
+    "input": 2691,
+    "output": 656
+   }
+  },
+  {
+   "caseId": "e2-unje-car",
+   "variant": "b2a",
+   "raw": "{\"plans\":[{\"villageId\":\"hwapyeong\",\"set\":[\"hanaro_hwasan\",\"post_hwasan\",\"sbiz_MA010120220807235431\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hanaro_hwasan\",\"status\":\"확실\"},{\"fn\":\"F02\",\"resId\":\"sbiz_MA010120220807235431\",\"status\":\"확인 필요\"},{\"fn\":\"F04\",\"resId\":\"sbiz_MA010120220807235431\",\"status\":\"확실\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확실\"},{\"fn\":\"F06\",\"resId\":\"post_hwasan\",\"status\":\"확실\"},{\"fn\":\"F07\",\"resId\":\"sbiz_MA010120220807235431\",\"status\":\"확인 필요\"}]},{\"villageId\":\"seongbuk\",\"set\":[\"hanaro_hwasan\",\"post_hwasan\",\"care_link\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hanaro_hwasan\",\"status\":\"확실\"},{\"fn\":\"F02\",\"resId\":\"care_link\",\"status\":\"확인 필요\"},{\"fn\":\"F04\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확실\"},{\"fn\":\"F06\",\"resId\":\"post_hwasan\",\"status\":\"확실\"},{\"fn\":\"F07\",\"resId\":\"care_link\",\"status\":\"확인 필요\"}]},{\"villageId\":\"unje\",\"set\":[\"hanaro_hwasan\",\"post_hwasan\",\"hub_10859662554\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hanaro_hwasan\",\"status\":\"확실\"},{\"fn\":\"F02\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F04\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확실\"},{\"fn\":\"F06\",\"resId\":\"hub_10859662554\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"\",\"status\":\"없음\"}]}]}",
+   "parsed": {
+    "plans": [
+     {
+      "villageId": "hwapyeong",
+      "set": [
+       "hanaro_hwasan",
+       "post_hwasan",
+       "sbiz_MA010120220807235431"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hanaro_hwasan",
+        "status": "확실"
+       },
+       {
+        "fn": "F02",
+        "resId": "sbiz_MA010120220807235431",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F04",
+        "resId": "sbiz_MA010120220807235431",
+        "status": "확실"
+       },
+       {
+        "fn": "F05",
+        "resId": "hanaro_hwasan",
+        "status": "확실"
+       },
+       {
+        "fn": "F06",
+        "resId": "post_hwasan",
+        "status": "확실"
+       },
+       {
+        "fn": "F07",
+        "resId": "sbiz_MA010120220807235431",
+        "status": "확인 필요"
+       }
+      ]
+     },
+     {
+      "villageId": "seongbuk",
+      "set": [
+       "hanaro_hwasan",
+       "post_hwasan",
+       "care_link"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hanaro_hwasan",
+        "status": "확실"
+       },
+       {
+        "fn": "F02",
+        "resId": "care_link",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F04",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F05",
+        "resId": "hanaro_hwasan",
+        "status": "확실"
+       },
+       {
+        "fn": "F06",
+        "resId": "post_hwasan",
+        "status": "확실"
+       },
+       {
+        "fn": "F07",
+        "resId": "care_link",
+        "status": "확인 필요"
+       }
+      ]
+     },
+     {
+      "villageId": "unje",
+      "set": [
+       "hanaro_hwasan",
+       "post_hwasan",
+       "hub_10859662554"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hanaro_hwasan",
+        "status": "확실"
+       },
+       {
+        "fn": "F02",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F04",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F05",
+        "resId": "hanaro_hwasan",
+        "status": "확실"
+       },
+       {
+        "fn": "F06",
+        "resId": "hub_10859662554",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "",
+        "status": "없음"
+       }
+      ]
+     }
+    ]
+   },
+   "fail": null,
+   "usage": {
+    "input": 17351,
+    "output": 668
+   }
+  },
+  {
+   "caseId": "e2-unje-car",
+   "variant": "b2b",
+   "raw": "{\"plans\":[{\"villageId\":\"unje\",\"set\":[\"hub_10859662554\",\"hanaro_hwasan\",\"tour_A\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hanaro_hwasan\",\"status\":\"확실\"},{\"fn\":\"F02\",\"resId\":\"hanaro_hwasan\",\"status\":\"확실\"},{\"fn\":\"F04\",\"resId\":\"hub_10859662554\",\"status\":\"확인 필요\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F06\",\"resId\":\"hub_10859662554\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"tour_A\",\"status\":\"확인 필요\"}]},{\"villageId\":\"hwapyeong\",\"set\":[\"hanaro_hwasan\",\"sbiz_MA010120220807235431\",\"care_link\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hanaro_hwasan\",\"status\":\"확실\"},{\"fn\":\"F02\",\"resId\":\"hanaro_hwasan\",\"status\":\"확실\"},{\"fn\":\"F04\",\"resId\":\"sbiz_MA010120220807235431\",\"status\":\"확인 필요\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확실\"},{\"fn\":\"F06\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"sbiz_MA010120220807235431\",\"status\":\"확인 필요\"}]},{\"villageId\":\"seongbuk\",\"set\":[\"hanaro_hwasan\",\"hub_10887553279\",\"care_link\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F02\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F04\",\"resId\":\"hub_10887553279\",\"status\":\"확인 필요\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F06\",\"resId\":\"hub_10887553279\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"care_link\",\"status\":\"확인 필요\"}]}]}",
+   "parsed": {
+    "plans": [
+     {
+      "villageId": "unje",
+      "set": [
+       "hub_10859662554",
+       "hanaro_hwasan",
+       "tour_A"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hanaro_hwasan",
+        "status": "확실"
+       },
+       {
+        "fn": "F02",
+        "resId": "hanaro_hwasan",
+        "status": "확실"
+       },
+       {
+        "fn": "F04",
+        "resId": "hub_10859662554",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F05",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F06",
+        "resId": "hub_10859662554",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "tour_A",
+        "status": "확인 필요"
+       }
+      ]
+     },
+     {
+      "villageId": "hwapyeong",
+      "set": [
+       "hanaro_hwasan",
+       "sbiz_MA010120220807235431",
+       "care_link"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hanaro_hwasan",
+        "status": "확실"
+       },
+       {
+        "fn": "F02",
+        "resId": "hanaro_hwasan",
+        "status": "확실"
+       },
+       {
+        "fn": "F04",
+        "resId": "sbiz_MA010120220807235431",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F05",
+        "resId": "hanaro_hwasan",
+        "status": "확실"
+       },
+       {
+        "fn": "F06",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "sbiz_MA010120220807235431",
+        "status": "확인 필요"
+       }
+      ]
+     },
+     {
+      "villageId": "seongbuk",
+      "set": [
+       "hanaro_hwasan",
+       "hub_10887553279",
+       "care_link"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F02",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F04",
+        "resId": "hub_10887553279",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F05",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F06",
+        "resId": "hub_10887553279",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "care_link",
+        "status": "확인 필요"
+       }
+      ]
+     }
+    ]
+   },
+   "fail": null,
+   "usage": {
+    "input": 40743,
+    "output": 721
+   }
+  },
+  {
+   "caseId": "e2-unje-walk",
+   "variant": "b2a",
+   "raw": "{\"plans\":[{\"villageId\":\"unje\",\"set\":[\"hanaro_hwasan\",\"hub_10859662554\",\"care_link\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F02\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F04\",\"resId\":\"hub_10859662554\",\"status\":\"확인 필요\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F06\",\"resId\":\"hub_10859662554\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"care_link\",\"status\":\"확인 필요\"}]}]}",
+   "parsed": {
+    "plans": [
+     {
+      "villageId": "unje",
+      "set": [
+       "hanaro_hwasan",
+       "hub_10859662554",
+       "care_link"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F02",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F04",
+        "resId": "hub_10859662554",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F05",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F06",
+        "resId": "hub_10859662554",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "care_link",
+        "status": "확인 필요"
+       }
+      ]
+     }
+    ]
+   },
+   "fail": null,
+   "usage": {
+    "input": 4228,
+    "output": 241
+   }
+  },
+  {
+   "caseId": "e2-unje-walk",
+   "variant": "b2b",
+   "raw": "{\"plans\":[{\"villageId\":\"hwapyeong\",\"set\":[\"hanaro_hwasan\",\"post_hwasan\",\"sbiz_MA010120220807235431\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hanaro_hwasan\",\"status\":\"확실\"},{\"fn\":\"F02\",\"resId\":\"hanaro_hwasan\",\"status\":\"확실\"},{\"fn\":\"F04\",\"resId\":\"sbiz_MA010120220807235431\",\"status\":\"확인 필요\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F06\",\"resId\":\"post_hwasan\",\"status\":\"확실\"},{\"fn\":\"F07\",\"resId\":\"sbiz_MA010120220807235431\",\"status\":\"확인 필요\"}]},{\"villageId\":\"seongbuk\",\"set\":[\"hub_10887553279\",\"care_link\",\"sbiz_MA010120220807279007\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"care_link\",\"status\":\"확인 필요\"},{\"fn\":\"F02\",\"resId\":\"care_link\",\"status\":\"확인 필요\"},{\"fn\":\"F04\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F05\",\"resId\":\"care_link\",\"status\":\"확인 필요\"},{\"fn\":\"F06\",\"resId\":\"hub_10887553279\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"care_link\",\"status\":\"확인 필요\"}]},{\"villageId\":\"unje\",\"set\":[\"hub_10859662554\",\"care_link\",\"sbiz_MA010120220807279007\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"care_link\",\"status\":\"확인 필요\"},{\"fn\":\"F02\",\"resId\":\"care_link\",\"status\":\"확인 필요\"},{\"fn\":\"F04\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F05\",\"resId\":\"care_link\",\"status\":\"확인 필요\"},{\"fn\":\"F06\",\"resId\":\"hub_10859662554\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"care_link\",\"status\":\"확인 필요\"}]}]}",
+   "parsed": {
+    "plans": [
+     {
+      "villageId": "hwapyeong",
+      "set": [
+       "hanaro_hwasan",
+       "post_hwasan",
+       "sbiz_MA010120220807235431"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hanaro_hwasan",
+        "status": "확실"
+       },
+       {
+        "fn": "F02",
+        "resId": "hanaro_hwasan",
+        "status": "확실"
+       },
+       {
+        "fn": "F04",
+        "resId": "sbiz_MA010120220807235431",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F05",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F06",
+        "resId": "post_hwasan",
+        "status": "확실"
+       },
+       {
+        "fn": "F07",
+        "resId": "sbiz_MA010120220807235431",
+        "status": "확인 필요"
+       }
+      ]
+     },
+     {
+      "villageId": "seongbuk",
+      "set": [
+       "hub_10887553279",
+       "care_link",
+       "sbiz_MA010120220807279007"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "care_link",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F02",
+        "resId": "care_link",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F04",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F05",
+        "resId": "care_link",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F06",
+        "resId": "hub_10887553279",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "care_link",
+        "status": "확인 필요"
+       }
+      ]
+     },
+     {
+      "villageId": "unje",
+      "set": [
+       "hub_10859662554",
+       "care_link",
+       "sbiz_MA010120220807279007"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "care_link",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F02",
+        "resId": "care_link",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F04",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F05",
+        "resId": "care_link",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F06",
+        "resId": "hub_10859662554",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "care_link",
+        "status": "확인 필요"
+       }
+      ]
+     }
+    ]
+   },
+   "fail": null,
+   "usage": {
+    "input": 5888,
+    "output": 677
+   }
+  },
+  {
+   "caseId": "e2-unje-homebound",
+   "variant": "b2a",
+   "raw": "{\"plans\":[{\"villageId\":\"hwapyeong\",\"set\":[\"hanaro_hwasan\",\"sbiz_MA010120220807235431\",\"hub_10887533043\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F02\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F04\",\"resId\":\"sbiz_MA010120220807235431\",\"status\":\"확인 필요\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F06\",\"resId\":\"hub_10887533043\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"}]}, {\"villageId\":\"seongbuk\",\"set\":[\"hub_10887553485\",\"hubdrop_hanaro_hwasan_10887553485\",\"care_link\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hubdrop_hanaro_hwasan_10887553485\",\"status\":\"확인 필요\"},{\"fn\":\"F02\",\"resId\":\"care_link\",\"status\":\"확인 필요\"},{\"fn\":\"F04\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F05\",\"resId\":\"hubdrop_hanaro_hwasan_10887553485\",\"status\":\"확인 필요\"},{\"fn\":\"F06\",\"resId\":\"hub_10887553485\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"care_link\",\"status\":\"확인 필요\"}]}, {\"villageId\":\"unje\",\"set\":[\"hub_10859662554\",\"hubdrop_hanaro_hwasan_10859662554\",\"care_link\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hubdrop_hanaro_hwasan_10859662554\",\"status\":\"확인 필요\"},{\"fn\":\"F02\",\"resId\":\"care_link\",\"status\":\"확인 필요\"},{\"fn\":\"F04\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F05\",\"resId\":\"hubdrop_hanaro_hwasan_10859662554\",\"status\":\"확인 필요\"},{\"fn\":\"F06\",\"resId\":\"hub_10859662554\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"care_link\",\"status\":\"확인 필요\"}]}]}",
+   "parsed": {
+    "plans": [
+     {
+      "villageId": "hwapyeong",
+      "set": [
+       "hanaro_hwasan",
+       "sbiz_MA010120220807235431",
+       "hub_10887533043"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F02",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F04",
+        "resId": "sbiz_MA010120220807235431",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F05",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F06",
+        "resId": "hub_10887533043",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       }
+      ]
+     },
+     {
+      "villageId": "seongbuk",
+      "set": [
+       "hub_10887553485",
+       "hubdrop_hanaro_hwasan_10887553485",
+       "care_link"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hubdrop_hanaro_hwasan_10887553485",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F02",
+        "resId": "care_link",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F04",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F05",
+        "resId": "hubdrop_hanaro_hwasan_10887553485",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F06",
+        "resId": "hub_10887553485",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "care_link",
+        "status": "확인 필요"
+       }
+      ]
+     },
+     {
+      "villageId": "unje",
+      "set": [
+       "hub_10859662554",
+       "hubdrop_hanaro_hwasan_10859662554",
+       "care_link"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hubdrop_hanaro_hwasan_10859662554",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F02",
+        "resId": "care_link",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F04",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F05",
+        "resId": "hubdrop_hanaro_hwasan_10859662554",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F06",
+        "resId": "hub_10859662554",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "care_link",
+        "status": "확인 필요"
+       }
+      ]
+     }
+    ]
+   },
+   "fail": null,
+   "usage": {
+    "input": 3893,
+    "output": 768
+   }
+  },
+  {
+   "caseId": "e2-unje-homebound",
+   "variant": "b2b",
+   "raw": "{\"plans\":[{\"villageId\":\"unje\",\"set\":[\"hanaro_hwasan\",\"hubdrop_hanaro_hwasan_10859662554\",\"care_link\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F02\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F04\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F06\",\"resId\":\"hubdrop_hanaro_hwasan_10859662554\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"care_link\",\"status\":\"확인 필요\"}]},{\"villageId\":\"hwapyeong\",\"set\":[\"hanaro_hwasan\",\"hubdrop_hanaro_hwasan_10887533043\",\"care_link\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F02\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F04\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F06\",\"resId\":\"hubdrop_hanaro_hwasan_10887533043\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"care_link\",\"status\":\"확인 필요\"}]},{\"villageId\":\"seongbuk\",\"set\":[\"hanaro_hwasan\",\"hubdrop_hanaro_hwasan_10887553279\",\"care_link\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F02\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F04\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F06\",\"resId\":\"hubdrop_hanaro_hwasan_10887553279\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"care_link\",\"status\":\"확인 필요\"}]}]}",
+   "parsed": {
+    "plans": [
+     {
+      "villageId": "unje",
+      "set": [
+       "hanaro_hwasan",
+       "hubdrop_hanaro_hwasan_10859662554",
+       "care_link"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F02",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F04",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F05",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F06",
+        "resId": "hubdrop_hanaro_hwasan_10859662554",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "care_link",
+        "status": "확인 필요"
+       }
+      ]
+     },
+     {
+      "villageId": "hwapyeong",
+      "set": [
+       "hanaro_hwasan",
+       "hubdrop_hanaro_hwasan_10887533043",
+       "care_link"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F02",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F04",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F05",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F06",
+        "resId": "hubdrop_hanaro_hwasan_10887533043",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "care_link",
+        "status": "확인 필요"
+       }
+      ]
+     },
+     {
+      "villageId": "seongbuk",
+      "set": [
+       "hanaro_hwasan",
+       "hubdrop_hanaro_hwasan_10887553279",
+       "care_link"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F02",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F04",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F05",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F06",
+        "resId": "hubdrop_hanaro_hwasan_10887553279",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "care_link",
+        "status": "확인 필요"
+       }
+      ]
+     }
+    ]
+   },
+   "fail": null,
+   "usage": {
+    "input": 5148,
+    "output": 758
+   }
+  },
+  {
+   "caseId": "e2-unsan-car",
+   "variant": "b2a",
+   "raw": "{\"plans\":[{\"villageId\":\"unsan\",\"set\":[\"hanaro_hwasan\",\"osm_n10821614149\",\"sbiz_MA010120220807235431\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"osm_n10821614149\",\"status\":\"확실\"},{\"fn\":\"F02\",\"resId\":\"osm_n10821614149\",\"status\":\"확실\"},{\"fn\":\"F04\",\"resId\":\"sbiz_MA010120220807235431\",\"status\":\"확인 필요\"},{\"fn\":\"F05\",\"resId\":\"osm_n10821614149\",\"status\":\"확실\"},{\"fn\":\"F06\",\"resId\":\"post_hwasan\",\"status\":\"확실\"},{\"fn\":\"F07\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"}]}]}",
+   "parsed": {
+    "plans": [
+     {
+      "villageId": "unsan",
+      "set": [
+       "hanaro_hwasan",
+       "osm_n10821614149",
+       "sbiz_MA010120220807235431"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "osm_n10821614149",
+        "status": "확실"
+       },
+       {
+        "fn": "F02",
+        "resId": "osm_n10821614149",
+        "status": "확실"
+       },
+       {
+        "fn": "F04",
+        "resId": "sbiz_MA010120220807235431",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F05",
+        "resId": "osm_n10821614149",
+        "status": "확실"
+       },
+       {
+        "fn": "F06",
+        "resId": "post_hwasan",
+        "status": "확실"
+       },
+       {
+        "fn": "F07",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       }
+      ]
+     }
+    ]
+   },
+   "fail": null,
+   "usage": {
+    "input": 13171,
+    "output": 249
+   }
+  },
+  {
+   "caseId": "e2-unsan-car",
+   "variant": "b2b",
+   "raw": "{\"plans\":[{\"villageId\":\"unsan\",\"set\":[\"hanaro_hwasan\",\"osm_n10821614149\",\"osm_n10860910089\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hanaro_hwasan\",\"status\":\"확실\"},{\"fn\":\"F02\",\"resId\":\"hanaro_hwasan\",\"status\":\"확실\"},{\"fn\":\"F04\",\"resId\":\"osm_n10821614149\",\"status\":\"확실\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확실\"},{\"fn\":\"F06\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"}]}]}",
+   "parsed": {
+    "plans": [
+     {
+      "villageId": "unsan",
+      "set": [
+       "hanaro_hwasan",
+       "osm_n10821614149",
+       "osm_n10860910089"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hanaro_hwasan",
+        "status": "확실"
+       },
+       {
+        "fn": "F02",
+        "resId": "hanaro_hwasan",
+        "status": "확실"
+       },
+       {
+        "fn": "F04",
+        "resId": "osm_n10821614149",
+        "status": "확실"
+       },
+       {
+        "fn": "F05",
+        "resId": "hanaro_hwasan",
+        "status": "확실"
+       },
+       {
+        "fn": "F06",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       }
+      ]
+     }
+    ]
+   },
+   "fail": null,
+   "usage": {
+    "input": 15503,
+    "output": 245
+   }
+  },
+  {
+   "caseId": "e2-unsan-walk",
+   "variant": "b2a",
+   "raw": "{\"plans\":[{\"villageId\":\"unsan\",\"set\":[\"hanaro_hwasan\",\"care_link\",\"sbiz_MA010120220807235431\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F02\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F04\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F05\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F06\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F07\",\"resId\":\"\",\"status\":\"없음\"}]}]}",
+   "parsed": {
+    "plans": [
+     {
+      "villageId": "unsan",
+      "set": [
+       "hanaro_hwasan",
+       "care_link",
+       "sbiz_MA010120220807235431"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F02",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F04",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F05",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F06",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F07",
+        "resId": "",
+        "status": "없음"
+       }
+      ]
+     }
+    ]
+   },
+   "fail": null,
+   "usage": {
+    "input": 2110,
+    "output": 186
+   }
+  },
+  {
+   "caseId": "e2-unsan-walk",
+   "variant": "b2b",
+   "raw": "{\"plans\":[{\"villageId\":\"unsan\",\"set\":[\"hanaro_hwasan\",\"sbiz_MA010120220807235431\",\"care_link\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"sbiz_MA010120220807235431\",\"status\":\"확인 필요\"},{\"fn\":\"F02\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F04\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F05\",\"resId\":\"sbiz_MA010120220807235431\",\"status\":\"확인 필요\"},{\"fn\":\"F06\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"care_link\",\"status\":\"확인 필요\"}]}]}",
+   "parsed": {
+    "plans": [
+     {
+      "villageId": "unsan",
+      "set": [
+       "hanaro_hwasan",
+       "sbiz_MA010120220807235431",
+       "care_link"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "sbiz_MA010120220807235431",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F02",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F04",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F05",
+        "resId": "sbiz_MA010120220807235431",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F06",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "care_link",
+        "status": "확인 필요"
+       }
+      ]
+     }
+    ]
+   },
+   "fail": null,
+   "usage": {
+    "input": 2359,
+    "output": 248
+   }
+  },
+  {
+   "caseId": "e2-unsan-homebound",
+   "variant": "b2a",
+   "raw": "{\"plans\":[{\"villageId\":\"unsan\",\"set\":[\"care_link\",\"hanaro_hwasan\",\"tour_A\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F02\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F04\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F06\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"care_link\",\"status\":\"확인 필요\"}]}]}",
+   "parsed": {
+    "plans": [
+     {
+      "villageId": "unsan",
+      "set": [
+       "care_link",
+       "hanaro_hwasan",
+       "tour_A"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F02",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F04",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F05",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F06",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "care_link",
+        "status": "확인 필요"
+       }
+      ]
+     }
+    ]
+   },
+   "fail": null,
+   "usage": {
+    "input": 2119,
+    "output": 231
+   }
+  },
+  {
+   "caseId": "e2-unsan-homebound",
+   "variant": "b2b",
+   "raw": "{\"plans\":[{\"villageId\":\"unsan\",\"set\":[\"care_link\",\"hanaro_hwasan\",\"tour_A\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"care_link\",\"status\":\"확인 필요\"},{\"fn\":\"F02\",\"resId\":\"care_link\",\"status\":\"확인 필요\"},{\"fn\":\"F04\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F06\",\"resId\":\"care_link\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"tour_A\",\"status\":\"확인 필요\"}]}]}",
+   "parsed": {
+    "plans": [
+     {
+      "villageId": "unsan",
+      "set": [
+       "care_link",
+       "hanaro_hwasan",
+       "tour_A"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "care_link",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F02",
+        "resId": "care_link",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F04",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F05",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F06",
+        "resId": "care_link",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "tour_A",
+        "status": "확인 필요"
+       }
+      ]
+     }
+    ]
+   },
+   "fail": null,
+   "usage": {
+    "input": 2368,
+    "output": 214
+   }
+  },
+  {
+   "caseId": "e2-uwol-car",
+   "variant": "b2a",
+   "raw": "{\"plans\":[{\"villageId\":\"ungok\",\"set\":[\"hanaro_hwasan\",\"care_link\",\"tour_A\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F02\",\"resId\":\"tour_A\",\"status\":\"확인 필요\"},{\"fn\":\"F04\",\"resId\":\"osm_n10828705928\",\"status\":\"확인 필요\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F06\",\"resId\":\"post_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"care_link\",\"status\":\"확인 필요\"}]},{\"villageId\":\"uwol\",\"set\":[\"hanaro_hwasan\",\"post_hwasan\",\"sbiz_MA010120220807235431\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F02\",\"resId\":\"sbiz_MA010120220807235431\",\"status\":\"확인 필요\"},{\"fn\":\"F04\",\"resId\":\"sbiz_MA010120220807235431\",\"status\":\"확인 필요\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F06\",\"resId\":\"post_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"sbiz_MA010120220807235431\",\"status\":\"확인 필요\"}]}]}",
+   "parsed": {
+    "plans": [
+     {
+      "villageId": "ungok",
+      "set": [
+       "hanaro_hwasan",
+       "care_link",
+       "tour_A"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F02",
+        "resId": "tour_A",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F04",
+        "resId": "osm_n10828705928",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F05",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F06",
+        "resId": "post_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "care_link",
+        "status": "확인 필요"
+       }
+      ]
+     },
+     {
+      "villageId": "uwol",
+      "set": [
+       "hanaro_hwasan",
+       "post_hwasan",
+       "sbiz_MA010120220807235431"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F02",
+        "resId": "sbiz_MA010120220807235431",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F04",
+        "resId": "sbiz_MA010120220807235431",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F05",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F06",
+        "resId": "post_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "sbiz_MA010120220807235431",
+        "status": "확인 필요"
+       }
+      ]
+     }
+    ]
+   },
+   "fail": null,
+   "usage": {
+    "input": 14859,
+    "output": 494
+   }
+  },
+  {
+   "caseId": "e2-uwol-car",
+   "variant": "b2b",
+   "raw": "{\"plans\":[{\"villageId\":\"ungok\",\"set\":[\"hanaro_hwasan\",\"osm_n10821614149\",\"osm_n10828705928\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hanaro_hwasan\",\"status\":\"확실\"},{\"fn\":\"F02\",\"resId\":\"hanaro_hwasan\",\"status\":\"확실\"},{\"fn\":\"F04\",\"resId\":\"osm_n10828705928\",\"status\":\"확실\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확실\"},{\"fn\":\"F06\",\"resId\":\"care_link\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"}]},{\"plans\":[]},{\"villageId\":\"uwol\",\"set\":[\"hanaro_hwasan\",\"osm_n10821614149\",\"osm_n10828705928\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hanaro_hwasan\",\"status\":\"확실\"},{\"fn\":\"F02\",\"resId\":\"hanaro_hwasan\",\"status\":\"확실\"},{\"fn\":\"F04\",\"resId\":\"osm_n10828705928\",\"status\":\"확실\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확실\"},{\"fn\":\"F06\",\"resId\":\"care_link\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"}]}]}",
+   "parsed": {
+    "plans": [
+     {
+      "villageId": "ungok",
+      "set": [
+       "hanaro_hwasan",
+       "osm_n10821614149",
+       "osm_n10828705928"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hanaro_hwasan",
+        "status": "확실"
+       },
+       {
+        "fn": "F02",
+        "resId": "hanaro_hwasan",
+        "status": "확실"
+       },
+       {
+        "fn": "F04",
+        "resId": "osm_n10828705928",
+        "status": "확실"
+       },
+       {
+        "fn": "F05",
+        "resId": "hanaro_hwasan",
+        "status": "확실"
+       },
+       {
+        "fn": "F06",
+        "resId": "care_link",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       }
+      ]
+     },
+     {
+      "plans": []
+     },
+     {
+      "villageId": "uwol",
+      "set": [
+       "hanaro_hwasan",
+       "osm_n10821614149",
+       "osm_n10828705928"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hanaro_hwasan",
+        "status": "확실"
+       },
+       {
+        "fn": "F02",
+        "resId": "hanaro_hwasan",
+        "status": "확실"
+       },
+       {
+        "fn": "F04",
+        "resId": "osm_n10828705928",
+        "status": "확실"
+       },
+       {
+        "fn": "F05",
+        "resId": "hanaro_hwasan",
+        "status": "확실"
+       },
+       {
+        "fn": "F06",
+        "resId": "care_link",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       }
+      ]
+     }
+    ]
+   },
+   "fail": null,
+   "usage": {
+    "input": 19965,
+    "output": 476
+   }
+  },
+  {
+   "caseId": "e2-uwol-walk",
+   "variant": "b2a",
+   "raw": "{\"plans\":[{\"villageId\":\"ungok\",\"set\":[\"hanaro_hwasan\",\"care_link\",\"tour_A\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F02\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F04\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F06\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"care_link\",\"status\":\"확인 필요\"}]},{\"villageId\":\"uwol\",\"set\":[\"care_link\",\"tour_A\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"tour_A\",\"status\":\"확인 필요\"},{\"fn\":\"F02\",\"resId\":\"tour_A\",\"status\":\"확인 필요\"},{\"fn\":\"F04\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F05\",\"resId\":\"tour_A\",\"status\":\"확인 필요\"},{\"fn\":\"F06\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F07\",\"resId\":\"care_link\",\"status\":\"확인 필요\"}]}]}",
+   "parsed": {
+    "plans": [
+     {
+      "villageId": "ungok",
+      "set": [
+       "hanaro_hwasan",
+       "care_link",
+       "tour_A"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F02",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F04",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F05",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F06",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "care_link",
+        "status": "확인 필요"
+       }
+      ]
+     },
+     {
+      "villageId": "uwol",
+      "set": [
+       "care_link",
+       "tour_A"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "tour_A",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F02",
+        "resId": "tour_A",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F04",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F05",
+        "resId": "tour_A",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F06",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F07",
+        "resId": "care_link",
+        "status": "확인 필요"
+       }
+      ]
+     }
+    ]
+   },
+   "fail": null,
+   "usage": {
+    "input": 2170,
+    "output": 415
+   }
+  },
+  {
+   "caseId": "e2-uwol-walk",
+   "variant": "b2b",
+   "raw": "{\"plans\":[{\"villageId\":\"ungok\",\"set\":[\"care_link\",\"hanaro_hwasan\",\"tour_A\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F02\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F04\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F06\",\"resId\":\"care_link\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"care_link\",\"status\":\"확인 필요\"}]},{\"villageId\":\"uwol\",\"set\":[\"care_link\",\"hanaro_hwasan\",\"tour_A\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F02\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F04\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F06\",\"resId\":\"care_link\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"care_link\",\"status\":\"확인 필요\"}]}]}",
+   "parsed": {
+    "plans": [
+     {
+      "villageId": "ungok",
+      "set": [
+       "care_link",
+       "hanaro_hwasan",
+       "tour_A"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F02",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F04",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F05",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F06",
+        "resId": "care_link",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "care_link",
+        "status": "확인 필요"
+       }
+      ]
+     },
+     {
+      "villageId": "uwol",
+      "set": [
+       "care_link",
+       "hanaro_hwasan",
+       "tour_A"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F02",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F04",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F05",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F06",
+        "resId": "care_link",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "care_link",
+        "status": "확인 필요"
+       }
+      ]
+     }
+    ]
+   },
+   "fail": null,
+   "usage": {
+    "input": 2518,
+    "output": 440
+   }
+  },
+  {
+   "caseId": "e2-uwol-homebound",
+   "variant": "b2a",
+   "raw": "{\"plans\":[{\"villageId\":\"ungok\",\"set\":[\"care_link\",\"tour_A\",\"hanaro_hwasan\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"care_link\",\"status\":\"확인 필요\"},{\"fn\":\"F02\",\"resId\":\"care_link\",\"status\":\"확인 필요\"},{\"fn\":\"F04\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F05\",\"resId\":\"care_link\",\"status\":\"확인 필요\"},{\"fn\":\"F06\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"care_link\",\"status\":\"확인 필요\"}]},{\"villageId\":\"uwol\",\"set\":[\"care_link\",\"tour_A\",\"hanaro_hwasan\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"care_link\",\"status\":\"확인 필요\"},{\"fn\":\"F02\",\"resId\":\"care_link\",\"status\":\"확인 필요\"},{\"fn\":\"F04\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F05\",\"resId\":\"care_link\",\"status\":\"확인 필요\"},{\"fn\":\"F06\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"care_link\",\"status\":\"확인 필요\"}]}]}",
+   "parsed": {
+    "plans": [
+     {
+      "villageId": "ungok",
+      "set": [
+       "care_link",
+       "tour_A",
+       "hanaro_hwasan"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "care_link",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F02",
+        "resId": "care_link",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F04",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F05",
+        "resId": "care_link",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F06",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "care_link",
+        "status": "확인 필요"
+       }
+      ]
+     },
+     {
+      "villageId": "uwol",
+      "set": [
+       "care_link",
+       "tour_A",
+       "hanaro_hwasan"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "care_link",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F02",
+        "resId": "care_link",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F04",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F05",
+        "resId": "care_link",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F06",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "care_link",
+        "status": "확인 필요"
+       }
+      ]
+     }
+    ]
+   },
+   "fail": null,
+   "usage": {
+    "input": 2179,
+    "output": 416
+   }
+  },
+  {
+   "caseId": "e2-uwol-homebound",
+   "variant": "b2b",
+   "raw": "{\"plans\":[{\"villageId\":\"ungok\",\"set\":[\"care_link\",\"hanaro_hwasan\",\"tour_A\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F02\",\"resId\":\"care_link\",\"status\":\"확인 필요\"},{\"fn\":\"F04\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F06\",\"resId\":\"care_link\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"care_link\",\"status\":\"확인 필요\"}]},{\"villageId\":\"uwol\",\"set\":[\"care_link\",\"hanaro_hwasan\",\"tour_A\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F02\",\"resId\":\"care_link\",\"status\":\"확인 필요\"},{\"fn\":\"F04\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F06\",\"resId\":\"care_link\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"care_link\",\"status\":\"확인 필요\"}]}]}",
+   "parsed": {
+    "plans": [
+     {
+      "villageId": "ungok",
+      "set": [
+       "care_link",
+       "hanaro_hwasan",
+       "tour_A"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F02",
+        "resId": "care_link",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F04",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F05",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F06",
+        "resId": "care_link",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "care_link",
+        "status": "확인 필요"
+       }
+      ]
+     },
+     {
+      "villageId": "uwol",
+      "set": [
+       "care_link",
+       "hanaro_hwasan",
+       "tour_A"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F02",
+        "resId": "care_link",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F04",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F05",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F06",
+        "resId": "care_link",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "care_link",
+        "status": "확인 필요"
+       }
+      ]
+     }
+    ]
+   },
+   "fail": null,
+   "usage": {
+    "input": 2527,
+    "output": 428
+   }
+  },
+  {
+   "caseId": "e2-waryong-car",
+   "variant": "b2a",
+   "raw": "{\"plans\":[{\"villageId\":\"waryong\",\"set\":[\"hanaro_hwasan\",\"hub_10855382015\",\"hub_10855545480\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F02\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F04\",\"resId\":\"hub_10855545480\",\"status\":\"없음\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F06\",\"resId\":\"hub_10855382015\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"}]}]}",
+   "parsed": {
+    "plans": [
+     {
+      "villageId": "waryong",
+      "set": [
+       "hanaro_hwasan",
+       "hub_10855382015",
+       "hub_10855545480"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F02",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F04",
+        "resId": "hub_10855545480",
+        "status": "없음"
+       },
+       {
+        "fn": "F05",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F06",
+        "resId": "hub_10855382015",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       }
+      ]
+     }
+    ]
+   },
+   "fail": null,
+   "usage": {
+    "input": 18068,
+    "output": 249
+   }
+  },
+  {
+   "caseId": "e2-waryong-car",
+   "variant": "b2b",
+   "raw": "{\"plans\":[{\"villageId\":\"waryong\",\"set\":[\"hanaro_hwasan\",\"hub_10855545480\",\"care_link\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hanaro_hwasan\",\"status\":\"확실\"},{\"fn\":\"F02\",\"resId\":\"hanaro_hwasan\",\"status\":\"확실\"},{\"fn\":\"F04\",\"resId\":\"hanaro_hwasan\",\"status\":\"확실\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확실\"},{\"fn\":\"F06\",\"resId\":\"hub_10855545480\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"care_link\",\"status\":\"확인 필요\"}]},{\"villageId\":\"jong\",\"set\":[\"hanaro_hwasan\",\"hub_10855523301\",\"care_link\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hanaro_hwasan\",\"status\":\"확실\"},{\"fn\":\"F02\",\"resId\":\"hanaro_hwasan\",\"status\":\"확실\"},{\"fn\":\"F04\",\"resId\":\"hanaro_hwasan\",\"status\":\"확실\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확실\"},{\"fn\":\"F06\",\"resId\":\"hub_10855523301\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"care_link\",\"status\":\"확인 필요\"}]}]}",
+   "parsed": {
+    "plans": [
+     {
+      "villageId": "waryong",
+      "set": [
+       "hanaro_hwasan",
+       "hub_10855545480",
+       "care_link"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hanaro_hwasan",
+        "status": "확실"
+       },
+       {
+        "fn": "F02",
+        "resId": "hanaro_hwasan",
+        "status": "확실"
+       },
+       {
+        "fn": "F04",
+        "resId": "hanaro_hwasan",
+        "status": "확실"
+       },
+       {
+        "fn": "F05",
+        "resId": "hanaro_hwasan",
+        "status": "확실"
+       },
+       {
+        "fn": "F06",
+        "resId": "hub_10855545480",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "care_link",
+        "status": "확인 필요"
+       }
+      ]
+     },
+     {
+      "villageId": "jong",
+      "set": [
+       "hanaro_hwasan",
+       "hub_10855523301",
+       "care_link"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hanaro_hwasan",
+        "status": "확실"
+       },
+       {
+        "fn": "F02",
+        "resId": "hanaro_hwasan",
+        "status": "확실"
+       },
+       {
+        "fn": "F04",
+        "resId": "hanaro_hwasan",
+        "status": "확실"
+       },
+       {
+        "fn": "F05",
+        "resId": "hanaro_hwasan",
+        "status": "확실"
+       },
+       {
+        "fn": "F06",
+        "resId": "hub_10855523301",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "care_link",
+        "status": "확인 필요"
+       }
+      ]
+     }
+    ]
+   },
+   "fail": null,
+   "usage": {
+    "input": 48313,
+    "output": 453
+   }
+  },
+  {
+   "caseId": "e2-waryong-walk",
+   "variant": "b2a",
+   "raw": "{\"plans\":[{\"villageId\":\"waryong\",\"set\":[\"hanaro_hwasan\",\"hub_10855545480\",\"care_link\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F02\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F04\",\"resId\":\"hub_10855545480\",\"status\":\"확인 필요\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F06\",\"resId\":\"hub_10855545480\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"care_link\",\"status\":\"확인 필요\"}]}]}",
+   "parsed": {
+    "plans": [
+     {
+      "villageId": "waryong",
+      "set": [
+       "hanaro_hwasan",
+       "hub_10855545480",
+       "care_link"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F02",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F04",
+        "resId": "hub_10855545480",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F05",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F06",
+        "resId": "hub_10855545480",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "care_link",
+        "status": "확인 필요"
+       }
+      ]
+     }
+    ]
+   },
+   "fail": null,
+   "usage": {
+    "input": 4741,
+    "output": 242
+   }
+  },
+  {
+   "caseId": "e2-waryong-walk",
+   "variant": "b2b",
+   "raw": "{\"plans\":[{\"villageId\":\"jong\",\"set\":[\"hanaro_hwasan\",\"care_link\",\"sbiz_MA010120220807279007\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F02\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F04\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F06\",\"resId\":\"care_link\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"care_link\",\"status\":\"확인 필요\"}]},{\"villageId\":\"waryong\",\"set\":[\"hanaro_hwasan\",\"care_link\",\"hub_10855382015\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F02\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F04\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F06\",\"resId\":\"care_link\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"care_link\",\"status\":\"확인 필요\"}]}]}",
+   "parsed": {
+    "plans": [
+     {
+      "villageId": "jong",
+      "set": [
+       "hanaro_hwasan",
+       "care_link",
+       "sbiz_MA010120220807279007"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F02",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F04",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F05",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F06",
+        "resId": "care_link",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "care_link",
+        "status": "확인 필요"
+       }
+      ]
+     },
+     {
+      "villageId": "waryong",
+      "set": [
+       "hanaro_hwasan",
+       "care_link",
+       "hub_10855382015"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F02",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F04",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F05",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F06",
+        "resId": "care_link",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "care_link",
+        "status": "확인 필요"
+       }
+      ]
+     }
+    ]
+   },
+   "fail": null,
+   "usage": {
+    "input": 6779,
+    "output": 451
+   }
+  },
+  {
+   "caseId": "e2-waryong-homebound",
+   "variant": "b2a",
+   "raw": "{\"plans\":[{\"villageId\":\"waryong\",\"set\":[\"hub_10855382015\",\"hubdrop_hanaro_hwasan_10855382015\",\"care_link\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hubdrop_hanaro_hwasan_10855382015\",\"status\":\"확인 필요\"},{\"fn\":\"F02\",\"resId\":\"hubdrop_hanaro_hwasan_10855382015\",\"status\":\"확인 필요\"},{\"fn\":\"F04\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F05\",\"resId\":\"hubdrop_hanaro_hwasan_10855382015\",\"status\":\"확인 필요\"},{\"fn\":\"F06\",\"resId\":\"hub_10855382015\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"care_link\",\"status\":\"확인 필요\"}]},{\"villageId\":\"jong\",\"set\":[\"hub_10855523301\",\"hubdrop_hanaro_hwasan_10855523301\",\"care_link\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hubdrop_hanaro_hwasan_10855523301\",\"status\":\"확인 필요\"},{\"fn\":\"F02\",\"resId\":\"hubdrop_hanaro_hwasan_10855523301\",\"status\":\"확인 필요\"},{\"fn\":\"F04\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F05\",\"resId\":\"hubdrop_hanaro_hwasan_10855523301\",\"status\":\"확인 필요\"},{\"fn\":\"F06\",\"resId\":\"hub_10855523301\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"care_link\",\"status\":\"확인 필요\"}]}]}",
+   "parsed": {
+    "plans": [
+     {
+      "villageId": "waryong",
+      "set": [
+       "hub_10855382015",
+       "hubdrop_hanaro_hwasan_10855382015",
+       "care_link"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hubdrop_hanaro_hwasan_10855382015",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F02",
+        "resId": "hubdrop_hanaro_hwasan_10855382015",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F04",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F05",
+        "resId": "hubdrop_hanaro_hwasan_10855382015",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F06",
+        "resId": "hub_10855382015",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "care_link",
+        "status": "확인 필요"
+       }
+      ]
+     },
+     {
+      "villageId": "jong",
+      "set": [
+       "hub_10855523301",
+       "hubdrop_hanaro_hwasan_10855523301",
+       "care_link"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hubdrop_hanaro_hwasan_10855523301",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F02",
+        "resId": "hubdrop_hanaro_hwasan_10855523301",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F04",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F05",
+        "resId": "hubdrop_hanaro_hwasan_10855523301",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F06",
+        "resId": "hub_10855523301",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "care_link",
+        "status": "확인 필요"
+       }
+      ]
+     }
+    ]
+   },
+   "fail": null,
+   "usage": {
+    "input": 4750,
+    "output": 541
+   }
+  },
+  {
+   "caseId": "e2-waryong-homebound",
+   "variant": "b2b",
+   "raw": "{\"plans\":[{\"villageId\":\"waryong\",\"set\":[\"care_link\",\"hanaro_hwasan\",\"hub_10855382015\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F02\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F04\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F06\",\"resId\":\"hub_10855382015\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"care_link\",\"status\":\"확인 필요\"}]},{\"villageId\":\"jong\",\"set\":[\"care_link\",\"hanaro_hwasan\",\"hub_10855523301\"],\"assign\":[{\"fn\":\"F01\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F02\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F04\",\"resId\":\"\",\"status\":\"없음\"},{\"fn\":\"F05\",\"resId\":\"hanaro_hwasan\",\"status\":\"확인 필요\"},{\"fn\":\"F06\",\"resId\":\"hub_10855523301\",\"status\":\"확인 필요\"},{\"fn\":\"F07\",\"resId\":\"care_link\",\"status\":\"확인 필요\"}]}]}",
+   "parsed": {
+    "plans": [
+     {
+      "villageId": "waryong",
+      "set": [
+       "care_link",
+       "hanaro_hwasan",
+       "hub_10855382015"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F02",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F04",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F05",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F06",
+        "resId": "hub_10855382015",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "care_link",
+        "status": "확인 필요"
+       }
+      ]
+     },
+     {
+      "villageId": "jong",
+      "set": [
+       "care_link",
+       "hanaro_hwasan",
+       "hub_10855523301"
+      ],
+      "assign": [
+       {
+        "fn": "F01",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F02",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F04",
+        "resId": "",
+        "status": "없음"
+       },
+       {
+        "fn": "F05",
+        "resId": "hanaro_hwasan",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F06",
+        "resId": "hub_10855523301",
+        "status": "확인 필요"
+       },
+       {
+        "fn": "F07",
+        "resId": "care_link",
+        "status": "확인 필요"
+       }
+      ]
+     }
+    ]
+   },
+   "fail": null,
+   "usage": {
+    "input": 6293,
+    "output": 453
+   }
+  }
+ ]
+}

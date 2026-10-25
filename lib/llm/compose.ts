@@ -61,14 +61,17 @@ export function sanitizeDigest(region: Region, req: ComposeRequest): PlanDigest 
   for (const raw of (d.items as unknown[]) ?? []) {
     const it = raw as Record<string, unknown>;
     const r = typeof it.resId === "string" ? byId.get(it.resId) : undefined;
-    if (!r || seen.has(r.id)) continue;
+    if (!r) continue;
+    const status: "확실" | "확인 중" = it.status === "확실" ? "확실" : "확인 중";
+    // one item per (resource, status): a resource may appear twice (sure functions / functions being checked)
+    if (items.some((x) => x.resId === r.id && x.status === status)) continue;
     seen.add(r.id);
     const days = strs(it.days).filter((x) => DAY_WORDS.has(x));
     items.push({
       resId: r.id,
       name: r.name,
       fns: strs(it.fns).filter((f) => FN_NAMES.has(f)),
-      status: it.status === "확실" ? "확실" : "확인 중",
+      status,
       ...(days.length ? { days } : {}),
     });
   }
