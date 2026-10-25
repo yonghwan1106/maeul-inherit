@@ -1,0 +1,478 @@
+{
+ "id": "sc1_seungchi",
+ "title": "승치리 — 걸어서 갈 곳이 없는 마을",
+ "officer": "이서연 주무관(가명)",
+ "store": {
+  "name": "승치 마을상회(가상)",
+  "villageId": "seungchi",
+  "lat": 36.06006,
+  "lon": 127.22416,
+  "sbizSub": "슈퍼마켓",
+  "items": [
+   "라면",
+   "쌀",
+   "두부",
+   "계란",
+   "막걸리",
+   "파스",
+   "세제"
+  ],
+  "hours": "06:30-20:00",
+  "memo": "어르신들 택배를 다 여기 맡겼고, 전화하면 사장님이 오토바이로 갖다 줬음. 오후엔 가게 앞 평상에 모여 앉으심. 혼자 사는 어르신들 안부도 사장님이 챙겼음."
+ },
+ "residents": [
+  {
+   "id": "r1",
+   "name": "김순자",
+   "age": 81,
+   "mode": "walk",
+   "pointId": "p_seungchi_hub_10947413265",
+   "note": "허리가 불편함"
+  },
+  {
+   "id": "r2",
+   "name": "박정호",
+   "age": 58,
+   "mode": "car",
+   "pointId": "p_seungchi_node",
+   "note": ""
+  },
+  {
+   "id": "r3",
+   "name": "이옥자",
+   "age": 77,
+   "mode": "homebound",
+   "pointId": "p_seungchi_hub_10947413946",
+   "note": ""
+  }
+ ],
+ "demoConfirmations": [
+  {
+   "cellKey": "stop:tour_A:p_seungchi_hub_10947413892",
+   "value": "Y",
+   "note": "화요일 오전",
+   "by": "시연 입력값",
+   "at": "2026-10-26T00:00:00+09:00"
+  }
+ ],
+ "precomputed": {
+  "decompose": {
+   "inputHash": "f1ebd6960b830f950ea5f01db08f5d6e2ac9b9dcd58e295d253c8f979b6d13e5",
+   "response": {
+    "mode": "live",
+    "model": "claude-haiku-5-5",
+    "functions": [
+     {
+      "code": "F01",
+      "importance": 3,
+      "evidence": "라면",
+      "needsCheck": false,
+      "source": "llm",
+      "enabled": true
+     },
+     {
+      "code": "F02",
+      "importance": 2,
+      "evidence": "계란",
+      "needsCheck": false,
+      "source": "llm",
+      "enabled": true
+     },
+     {
+      "code": "F04",
+      "importance": 2,
+      "evidence": "06:30-20:00",
+      "needsCheck": true,
+      "source": "llm",
+      "enabled": true
+     },
+     {
+      "code": "F05",
+      "importance": 2,
+      "evidence": "세제",
+      "needsCheck": false,
+      "source": "llm",
+      "enabled": true
+     },
+     {
+      "code": "F06",
+      "importance": 3,
+      "evidence": "어르신들 택배를 다 여기 맡겼고",
+      "needsCheck": false,
+      "source": "llm",
+      "enabled": true
+     },
+     {
+      "code": "F07",
+      "importance": 3,
+      "evidence": "전화하면 사장님이 오토바이로 갖다 줬음",
+      "needsCheck": false,
+      "source": "llm",
+      "enabled": true
+     },
+     {
+      "code": "F09",
+      "importance": 2,
+      "evidence": "가게 앞 평상에 모여 앉으심",
+      "needsCheck": false,
+      "source": "llm",
+      "enabled": true
+     },
+     {
+      "code": "F10",
+      "importance": 3,
+      "evidence": "혼자 사는 어르신들 안부도 사장님이 챙겼음",
+      "needsCheck": false,
+      "source": "llm",
+      "enabled": true
+     }
+    ],
+    "unknowns": [
+     "배달 가능한 범위(거리·마을)",
+     "평상 이용이 매일이었는지"
+    ],
+    "validator": {
+     "droppedCodes": [],
+     "demoted": 0,
+     "retried": false,
+     "fallbackReason": null
+    },
+    "inputHash": "f1ebd6960b830f950ea5f01db08f5d6e2ac9b9dcd58e295d253c8f979b6d13e5",
+    "generatedAt": "2026-10-25T10:23:27.518Z"
+   }
+  },
+  "compose": [
+   {
+    "state": "base",
+    "docType": "resident",
+    "agencyResId": null,
+    "audience": {
+     "villageId": "seungchi",
+     "mode": "walk",
+     "pointId": "p_seungchi_hub_10947413265"
+    },
+    "inputHash": "f5047640bd6868287e5d9dadb19012d71a760f1f497a9a59d46b62b97843703f",
+    "response": {
+     "mode": "live",
+     "text": "승치리 주민 여러분, 마을 가게가 문을 닫아 생활 일을 나누어 맡기로 했어요.\n걸어서 다니시는 분들을 위해 하나로마트(화산)에서 장보기, 신선식품, 생활용품, 배달 일을 확인하고 있어요.\n미남경로회관에서는 택배 일을 확인하고 있어요.\n급할 때 필요한 일은 아직 찾고 있어요.\n자세한 내용은 면사무소에 문의해 주세요.",
+     "grounding": {
+      "pass": true,
+      "attempts": 1,
+      "checked": [
+       {
+        "kind": "resource",
+        "value": "하나로마트(화산)",
+        "ok": true
+       },
+       {
+        "kind": "assertive",
+        "value": "하나로마트(화산)",
+        "ok": true
+       },
+       {
+        "kind": "resource",
+        "value": "미남경로회관",
+        "ok": true
+       },
+       {
+        "kind": "assertive",
+        "value": "미남경로회관",
+        "ok": true
+       }
+      ],
+      "blocked": []
+     },
+     "model": "claude-haiku-5-5",
+     "template": false,
+     "inputHash": "f5047640bd6868287e5d9dadb19012d71a760f1f497a9a59d46b62b97843703f",
+     "generatedAt": "2026-10-25T10:23:29.348Z",
+     "fallbackReason": null
+    }
+   },
+   {
+    "state": "base",
+    "docType": "resident",
+    "agencyResId": null,
+    "audience": {
+     "villageId": "seungchi",
+     "mode": "car",
+     "pointId": "p_seungchi_node"
+    },
+    "inputHash": "9ab849bfa4ca9dfa85a4fa044b7fc59a95073709d99699dd2cb0c10c629c9608",
+    "response": {
+     "mode": "live",
+     "text": "승치리 주민 여러분께 안내드립니다.\n승치리 가게가 문을 닫아 생활 물건은 다른 곳에서 이어서 준비하고 있어요.\n차가 있는 주민은 하나로마트(화산)에서 장보기, 신선식품, 생활용품, 배달을 이용할 수 있어요.\n택배는 완주화산우체국에서 받을 수 있어요.\n급할 때 필요한 일은 아직 찾고 있어요.",
+     "grounding": {
+      "pass": true,
+      "attempts": 1,
+      "checked": [
+       {
+        "kind": "resource",
+        "value": "하나로마트(화산)",
+        "ok": true
+       },
+       {
+        "kind": "resource",
+        "value": "완주화산우체국",
+        "ok": true
+       }
+      ],
+      "blocked": []
+     },
+     "model": "claude-haiku-5-5",
+     "template": false,
+     "inputHash": "9ab849bfa4ca9dfa85a4fa044b7fc59a95073709d99699dd2cb0c10c629c9608",
+     "generatedAt": "2026-10-25T10:23:30.678Z",
+     "fallbackReason": null
+    }
+   },
+   {
+    "state": "base",
+    "docType": "resident",
+    "agencyResId": null,
+    "audience": {
+     "villageId": "seungchi",
+     "mode": "homebound",
+     "pointId": "p_seungchi_hub_10947413946"
+    },
+    "inputHash": "c5f3929ed00fb2b174da6a2c264ddde2e6aeb3c0b93e857b3ee56f32c7690684",
+    "response": {
+     "mode": "live",
+     "text": "승치리 어르신들께 안내드립니다.\n가게가 문을 닫은 뒤 집 밖에 나서기 어려우신 분들의 생활을 돕기 위해 준비하고 있어요.\n하나로마트(화산)에서 장보기, 신선식품, 생활용품, 배달 일을 맡을 수 있는지 확인하고 있어요.\n원승경로회관에서는 택배 일을 맡을 수 있는지 확인하고 있어요.\n급할 때 도와줄 곳은 아직 찾고 있어요.",
+     "grounding": {
+      "pass": true,
+      "attempts": 1,
+      "checked": [
+       {
+        "kind": "resource",
+        "value": "하나로마트(화산)",
+        "ok": true
+       },
+       {
+        "kind": "assertive",
+        "value": "하나로마트(화산)",
+        "ok": true
+       },
+       {
+        "kind": "resource",
+        "value": "원승경로회관",
+        "ok": true
+       },
+       {
+        "kind": "assertive",
+        "value": "원승경로회관",
+        "ok": true
+       }
+      ],
+      "blocked": []
+     },
+     "model": "claude-haiku-5-5",
+     "template": false,
+     "inputHash": "c5f3929ed00fb2b174da6a2c264ddde2e6aeb3c0b93e857b3ee56f32c7690684",
+     "generatedAt": "2026-10-25T10:23:34.855Z",
+     "fallbackReason": null
+    }
+   },
+   {
+    "state": "base",
+    "docType": "agency",
+    "agencyResId": "hanaro_hwasan",
+    "audience": {
+     "villageId": "seungchi",
+     "mode": "walk"
+    },
+    "inputHash": "6a1f94b12ad108267a184ec95617c7bdf8a68c40396b5be0fb842d460a156d3e",
+    "response": {
+     "mode": "live",
+     "text": "무엇을: 승치리 주민 중 걸어서만 다니시는 분들을 위해 장보기, 신선식품, 생활용품, 배달 일을 이어받아 주실 수 있는지 여쭙니다.\n어느 리: 승치리\n어떤 이동 조건 주민: 걸어서만 다니는 주민(도보)\n확인해 주실 사항: 하나로마트(화산)에서 장보기, 신선식품, 생활용품, 배달을 맡아 주실 수 있는지 확인이 필요합니다.",
+     "grounding": {
+      "pass": true,
+      "attempts": 1,
+      "checked": [
+       {
+        "kind": "resource",
+        "value": "하나로마트(화산)",
+        "ok": true
+       },
+       {
+        "kind": "assertive",
+        "value": "하나로마트(화산)",
+        "ok": true
+       }
+      ],
+      "blocked": []
+     },
+     "model": "claude-haiku-5-5",
+     "template": false,
+     "inputHash": "6a1f94b12ad108267a184ec95617c7bdf8a68c40396b5be0fb842d460a156d3e",
+     "generatedAt": "2026-10-25T10:23:36.216Z",
+     "fallbackReason": null
+    }
+   },
+   {
+    "state": "base",
+    "docType": "agency",
+    "agencyResId": "care_link",
+    "audience": {
+     "villageId": "seungchi",
+     "mode": "walk"
+    },
+    "inputHash": "c948cc7a3a49709320f123295936426e109ec3d342a971095bba458eac4efe9e",
+    "response": {
+     "mode": "live",
+     "text": "무엇을: 승치리 주민 중 걸어서만 다니시는 분들을 위해 식료품 배달 연계를 요청드립니다.\n어느 리: 승치리\n어떤 이동 조건 주민: 걸어서만 다니는 주민(도보)\n확인해 주실 사항: 생활지원 연계(노인맞춤돌봄서비스 등 — 식료품 배달)가 승치리 도보 주민의 식료품 배달을 맡을 수 있는지 확인이 필요합니다.",
+     "grounding": {
+      "pass": true,
+      "attempts": 1,
+      "checked": [
+       {
+        "kind": "resource",
+        "value": "생활지원 연계(노인맞춤돌봄서비스 등 — 식료품 배달)",
+        "ok": true
+       },
+       {
+        "kind": "assertive",
+        "value": "생활지원 연계(노인맞춤돌봄서비스 등 — 식료품 배달)",
+        "ok": true
+       }
+      ],
+      "blocked": []
+     },
+     "model": "claude-haiku-5-5",
+     "template": false,
+     "inputHash": "c948cc7a3a49709320f123295936426e109ec3d342a971095bba458eac4efe9e",
+     "generatedAt": "2026-10-25T10:23:37.558Z",
+     "fallbackReason": null
+    }
+   },
+   {
+    "state": "demo",
+    "docType": "resident",
+    "agencyResId": null,
+    "audience": {
+     "villageId": "seungchi",
+     "mode": "walk",
+     "pointId": "p_seungchi_hub_10947413265"
+    },
+    "inputHash": "0b7e7caf47c38a47364f1dc11d6a689d6ed75fa3ebdefe1bd2ab3c7414c6a82d",
+    "response": {
+     "mode": "live",
+     "text": "승치리 주민 여러분, 가게 대신 생활 도움을 받을 곳을 알려 드려요.\n걸어서 다니시는 분은 이동장터 A에서 장보기를 하실 수 있어요.\n이동장터 A는 화요일에 와요. 신선식품과 생활용품도 함께 구하실 수 있어요.\n하나로마트(화산)의 배달, 미남경로회관의 택배는 지금 확인하고 있어요.\n급할 때 필요한 도움은 아직 찾고 있어요.",
+     "grounding": {
+      "pass": true,
+      "attempts": 1,
+      "checked": [
+       {
+        "kind": "resource",
+        "value": "이동장터 A",
+        "ok": true
+       },
+       {
+        "kind": "resource",
+        "value": "이동장터 A",
+        "ok": true
+       },
+       {
+        "kind": "day",
+        "value": "화요일",
+        "ok": true
+       },
+       {
+        "kind": "resource",
+        "value": "하나로마트(화산)",
+        "ok": true
+       },
+       {
+        "kind": "resource",
+        "value": "미남경로회관",
+        "ok": true
+       },
+       {
+        "kind": "assertive",
+        "value": "하나로마트(화산)",
+        "ok": true
+       }
+      ],
+      "blocked": []
+     },
+     "model": "claude-haiku-5-5",
+     "template": false,
+     "inputHash": "0b7e7caf47c38a47364f1dc11d6a689d6ed75fa3ebdefe1bd2ab3c7414c6a82d",
+     "generatedAt": "2026-10-25T10:23:39.583Z",
+     "fallbackReason": null
+    }
+   },
+   {
+    "state": "demo",
+    "docType": "agency",
+    "agencyResId": "hanaro_hwasan",
+    "audience": {
+     "villageId": "seungchi",
+     "mode": "homebound"
+    },
+    "inputHash": "e875e47a05e2dd0453912428e10aa4e7eeccd1f2a56ade8c585989d70a0d0dd3",
+    "response": {
+     "mode": "live",
+     "text": "하나로마트(화산) 담당자님, 안녕하세요.\n무엇을: 마을 가게가 문을 닫은 뒤 생활 일을 나눠 맡는 계획에 따라, 하나로마트(화산)께서 장보기, 신선식품, 생활용품, 배달 일을 이어받아 주실 수 있는지 요청드립니다.\n어느 리: 승치리\n어떤 이동 조건 주민: 집 밖에 나서기 어려운 주민(거동 곤란)\n확인해 주실 사항: 장보기·신선식품·생활용품·배달을 이어받으실 수 있는지, 가능한 범위와 방법을 확인이 필요합니다. 현재 상태는 확인 중입니다.",
+     "grounding": {
+      "pass": true,
+      "attempts": 1,
+      "checked": [
+       {
+        "kind": "resource",
+        "value": "하나로마트(화산)",
+        "ok": true
+       },
+       {
+        "kind": "assertive",
+        "value": "하나로마트(화산)",
+        "ok": true
+       },
+       {
+        "kind": "resource",
+        "value": "하나로마트(화산)",
+        "ok": true
+       },
+       {
+        "kind": "assertive",
+        "value": "하나로마트(화산)",
+        "ok": true
+       }
+      ],
+      "blocked": []
+     },
+     "model": "claude-haiku-5-5",
+     "template": false,
+     "inputHash": "e875e47a05e2dd0453912428e10aa4e7eeccd1f2a56ade8c585989d70a0d0dd3",
+     "generatedAt": "2026-10-25T10:23:46.414Z",
+     "fallbackReason": null
+    }
+   },
+   {
+    "state": "demo",
+    "docType": "agency",
+    "agencyResId": "care_link",
+    "audience": {
+     "villageId": "seungchi",
+     "mode": "homebound"
+    },
+    "inputHash": "037053928b5268ec500f8182c7a0102b19a0b45f1b640d22b0b808051d44db89",
+    "response": {
+     "mode": "live",
+     "text": "무엇을: 승치리 어르신 가운데 거동이 불편해 집 밖 장보기가 어려운 분들의 식료품 배달을 이어받아 주실 수 있는지 여쭙고자 합니다.\n어느 리: 승치리\n어떤 이동 조건 주민: 집 밖에 나서기 어려운 주민(거동 곤란)\n확인해 주실 사항: 화산면 행정복지센터를 통해 수행기관에 확인하고 있습니다. 승치리 거동 곤란 주민에 대한 식료품 배달 연계 가능 여부와 절차를 확인해 주시면 감사하겠습니다.",
+     "grounding": {
+      "pass": true,
+      "attempts": 1,
+      "checked": [],
+      "blocked": []
+     },
+     "model": "claude-haiku-5-5",
+     "template": false,
+     "inputHash": "037053928b5268ec500f8182c7a0102b19a0b45f1b640d22b0b808051d44db89",
+     "generatedAt": "2026-10-25T10:23:48.881Z",
+     "fallbackReason": null
+    }
+   }
+  ]
+ }
+}

@@ -124,6 +124,14 @@ export function composeTemplate(region: Region, req: ComposeRequest, digest: Pla
   return { mode: "template", model: null, text, grounding: g, template: true, inputHash: hash, generatedAt: new Date().toISOString(), fallbackReason: reason };
 }
 
+/** Deterministic tidy-up of model text: drop a bare title line, collapse blank lines (resident: one sentence per line). */
+export function cleanText(text: string, docType: ComposeRequest["docType"]): string {
+  const lines = (text ?? "").split(/\r?\n/).map((l) => l.trim());
+  const body = lines.filter((l, i) => !(i <= 1 && /^\[?(주민 안내문|연계 요청문|안내문|요청문)\]?$/.test(l)));
+  void docType; // same tidy-up for both document types
+  return body.filter((l) => l.length > 0).join("\n").trim();
+}
+
 export interface LiveCompose {
   response: ComposeResponse;
   firstPass: boolean | null;
@@ -148,17 +156,19 @@ export async function composeLive(
 
   const r1 = await call();
   if (!r1.ok) return { response: composeTemplate(region, req, digest, hash, r1.reason as FallbackReason, 0), firstPass: null, regenerated: false, firstBlocked: [], texts };
+  const text1 = cleanText(r1.text, req.docType);
   texts.push(r1.text);
-  const g1: GroundingResult = groundText(r1.text, digest, names, 1);
+  const g1: GroundingResult = groundText(text1, digest, names, 1);
   const base = { model: r1.model, template: false, inputHash: hash, generatedAt: new Date().toISOString(), fallbackReason: null };
-  if (g1.pass) return { response: { mode: "live", text: r1.text, grounding: g1, ...base }, firstPass: true, regenerated: false, firstBlocked: [], texts };
+  if (g1.pass) return { response: { mode: "live", text: text1, grounding: g1, ...base }, firstPass: true, regenerated: false, firstBlocked: [], texts };
 
   const r2 = await call(g1.blocked);
   if (r2.ok) {
+    const text2 = cleanText(r2.text, req.docType);
     texts.push(r2.text);
-    const g2 = groundText(r2.text, digest, names, 2);
+    const g2 = groundText(text2, digest, names, 2);
     if (g2.pass)
-      return { response: { mode: "live", text: r2.text, grounding: { ...g2, blocked: [] }, ...base, model: r2.model }, firstPass: false, regenerated: true, firstBlocked: g1.blocked, texts };
+      return { response: { mode: "live", text: text2, grounding: { ...g2, blocked: [] }, ...base, model: r2.model }, firstPass: false, regenerated: true, firstBlocked: g1.blocked, texts };
     const t = composeTemplate(region, req, digest, hash, null, 2);
     return { response: { ...t, grounding: { ...t.grounding, blocked: g2.blocked } }, firstPass: false, regenerated: true, firstBlocked: g1.blocked, texts };
   }

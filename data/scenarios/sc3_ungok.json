@@ -1,0 +1,344 @@
+{
+ "id": "sc3_ungok",
+ "title": "운곡리 — 이어받을 곳이 없는 마을",
+ "officer": "이서연 주무관(가명)",
+ "store": {
+  "name": "운곡 마을상회(가상)",
+  "villageId": "ungok",
+  "lat": 36.06435,
+  "lon": 127.18096,
+  "sbizSub": "슈퍼마켓",
+  "items": [
+   "라면",
+   "막걸리",
+   "소주",
+   "두부",
+   "휴지",
+   "파스"
+  ],
+  "hours": "07:00-19:00",
+  "memo": "막걸리랑 라면이 제일 많이 나갔음. 급하면 아침 일찍 문 두드려도 열어 줬음. 동네 소식은 다 이 가게에서 들었음."
+ },
+ "residents": [
+  {
+   "id": "r1",
+   "name": "오금순",
+   "age": 80,
+   "mode": "walk",
+   "pointId": "p_ungok_node",
+   "note": ""
+  },
+  {
+   "id": "r2",
+   "name": "이상철",
+   "age": 66,
+   "mode": "car",
+   "pointId": "p_chunsan_node",
+   "note": ""
+  },
+  {
+   "id": "r3",
+   "name": "한순덕",
+   "age": 78,
+   "mode": "homebound",
+   "pointId": "p_uwol_node",
+   "note": ""
+  }
+ ],
+ "demoConfirmations": [
+  {
+   "cellKey": "stop:tour_A:p_ungok_node",
+   "value": "Y",
+   "note": "수요일 오후",
+   "by": "시연 입력값",
+   "at": "2026-10-26T00:00:00+09:00"
+  }
+ ],
+ "precomputed": {
+  "decompose": {
+   "inputHash": "ba4dedeab32d9bdf4897a88411e7d9f58f0a2252329633547b3ec66597a4660a",
+   "response": {
+    "mode": "live",
+    "model": "claude-haiku-5-5",
+    "functions": [
+     {
+      "code": "F01",
+      "importance": 3,
+      "evidence": "막걸리랑 라면이 제일 많이 나갔음",
+      "needsCheck": false,
+      "source": "llm",
+      "enabled": true
+     },
+     {
+      "code": "F04",
+      "importance": 3,
+      "evidence": "급하면 아침 일찍 문 두드려도 열어 줬음",
+      "needsCheck": false,
+      "source": "llm",
+      "enabled": true
+     },
+     {
+      "code": "F05",
+      "importance": 2,
+      "evidence": "휴지",
+      "needsCheck": false,
+      "source": "llm",
+      "enabled": true
+     },
+     {
+      "code": "F10",
+      "importance": 3,
+      "evidence": "동네 소식은 다 이 가게에서 들었음",
+      "needsCheck": false,
+      "source": "llm",
+      "enabled": true
+     }
+    ],
+    "unknowns": [
+     "두부 판매량과 장보기 이용 빈도",
+     "파스 판매가 생활용품 이용으로 이어졌는지"
+    ],
+    "validator": {
+     "droppedCodes": [],
+     "demoted": 0,
+     "retried": false,
+     "fallbackReason": null
+    },
+    "inputHash": "ba4dedeab32d9bdf4897a88411e7d9f58f0a2252329633547b3ec66597a4660a",
+    "generatedAt": "2026-10-25T10:24:08.252Z"
+   }
+  },
+  "compose": [
+   {
+    "state": "base",
+    "docType": "resident",
+    "agencyResId": null,
+    "audience": {
+     "villageId": "ungok",
+     "mode": "walk",
+     "pointId": "p_ungok_node"
+    },
+    "inputHash": "f7a513f46f62b33c3eaa4ed0851ee3a08d1cd6340e6e2a1661a491ad109564e5",
+    "response": {
+     "mode": "live",
+     "text": "운곡리 주민 여러분, 걸어서 다니시는 분들을 위해 안내드려요.\n가까운 가게가 문을 닫아서 생활 일을 나눠 맡을 곳을 찾고 있어요.\n하나로마트(화산)에서 장보기와 생활용품을 맡을 수 있는지 확인하고 있어요.\n급할 때 필요한 도움은 아직 찾고 있어요.\n확정되면 다시 알려 드릴 수 있도록 준비하고 있어요.",
+     "grounding": {
+      "pass": true,
+      "attempts": 1,
+      "checked": [
+       {
+        "kind": "resource",
+        "value": "하나로마트(화산)",
+        "ok": true
+       },
+       {
+        "kind": "assertive",
+        "value": "하나로마트(화산)",
+        "ok": true
+       }
+      ],
+      "blocked": []
+     },
+     "model": "claude-haiku-5-5",
+     "template": false,
+     "inputHash": "f7a513f46f62b33c3eaa4ed0851ee3a08d1cd6340e6e2a1661a491ad109564e5",
+     "generatedAt": "2026-10-25T10:24:09.964Z",
+     "fallbackReason": null
+    }
+   },
+   {
+    "state": "base",
+    "docType": "resident",
+    "agencyResId": null,
+    "audience": {
+     "villageId": "chunsan",
+     "mode": "car",
+     "pointId": "p_chunsan_node"
+    },
+    "inputHash": "9f11115b92924f1bf2a9732f8c799d18e93141e0613a011163eb6e31552f9d49",
+    "response": {
+     "mode": "live",
+     "text": "춘산리 주민 여러분께 안내드립니다.\n차가 있으신 분은 하나로마트(화산)에서 장보기와 생활용품을 이용하실 수 있어요.\n급할 때 필요한 물건도 이곳에서 찾으실 수 있어요.\n아직 맡을 곳이 정해지지 않은 일은 계속 찾고 있어요.\n궁금한 점은 면사무소로 문의해 주세요.",
+     "grounding": {
+      "pass": true,
+      "attempts": 1,
+      "checked": [
+       {
+        "kind": "resource",
+        "value": "하나로마트(화산)",
+        "ok": true
+       }
+      ],
+      "blocked": []
+     },
+     "model": "claude-haiku-5-5",
+     "template": false,
+     "inputHash": "9f11115b92924f1bf2a9732f8c799d18e93141e0613a011163eb6e31552f9d49",
+     "generatedAt": "2026-10-25T10:24:11.298Z",
+     "fallbackReason": null
+    }
+   },
+   {
+    "state": "base",
+    "docType": "resident",
+    "agencyResId": null,
+    "audience": {
+     "villageId": "uwol",
+     "mode": "homebound",
+     "pointId": "p_uwol_node"
+    },
+    "inputHash": "4c00e6f7d74c9cadf8897fd2425131a1268034c7a9015de595a8ae7bc0ee285d",
+    "response": {
+     "mode": "live",
+     "text": "우월리에서 거동이 어려워 집 밖에 나서기 힘드신 주민분들께 알려 드립니다.\n장보기와 생활용품은 하나로마트(화산)에서 맡을 수 있도록 확인하고 있어요.\n아직 맡아 줄 곳을 찾지 못한 일도 있어요. 급할 때 도움이 필요한 일이에요.\n정해지는 대로 다시 알려 드리도록 하겠습니다.\n궁금한 점은 면사무소로 문의해 주세요.",
+     "grounding": {
+      "pass": true,
+      "attempts": 1,
+      "checked": [
+       {
+        "kind": "resource",
+        "value": "하나로마트(화산)",
+        "ok": true
+       },
+       {
+        "kind": "assertive",
+        "value": "하나로마트(화산)",
+        "ok": true
+       }
+      ],
+      "blocked": []
+     },
+     "model": "claude-haiku-5-5",
+     "template": false,
+     "inputHash": "4c00e6f7d74c9cadf8897fd2425131a1268034c7a9015de595a8ae7bc0ee285d",
+     "generatedAt": "2026-10-25T10:24:12.955Z",
+     "fallbackReason": null
+    }
+   },
+   {
+    "state": "base",
+    "docType": "agency",
+    "agencyResId": "hanaro_hwasan",
+    "audience": {
+     "villageId": "ungok",
+     "mode": "walk"
+    },
+    "inputHash": "5668a67130bf0dd3f71334dfe1e2a35d52fa9ed4244ad06575c8bcca1fdbc9b0",
+    "response": {
+     "mode": "live",
+     "text": "하나로마트(화산) 담당자님께\n운곡리 주민 중 걸어서만 다니시는 어르신들을 위해 장보기와 생활용품 일을 이어 맡아 주실 수 있는지 요청드립니다.\n어느 리: 운곡리\n어떤 이동 조건 주민: 걸어서만 다니는 주민(도보)\n확인해 주실 사항: 장보기와 생활용품을 이어받으실 수 있는지 확인이 필요합니다.",
+     "grounding": {
+      "pass": true,
+      "attempts": 1,
+      "checked": [
+       {
+        "kind": "resource",
+        "value": "하나로마트(화산)",
+        "ok": true
+       },
+       {
+        "kind": "assertive",
+        "value": "하나로마트(화산)",
+        "ok": true
+       }
+      ],
+      "blocked": []
+     },
+     "model": "claude-haiku-5-5",
+     "template": false,
+     "inputHash": "5668a67130bf0dd3f71334dfe1e2a35d52fa9ed4244ad06575c8bcca1fdbc9b0",
+     "generatedAt": "2026-10-25T10:24:14.251Z",
+     "fallbackReason": null
+    }
+   },
+   {
+    "state": "demo",
+    "docType": "resident",
+    "agencyResId": null,
+    "audience": {
+     "villageId": "ungok",
+     "mode": "walk",
+     "pointId": "p_ungok_node"
+    },
+    "inputHash": "2773f583054b0615406edb14376bde094dae6f3732c616a5cae6718b4f280440",
+    "response": {
+     "mode": "live",
+     "text": "운곡리 주민 여러분께 안내드립니다.\n걸어서 다니시는 분들은 이동장터 A에서 장보기와 생활용품을 살 수 있어요.\n이동장터 A는 수요일에 열려요.\n급할 때 필요한 일은 아직 찾고 있어요.\n궁금한 점은 면사무소에 편하게 문의해 주세요.",
+     "grounding": {
+      "pass": true,
+      "attempts": 1,
+      "checked": [
+       {
+        "kind": "resource",
+        "value": "이동장터 A",
+        "ok": true
+       },
+       {
+        "kind": "resource",
+        "value": "이동장터 A",
+        "ok": true
+       },
+       {
+        "kind": "day",
+        "value": "수요일",
+        "ok": true
+       }
+      ],
+      "blocked": []
+     },
+     "model": "claude-haiku-5-5",
+     "template": false,
+     "inputHash": "2773f583054b0615406edb14376bde094dae6f3732c616a5cae6718b4f280440",
+     "generatedAt": "2026-10-25T10:24:15.539Z",
+     "fallbackReason": null
+    }
+   },
+   {
+    "state": "demo",
+    "docType": "agency",
+    "agencyResId": "hanaro_hwasan",
+    "audience": {
+     "villageId": "ungok",
+     "mode": "walk"
+    },
+    "inputHash": "eb643e28f78d35437575e3c7560a44d3f10987ba6a74c0a47cf4644197db14d6",
+    "response": {
+     "mode": "live",
+     "text": "하나로마트(화산) 담당자님께,\n운곡리 도보 이동 주민을 위해 아래 생활 일을 이어받아 주실 수 있을지 요청드립니다.\n무엇을: 장보기, 생활용품 등 마을 가게가 하던 생활 일 중 이어받아 주실 수 있는 일\n어느 리: 운곡리\n어떤 이동 조건 주민: 걸어서만 다니는 주민(도보)\n확인해 주실 사항: 하나로마트(화산)가 이어받을 수 있는 일이 무엇인지, 확인이 필요합니다.",
+     "grounding": {
+      "pass": true,
+      "attempts": 1,
+      "checked": [
+       {
+        "kind": "resource",
+        "value": "하나로마트(화산)",
+        "ok": true
+       },
+       {
+        "kind": "assertive",
+        "value": "하나로마트(화산)",
+        "ok": true
+       },
+       {
+        "kind": "resource",
+        "value": "하나로마트(화산)",
+        "ok": true
+       },
+       {
+        "kind": "assertive",
+        "value": "하나로마트(화산)",
+        "ok": true
+       }
+      ],
+      "blocked": []
+     },
+     "model": "claude-haiku-5-5",
+     "template": false,
+     "inputHash": "eb643e28f78d35437575e3c7560a44d3f10987ba6a74c0a47cf4644197db14d6",
+     "generatedAt": "2026-10-25T10:24:19.688Z",
+     "fallbackReason": null
+    }
+   }
+  ]
+ }
+}
