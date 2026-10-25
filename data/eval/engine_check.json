@@ -1,0 +1,7 @@
+{
+ "bruteForceCases": 1000,
+ "bruteForceMatch": 1,
+ "seed": 42,
+ "maxCandidates": 10,
+ "maxPoints": 4
+}

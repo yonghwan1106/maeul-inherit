@@ -78,7 +78,7 @@ export interface ClassSpec {
   hubdrop?: RouteCaps;
   /** "Y" = open fixed; "open" = confirmation cell `open:{res}` (default U). */
   open: "Y" | "open";
-  /** store_daily: deliver channel only for businesses in 화산면. */
+  /** hanaro, store_daily: deliver channel only for businesses in 화산면. */
   deliverOnlyMyeon?: string;
 }
 
@@ -88,6 +88,8 @@ export const CLASS_TABLE: Record<ResClass, ClassSpec> = {
   hanaro: {
     visit: { F01: "Y", F02: "Y", F03: "cap", F04: "F04", F05: "Y" },
     deliver: { F01: "Y", F02: "Y", F05: "Y", F07: "Y" },
+    // A3: deliver only for the 화산면 하나로마트 (design 4.4.2 row = 「농협 하나로마트(화산)」).
+    deliverOnlyMyeon: HWASAN_MYEON,
     open: "Y",
   },
   bank: { visit: { F08: "Y" }, open: "Y" },
