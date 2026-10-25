@@ -24,7 +24,8 @@ except ImportError:  # python -I drops the user site; Playwright lives there on 
 SCENARIOS = ["sc1_seungchi", "sc2_waryong", "sc3_ungok"]
 REASON_NOT_CAME = "안 왔어요"  # an wasseoyo (first reason chip)
 POSTER_FOOT = "가상 인물·가상 시나리오"
-KIM_AFTER = "이동장터 A · 화요일 오전"  # tour A, Tuesday morning
+KIM_AFTER = ("이동장터 A", "화요일 오전")  # tour A + Tuesday morning, both on the F01 (jangbogi) ledger line
+SURE_WORD = "확실"  # hwaksil stamp on that line
 PAUSE_MS = 900
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -113,8 +114,11 @@ def flow(browser, base, sid, run):
         m = page.evaluate(MEASURE_JS, "[data-demo]")
         run.rec(f"{sid} S3 demo -> bars/mini/table < 1000 ms", 0 <= m["ms"] < 1000, json.dumps({k: m.get(k) for k in ("ms", "recalcMs", "changed", "mini0", "mini")}, ensure_ascii=True))
         if sid == "sc1_seungchi":
-            mini = page.locator("[data-mini]").inner_text()
-            run.rec("sc1 S3 Kim card shows tour A Tuesday morning", KIM_AFTER in mini, "")
+            row_sel = '[data-mini] [data-fn="F01"]'
+            row = page.locator(row_sel).inner_text()
+            tri = page.get_attribute(row_sel, "data-tri")
+            ok = tri == "Y" and SURE_WORD in row and all(w in row for w in KIM_AFTER)
+            run.rec("sc1 S3 Kim card shows tour A Tuesday morning", ok, json.dumps({"tri": tri, "row": row}, ensure_ascii=True))
         bars_after = page.locator("[data-bars]").inner_text()
         page.click('[data-gate="g2"] button')
         page.wait_for_selector('[data-next="open"]', timeout=10000)
@@ -210,6 +214,7 @@ def capture(browser, base, out):
 
     try:
         go(page, base + "/")
+        page.wait_for_timeout(2200)  # S0 scene (shutter 0.6 s, then marks line by line) has finished
         shot("01_s0_home.png")
         go(page, base + "/register")
         page.click(f'[data-fill="{sid}"]')
