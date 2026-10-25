@@ -32,8 +32,11 @@
    "importance": 2
   }
  ],
- "casesSha256": "89500f97c0fb1fc4d175d82bd05c6b05e094c6d26ac3e7464d8b93ee34db3883",
- "llmOutputs": null,
+ "casesSha256": "c3a82b94230dbb8815cfc074e1af4f71e8f76b2bee1b4843d3804236643929ca",
+ "llmOutputs": {
+  "file": "data/eval/e2_llm_outputs.json",
+  "sha256": "1cf0418db3d4027b8fc07a34f39b0a132e1ff698a30b6330dd02e7bddc278038"
+ },
  "systems": {
   "b1": {
    "car": {
@@ -127,8 +130,104 @@
     "countN": 1.6495
    }
   },
-  "b2a": null,
-  "b2b": null
+  "b2a": {
+   "byMode": {
+    "car": {
+     "L": 0.5266,
+     "U": 0.714,
+     "countY": 3.0621,
+     "countU": 1.1424,
+     "countN": 1.7955
+    },
+    "walk": {
+     "L": 0.0566,
+     "U": 0.6876,
+     "countY": 0.3394,
+     "countU": 3.4167,
+     "countN": 2.2439
+    },
+    "homebound": {
+     "L": 0,
+     "U": 0.7191,
+     "countY": 0,
+     "countU": 3.8146,
+     "countN": 2.1854
+    }
+   },
+   "errors": {
+    "unknownRes": {
+     "cases": 0,
+     "total": 0
+    },
+    "accessN": {
+     "cases": 16,
+     "total": 61
+    },
+    "capN": {
+     "cases": 15,
+     "total": 30
+    },
+    "assertU": {
+     "cases": 2,
+     "total": 2
+    },
+    "over3": {
+     "cases": 0,
+     "total": 0
+    }
+   },
+   "n": 33,
+   "parseFail": 1
+  },
+  "b2b": {
+   "byMode": {
+    "car": {
+     "L": 0.5223,
+     "U": 0.7016,
+     "countY": 2.9955,
+     "countU": 1.0758,
+     "countN": 1.9288
+    },
+    "walk": {
+     "L": 0.0985,
+     "U": 0.7974,
+     "countY": 0.5909,
+     "countU": 3.7631,
+     "countN": 1.646
+    },
+    "homebound": {
+     "L": 0,
+     "U": 0.7475,
+     "countY": 0,
+     "countU": 3.9848,
+     "countN": 2.0152
+    }
+   },
+   "errors": {
+    "unknownRes": {
+     "cases": 0,
+     "total": 0
+    },
+    "accessN": {
+     "cases": 16,
+     "total": 38
+    },
+    "capN": {
+     "cases": 26,
+     "total": 56
+    },
+    "assertU": {
+     "cases": 3,
+     "total": 4
+    },
+    "over3": {
+     "cases": 0,
+     "total": 0
+    }
+   },
+   "n": 33,
+   "parseFail": 1
+  }
  },
  "headline": {
   "walkCountY": {
@@ -137,7 +236,7 @@
    "b1": 0.0606,
    "diffVsB1g": 0.0758
   },
-  "b2aAssertUCases": null
+  "b2aAssertUCases": 2
  },
  "note": "엔진은 같은 칸 위에서 최적화하므로 확실 몫이 기준선보다 낮을 수 없습니다. 수치는 '얼마나 더'를 뜻하며, 사례들은 자원을 공유해 서로 독립이 아닙니다.",
  "engine": {

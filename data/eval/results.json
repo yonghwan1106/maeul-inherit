@@ -1,17 +1,22 @@
 {
  "meta": {
-  "runAt": "2026-10-25T10:18:56.363Z",
-  "commit": "584c303",
+  "runAt": "2026-10-25T10:34:34.583Z",
+  "commit": "c441256",
   "seed": 42,
-  "regionSha256": "ff2de716140f35e1cb855ada2c9fbe439de0b0daebabb1d59974c10fd043fb8d",
+  "regionSha256": "0957c22af88a6b0e96149c3e6369e1bdd484ee0ad04d6427f32528c7a8b0f2c3",
   "paramsSha256": "8ce00e6ca5e88b23e36a8f0699f2df81f911d5360670ffee6aa2fcd20a36fd68",
-  "models": [],
+  "models": [
+   "claude-haiku-5-5"
+  ],
   "inputs": {
-   "data/eval/e2.json": "33082ef4ad8a681616a702ccec627161a1178323cb8761b86cb02b5b59c8d95d",
+   "data/eval/e2.json": "2a208ab80060d4ed4a0960f84209b0af652a16be908e7d560a64d6dbdff1574f",
    "data/eval/e3.json": "a2b118f2c2b9728ca34cd456969a08d7f2fc1efcc35f4679d4d6acd947ae8c12",
+   "data/eval/e4.json": "86914e9da5ac09417267e48d4ff9f76b67eaa0e63feb7624d1d9122bfe893f60",
    "data/eval/engine_check.json": "dbba38702ea2f9c7fd6539bd432dc3508502efe70d594ce9543218eddd0606f6",
-   "data/eval/bench.json": "e57479fba12aa465317e7a5d08b252052d657bae953a46f096534a887ae5ecfd",
-   "data/eval/e2_cases.json": "89500f97c0fb1fc4d175d82bd05c6b05e094c6d26ac3e7464d8b93ee34db3883",
+   "data/eval/bench.json": "21c7073415cf0615424bcdc83ff4d7263cdd7bb0c070664032fd3f92d690a5b8",
+   "data/eval/e2_cases.json": "c3a82b94230dbb8815cfc074e1af4f71e8f76b2bee1b4843d3804236643929ca",
+   "data/eval/testset_e1_synth.json": "c29d2619cab1a7c43653ffb32d5c7e06698bc332065d852e3ec98b3790aa1d47",
+   "data/eval/testset_e1_real.json": "fbef6f5587f0e312fcbc9d93655973835de389e18ea68d6e18b5c0a513aab7a3",
    "data/eval/testset_e1_dev.json": "3cec8019c2d01a5bd8fdcd01e06954c12636ff3a30f94ead6725a21a205e552f",
    "data/eval/testset_e4_unit.json": "559251000e0ccc3a2e71760320fdb724b02142a104d6d3dca20dc3b82f7377de"
   },
@@ -19,22 +24,22 @@
    "e1": true,
    "e2": false,
    "e3": false,
-   "e4": true,
-   "b2": true
+   "e4": false,
+   "b2": false
   }
  },
  "engine": {
   "bruteForceCases": 1000,
   "bruteForceMatch": 1,
   "planMs": {
-   "sc1": 0.37,
-   "sc2": 0.37,
+   "sc1": 0.33,
+   "sc2": 0.35,
    "sc3": 0.21
   },
   "voiMs": {
-   "sc1": 260.03,
-   "sc2": 257.33,
-   "sc3": 84.68
+   "sc1": 208.96,
+   "sc2": 211.34,
+   "sc3": 86.7
   }
  },
  "e1": {
@@ -185,8 +190,11 @@
     "importance": 2
    }
   ],
-  "casesSha256": "89500f97c0fb1fc4d175d82bd05c6b05e094c6d26ac3e7464d8b93ee34db3883",
-  "llmOutputs": null,
+  "casesSha256": "c3a82b94230dbb8815cfc074e1af4f71e8f76b2bee1b4843d3804236643929ca",
+  "llmOutputs": {
+   "file": "data/eval/e2_llm_outputs.json",
+   "sha256": "1cf0418db3d4027b8fc07a34f39b0a132e1ff698a30b6330dd02e7bddc278038"
+  },
   "systems": {
    "b1": {
     "car": {
@@ -280,8 +288,104 @@
      "countN": 1.6495
     }
    },
-   "b2a": null,
-   "b2b": null
+   "b2a": {
+    "byMode": {
+     "car": {
+      "L": 0.5266,
+      "U": 0.714,
+      "countY": 3.0621,
+      "countU": 1.1424,
+      "countN": 1.7955
+     },
+     "walk": {
+      "L": 0.0566,
+      "U": 0.6876,
+      "countY": 0.3394,
+      "countU": 3.4167,
+      "countN": 2.2439
+     },
+     "homebound": {
+      "L": 0,
+      "U": 0.7191,
+      "countY": 0,
+      "countU": 3.8146,
+      "countN": 2.1854
+     }
+    },
+    "errors": {
+     "unknownRes": {
+      "cases": 0,
+      "total": 0
+     },
+     "accessN": {
+      "cases": 16,
+      "total": 61
+     },
+     "capN": {
+      "cases": 15,
+      "total": 30
+     },
+     "assertU": {
+      "cases": 2,
+      "total": 2
+     },
+     "over3": {
+      "cases": 0,
+      "total": 0
+     }
+    },
+    "n": 33,
+    "parseFail": 1
+   },
+   "b2b": {
+    "byMode": {
+     "car": {
+      "L": 0.5223,
+      "U": 0.7016,
+      "countY": 2.9955,
+      "countU": 1.0758,
+      "countN": 1.9288
+     },
+     "walk": {
+      "L": 0.0985,
+      "U": 0.7974,
+      "countY": 0.5909,
+      "countU": 3.7631,
+      "countN": 1.646
+     },
+     "homebound": {
+      "L": 0,
+      "U": 0.7475,
+      "countY": 0,
+      "countU": 3.9848,
+      "countN": 2.0152
+     }
+    },
+    "errors": {
+     "unknownRes": {
+      "cases": 0,
+      "total": 0
+     },
+     "accessN": {
+      "cases": 16,
+      "total": 38
+     },
+     "capN": {
+      "cases": 26,
+      "total": 56
+     },
+     "assertU": {
+      "cases": 3,
+      "total": 4
+     },
+     "over3": {
+      "cases": 0,
+      "total": 0
+     }
+    },
+    "n": 33,
+    "parseFail": 1
+   }
   },
   "headline": {
    "walkCountY": {
@@ -290,7 +394,7 @@
     "b1": 0.0606,
     "diffVsB1g": 0.0758
    },
-   "b2aAssertUCases": null
+   "b2aAssertUCases": 2
   },
   "note": "엔진은 같은 칸 위에서 최적화하므로 확실 몫이 기준선보다 낮을 수 없습니다. 수치는 '얼마나 더'를 뜻하며, 사례들은 자원을 공유해 서로 독립이 아닙니다."
  },
@@ -437,19 +541,65 @@
   }
  },
  "e4": {
-  "pending": true,
+  "runAt": "2026-10-25T10:31:11.127Z",
+  "prompt": "l4-v1",
   "n": 30,
-  "firstPass": null,
-  "regenRate": null,
-  "templateRate": null,
-  "finalPass": null,
+  "firstPass": 1,
+  "regenRate": 0,
+  "templateRate": 0,
+  "finalPass": 1,
   "reasons": {},
+  "examples": [],
+  "models": [
+   "claude-haiku-5-5"
+  ],
+  "generatedAt": "2026-10-25T10:30:33.641Z",
   "unit": {
+   "label": "단위 시험(같은 팀 작성)",
    "nWrong": 20,
    "nRight": 20,
-   "recall": null,
-   "falseBlock": null
+   "recall": 1,
+   "falseBlock": 0,
+   "detected": 20,
+   "falselyBlocked": 0,
+   "byCategory": {
+    "day": {
+     "n": 4,
+     "blocked": 4
+    },
+    "resource": {
+     "n": 4,
+     "blocked": 4
+    },
+    "assertive": {
+     "n": 4,
+     "blocked": 4
+    },
+    "number": {
+     "n": 4,
+     "blocked": 4
+    },
+    "phone": {
+     "n": 4,
+     "blocked": 4
+    },
+    "right": {
+     "n": 20,
+     "blocked": 0
+    }
+   },
+   "misses": [],
+   "pinned": {
+    "sentence": "이동장터 A가 매주 목요일 미남경로회관 앞에 옵니다.",
+    "blocked": true,
+    "reason": "목요일 — 확인된 요일(화요일)과 다름"
+   }
   },
-  "examples": []
+  "outOfScope": {
+   "promiseLike": 7,
+   "n": 30,
+   "note": "근거 대조기 검사 항목 밖 — 약속 표현(「다시 안내드리겠습니다」 등)이 남은 최종 문서 수(정규식 집계)"
+  },
+  "note": "생성 30건 = 시나리오 3 × 확인 상태 5 × 문서 2. 사전계산 캐시를 쓰지 않은 실제 호출. 단위 시험은 같은 팀 작성."
  }
 }
