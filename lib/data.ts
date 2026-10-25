@@ -8,11 +8,9 @@ import { TEMP_SCENARIOS, resolveTempScenario } from "./temp-scenarios";
 
 export const SCENARIO_IDS = ["sc1_seungchi", "sc2_waryong", "sc3_ungok"] as const;
 
-const root = () => process.cwd();
-
-function readJson<T>(rel: string): T | null {
+// Paths are scoped to data/ subfolders so build tracing stays narrow (pages are prerendered; no runtime fs).
+function readJson<T>(p: string): T | null {
   try {
-    const p = path.join(root(), rel);
     if (!fs.existsSync(p)) return null;
     return JSON.parse(fs.readFileSync(p, "utf-8")) as T;
   } catch {
@@ -27,9 +25,9 @@ export interface LoadedRegion {
 }
 
 export function loadRegion(): LoadedRegion {
-  const real = readJson<Region>("data/region_hwasan.json");
+  const real = readJson<Region>(path.join(process.cwd(), "data", "region_hwasan.json"));
   if (real && Array.isArray(real.villages) && real.villages.length > 0) return { region: real, mock: false };
-  const mock = readJson<Region>("data/fixtures/region_mock.json");
+  const mock = readJson<Region>(path.join(process.cwd(), "data", "fixtures", "region_mock.json"));
   return { region: mock as Region, mock: true };
 }
 
@@ -40,7 +38,7 @@ export interface LoadedScenario {
 }
 
 export function loadScenario(id: string, region: Region): LoadedScenario | null {
-  const s = readJson<Scenario>(`data/scenarios/${id}.json`);
+  const s = readJson<Scenario>(path.join(process.cwd(), "data", "scenarios", `${id}.json`));
   if (s && s.id === id) return { scenario: s, temp: false };
   const t = TEMP_SCENARIOS.find((x) => x.id === id);
   return t ? { scenario: resolveTempScenario(t, region), temp: true } : null;
@@ -52,5 +50,5 @@ export function loadAllScenarios(region: Region): LoadedScenario[] {
 
 /** data/eval/results.json (spec 7.5) or null before A5. */
 export function loadResults(): Record<string, unknown> | null {
-  return readJson<Record<string, unknown>>("data/eval/results.json");
+  return readJson<Record<string, unknown>>(path.join(process.cwd(), "data", "eval", "results.json"));
 }
