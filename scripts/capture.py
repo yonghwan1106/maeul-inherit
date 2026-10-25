@@ -218,6 +218,8 @@ def capture(browser, base, out):
         go(page, base + f"/s/{sid}/functions")
         page.click('[data-gate="g1"] button')
         page.wait_for_timeout(500)
+        page.evaluate("() => window.scrollTo(0, 0)")
+        page.wait_for_timeout(300)
         shot("03_s2_functions.png")
         go(page, base + f"/s/{sid}/plan")
         page.wait_for_selector("[data-mini]")

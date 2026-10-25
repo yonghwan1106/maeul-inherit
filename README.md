@@ -27,6 +27,7 @@ npm --prefix <repo> run typecheck
 | 일시(KST) | 커밋 | 내용 |
 |---|---|---|
 | 2026-10-25 18:56 | 51dbb1c | 첫 배포(A1 골격, 키 없음) — 짧은 URL 200 확인 |
+| 2026-10-25 20:04 | 305b54f | 최종 배포(키 있음, `-e` 4개) — https://maeul-inherit.vercel.app 쿠키 없이 200, `/api/health` `hasKey:true`·`mode:live`·`model:claude-haiku-5-5`·`commit:305b54f`, `capture.py --check` 37/37 PASS(운영), 키 없는 로컬 `next start`에서도 37/37 PASS·`/api/decompose` `mode:rules` |
 
 ## 배포 메모
 - 운영 환경변수(`ANTHROPIC_API_KEY` 등)는 `vercel --prod -e ...` 방식으로 배포마다 넣는다. **`-e`는 그 배포에만 붙으므로 재배포할 때마다 다시 넣어야 한다.** 키 값은 저장소·로그·`.env.local`에 남기지 않는다.
