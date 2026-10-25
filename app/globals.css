@@ -1,29 +1,49 @@
-@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css");
 @import "tailwindcss";
 
-/* Design tokens (bundle C). Warm paper, deep field-green ink; three values are never colour-only:
-   확실 = filled ●, 확인 중 = dashed outline ◐ + text, 끊김/없음 = empty — (spec 8). */
+/* 「마을 인수인계 장부」 tokens (디자인_리뉴얼_계획 §3). Six colours:
+   장부지 paper · 괘선 rule · 볼펜 ink · 인주 stamp (도장에만) · 연필 pencil · 슬레이트 지붕 slate.
+   The three values are never colour-only: 확실 = round stamp + 「확실」, 확인 중 = pencil hatch + 「확인 중」,
+   끊김 = blank cell with a thin ballpen diagonal + 「끊김」. */
 :root {
-  --paper: #f7f4ec;
-  --card: #fffdf8;
-  --ink: #1d2721;
-  --muted: #5b655e;
-  --line: #d9d3c4;
-  --brand: #1f5e4a;
-  --brand-soft: #dceadf;
-  --sure: #1f5e4a;
-  --unsure: #9a5b12;
-  --unsure-soft: #fbefd9;
-  --gone: #8b918c;
-  --warn: #a2341f;
-  --band: #2b2f2c;
-  --focus: #2f6fd6;
+  --paper: #f6f7f3;
+  --rule: #9db8a8;
+  --ink: #1e2a4a;
+  --stamp: #c23b2e;
+  --pencil: #6f767e;
+  --slate: #2a6597;
+  /* derived */
+  --shutter: #a9adb1; /* pencil at 70 % lightness */
+  --cell: #e9efeb; /* rule at 15 % on paper */
+  --pencil-ink: #5c636a; /* pencil text darkened to keep 4.5:1 on paper and on --cell */
+  --slate-deep: #1f4f78; /* hover/pressed slate */
+
+  /* legacy names kept as aliases so nothing falls back to the old palette or leaks red */
+  --card: var(--paper);
+  --muted: var(--pencil-ink);
+  --line: var(--rule);
+  --brand: var(--slate);
+  --brand-soft: var(--cell);
+  --sure: var(--ink);
+  --unsure: var(--pencil-ink);
+  --unsure-soft: var(--cell);
+  --gone: var(--pencil-ink);
+  --warn: var(--ink);
+  --band: var(--slate);
+  --focus: var(--slate);
 }
 
 @theme inline {
   --color-paper: var(--paper);
-  --color-card: var(--card);
+  --color-rule: var(--rule);
   --color-ink: var(--ink);
+  --color-stamp: var(--stamp);
+  --color-pencil: var(--pencil);
+  --color-pencil-ink: var(--pencil-ink);
+  --color-slate: var(--slate);
+  --color-slate-deep: var(--slate-deep);
+  --color-shutter: var(--shutter);
+  --color-cell: var(--cell);
+  --color-card: var(--card);
   --color-muted: var(--muted);
   --color-line: var(--line);
   --color-brand: var(--brand);
@@ -34,9 +54,29 @@
   --color-gone: var(--gone);
   --color-warn: var(--warn);
   --color-band: var(--band);
-  --font-sans: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", sans-serif;
+
+  --font-sans: var(--font-plex), "IBM Plex Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+  --font-sign: var(--font-dohyeon), "Do Hyeon", var(--font-plex), "Malgun Gothic", sans-serif;
+
+  /* IBM Plex Sans KR is loaded at 400 · 500 · 600 only: bold/extrabold map to 600 (no faux bold) */
+  --font-weight-bold: 600;
+  --font-weight-extrabold: 600;
+  --font-weight-black: 600;
+
+  /* paper, not floating cards: 3 px for pressable things, 0-2 px for the rest, no shadows */
+  --radius-sm: 2px;
+  --radius-md: 3px;
+  --radius-lg: 3px;
+  --radius-xl: 3px;
+  --radius-2xl: 2px;
+  --radius-3xl: 2px;
+  --shadow-sm: none;
+  --shadow-md: none;
+  --shadow-lg: none;
+  --shadow: none;
 }
 
+@layer base {
 html {
   -webkit-text-size-adjust: 100%;
 }
@@ -45,45 +85,268 @@ body {
   background: var(--paper);
   color: var(--ink);
   font-family: var(--font-sans);
-  font-size: 16px;
-  line-height: 1.6;
+  font-size: 17px;
+  line-height: 1.65;
   word-break: keep-all;
   overflow-wrap: anywhere;
 }
 
-:focus-visible {
-  outline: 3px solid var(--focus);
-  outline-offset: 2px;
+h1,
+h2,
+h3 {
+  line-height: 1.2;
 }
 
+a {
+  color: var(--slate);
+}
+
+:focus-visible {
+  outline: 3px solid var(--slate);
+  outline-offset: 2px;
+}
+}
+
+@layer components {
 .num {
   font-variant-numeric: tabular-nums;
 }
 
-/* The one CSS transition (spec 8): opacity + transform 0.8 s; line draw 1 s. */
+/* 간판 글씨: service, store and village names, screen titles, ledger totals only */
+.sign {
+  font-family: var(--font-sign);
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+.measure {
+  max-width: 34em;
+}
+
+/* double ledger rule under the header */
+.rule-double {
+  border-bottom: 3px double var(--rule);
+}
+
+/* ---- the three ledger marks ------------------------------------------------ */
+
+/* 확실: a round 인주 stamp, slightly tilted */
+.stamp {
+  --tilt: -7deg;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 3.1em;
+  height: 3.1em;
+  border: 2px solid var(--stamp);
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 2px var(--paper), inset 0 0 0 3px var(--stamp);
+  color: var(--stamp);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  transform: rotate(var(--tilt));
+  background: transparent;
+  white-space: nowrap;
+}
+.stamp-sm {
+  width: 2.6em;
+  height: 2.6em;
+  font-size: 14px;
+  box-shadow: none;
+}
+.stamp-lg {
+  width: 3.6em;
+  height: 3.6em;
+  font-size: 17px;
+}
+
+/* 확인 중: pencil hatch behind the words 「확인 중」 */
+.hatch {
+  background-color: var(--paper);
+  background-image: repeating-linear-gradient(135deg, transparent 0 5px, rgba(111, 118, 126, 0.38) 5px 6.4px);
+}
+.pencil-word {
+  display: inline-block;
+  padding: 1px 6px;
+  background: var(--paper);
+  color: var(--pencil-ink);
+  font-weight: 600;
+  border: 1px dashed var(--pencil);
+  border-radius: 2px;
+  line-height: 1.35;
+  white-space: nowrap;
+}
+
+/* 끊김: blank cell crossed by one thin ballpen diagonal, word 「끊김」 on top */
+.slash {
+  background-image: linear-gradient(
+    to top right,
+    transparent calc(50% - 0.7px),
+    rgba(30, 42, 74, 0.75) calc(50% - 0.7px),
+    rgba(30, 42, 74, 0.75) calc(50% + 0.7px),
+    transparent calc(50% + 0.7px)
+  );
+}
+.gone-word {
+  display: inline-block;
+  padding: 1px 6px;
+  background: var(--paper);
+  color: var(--ink);
+  font-weight: 600;
+  line-height: 1.35;
+  white-space: nowrap;
+}
+
+/* small inline legend samples (11-20 px squares) */
+.swatch {
+  display: inline-block;
+  width: 1.3em;
+  height: 1.3em;
+  border: 1px solid var(--rule);
+  vertical-align: -0.25em;
+}
+
+/* ---- ledger table --------------------------------------------------------- */
+.ledger {
+  border-collapse: collapse;
+  width: 100%;
+}
+.ledger th,
+.ledger td {
+  border-bottom: 1px solid var(--rule);
+}
+.ledger thead th {
+  border-bottom: 2px solid var(--ink);
+  font-weight: 600;
+  text-align: left;
+  vertical-align: bottom;
+}
+.ledger tfoot td,
+.ledger tfoot th {
+  border-top: 3px double var(--rule);
+  border-bottom: 0;
+}
+.ledger .vr {
+  border-left: 1px solid var(--rule);
+}
+
+/* 가게 쪽지: ruled note paper (lines follow the 1.9 line-height) */
+.note-paper {
+  background-color: #fbfcf9;
+  background-image: repeating-linear-gradient(180deg, transparent 0 calc(1.9em - 1px), rgba(157, 184, 168, 0.75) calc(1.9em - 1px) 1.9em);
+  background-position: 0 -0.32em;
+  background-origin: content-box;
+  line-height: 1.9;
+}
+.pencil-underline {
+  text-decoration: underline;
+  text-decoration-color: var(--pencil);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 5px;
+  text-decoration-style: solid;
+}
+.tag-no {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.35em;
+  height: 1.35em;
+  margin: 0 2px;
+  border: 1.5px solid var(--pencil-ink);
+  border-radius: 50%;
+  color: var(--pencil-ink);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
+  vertical-align: 0.15em;
+  font-variant-numeric: tabular-nums;
+}
+
+/* map board: faint ruled grid like a village notice board */
+.map-board {
+  background-color: #f9faf7;
+  background-image:
+    linear-gradient(rgba(157, 184, 168, 0.28) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(157, 184, 168, 0.28) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* shutter: grey slats */
+.shutter {
+  background-color: var(--shutter);
+  background-image: repeating-linear-gradient(180deg, transparent 0 9px, rgba(30, 42, 74, 0.28) 9px 10.5px);
+}
+
+}
+
+/* ---- motion ---------------------------------------------------------------
+   The only motion that runs by itself is the S0 scene (shutter, then marks row by row).
+   Everything else answers a user action (register, confirm, approve). */
+@keyframes shutter-down {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+@keyframes mark-in {
+  0% {
+    opacity: 0;
+    transform: translateY(-8px) scale(1.35) rotate(var(--tilt, 0deg));
+  }
+  70% {
+    opacity: 1;
+    transform: translateY(0) scale(0.96) rotate(var(--tilt, 0deg));
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1) rotate(var(--tilt, 0deg));
+  }
+}
+@layer components {
+.scene-shutter {
+  transform-origin: top center;
+  animation: shutter-down 0.6s cubic-bezier(0.3, 0.1, 0.3, 1) both;
+}
+.scene-mark {
+  animation: mark-in 0.34s ease-out both;
+  animation-delay: var(--delay, 0s);
+}
+/* response to a confirmation: the stamp lands in the cell that just became 확실 */
+.stamp-land {
+  animation: mark-in 0.4s ease-out both;
+}
+/* response to register: the shutter comes down over the form plate */
+.shutter-drop {
+  transform-origin: top center;
+  animation: shutter-down 0.5s ease-in both;
+}
+
+/* changed-value highlight (spec 8.5, 0.8 s): a cell-tinted wash that fades */
 .fx {
   transition: opacity 0.8s ease, transform 0.8s ease;
 }
 .fx-line {
   transition: opacity 1s ease;
 }
-
-/* Changed-cell highlight: overlay fades out over 0.8 s (same transition family). */
 .flash-host {
   position: relative;
 }
 .flash-host::after {
   content: "";
   position: absolute;
-  inset: -2px;
-  border-radius: inherit;
-  background: #f5c84c;
+  inset: 0;
+  background: var(--rule);
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.8s ease;
 }
 .flash-host[data-flash="1"]::after {
-  opacity: 0.45;
+  opacity: 0.4;
   transition: none;
 }
 
@@ -93,21 +356,28 @@ body {
   .flash-host::after {
     transition: none !important;
   }
+  .scene-shutter,
+  .scene-mark,
+  .stamp-land,
+  .shutter-drop {
+    animation: none !important;
+  }
 }
 
-/* Three-value marks */
+/* legacy three-value classes (map captions): same grammar, no colour coding */
 .tri-y {
-  background: var(--sure);
-  color: #fff;
-  border: 2px solid var(--sure);
+  border: 2px solid var(--stamp);
+  color: var(--stamp);
+  background: var(--paper);
 }
 .tri-u {
-  background: var(--unsure-soft);
-  color: var(--unsure);
-  border: 2px dashed var(--unsure);
+  border: 1px dashed var(--pencil);
+  color: var(--pencil-ink);
+  background-color: var(--paper);
 }
 .tri-n {
+  border: 1px solid var(--rule);
+  color: var(--ink);
   background: transparent;
-  color: var(--gone);
-  border: 2px solid var(--line);
+}
 }
