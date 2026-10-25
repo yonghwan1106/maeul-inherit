@@ -125,7 +125,7 @@ export const COPY = {
     mini: {
       title: "선택한 주민",
       line: (name: string, age: number, mode: string, place: string) => `${name} · ${age}세 · ${mode} · ${place}`,
-      counts: (n: number, m: number, k: number) => `확실 ${n} · 확인 중 ${m} · 끊김 ${k}`,
+      counts: (n: number | string, m: number | string, k: number | string) => `확실 ${n} · 확인 중 ${m} · 끊김 ${k}`,
       b1: (d: string, a: number) => `가장 가까운 가게 한 곳(${d} km)만 알려 주면: 확실 ${a}가지`,
       notWalkable: "— 걸어서 갈 수 없어요",
       steps: (n: number, a: number, b: number, c: number | null) =>
