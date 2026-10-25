@@ -1,10 +1,11 @@
 # 이어받는 마을 — 가게가 닫혀도
 
-아이디어 챌린지 4번 「기능상속」 구현작 · 2026 AI 라이프 솔루션 챌린지 응모 시제품
+2026 AI 라이프 아이디어 챌린지 후보작 4번 「기능상속」(제안자 아이디어)을 2026 AI 라이프 솔루션 챌린지를 위해 새로 구현한 시제품
 
 > 마을의 마지막 가게가 닫혀도 장보기·택배·배달이 끊기지 않도록, AI가 그 가게가 하던 일을 찾아 농협·우체국·마을회관에 나눠 맡기는 계획을 짭니다.
 
 - 배포: https://maeul-inherit.vercel.app
+- 영상: 제출 메일 첨부 파일(이어받는마을_시연영상_박용환.mp4)
 - 지역: 전북특별자치도 완주군 화산면(법정리 11개)
 - 스택: Next.js 16.3.4 (App Router) · React 19.2.8 · TypeScript 5.9.3 · Tailwind CSS 4.3.3 · @anthropic-ai/sdk 0.124.0 · Node 22
 
@@ -26,7 +27,7 @@ npm --prefix <repo> run typecheck
 ## 배포 기록
 | 일시(KST) | 커밋 | 내용 |
 |---|---|---|
-| 2026-10-25 18:56 | 51dbb1c | 첫 배포(A1 골격, 키 없음) — 짧은 URL 200 확인 |
+| 2026-10-25 18:56 | 51dbb1c | 첫 배포(골격, 키 없음) — 짧은 URL 200 확인 |
 | 2026-10-25 20:04 | 851dc10 | 최종 배포(키 있음, `-e` 4개) — https://maeul-inherit.vercel.app 쿠키 없이 200, `/api/health` `hasKey:true`·`mode:live`·`model:claude-haiku-5-5`·`commit:851dc10`, `capture.py --check` 37/37 PASS(운영), 키 없는 로컬 `next start`에서도 37/37 PASS·`/api/decompose` `mode:rules` |
 | 2026-10-25 20:36 | f4e65ff | 검수 수정 재배포(키 있음, `-e` 4개, GitHub 연동 끊은 뒤 CLI 배포) — 20:06 GitHub 자동배포(4d317c8, 키 없음)가 키 배포를 덮었던 것을 20:22 `vercel promote`로 되돌리고 다시 배포. 짧은 URL 쿠키 없이 200, `/api/health` `hasKey:true`·`mode:live`·`commit:f4e65ff`, 운영 `/api/decompose` live claude-haiku-5-5, `capture.py --check` 운영 37/37 PASS |
 | 2026-10-25 20:56 | 155403b | 마무리 재배포(키 있음, `-e` 4개, CLI) dpl_4j3Lnsfxy9LzuZNUWYJ96VWyZpNM — 근거 대조 l4-v2(면사무소 별칭·약속 표현 차단)·사전계산 문서 재생성·E4 재측정. 짧은 URL 쿠키 없이 200, `/api/health` `hasKey:true`·`mode:live`·`commit:155403b`, 운영 `/api/decompose` live claude-haiku-5-5, `capture.py --check` 운영 37/37 PASS. 20:43 공개 저장소 이력 재작성(옛 커밋의 실명·다른 작품명 줄 교체, 위 표의 해시는 새 해시) |
