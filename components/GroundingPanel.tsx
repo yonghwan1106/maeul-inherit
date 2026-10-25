@@ -2,7 +2,7 @@
 import type { GroundingResult } from "@/lib/apiTypes";
 import { COPY } from "@/lib/copy";
 
-const KIND: Record<string, string> = { resource: "기관·장소", day: "요일", time: "시각", number: "숫자", phone: "전화번호", assertive: "단정 표현" };
+const KIND: Record<string, string> = { resource: "기관·장소", day: "요일", time: "시각", number: "숫자", phone: "전화번호", assertive: "단정 표현", promise: "약속·확정 표현" };
 
 /** `fallbackReason` set (no key, limit, network…) = template because AI was not called, not because text was blocked. */
 export function GroundingPanel({ grounding, template, fallbackReason }: { grounding: GroundingResult | null | undefined; template: boolean; fallbackReason?: string | null }) {

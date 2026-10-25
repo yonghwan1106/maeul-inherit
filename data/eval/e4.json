@@ -1,13 +1,37 @@
 {
- "runAt": "2026-10-25T10:54:44.769Z",
- "prompt": "l4-v1",
+ "runAt": "2026-10-25T11:54:59.525Z",
+ "prompt": "l4-v2",
  "n": 30,
- "firstPass": 1,
- "regenRate": 0,
- "templateRate": 0,
+ "firstPass": 0.867,
+ "regenRate": 0.133,
+ "templateRate": 0.067,
  "finalPass": 1,
- "reasons": {},
- "examples": [],
+ "reasons": {
+  "promise": 4
+ },
+ "examples": [
+  {
+   "sentence": "결과는 확인이 되는 대로 행정복지센터에서 안내해 드리겠습니다.",
+   "reason": "약속·확정 표현 「안내해 드리겠습니다」 — 확인 전에는 쓰지 않음",
+   "scenario": "sc2_waryong",
+   "state": "base",
+   "docType": "resident"
+  },
+  {
+   "sentence": "결과가 정해지면 화산면 행정복지센터에서 다시 안내드릴게요.",
+   "reason": "약속·확정 표현 「안내드릴게요」 — 확인 전에는 쓰지 않음",
+   "scenario": "sc2_waryong",
+   "state": "demo1",
+   "docType": "resident"
+  },
+  {
+   "sentence": "걸어서 다니시는 주민분들이 불편하지 않도록 확인이 끝나면 다시 안내드릴게요.",
+   "reason": "약속·확정 표현 「안내드릴게요」 — 확인 전에는 쓰지 않음",
+   "scenario": "sc2_waryong",
+   "state": "report",
+   "docType": "resident"
+  }
+ ],
  "perCase": [
   {
    "id": "sc1_seungchi base resident",
@@ -101,12 +125,17 @@
   },
   {
    "id": "sc2_waryong base resident",
-   "firstPass": true,
-   "regenerated": false,
+   "firstPass": false,
+   "regenerated": true,
    "template": false,
    "finalPass": true,
    "model": "claude-haiku-5-5",
-   "firstBlocked": []
+   "firstBlocked": [
+    {
+     "sentence": "결과는 확인이 되는 대로 행정복지센터에서 안내해 드리겠습니다.",
+     "reason": "약속·확정 표현 「안내해 드리겠습니다」 — 확인 전에는 쓰지 않음"
+    }
+   ]
   },
   {
    "id": "sc2_waryong base agency:hanaro_hwasan",
@@ -119,12 +148,17 @@
   },
   {
    "id": "sc2_waryong demo1 resident",
-   "firstPass": true,
-   "regenerated": false,
-   "template": false,
+   "firstPass": false,
+   "regenerated": true,
+   "template": true,
    "finalPass": true,
-   "model": "claude-haiku-5-5",
-   "firstBlocked": []
+   "model": null,
+   "firstBlocked": [
+    {
+     "sentence": "결과가 정해지면 화산면 행정복지센터에서 다시 안내드릴게요.",
+     "reason": "약속·확정 표현 「안내드릴게요」 — 확인 전에는 쓰지 않음"
+    }
+   ]
   },
   {
    "id": "sc2_waryong demo1 agency:hanaro_hwasan",
@@ -173,12 +207,17 @@
   },
   {
    "id": "sc2_waryong report resident",
-   "firstPass": true,
-   "regenerated": false,
+   "firstPass": false,
+   "regenerated": true,
    "template": false,
    "finalPass": true,
    "model": "claude-haiku-5-5",
-   "firstBlocked": []
+   "firstBlocked": [
+    {
+     "sentence": "걸어서 다니시는 주민분들이 불편하지 않도록 확인이 끝나면 다시 안내드릴게요.",
+     "reason": "약속·확정 표현 「안내드릴게요」 — 확인 전에는 쓰지 않음"
+    }
+   ]
   },
   {
    "id": "sc2_waryong report agency:hanaro_hwasan",
@@ -191,12 +230,17 @@
   },
   {
    "id": "sc3_ungok base resident",
-   "firstPass": true,
-   "regenerated": false,
-   "template": false,
+   "firstPass": false,
+   "regenerated": true,
+   "template": true,
    "finalPass": true,
-   "model": "claude-haiku-5-5",
-   "firstBlocked": []
+   "model": null,
+   "firstBlocked": [
+    {
+     "sentence": "확인이 끝나면 그때 다시 정리해 드릴게요.",
+     "reason": "약속·확정 표현 「해 드릴게요」 — 확인 전에는 쓰지 않음"
+    }
+   ]
   },
   {
    "id": "sc3_ungok base agency:hanaro_hwasan",
@@ -283,7 +327,7 @@
  "models": [
   "claude-haiku-5-5"
  ],
- "generatedAt": "2026-10-25T10:54:44.769Z",
+ "generatedAt": "2026-10-25T11:54:59.525Z",
  "unit": {
   "label": "단위 시험(같은 팀 작성)",
   "nWrong": 20,
@@ -326,9 +370,9 @@
   }
  },
  "outOfScope": {
-  "promiseLike": 2,
+  "promiseLike": 0,
   "n": 30,
-  "note": "근거 대조기 검사 항목 밖 — 약속 표현(「다시 안내드리겠습니다」 등)이 남은 최종 문서 수(정규식 집계)"
+  "note": "l4-v2부터 근거 대조기가 약속·확정 표현을 막는다 — 이 값은 그 뒤 최종 문서에 남은 약속 비슷한 표현 수(더 넓은 정규식 집계)"
  },
  "note": "생성 30건 = 시나리오 3 × 확인 상태 5 × 문서 2. 사전계산 캐시를 쓰지 않은 실제 호출. 단위 시험은 같은 팀 작성."
 }

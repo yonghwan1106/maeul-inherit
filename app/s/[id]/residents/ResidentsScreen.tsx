@@ -216,7 +216,8 @@ export function ResidentsScreen({
   const demoPlan = planScope(region, demoCells, s.store, fns);
   const r0 = residents[0];
   const testDigest: PlanDigest | null = r0 ? digestFor(region, demoPlan, personal(region, demoCells, r0.pointId, r0.mode, fns), s, s.demoConfirmations) : null;
-  const regionNames = region.resources.map((r) => ({ name: r.name }));
+  const seatName = (region.meta?.seat as { name?: unknown } | undefined)?.name;
+  const regionNames = [...region.resources.map((r) => ({ name: r.name })), ...(typeof seatName === "string" && seatName ? [{ name: seatName }] : [])];
   const test = testDigest ? groundText(COPY.s4.testSentence, testDigest, regionNames) : null;
 
   const residentViews = residents.map((r) => residentView(region, cells, r, fns));

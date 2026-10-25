@@ -94,8 +94,16 @@ export function sanitizeDigest(region: Region, req: ComposeRequest): PlanDigest 
   };
 }
 
+/** The myeon office's current name (region meta.seat). */
+export function officeOf(region: Region): string | undefined {
+  const seat = (region.meta?.seat as { name?: unknown } | undefined)?.name;
+  return typeof seat === "string" && seat ? seat : undefined;
+}
+
+/** Resource names + the myeon office (meta.seat, e.g. 「화산면 행정복지센터」 — the checker accepts its old name 「면사무소」). */
 export function regionNames(region: Region): NameEntry[] {
-  return region.resources.map((r) => ({ name: r.name }));
+  const seat = officeOf(region);
+  return [...region.resources.map((r) => ({ name: r.name })), ...(seat ? [{ name: seat }] : [])];
 }
 
 /** Digest item the agency would take over (hubdrop items for a deliverer count as its own). */
@@ -113,6 +121,7 @@ export function l4Payload(region: Region, req: ComposeRequest, digest: PlanDiges
     문서: req.docType === "agency" ? "연계 요청문" : "주민 안내문",
     ...(ag ? { 받는_곳: ag.name, ...(ag.route ? { 확인_경로: ag.route } : {}) } : {}),
     ...(ag ? { 받는_곳_항목: agencyItemName(region, req.agencyResId, digest) } : {}),
+    ...(officeOf(region) ? { 문의처: officeOf(region) } : {}),
     마을: digest.villageName,
     이동_조건: `${MODE_RESIDENT_KO[digest.mode]} 주민(${MODE_KO[digest.mode]})`,
     이어받는_곳: digest.items.map((i) => ({ 이름: i.name, 맡는_일: i.fns, 상태: i.status, ...(i.days ? { 요일: i.days } : {}) })),

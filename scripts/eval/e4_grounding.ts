@@ -50,6 +50,7 @@ function reasonKind(reason: string): string[] {
     else if (/계획에 없는 숫자/.test(part)) out.push("number");
     else if (/전화번호/.test(part)) out.push("phone");
     else if (/확인된 시간 없음/.test(part)) out.push("time");
+    else if (/약속·확정 표현/.test(part)) out.push("promise");
     else if (/단정/.test(part)) out.push("assertive");
     else out.push("other");
   }
@@ -58,11 +59,12 @@ function reasonKind(reason: string): string[] {
 
 const round = (x: number) => Math.round(x * 1000) / 1000;
 
-/** Outside the checker's rules (spec 6.3 lists no promise check): promise-like endings in FINAL texts, counted for honesty. */
+/** Broad promise-like count over FINAL texts (kept for honesty). Since l4-v2 the checker itself blocks promise wording
+ *  (grounding.PROMISE_RE); this wider regex shows what is left after the checker. */
 export const PROMISE_RE = /드리겠습니다|드릴게요|안내드릴|보내드렸|반드시|약속/;
 function outOfScope(finals: string[]) {
   const hits = finals.filter((t) => PROMISE_RE.test(t)).length;
-  return { promiseLike: hits, n: finals.length, note: "근거 대조기 검사 항목 밖 — 약속 표현(「다시 안내드리겠습니다」 등)이 남은 최종 문서 수(정규식 집계)" };
+  return { promiseLike: hits, n: finals.length, note: "l4-v2부터 근거 대조기가 약속·확정 표현을 막는다 — 이 값은 그 뒤 최종 문서에 남은 약속 비슷한 표현 수(더 넓은 정규식 집계)" };
 }
 
 function unitScore(region: Region) {

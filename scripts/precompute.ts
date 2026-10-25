@@ -2,7 +2,8 @@
 // Per scenario: decompose 1 + 2 states (base, demo) x (3 resident notices + agency drafts for the top-3
 // 「먼저 전화할 곳」 cells, agency de-duplicated) <= 12 compose calls. Entries whose inputHash is unchanged and
 // whose stored answer is live are reused (use --force to regenerate). Writes data/scenarios/{id}.json.
-// Options: --src <dir> (seed inputs from another folder), --force, --only sc1_seungchi
+// Options: --src <dir> (seed inputs from another folder), --force, --force-compose (documents only; keeps the frozen
+// L1 decomposition), --only sc1_seungchi
 import { existsSync, readFileSync, writeFileSync, mkdirSync } from "node:fs";
 import path from "node:path";
 import type { ComposeResponse, DecomposeResponse } from "../lib/apiTypes";
@@ -36,6 +37,7 @@ async function main() {
   const src = arg("src");
   const only = arg("only");
   const force = process.argv.includes("--force");
+  const forceCompose = force || process.argv.includes("--force-compose");
   let calls = 0;
   for (const id of SCENARIO_IDS) {
     if (only && only !== id) continue;
@@ -71,7 +73,7 @@ async function main() {
         const h = inputHash("compose", { ...req, digest });
         const prev = old.get(h);
         let response: ComposeResponse;
-        if (!force && prev && (prev.response as ComposeResponse)?.mode === "live") {
+        if (!forceCompose && prev && (prev.response as ComposeResponse)?.mode === "live") {
           response = prev.response as ComposeResponse;
         } else {
           const r = await composeLive(region, req, digest, h);

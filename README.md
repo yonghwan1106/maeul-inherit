@@ -27,8 +27,8 @@ npm --prefix <repo> run typecheck
 | 일시(KST) | 커밋 | 내용 |
 |---|---|---|
 | 2026-10-25 18:56 | 51dbb1c | 첫 배포(A1 골격, 키 없음) — 짧은 URL 200 확인 |
-| 2026-10-25 20:04 | 305b54f | 최종 배포(키 있음, `-e` 4개) — https://maeul-inherit.vercel.app 쿠키 없이 200, `/api/health` `hasKey:true`·`mode:live`·`model:claude-haiku-5-5`·`commit:305b54f`, `capture.py --check` 37/37 PASS(운영), 키 없는 로컬 `next start`에서도 37/37 PASS·`/api/decompose` `mode:rules` |
-| 2026-10-25 20:36 | 395c2cf | 검수 수정 재배포(키 있음, `-e` 4개, GitHub 연동 끊은 뒤 CLI 배포) — 20:06 GitHub 자동배포(ebf8389, 키 없음)가 키 배포를 덮었던 것을 20:22 `vercel promote`로 되돌리고 다시 배포. 짧은 URL 쿠키 없이 200, `/api/health` `hasKey:true`·`mode:live`·`commit:395c2cf`, 운영 `/api/decompose` live claude-haiku-5-5, `capture.py --check` 운영 37/37 PASS |
+| 2026-10-25 20:04 | 851dc10 | 최종 배포(키 있음, `-e` 4개) — https://maeul-inherit.vercel.app 쿠키 없이 200, `/api/health` `hasKey:true`·`mode:live`·`model:claude-haiku-5-5`·`commit:851dc10`, `capture.py --check` 37/37 PASS(운영), 키 없는 로컬 `next start`에서도 37/37 PASS·`/api/decompose` `mode:rules` |
+| 2026-10-25 20:36 | f4e65ff | 검수 수정 재배포(키 있음, `-e` 4개, GitHub 연동 끊은 뒤 CLI 배포) — 20:06 GitHub 자동배포(4d317c8, 키 없음)가 키 배포를 덮었던 것을 20:22 `vercel promote`로 되돌리고 다시 배포. 짧은 URL 쿠키 없이 200, `/api/health` `hasKey:true`·`mode:live`·`commit:f4e65ff`, 운영 `/api/decompose` live claude-haiku-5-5, `capture.py --check` 운영 37/37 PASS |
 
 ## 배포 메모
 - 운영 환경변수(`ANTHROPIC_API_KEY` 등)는 `vercel --prod -e ...` 방식으로 배포마다 넣는다. **`-e`는 그 배포에만 붙으므로 재배포할 때마다 다시 넣어야 한다.** 키 값은 저장소·로그·`.env.local`에 남기지 않는다.
@@ -51,7 +51,7 @@ npm --prefix <repo> run typecheck
 | D8 | 위키백과 「화산면 (완주군)」 법정리 목록 | — | 법정리 11개(사실만) |
 
 **원칙**
-- AI 사용: 생활기능 분해와 문서 초안은 Anthropic Claude(claude-haiku-5-5)가 쓴다. 누가 어떤 일을 이어받을지와 모든 숫자는 직접 만든 결정 엔진(`lib/engine/`)이 계산하며, 학습한 AI 모델은 쓰지 않는다. 근거 대조기(`lib/validate/grounding.ts`)는 규칙으로 동작한다.
+- AI 사용: 생활기능 분해와 문서 초안은 Anthropic Claude(claude-haiku-5-5)가 쓴다. 누가 어떤 일을 이어받을지와 모든 숫자는 직접 만든 결정 엔진(`lib/engine/`)이 계산하며, 학습한 AI 모델은 쓰지 않는다. 근거 대조기(`lib/validate/grounding.ts`)는 규칙으로 동작한다 — 계획에 없는 곳·요일·시각·숫자·전화번호, 확인 중인 곳의 단정, 약속·확정 표현(「맡기로 했어요」「다시 알려 드릴게요」 등, l4-v2부터)을 막고, 「면사무소」는 「화산면 행정복지센터」의 옛 이름으로 같은 기관으로 본다(문서에는 현재 이름을 쓰도록 프롬프트가 지시). E4 l4-v2 첫 실행(대조기에 「말씀드릴게요」가 빠져 있던 상태)은 `data/eval/raw/e4_run1_l4v2_checker_gap.json`에 그대로 남겼다.
 - LLM 호출: 기본 `claude-haiku-5-5`, 실패 시 `claude-haiku-4-5` 1회, 20초 제한, 사고(thinking) 끔, temperature 보내지 않음. 요청·응답 본문은 로그에 남기지 않는다. IP당 분당 6회·인스턴스당 하루 300회(`AI_RPM_PER_IP`·`AI_DAILY_CAP`)를 넘으면 규칙·템플릿으로 답한다(**인스턴스당 상한** — 진짜 상한은 Anthropic 콘솔 지출 한도).
 - 사전계산: 시나리오 3개의 분해·안내문·요청문은 `npm run precompute`로 실제 호출해 `data/scenarios/*.json`에 저장(모델·생성 일시 포함). 시나리오만 누르면 LLM 호출 0. `npm run check:scenarios`가 입력 해시·id·가상 가게명·시연 입력값 위치를 검사한다(빌드 전 필수).
 - 개인정보: 서버 저장 없음, DB 없음. 확인 결과·승인 기록·주민 제보는 이 브라우저(localStorage `mi.v1.*`)에만 남고 S6에서 지울 수 있다. 메모의 전화번호는 보내기 전·서버에서 두 번 가린다.

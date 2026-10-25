@@ -4,12 +4,27 @@
 //   resource not in digest -> block · weekday not in digest days -> block · number not in numbersAllowed -> block
 //   phone number -> block (no confirmed contacts) · clock time -> block (digest has no times)
 //   sentence mentions a 「확인 중」-only resource, uses an assertive ending and has no 「확인」 -> block
+//   promise / already-decided wording (「맡기로 했어요」「다시 알려 드릴게요」…) -> block (l4-v2)
+//   「면사무소」 = old name of 「○○면 행정복지센터」 -> accepted as that institution (l4-v2)
 import type { GroundingBlock, GroundingCheck, GroundingResult } from "../apiTypes";
 import type { PlanDigest } from "../types";
 import { PHONE_SOURCE } from "../guard/redact";
 
 export const ALIASES = ["하나로마트", "농협", "우체국", "이동장터", "경로당", "경로회관", "마을회관", "생활지원"] as const;
 export const ASSERTIVE_RE = /옵니다|와요|됩니다|돼요|가능합니다|받을 수 있습니다|해 줍니다/;
+/** Promise / already-decided wording (added l4-v2): the plan is a proposal still being checked, so the notice must not
+ *  say a place has agreed (「맡기로 했어요」) or promise a follow-up (「다시 알려 드릴게요」「안내해 드릴게요」). */
+export const PROMISE_RE =
+  /맡기로\s?(?:했|하였|됐|되었)|맡게\s?(?:됐|되었)|맡아\s?주기로|확정\s?(?:됐|되었|했)|정해\s?졌|(?:알려|안내해|안내|연락|전화|전해|챙겨|도와|해|보내|말씀)\s?(?:드릴게요|드리겠습니다|드리겠어요|드릴\s?예정|드릴\s?거|드리도록|줄게요|주겠습니다)|약속\s?드|보내\s?드렸|반드시\s?(?:됩니다|돼요|옵니다|와요)/;
+/** Old names of the myeon office (the notice's issuer and the plan's confirmation route). 「면사무소」 is the former
+ *  name of 「○○면 행정복지센터」: accepted as the same institution; the L4 prompt asks for the current name. */
+export function officeAliases(names: string[]): { canonical: string; forms: string[] } | null {
+  const canonical = names.find((n) => /면\s?행정복지센터$/.test(n));
+  if (!canonical) return null;
+  const myeon = canonical.replace(/\s?행정복지센터$/, ""); // 「화산면」
+  const forms = [canonical, `${myeon}사무소`, `${myeon} 사무소`, `${myeon} 행정복지센터`, "면사무소", "행정복지센터"];
+  return { canonical, forms: [...new Set(forms)].sort((a, b) => b.length - a.length) };
+}
 const DAY_RE = /[월화수목금토일]요일/g;
 const TIME_RE = /(?:오전|오후)?\s?\d{1,2}시/g;
 const NUM_RE = /\d+(?:\.\d+)?/g;
@@ -61,6 +76,15 @@ export function checkSentence(sentence: string, digest: PlanDigest, names: strin
   // resource names (region, longest first), then aliases on what is left.
   // Matched spans are blanked with same-length spaces so positions stay comparable.
   const mentioned: Mention[] = [];
+  // the myeon office (current name or old 「면사무소」) is always a known institution, not a plan item
+  const office = officeAliases(names);
+  if (office) {
+    for (const f of office.forms) {
+      if (!rest.includes(f)) continue;
+      checked.push({ kind: "resource", value: f === office.canonical ? f : `${f}(= ${office.canonical})`, ok: true });
+      rest = rest.split(f).join(" ".repeat(f.length));
+    }
+  }
   const take = (nm: string, alias: boolean) => {
     const pos = rest.indexOf(nm);
     if (pos < 0) return;
@@ -108,6 +132,13 @@ export function checkSentence(sentence: string, digest: PlanDigest, names: strin
     reasons.push(`확인 중인 자원을 단정함(${nm})`);
   } else if (target) {
     checked.push({ kind: "assertive", value: target.hit[0].name, ok: true });
+  }
+
+  // promise / already-decided wording — always blocked (nothing in the plan is agreed or promised yet)
+  const pm = sentence.match(PROMISE_RE);
+  if (pm) {
+    checked.push({ kind: "promise", value: pm[0], ok: false });
+    reasons.push(`약속·확정 표현 「${pm[0]}」 — 확인 전에는 쓰지 않음`);
   }
   return { checked, reasons };
 }

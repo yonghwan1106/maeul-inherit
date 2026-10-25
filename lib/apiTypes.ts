@@ -44,7 +44,7 @@ export interface ComposeRequest {
   digest: PlanDigest;
 }
 
-export type GroundingKind = "resource" | "day" | "time" | "number" | "phone" | "assertive";
+export type GroundingKind = "resource" | "day" | "time" | "number" | "phone" | "assertive" | "promise";
 
 export interface GroundingCheck {
   kind: GroundingKind;
